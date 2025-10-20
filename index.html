@@ -1,1 +1,304 @@
-file:///Users/tugbaarslan/Desktop/lunvilabs-index-premium-v0.3.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
+<meta name="theme-color" content="#0b0818">
+<style>
+  :root{
+    --bg-1:#0c0819; --bg-2:#25114f; --bg-3:#6f44ff;
+    --text:#f7f6ff; --muted:#cfc9e9;
+    --glass:rgba(255,255,255,.06); --glass-strong:rgba(255,255,255,.12);
+    --stroke:rgba(255,255,255,.16); --shadow:0 14px 40px rgba(0,0,0,.45);
+    --primary:#8853ff; --accent:#41e2c0; --radius-lg:22px; --maxw:1200px;
+  }
+  *,*:before,*:after{box-sizing:border-box} html,body{height:100%}
+  body{margin:0;color:var(--text);font:400 16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg-1);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+
+  /* Static premium background (no animation) */
+  .bg{position:fixed;inset:0;z-index:-4;background:
+      radial-gradient(900px 700px at 85% 10%, #bca7ff22, transparent 60%),
+      radial-gradient(1000px 720px at 70% 80%, #5f36ff26, transparent 60%),
+      linear-gradient(115deg,#25114f,var(--bg-3) 60%, #2a175e)}
+  .grid{position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:.32;
+    background-image:linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px),linear-gradient(to bottom, rgba(255,255,255,.06) 1px, transparent 1px);
+    background-size:40px 40px;mask-image:radial-gradient(1100px 700px at 60% 40%, #000, transparent 70%)}
+  .grain{position:fixed;inset:-20%;z-index:-2;pointer-events:none;opacity:.9;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>')}
+
+  /* Dense spheres */
+  .spheres{position:fixed;inset:0;pointer-events:none;z-index:-1}
+  .sphere{position:absolute;border-radius:50%;filter:saturate(115%);opacity:.9;
+    background:
+      radial-gradient(120px 120px at 35% 25%, rgba(255,255,255,.35), rgba(255,255,255,.08) 55%, transparent 60%),
+      radial-gradient(circle at 30% 70%, rgba(150,110,255,.55), rgba(80,50,200,.45) 50%, rgba(40,20,90,.1) 75%);
+    box-shadow:0 40px 100px rgba(20,10,60,.55), inset -30px -40px 80px rgba(0,0,0,.35), inset 30px 40px 80px rgba(255,255,255,.06)}
+  .sphere:after{content:"";position:absolute;inset:-18px;border-radius:50%;
+    background:radial-gradient(300px 120px at 60% -20%, rgba(255,255,255,.16), transparent 70%)}
+  .s1{right:8%; top:10%; width:360px; height:360px}
+  .s2{right:18%; top:46%; width:420px; height:420px}
+  .s3{left:14%; top:28%; width:300px; height:300px}
+  .s4{left:30%; top:8%; width:220px; height:220px}
+  .s5{left:6%; bottom:12%; width:420px; height:420px}
+  .s6{right:-4%; bottom:-4%; width:520px; height:520px; opacity:.7}
+
+  /* Layout */
+  .container{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+
+  /* Header / Nav */
+  header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);
+    background:linear-gradient(to bottom, rgba(11,8,24,.7), rgba(11,8,24,.35));border-bottom:1px solid var(--stroke)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:.7rem;font-weight:800;letter-spacing:.2px}
+  .logo{width:28px;height:28px;border-radius:9px;background:linear-gradient(145deg,#a58dff,#3b23a8);box-shadow:inset 0 0 10px #fff2,0 8px 20px #0004}
+  .nav ul{display:flex;gap:20px;align-items:center;list-style:none;padding:0;margin:0 18px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.2rem;border-radius:999px;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:.14s ease}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 16px 30px #0006}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 22px 40px #0008}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--stroke)}
+  .btn-ghost:hover{background:var(--glass-strong)}
+  .hamburger{display:none}
+  @media (max-width:950px){
+    .nav ul{display:none}
+    .hamburger{display:inline-flex;border:1px solid var(--stroke);background:transparent;padding:.6rem .8rem;border-radius:12px;color:var(--muted)}
+    .nav.open ul{position:absolute;left:0;right:0;top:68px;display:flex;flex-direction:column;background:rgba(11,8,24,.88);border-bottom:1px solid var(--stroke)}
+    .nav.open ul a{padding:14px 24px;display:block}
+  }
+
+  /* Hero */
+  .hero{padding:90px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
+  .h1{font-size:58px;line-height:1.04;letter-spacing:-.02em;margin:0 0 16px;font-weight:900}
+  .lead{color:var(--muted);font-size:19px;margin:0 0 24px}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+  .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
+  .panels{display:grid;gap:16px}
+  .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden}
+  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%)}
+  .panel h3{margin:0 0 6px;font-size:16px}
+  .panel p{margin:0;color:var(--muted);font-size:14px}
+  @media (max-width:950px){.hero-grid{grid-template-columns:1fr}.h1{font-size:44px}}
+
+  /* Features */
+  .section{padding:34px 0 10px}
+  .section h2{font-size:30px;margin:0 0 14px}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .icon{width:34px;height:34px;border-radius:10px;margin-bottom:10px;background:linear-gradient(140deg,#b69dff,#6f44ff);box-shadow:inset 0 0 10px #fff3,0 8px 20px #0006}
+  @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+  /* Trust / badges */
+  .trust{display:flex;gap:18px;flex-wrap:wrap;align-items:center;opacity:.9}
+  .badge{padding:.45rem .7rem;border:1px solid var(--stroke);border-radius:10px;background:var(--glass);color:#eae4ff}
+
+  /* Pricing */
+  .pricing{padding:32px 0 60px}
+  .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .price{font-size:30px;color:#c7b6ff;font-weight:900}
+  .price.pro{color:#b49aff}
+  .price.agency{color:#41e2c0}
+  .features{margin:12px 0 18px;padding:0;list-style:none}
+  .features li{margin:8px 0;color:#efeafe}
+  .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
+
+  /* Footer */
+  footer.site{padding:46px 0;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
+
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(7,5,15,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+  .modal.open{display:flex}
+  .dialog{max-width:720px;width:100%;background:var(--glass);border:1px solid var(--stroke);border-radius:20px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
+  .dialog header{padding:18px 22px;border-bottom:1px solid var(--stroke);background:linear-gradient(to bottom, rgba(12,8,24,.6), rgba(12,8,24,.2))}
+  .dialog .body{padding:18px 22px}
+  .dialog .row{display:grid;gap:10px;margin-bottom:14px}
+  .dialog label{font-size:14px;color:#efeafe}
+  .dialog input,.dialog textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);color:var(--text)}
+  .dialog textarea{min-height:90px;resize:vertical}
+  .dialog footer{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px;border-top:1px solid var(--stroke)}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="grid"></div><div class="grain"></div>
+<div class="spheres" aria-hidden="true">
+  <span class="sphere s1"></span><span class="sphere s2"></span>
+  <span class="sphere s3"></span><span class="sphere s4"></span>
+  <span class="sphere s5"></span><span class="sphere s6"></span>
+</div>
+
+<header>
+  <div class="container nav" id="nav">
+    <a href="#" class="brand" aria-label="Lunvi Labs home">
+      <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
+    </a>
+    <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
+    <ul id="menu" aria-label="Main menu">
+      <li><a href="#product">Product</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
+      <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero container" id="hero">
+    <div class="hero-grid">
+      <div>
+        <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
+        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#demo">Start Demo</a>
+          <a class="btn btn-ghost" href="#pricing">See Pricing</a>
+        </div>
+        <div style="height:12px"></div>
+        <div class="trust" role="list" aria-label="Trust badges">
+          <span class="badge" role="listitem">EU Hosting</span>
+          <span class="badge" role="listitem">GDPR / KVKK</span>
+          <span class="badge" role="listitem">99.9% Uptime target</span>
+          <span class="badge" role="listitem">1-click Deploy</span>
+        </div>
+        <div class="chips" role="list" aria-label="Highlights">
+          <span class="chip" role="listitem">Meta CAPI preset</span>
+          <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
+          <span class="chip" role="listitem">Event Router</span>
+          <span class="chip" role="listitem">Consent Mode v2</span>
+          <span class="chip" role="listitem">Log & Debugger</span>
+        </div>
+      </div>
+
+      <div class="panels">
+        <div class="panel">
+          <div class="icon" aria-hidden="true"></div>
+          <h3>Key capabilities</h3>
+          <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
+        </div>
+        <div class="panel">
+          <div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div>
+          <h3>Use cases</h3>
+          <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
+        </div>
+        <div class="panel">
+          <div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div>
+          <h3>Health at a glance</h3>
+          <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section container" id="product">
+    <h2>Product</h2>
+    <div class="grid-3">
+      <div class="panel">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>Meta Conversions API</h3>
+        <p>Pixel ID & Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p>
+      </div>
+      <div class="panel">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>GA4 Server Endpoint</h3>
+        <p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p>
+      </div>
+      <div class="panel">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>Event Router & Destinations</h3>
+        <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
+    <h2 id="pricing-title">Pricing</h2>
+    <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
+    <div class="pricing-cards">
+      <article class="panel">
+        <header><h3>Dev</h3></header>
+        <p class="price">$0</p>
+        <ul class="features">
+          <li>1 container</li>
+          <li>10k events / month</li>
+          <li>Log viewer</li>
+          <li>*.lunvi.run subdomain</li>
+        </ul>
+        <button class="btn btn-ghost" aria-label="Dev plan details">Details</button>
+      </article>
+
+      <article class="panel" aria-current="true">
+        <header><h3>Pro</h3></header>
+        <p class="price pro">$29</p>
+        <ul class="features">
+          <li>3 containers</li>
+          <li>300k events / month</li>
+          <li>Meta CAPI + GA4</li>
+          <li>Custom domain</li>
+          <li>Priority support</li>
+        </ul>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn btn-primary" id="openModal">Request upgrade</button>
+          <a class="btn btn-ghost" href="#" aria-label="Static payment link">Payment link</a>
+        </div>
+      </article>
+
+      <article class="panel">
+        <header><h3>Agency</h3></header>
+        <p class="price agency">$89</p>
+        <ul class="features">
+          <li>10 containers</li>
+          <li>2M events / month</li>
+          <li>Teams & roles</li>
+          <li>EU region</li>
+          <li>SLA</li>
+        </ul>
+        <button class="btn btn-ghost" aria-label="Agency plan details">Details</button>
+      </article>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
+    <div>© Lunvi Labs — Privacy-first infrastructure • <a href="#" style="color:#d4caff">Status</a> • <a href="#" style="color:#d4caff">DPA</a></div>
+    <div style="opacity:.8">v0.3 premium demo UI</div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-labelledby="dialog-title">
+  <div class="dialog">
+    <header><h3 id="dialog-title">Request upgrade — Pro plan</h3></header>
+    <form class="body" onsubmit="event.preventDefault(); closeModal(); alert('Your request has been received. We will get back to you shortly.');">
+      <div class="row"><label for="c1">Company</label><input id="c1" required placeholder="e.g., Example Inc."></div>
+      <div class="row"><label for="c2">Email</label><input id="c2" type="email" required placeholder="you@company.com"></div>
+      <div class="row"><label for="c3">Phone</label><input id="c3" type="tel" placeholder="+1 202 555 0123"></div>
+      <div class="row"><label for="c4">Billing details / Tax ID</label><input id="c4" placeholder="Tax office, number, company address"></div>
+      <div class="row"><label for="c5">Notes (optional)</label><textarea id="c5" placeholder="Short notes, context or questions"></textarea></div>
+      <footer><button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button><button type="submit" class="btn btn-primary">Submit request</button></footer>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Mobile nav
+  const nav = document.getElementById('nav');
+  const navToggle = document.getElementById('navToggle');
+  navToggle?.addEventListener('click', ()=>{
+    const open = nav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+
+  // Modal
+  const modal = document.getElementById('modal');
+  const openBtn = document.getElementById('openModal');
+  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow='' }
+  openBtn?.addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden' });
+  modal?.addEventListener('click', (e)=>{ if(e.target===modal) closeModal() });
+  window.closeModal = closeModal;
+</script>
+</body>
+</html>
