@@ -104,34 +104,28 @@
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
   .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
-  /* CTA band (turkuaz darker) */
+  /* CTA band */
   .cta-band{
-    margin: 26px 0;
-    border-radius: 26px;
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
-    background:
-      radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
-      linear-gradient(135deg, #0fb8a9 0%, #2cc7e6 50%, #8af3e4 100%);
-    color:#052529; position:relative; overflow:hidden; isolation:isolate; z-index:1;
+    margin:26px 0;border-radius:26px;border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
+    background:radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
+      linear-gradient(135deg,#0fb8a9 0%, #2cc7e6 50%, #8af3e4 100%);
+    color:#052529;position:relative;overflow:hidden;isolation:isolate;z-index:1;
   }
   .cta-band:after{content:"";position:absolute;inset:-2px;background:
     radial-gradient(1200px 300px at 60% 120%, rgba(255,255,255,.18), transparent 70%),
     radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.12), transparent 70%);pointer-events:none;mix-blend-mode:overlay;}
-  .cta-inner{position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:22px; padding:28px 28px; backdrop-filter: blur(4px) saturate(120%)}
-  .cta-copy h3{ margin:0 0 6px; font-size:30px; line-height:1.15; letter-spacing:-.01em }
-  .cta-copy p{ margin:0; opacity:.9; color:#073a40 }
-  .cta-actions{ display:flex; gap:12px; flex-wrap:wrap }
-  .cta-primary{background:linear-gradient(180deg,#0fb69a,#079b86); color:#eafffb; border:1px solid rgba(255,255,255,.22); box-shadow: 0 12px 28px rgba(0,0,0,.28); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
-  .cta-primary:hover{ transform: translateY(-1px) }
-  .cta-ghost{background:rgba(255,255,255,.18); color:#043e43; border:1px solid rgba(255,255,255,.32); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
-  @media (max-width:900px){ .cta-inner{ flex-direction:column; align-items:flex-start } .cta-copy h3{ font-size:26px } }
+  .cta-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:22px;padding:28px;backdrop-filter:blur(4px) saturate(120%)}
+  .cta-copy h3{margin:0 0 6px;font-size:30px;line-height:1.15;letter-spacing:-.01em}
+  .cta-copy p{margin:0;opacity:.9;color:#073a40}
+  .cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .cta-primary{background:linear-gradient(180deg,#0fb69a,#079b86);color:#eafffb;border:1px solid rgba(255,255,255,.22);box-shadow:0 12px 28px rgba(0,0,0,.28);padding:.9rem 1.3rem;border-radius:14px;font-weight:700}
+  .cta-primary:hover{transform:translateY(-1px)}
+  .cta-ghost{background:rgba(255,255,255,.18);color:#043e43;border:1px solid rgba(255,255,255,.32);padding:.9rem 1.3rem;border-radius:14px;font-weight:700}
+  @media (max-width:900px){.cta-inner{flex-direction:column;align-items:flex-start}.cta-copy h3{font-size:26px}}
 
   /* ===== Modal (Request Form) ===== */
-  .modal-backdrop{
-    position:fixed;inset:0;background:rgba(7,6,16,.68);
-    backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000
-  }
+  .modal-backdrop{position:fixed;inset:0;background:rgba(7,6,16,.68);backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000}
   .modal-backdrop.open{display:block}
   .modal{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:1001}
   .modal.open{display:grid;pointer-events:auto}
@@ -140,25 +134,21 @@
   .modal-title{margin:0;font-size:18px;font-weight:800}
   .modal-close{appearance:none;border:1px solid var(--stroke);background:transparent;color:var(--muted);border-radius:10px;padding:.4rem .6rem;cursor:pointer}
   .modal-body{padding:16px 18px;max-height:min(70vh,680px);overflow:auto}
-  .modal-grid{display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr))}
+  .modal-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .modal-grid label{display:block}
   .modal-actions{margin-top:12px}
-  @media (max-width:700px){ .modal-grid{grid-template-columns:1fr} }
+  @media (max-width:700px){.modal-grid{grid-template-columns:1fr}}
 
   /* Inputs */
   input, textarea{
-    width:100%; padding:.7rem .8rem; border-radius:12px; border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.10); color:var(--text); outline:none;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+    width:100%;padding:.7rem .8rem;border-radius:12px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.10);color:var(--text);outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
   }
   input::placeholder, textarea::placeholder{color:#e2dcffcc}
-  textarea{min-height:110px; resize:vertical}
+  textarea{min-height:110px;resize:vertical}
 
-  /* === New Footer v2 === */
-  footer.site{
-    padding:48px 0 22px;color:var(--muted);border-top:1px solid var(--stroke);
-    background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35));
-  }
+  /* === Footer v2 === */
+  footer.site{padding:48px 0 22px;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
   .footer-top{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:24px;align-items:start}
   .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
   .footer-logo{display:flex;align-items:center;gap:.7rem;font-weight:800}
@@ -170,75 +160,63 @@
   .footer-links a:hover{opacity:1}
   .footer-bottom{margin-top:26px;padding-top:16px;border-top:1px solid var(--stroke);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
   .footer-mini{display:flex;gap:14px;flex-wrap:wrap;opacity:.9}
-  @media (max-width:980px){ .footer-top{grid-template-columns:1fr 1fr} }
-  @media (max-width:620px){ .footer-top{grid-template-columns:1fr} }
+  @media (max-width:980px){.footer-top{grid-template-columns:1fr 1fr}}
+  @media (max-width:620px){.footer-top{grid-template-columns:1fr}}
 
-  /* ===== Showcase (daha dolgun ve ortalı) ===== */
-  .showcase{
-    background:linear-gradient(180deg,#4a2fd0 0%,#6a4bff 100%);
-    margin:40px auto 30px;
-    border-radius:32px;
-    border:1px solid rgba(255,255,255,.22);
-    box-shadow:0 22px 70px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.08);
-    color:#f5f1ff; overflow:hidden;
-  }
+  /* ===== Showcase (unchanged from previous step) ===== */
+  .showcase{background:linear-gradient(180deg,#4a2fd0 0%,#6a4bff 100%);margin:40px auto 30px;border-radius:32px;border:1px solid rgba(255,255,255,.22);box-shadow:0 22px 70px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.08);color:#f5f1ff;overflow:hidden}
   .showcase-inner{padding:46px 34px}
   .showcase-head{text-align:center;margin:0 0 18px;font-size:30px;letter-spacing:-.01em}
-  .showcase-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch;
-  }
-  .showcase-card{
-    background:rgba(255,255,255,.14);
-    border:1px solid rgba(255,255,255,.28);
-    border-radius:22px;padding:24px;
-    box-shadow:0 16px 40px rgba(0,0,0,.45);
-    backdrop-filter:blur(6px) saturate(125%);
-  }
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+  .showcase-card{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:22px;padding:24px;box-shadow:0 16px 40px rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(125%)}
   .showcase-card h3{margin:0 0 8px;font-size:24px}
   .showcase-card p{margin:0 0 16px;color:#fff}
   .showcase-actions{display:flex;gap:12px;flex-wrap:wrap}
-  .btn-lite{
-    background:#1fd1a5; color:#053528; border:1px solid rgba(0,0,0,.2);
-    border-radius:14px; padding:.9rem 1.15rem; font-weight:800; box-shadow:0 10px 24px rgba(0,0,0,.28)
-  }
+  .btn-lite{background:#1fd1a5;color:#053528;border:1px solid rgba(0,0,0,.2);border-radius:14px;padding:.9rem 1.15rem;font-weight:800;box-shadow:0 10px 24px rgba(0,0,0,.28)}
   .btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.65);border-radius:14px;padding:.9rem 1.15rem;font-weight:800}
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
-  @media (max-width:900px){ .showcase-grid{grid-template-columns:1fr} }
+  @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
-  /* ===== DIY vs Lunvi Tablosu (panel içinde, dolgun) ===== */
+  /* ===== Self-host vs Lunvi (CENTERED + OPAQUE) ===== */
   .compare{margin:34px 0}
   .compare h2{font-size:30px;margin:0 0 14px;text-align:center}
   .compare-panel{
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.22);
-    border-radius:24px;
-    box-shadow:0 18px 50px rgba(0,0,0,.45);
+    max-width:1080px;
+    margin:0 auto;                      /* center */
+    border-radius:28px;
     overflow:hidden;
-    backdrop-filter:blur(6px) saturate(120%);
+    border:1px solid rgba(255,255,255,.24);
+    box-shadow:0 22px 70px rgba(0,0,0,.55);
+    background:linear-gradient(180deg,#6a56f2 0%, #5a48e6 100%);  /* opaque */
   }
-  .compare-table{width:100%;border-collapse:collapse}
-  .compare-table th,.compare-table td{
-    padding:16px 18px;border-top:1px solid rgba(255,255,255,.14);
-  }
+  .compare-table{width:100%;border-collapse:separate;border-spacing:0}
+  .compare-table th,.compare-table td{padding:16px 18px;border-top:1px solid rgba(255,255,255,.18)}
   .compare-table thead th{
-    background:rgba(255,255,255,.10);
-    font-size:14px; text-align:center;
+    background:#7a64ff;                 /* opaque header */
+    font-size:14px;text-align:center
   }
-  .compare-table tbody tr:nth-child(odd){background:rgba(255,255,255,.06)}
-  .compare-table td:first-child{width:36%;font-weight:700;opacity:.95}
+  .compare-table tbody tr:nth-child(odd){background:#5d49e0}  /* opaque rows */
+  .compare-table tbody tr:nth-child(even){background:#654fe8}
+  .compare-table td:first-child{width:36%;font-weight:700;opacity:.98}
   .compare-table td:nth-child(2), .compare-table td:nth-child(3){text-align:center}
   .pill{display:inline-flex;align-items:center;gap:6px;padding:.34rem .62rem;border-radius:999px;background:#2bd6b1;color:#052b1f;font-size:12px;font-weight:800}
-  .x{color:#ffb3b3}
-  .check{color:#b1ffd9}
+  .x{color:#ffd3d3}
+  .check{color:#d8ffe9}
 
-  /* ===== FAQ Akordeon (daha belirgin) ===== */
+  /* ===== FAQ (CENTERED + OPAQUE) ===== */
   .faq{margin:38px 0}
   .faq h2{font-size:30px;margin:0 0 14px;text-align:center}
-  .faq-wrap{max-width:920px;margin:0 auto}
-  .faq-item{border:1px solid rgba(255,255,255,.22);border-radius:16px;background:rgba(255,255,255,.12);margin-bottom:12px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.38)}
+  .faq-wrap{max-width:1000px;margin:0 auto} /* center */
+  .faq-item{
+    border:1px solid rgba(255,255,255,.24);
+    border-radius:16px;
+    background:linear-gradient(180deg,#5a48e6,#6a56f2); /* opaque */
+    margin-bottom:12px;overflow:hidden;
+    box-shadow:0 12px 32px rgba(0,0,0,.42)
+  }
   .faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-  .faq-q span{opacity:.9}
-  .faq-a{padding:0 18px 16px 18px;color:#e9e3ff;display:none}
+  .faq-q span{opacity:.95}
+  .faq-a{padding:0 18px 16px 18px;color:#f1edff;display:none}
   .faq-item.open .faq-a{display:block}
   .faq-item.open .faq-q span{opacity:1}
 </style>
@@ -337,14 +315,14 @@
     </div>
   </section>
 
-  <!-- SHOWCASE (daha dolgun) -->
+  <!-- SHOWCASE -->
   <section class="container showcase" id="gateways">
     <div class="showcase-inner">
       <h3 class="showcase-head">Choose your gateway</h3>
       <div class="showcase-grid">
         <article class="showcase-card">
           <h3>Meta Conversions API Gateway</h3>
-          <p>Akıllı CAPI entegrasyonu: dedup anahtarları, Consent Mode v2, test konsolu ve match-quality metrikleri.</p>
+          <p>Smart CAPI integration with dedup keys, Consent Mode v2, test console and match-quality metrics.</p>
           <div class="showcase-actions">
             <a class="btn-lite js-request" href="#" data-plan="Pro" aria-label="Start Meta CAPI trial">7-day free trial</a>
             <a class="btn-outline" href="#product">Learn more</a>
@@ -352,7 +330,7 @@
         </article>
         <article class="showcase-card">
           <h3>Lunvi Gateway (GA4 / sGTM)</h3>
-          <p>Server-side Google Analytics ve Ads için hızlı kurulum: CNAME, yönetilen SSL, log & debugger, P95 180ms.</p>
+          <p>Server-side Google Analytics & Ads with blazing setup: CNAME, managed SSL, log & debugger, P95 180ms.</p>
           <div class="showcase-actions">
             <a class="btn-lite js-request" href="#" data-plan="Pro" aria-label="Start GA4 trial">7-day free trial</a>
             <a class="btn-outline" href="#integrations">Learn more</a>
@@ -362,11 +340,11 @@
     </div>
   </section>
 
-  <!-- DIY vs Lunvi KARŞILAŞTIRMA -->
+  <!-- SELF-HOST VS LUNVI -->
   <section class="container compare" id="compare">
     <h2>Self-host vs Lunvi</h2>
     <div class="compare-panel">
-      <table class="compare-table" aria-describedby="compare">
+      <table class="compare-table" aria-describedby="compare table">
         <thead>
           <tr>
             <th></th>
@@ -376,44 +354,44 @@
         </thead>
         <tbody>
           <tr>
-            <td>Kurulum süresi</td>
-            <td>Günler / haftalar</td>
-            <td><span class="pill">Dakikalar</span></td>
+            <td>Setup time</td>
+            <td>Days / weeks</td>
+            <td><span class="pill">Minutes</span></td>
           </tr>
           <tr>
             <td>CNAME & SSL</td>
-            <td class="x">Manuel yönetim</td>
-            <td class="check">Yönetilen, otomatik yenileme</td>
+            <td class="x">Manual management</td>
+            <td class="check">Managed, auto-renew</td>
           </tr>
           <tr>
-            <td>Bakım / patch maliyeti</td>
-            <td>Devopss + izleme</td>
-            <td class="check">Dahil</td>
+            <td>Maintenance / patch cost</td>
+            <td>DevOps + monitoring</td>
+            <td class="check">Included</td>
           </tr>
           <tr>
             <td>Log & Debugger</td>
-            <td class="x">Ek kurulum</td>
-            <td class="check">Yerleşik</td>
+            <td class="x">Extra setup</td>
+            <td class="check">Built-in</td>
           </tr>
           <tr>
             <td>Consent Mode v2</td>
-            <td class="x">Kısmi</td>
-            <td class="check">Tam destek</td>
+            <td class="x">Partial</td>
+            <td class="check">Full support</td>
           </tr>
           <tr>
             <td>Dedup (browser+server)</td>
             <td class="x">Custom</td>
-            <td class="check">Hazır şablonlar</td>
+            <td class="check">Ready templates</td>
           </tr>
           <tr>
-            <td>Destinasyonlar</td>
-            <td>Tek tek entegrasyon</td>
+            <td>Destinations</td>
+            <td>One-by-one integration</td>
             <td class="check">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</td>
           </tr>
           <tr>
-            <td>SLA / Uptime hedefi</td>
-            <td>Size bağlı</td>
-            <td class="check">99.9% hedef</td>
+            <td>SLA / Uptime target</td>
+            <td>Depends on you</td>
+            <td class="check">99.9% target</td>
           </tr>
         </tbody>
       </table>
@@ -425,23 +403,23 @@
     <h2>FAQ</h2>
     <div class="faq-wrap">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Dedup nasıl çalışır?</span> ⌄</button>
-        <div class="faq-a">Tarayıcı (event_id / fbp / fbc) ile sunucu tarafı eşleştirip, aynı event’in iki kez sayılmasını engelleriz. Şablonlarımız sGTM ve GA4 MP v2 ile uyumludur.</div>
+        <button class="faq-q" aria-expanded="false"><span>How does dedup work?</span> ⌄</button>
+        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with the server event and prevent double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Consent Mode v2 desteğiniz neleri kapsıyor?</span> ⌄</button>
-        <div class="faq-a">Google CMv2 sinyallerini normalize eder, gerekli durumlarda anonimize edip MP/CAPI’ye uygun formatta göndeririz. Red durumlarında ölçüm degrade moduna geçer.</div>
+        <button class="faq-q" aria-expanded="false"><span>What does your Consent Mode v2 support include?</span> ⌄</button>
+        <div class="faq-a">We normalize Google CMv2 signals, anonymize when needed, and send in MP/CAPI-ready formats. In denied states we fall back to a degraded measurement mode.</div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Custom domain (CNAME) ve SSL’i nasıl yönetiyorsunuz?</span> ⌄</button>
-        <div class="faq-a">Alan adınızı CNAME ile bağladıktan sonra, SSL provisioning ve yenileme işlemleri yönetilen olarak otomatik yapılır.</div>
+        <button class="faq-q" aria-expanded="false"><span>How do you manage custom domain (CNAME) and SSL?</span> ⌄</button>
+        <div class="faq-a">Once your domain is connected via CNAME, SSL provisioning and renewals are fully managed and automatic.</div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false"><span>Planı aşarsam ne olur?</span> ⌄</button>
-        <div class="faq-a">Kullanım eşiklerine yaklaştığınızda bildirim göndeririz; ihtiyaca göre bir üst plana sorunsuz geçiş sunarız.</div>
+        <button class="faq-q" aria-expanded="false"><span>What happens if I exceed my plan?</span> ⌄</button>
+        <div class="faq-a">We notify you before hitting limits and offer a smooth upgrade path to the next plan as needed.</div>
       </div>
     </div>
   </section>
@@ -537,11 +515,11 @@
             <input type="tel" name="phone" autocomplete="tel" placeholder="+90 5xx xxx xx xx" />
           </label>
           <label>Billing details / Tax ID
-            <input name="billing" autocomplete="on" placeholder="Vergi dairesi, numara, adres" />
+            <input name="billing" autocomplete="on" placeholder="Tax office, number, address" />
           </label>
         </div>
         <label style="display:block; margin-top:10px;">Notes (optional)
-          <textarea name="notes" placeholder="Kısa notlar"></textarea>
+          <textarea name="notes" placeholder="Short notes"></textarea>
         </label>
         <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
         <input type="hidden" name="from_name" value="Lunvi Labs Website" />
@@ -635,11 +613,11 @@
             <input type="tel" name="phone" autocomplete="tel" placeholder="+90 5xx xxx xx xx" />
           </label>
           <label>Billing details / Tax ID
-            <input name="billing" autocomplete="on" placeholder="Vergi dairesi, numara, adres" />
+            <input name="billing" autocomplete="on" placeholder="Tax office, number, address" />
           </label>
         </div>
         <label style="display:block; margin-top:10px;">Notes (optional)
-          <textarea name="notes" placeholder="Kısa notlar"></textarea>
+          <textarea name="notes" placeholder="Short notes"></textarea>
         </label>
         <div class="modal-actions">
           <button class="btn btn-primary" type="submit">Submit request</button>
