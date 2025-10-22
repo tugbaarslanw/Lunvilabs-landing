@@ -272,13 +272,47 @@
 <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-labelledby="dialog-title">
   <div class="dialog">
     <header><h3 id="dialog-title">Request upgrade — Pro plan</h3></header>
-    <form class="body" onsubmit="event.preventDefault(); closeModal(); alert('Your request has been received. We will get back to you shortly.');">
-      <div class="row"><label for="c1">Company</label><input id="c1" required placeholder="e.g., Example Inc."></div>
-      <div class="row"><label for="c2">Email</label><input id="c2" type="email" required placeholder="you@company.com"></div>
-      <div class="row"><label for="c3">Phone</label><input id="c3" type="tel" placeholder="+1 202 555 0123"></div>
-      <div class="row"><label for="c4">Billing details / Tax ID</label><input id="c4" placeholder="Tax office, number, company address"></div>
-      <div class="row"><label for="c5">Notes (optional)</label><textarea id="c5" placeholder="Short notes, context or questions"></textarea></div>
-      <footer><button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button><button type="submit" class="btn btn-primary">Submit request</button></footer>
+
+    <!-- WEB3FORMS: real submission -->
+    <form class="body" action="https://api.web3forms.com/submit" method="POST">
+      <!-- required access key -->
+      <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c">
+      <!-- nice-to-have meta -->
+      <input type="hidden" name="subject" value="Lunvi Labs — Pro Upgrade Request">
+      <input type="hidden" name="from_name" value="Lunvi Labs Website">
+      <input type="hidden" name="redirect" value="https://lunvilabs.com/?request=ok#pricing">
+      <!-- anti-bot -->
+      <input type="checkbox" name="botcheck" style="display:none;">
+
+      <div class="row">
+        <label for="c1">Company</label>
+        <input id="c1" name="company" required placeholder="e.g., Example Inc.">
+      </div>
+
+      <div class="row">
+        <label for="c2">Email</label>
+        <input id="c2" name="email" type="email" required placeholder="you@company.com">
+      </div>
+
+      <div class="row">
+        <label for="c3">Phone</label>
+        <input id="c3" name="phone" type="tel" placeholder="+1 202 555 0123">
+      </div>
+
+      <div class="row">
+        <label for="c4">Billing details / Tax ID</label>
+        <input id="c4" name="billing" placeholder="Tax office, number, company address">
+      </div>
+
+      <div class="row">
+        <label for="c5">Notes (optional)</label>
+        <textarea id="c5" name="notes" placeholder="Short notes, context or questions"></textarea>
+      </div>
+
+      <footer>
+        <button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit request</button>
+      </footer>
     </form>
   </div>
 </div>
@@ -299,6 +333,15 @@
   openBtn?.addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden' });
   modal?.addEventListener('click', (e)=>{ if(e.target===modal) closeModal() });
   window.closeModal = closeModal;
+
+  // Show a simple success notice when redirected back from Web3Forms
+  (function(){
+    const p = new URLSearchParams(location.search);
+    if (p.get('request') === 'ok') {
+      setTimeout(()=> alert('Thanks! Your request has been received — we will contact you shortly.'), 300);
+      history.replaceState({}, document.title, location.pathname + location.hash);
+    }
+  })();
 </script>
 </body>
 </html>
