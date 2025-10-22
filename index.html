@@ -70,7 +70,13 @@
   .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
   .panels{display:grid;gap:16px}
   .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden}
-  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%)}
+  ..panel:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%);
+  pointer-events:none; /* <-- tıklamayı içeriğe geçir */
+}
   .panel h3{margin:0 0 6px;font-size:16px}
   .panel p{margin:0;color:var(--muted);font-size:14px}
   @media (max-width:950px){.hero-grid{grid-template-columns:1fr}.h1{font-size:44px}}
