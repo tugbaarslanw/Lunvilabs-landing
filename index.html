@@ -104,7 +104,7 @@
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
   .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
-  /* CTA band */
+  /* CTA band (unchanged) */
   .cta-band{
     margin:26px 0;border-radius:26px;border:1px solid rgba(255,255,255,.18);
     box-shadow:0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
@@ -124,7 +124,7 @@
   .cta-ghost{background:rgba(255,255,255,.18);color:#043e43;border:1px solid rgba(255,255,255,.32);padding:.9rem 1.3rem;border-radius:14px;font-weight:700}
   @media (max-width:900px){.cta-inner{flex-direction:column;align-items:flex-start}.cta-copy h3{font-size:26px}}
 
-  /* ===== Modal (Request Form) ===== */
+  /* ===== Modal (unchanged) ===== */
   .modal-backdrop{position:fixed;inset:0;background:rgba(7,6,16,.68);backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000}
   .modal-backdrop.open{display:block}
   .modal{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:1001}
@@ -147,7 +147,7 @@
   input::placeholder, textarea::placeholder{color:#e2dcffcc}
   textarea{min-height:110px;resize:vertical}
 
-  /* === Footer v2 === */
+  /* === Footer v2 (unchanged) === */
   footer.site{padding:48px 0 22px;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
   .footer-top{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:24px;align-items:start}
   .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
@@ -177,45 +177,42 @@
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
   @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
-  /* ===== Self-host vs Lunvi (RIGHT-ALIGNED + WHITE / PREMIUM) ===== */
+  /* ===== Self-host vs Lunvi (CENTERED + PREMIUM TONES) ===== */
   .compare{margin:34px 0}
-  .compare h2{font-size:30px;margin:0 0 14px;text-align:right} /* title to the right */
+  .compare h2{
+    font-size:30px;margin:0 0 14px;text-align:center; /* title centered */
+  }
   .compare-panel{
     max-width:1080px;
-    margin:0 0 0 auto;                 /* push to right */
+    margin:0 auto;                       /* center horizontally */
     border-radius:28px;
     overflow:hidden;
-    border:1px solid #e6ddff;
-    box-shadow:0 26px 80px rgba(16,8,48,.35);
-    background:#ffffff;                 /* solid white card */
-    color:#1b1530;                      /* dark text for readability */
+    border:1px solid rgba(255,255,255,.22);
+    box-shadow:0 26px 90px rgba(0,0,0,.55);
+    background:linear-gradient(180deg,#2a1e5c 0%, #3b2a86 100%); /* premium indigo */
+    color:#f5f2ff;
   }
   .compare-table{width:100%;border-collapse:separate;border-spacing:0}
-  .compare-table th,.compare-table td{padding:16px 18px;border-top:1px solid #ece7ff}
-  .compare-table thead th{
-    background:#f3efff;                 /* premium soft-lilac header */
-    color:#2b2150;font-size:14px;text-align:center
+  .compare-table th,.compare-table td{
+    padding:16px 18px;border-top:1px solid rgba(255,255,255,.16);
   }
-  .compare-table tbody tr:nth-child(odd){background:#ffffff}
-  .compare-table tbody tr:nth-child(even){background:#faf8ff}  /* subtle zebra */
-  .compare-table td:first-child{width:36%;font-weight:700}
+  .compare-table thead th{
+    background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
+    color:#ffffff;font-size:14px;text-align:center
+  }
+  .compare-table tbody tr:nth-child(odd){background:rgba(255,255,255,.06)}
+  .compare-table tbody tr:nth-child(even){background:rgba(0,0,0,.06)}
+  .compare-table td:first-child{width:36%;font-weight:800;color:#fdfbff}
   .compare-table td:nth-child(2), .compare-table td:nth-child(3){text-align:center}
   .pill{display:inline-flex;align-items:center;gap:6px;padding:.34rem .62rem;border-radius:999px;background:#19d6a8;color:#052b1f;font-size:12px;font-weight:800}
-  .x{color:#b53a3a;font-weight:700}
-  .check{color:#0a875a;font-weight:700}
+  .x{color:#ff7a7a;font-weight:800}
+  .check{color:#4de1b8;font-weight:800}
 
-  /* ===== FAQ (RIGHT-ALIGNED + WHITE) ===== */
+  /* ===== FAQ (RIGHT-ALIGNED + WHITE) — unchanged from last step ===== */
   .faq{margin:38px 0}
   .faq h2{font-size:30px;margin:0 0 14px;text-align:right}
-  .faq-wrap{max-width:900px;margin:0 0 0 auto} /* right align */
-  .faq-item{
-    border:1px solid #e6ddff;
-    border-radius:16px;
-    background:#ffffff;                 /* solid white */
-    margin-bottom:12px;overflow:hidden;
-    box-shadow:0 14px 40px rgba(16,8,48,.28);
-    color:#1b1530;
-  }
+  .faq-wrap{max-width:900px;margin:0 0 0 auto}
+  .faq-item{border:1px solid #e6ddff;border-radius:16px;background:#ffffff;margin-bottom:12px;overflow:hidden;box-shadow:0 14px 40px rgba(16,8,48,.28);color:#1b1530}
   .faq-q{width:100%;text-align:left;background:transparent;border:0;color:inherit;padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
   .faq-q span{opacity:.95}
   .faq-a{padding:0 18px 16px 18px;color:#2b2150;display:none}
@@ -317,7 +314,7 @@
     </div>
   </section>
 
-  <!-- SHOWCASE -->
+  <!-- SHOWCASE (unchanged) -->
   <section class="container showcase" id="gateways">
     <div class="showcase-inner">
       <h3 class="showcase-head">Choose your gateway</h3>
@@ -342,7 +339,7 @@
     </div>
   </section>
 
-  <!-- SELF-HOST VS LUNVI (RIGHT) -->
+  <!-- SELF-HOST VS LUNVI (CENTERED) -->
   <section class="container compare" id="compare">
     <h2>Self-host vs Lunvi</h2>
     <div class="compare-panel">
@@ -400,7 +397,7 @@
     </div>
   </section>
 
-  <!-- FAQ (RIGHT) -->
+  <!-- FAQ (unchanged from previous step) -->
   <section class="container faq" id="faq">
     <h2>FAQ</h2>
     <div class="faq-wrap">
@@ -426,13 +423,12 @@
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- PRICING + CTA + INLINE FORM (unchanged) -->
   <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
     <h2 id="pricing-title">Pricing</h2>
     <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
 
     <div class="pricing-cards">
-      <!-- Dev / Free -->
       <article class="panel">
         <header><h3>Dev</h3></header>
         <p class="price">$0</p>
@@ -448,7 +444,6 @@
         </div>
       </article>
 
-      <!-- Pro -->
       <article class="panel" aria-current="true">
         <header><h3>Pro</h3></header>
         <p class="price pro">$29</p>
@@ -467,7 +462,6 @@
         </div>
       </article>
 
-      <!-- Agency -->
       <article class="panel">
         <header><h3>Agency</h3></header>
         <p class="price agency">$89</p>
@@ -487,7 +481,6 @@
       </article>
     </div>
 
-    <!-- CONTACT SALES -->
     <div class="cta-band" id="contact-sales">
       <div class="cta-inner">
         <div class="cta-copy">
@@ -501,7 +494,6 @@
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -534,7 +526,7 @@
   </section>
 </main>
 
-<!-- FOOTER v2 -->
+<!-- FOOTER (unchanged) -->
 <footer class="site">
   <div class="container">
     <div class="footer-top">
@@ -589,7 +581,7 @@
   </div>
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL + SCRIPTS (unchanged) -->
 <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
 <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
   <div class="modal-card" role="document">
