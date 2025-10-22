@@ -177,38 +177,41 @@
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
   @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
-  /* ===== Self-host vs Lunvi (CENTERED + PREMIUM TONES) ===== */
+  /* ===== Self-host vs Lunvi (CENTERED + POLISHED) ===== */
   .compare{margin:34px 0}
   .compare h2{
-    font-size:30px;margin:0 0 14px;text-align:center; /* title centered */
+    font-size:32px;letter-spacing:-0.01em;margin:0 0 18px;text-align:center;
   }
   .compare-panel{
-    max-width:1080px;
-    margin:0 auto;                       /* center horizontally */
-    border-radius:28px;
-    overflow:hidden;
+    max-width:1040px;margin:8px auto 28px;border-radius:26px;overflow:hidden;
     border:1px solid rgba(255,255,255,.22);
-    box-shadow:0 26px 90px rgba(0,0,0,.55);
-    background:linear-gradient(180deg,#2a1e5c 0%, #3b2a86 100%); /* premium indigo */
+    background:linear-gradient(180deg,#2a1e5c 0%, #382a76 100%);
+    box-shadow:0 20px 70px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.05);
     color:#f5f2ff;
   }
   .compare-table{width:100%;border-collapse:separate;border-spacing:0}
   .compare-table th,.compare-table td{
-    padding:16px 18px;border-top:1px solid rgba(255,255,255,.16);
+    padding:18px 22px;border-top:1px solid rgba(255,255,255,.14);
   }
   .compare-table thead th{
-    background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
-    color:#ffffff;font-size:14px;text-align:center
+    padding:20px 22px;font-weight:800;font-size:14px;text-align:center;color:#fff;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.05)),
+      linear-gradient(180deg, #3b2a86, #332273);
   }
-  .compare-table tbody tr:nth-child(odd){background:rgba(255,255,255,.06)}
-  .compare-table tbody tr:nth-child(even){background:rgba(0,0,0,.06)}
-  .compare-table td:first-child{width:36%;font-weight:800;color:#fdfbff}
+  .compare-table tbody tr:nth-child(odd){background:rgba(255,255,255,.08)}
+  .compare-table tbody tr:nth-child(even){background:rgba(0,0,0,.12)}
+  .compare-table td:first-child{width:36%;font-weight:800;color:#fff}
   .compare-table td:nth-child(2), .compare-table td:nth-child(3){text-align:center}
-  .pill{display:inline-flex;align-items:center;gap:6px;padding:.34rem .62rem;border-radius:999px;background:#19d6a8;color:#052b1f;font-size:12px;font-weight:800}
-  .x{color:#ff7a7a;font-weight:800}
-  .check{color:#4de1b8;font-weight:800}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:.36rem .66rem;border-radius:999px;background:#14d2a3;color:#042a1f;font-size:12px;font-weight:900}
+  .x{color:#ff8b8b;font-weight:900}
+  .check{color:#58e6c7;font-weight:900}
+  @media (max-width:780px){
+    .compare-panel{margin:8px 12px 28px}
+    .compare-table th,.compare-table td{padding:16px 16px}
+  }
 
-  /* ===== FAQ (RIGHT-ALIGNED + WHITE) — unchanged from last step ===== */
+  /* ===== FAQ (RIGHT-ALIGNED + WHITE) ===== */
   .faq{margin:38px 0}
   .faq h2{font-size:30px;margin:0 0 14px;text-align:right}
   .faq-wrap{max-width:900px;margin:0 0 0 auto}
@@ -314,7 +317,7 @@
     </div>
   </section>
 
-  <!-- SHOWCASE (unchanged) -->
+  <!-- SHOWCASE -->
   <section class="container showcase" id="gateways">
     <div class="showcase-inner">
       <h3 class="showcase-head">Choose your gateway</h3>
@@ -339,7 +342,7 @@
     </div>
   </section>
 
-  <!-- SELF-HOST VS LUNVI (CENTERED) -->
+  <!-- SELF-HOST VS LUNVI -->
   <section class="container compare" id="compare">
     <h2>Self-host vs Lunvi</h2>
     <div class="compare-panel">
@@ -397,7 +400,7 @@
     </div>
   </section>
 
-  <!-- FAQ (unchanged from previous step) -->
+  <!-- FAQ -->
   <section class="container faq" id="faq">
     <h2>FAQ</h2>
     <div class="faq-wrap">
@@ -423,7 +426,7 @@
     </div>
   </section>
 
-  <!-- PRICING + CTA + INLINE FORM (unchanged) -->
+  <!-- PRICING + CTA + INLINE FORM -->
   <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
     <h2 id="pricing-title">Pricing</h2>
     <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
@@ -526,7 +529,7 @@
   </section>
 </main>
 
-<!-- FOOTER (unchanged) -->
+<!-- FOOTER -->
 <footer class="site">
   <div class="container">
     <div class="footer-top">
@@ -581,7 +584,7 @@
   </div>
 </footer>
 
-<!-- MODAL + SCRIPTS (unchanged) -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
 <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
   <div class="modal-card" role="document">
