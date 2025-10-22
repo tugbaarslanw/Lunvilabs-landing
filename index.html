@@ -130,37 +130,45 @@
   .cta-ghost{background:rgba(255,255,255,.18); color:#043e43; border:1px solid rgba(255,255,255,.32); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
   @media (max-width:900px){ .cta-inner{ flex-direction:column; align-items:flex-start } .cta-copy h3{ font-size:26px } }
 
-  /* ===== Modal (Request Form) ===== */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(7,6,16,.65);backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000}
+  /* ===== Modal (Request Form) — refined ===== */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(7,6,16,.68);
+    backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000
+  }
   .modal-backdrop.open{display:block}
-  .modal{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:1001}
-  .modal.open{pointer-events:auto}
+  .modal{
+    position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:1001
+  }
+  .modal.open{display:grid;pointer-events:auto}
   .modal-card{
     width:min(720px,92vw);
     border-radius:22px;
-    background:var(--glass);
-    border:1px solid var(--stroke);
-    box-shadow:0 30px 100px rgba(0,0,0,.55);
+    background:#0b0818f2;              /* OPACKER */
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 34px 120px rgba(0,0,0,.65);
     overflow:hidden;
+    backdrop-filter:saturate(130%) blur(4px);
   }
   .modal-head{
     display:flex;justify-content:space-between;align-items:center;
     padding:16px 18px;border-bottom:1px solid var(--stroke);
-    background:linear-gradient(180deg, rgba(255,255,255,.08), transparent);
+    background:linear-gradient(180deg, rgba(255,255,255,.06), transparent);
   }
   .modal-title{margin:0;font-size:18px;font-weight:800}
   .modal-close{appearance:none;border:1px solid var(--stroke);background:transparent;color:var(--muted);border-radius:10px;padding:.4rem .6rem;cursor:pointer}
-  .modal-body{padding:16px 18px}
+  .modal-body{padding:16px 18px;max-height:min(70vh,680px);overflow:auto}
   .modal-grid{display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr))}
   .modal-grid label{display:block}
   .modal-actions{margin-top:12px}
-  .modal footer{padding:0 18px 16px}
   @media (max-width:700px){ .modal-grid{grid-template-columns:1fr} }
-  /* Inputs (reuse browser defaults but nicer) */
+
+  /* Inputs */
   input, textarea{
-    width:100%; padding:.7rem .8rem; border-radius:12px; border:1px solid var(--stroke);
-    background:rgba(255,255,255,.04); color:var(--text); outline:none;
+    width:100%; padding:.7rem .8rem; border-radius:12px; border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.07); color:var(--text); outline:none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
   }
+  input::placeholder, textarea::placeholder{color:#cfc9e9cc}
   textarea{min-height:110px; resize:vertical}
 </style>
 </head>
@@ -292,7 +300,6 @@
           <li>Priority support</li>
         </ul>
         <div class="card-actions">
-          <!-- open modal -->
           <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
           <a class="btn btn-ghost" href="#inline-form"
              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
@@ -312,7 +319,6 @@
           <li>SLA</li>
         </ul>
         <div class="card-actions">
-          <!-- open modal -->
           <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
           <a class="btn btn-ghost" href="#inline-form"
              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
@@ -321,12 +327,12 @@
       </article>
     </div>
 
-    <!-- CONTACT SALES (pricing ile formun ARASINDA) -->
+    <!-- CONTACT SALES -->
     <div class="cta-band" id="contact-sales">
       <div class="cta-inner">
         <div class="cta-copy">
           <h3>Looking for a custom approach?</h3>
-        <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+          <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
         </div>
         <div class="cta-actions">
           <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
@@ -335,7 +341,7 @@
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM (Details linkleri için bırakıyoruz) -->
+    <!-- INLINE REQUEST FORM (Details) -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -376,7 +382,7 @@
   </div>
 </footer>
 
-<!-- ===== Modal Markup (hidden by default) ===== -->
+<!-- ===== Modal Markup ===== -->
 <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
 <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
   <div class="modal-card">
@@ -425,7 +431,7 @@
     navToggle.setAttribute('aria-expanded', open ? 'true':'false');
   });
 
-  // ===== Modal logic for Pricing Request buttons =====
+  // Modal logic
   const modal = document.getElementById('requestModal');
   const backdrop = document.getElementById('requestBackdrop');
   const closeBtn = document.getElementById('requestClose');
@@ -433,18 +439,14 @@
   const subjectInput = document.getElementById('subjectInput');
 
   function openModal(plan){
-    // set plan and subject
     planInput.value = plan || 'Pro';
     subjectInput.value = `Lunvi Labs — Plan Upgrade Request (${planInput.value})`;
-    // open
     modal.classList.add('open');
     backdrop.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     backdrop.setAttribute('aria-hidden','false');
-    // focus first input
     const first = modal.querySelector('input[name="company"]');
-    setTimeout(()=> first?.focus(), 50);
-    // lock scroll
+    setTimeout(()=> first?.focus(), 40);
     document.documentElement.style.overflow = 'hidden';
   }
   function closeModal(){
@@ -455,21 +457,15 @@
     document.documentElement.style.overflow = '';
   }
 
-  // Attach to all .js-request buttons
   document.querySelectorAll('.js-request').forEach(btn=>{
     btn.addEventListener('click', (e)=>{
       e.preventDefault();
-      const plan = btn.getAttribute('data-plan') || 'Pro';
-      openModal(plan);
+      openModal(btn.getAttribute('data-plan'));
     });
   });
-
-  // Close handlers
   closeBtn?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
-  window.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape'){ closeModal(); }
-  });
+  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
 </script>
 </body>
 </html>
