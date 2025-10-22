@@ -75,7 +75,7 @@
   .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
   .panels{display:grid;gap:16px}
   .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden; z-index:0}
-  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%); pointer-events:none;} /* <- click safe */
+  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%);pointer-events:none;} /* önemli */
   .panel h3{margin:0 0 6px;font-size:16px}
   .panel p{margin:0;color:var(--muted);font-size:14px}
   @media (max-width:950px){.hero-grid{grid-template-columns:1fr}.h1{font-size:44px}}
@@ -106,29 +106,6 @@
 
   /* Footer */
   footer.site{padding:46px 0;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
-
-  /* CTA band (turkuaz darker) */
-  .cta-band{
-    margin: 26px 0;
-    border-radius: 26px;
-    border: 1px solid rgba(255,255,255,.18);
-    box-shadow: 0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
-    background:
-      radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
-      linear-gradient(135deg, #0fb8a9 0%, #2cc7e6 50%, #8af3e4 100%);
-    color:#052529; position:relative; overflow:hidden; isolation:isolate; z-index:1;
-  }
-  .cta-band:after{content:"";position:absolute;inset:-2px;background:
-    radial-gradient(1200px 300px at 60% 120%, rgba(255,255,255,.18), transparent 70%),
-    radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.12), transparent 70%);pointer-events:none;mix-blend-mode:overlay;}
-  .cta-inner{position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:22px; padding:28px 28px; backdrop-filter: blur(4px) saturate(120%)}
-  .cta-copy h3{ margin:0 0 6px; font-size:30px; line-height:1.15; letter-spacing:-.01em }
-  .cta-copy p{ margin:0; opacity:.9; color:#073a40 }
-  .cta-actions{ display:flex; gap:12px; flex-wrap:wrap }
-  .cta-primary{background:linear-gradient(180deg,#0fb69a,#079b86); color:#eafffb; border:1px solid rgba(255,255,255,.22); box-shadow: 0 12px 28px rgba(0,0,0,.28); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
-  .cta-primary:hover{ transform: translateY(-1px) }
-  .cta-ghost{background:rgba(255,255,255,.18); color:#043e43; border:1px solid rgba(255,255,255,.32); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
-  @media (max-width:900px){ .cta-inner{ flex-direction:column; align-items:flex-start } .cta-copy h3{ font-size:26px } }
 </style>
 </head>
 <body>
@@ -243,7 +220,8 @@
         </ul>
         <div class="card-actions">
           <a class="btn btn-primary" href="#demo" role="button">Try for free</a>
-          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+          <a class="btn btn-ghost" href="#inline-form"
+             onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">Details</a>
         </div>
       </article>
 
@@ -288,20 +266,6 @@
              role="button">Details</a>
         </div>
       </article>
-    </div>
-
-    <!-- CONTACT SALES (pricing ile formun ARASINDA) -->
-    <div class="cta-band" id="contact-sales">
-      <div class="cta-inner">
-        <div class="cta-copy">
-          <h3>Looking for a custom approach?</h3>
-          <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
-          <a class="cta-ghost" href="#demo">Try for free</a>
-        </div>
-      </div>
     </div>
 
     <!-- INLINE REQUEST FORM -->
