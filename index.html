@@ -96,7 +96,7 @@
   /* Pricing */
   .pricing{padding:32px 0 26px}
   .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .price{font-size:44px;line-height:1; color:#cdbbff;font-weight:900}
+  .price{font-size:44px;line-height:1;color:#cdbbff;font-weight:900}
   .price.pro{color:#b49aff}
   .price.agency{color:#41e2c0}
   .features{margin:12px 0 18px;padding:0;list-style:none}
@@ -105,13 +105,11 @@
   .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
   /* CTA band (unchanged) */
-  .cta-band{
-    margin:26px 0;border-radius:26px;border:1px solid rgba(255,255,255,.18);
+  .cta-band{margin:26px 0;border-radius:26px;border:1px solid rgba(255,255,255,.18);
     box-shadow:0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
     background:radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
       linear-gradient(135deg,#0fb8a9 0%, #2cc7e6 50%, #8af3e4 100%);
-    color:#052529;position:relative;overflow:hidden;isolation:isolate;z-index:1;
-  }
+    color:#052529;position:relative;overflow:hidden;isolation:isolate;z-index:1}
   .cta-band:after{content:"";position:absolute;inset:-2px;background:
     radial-gradient(1200px 300px at 60% 120%, rgba(255,255,255,.18), transparent 70%),
     radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.12), transparent 70%);pointer-events:none;mix-blend-mode:overlay;}
@@ -177,24 +175,23 @@
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
   @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
-  /* ===== Self-host vs Lunvi (CENTERED + POLISHED) ===== */
-  .compare{margin:34px 0}
-  .compare h2{
-    font-size:32px;letter-spacing:-0.01em;margin:0 0 18px;text-align:center;
-  }
+  /* ===== Self-host vs Lunvi (CENTERED & WIDER) ===== */
+  .compare{margin:40px 0}
+  .compare h2{font-size:32px;letter-spacing:-0.01em;margin:0 0 18px;text-align:center}
   .compare-panel{
-    max-width:1040px;margin:8px auto 28px;border-radius:26px;overflow:hidden;
+    width:100%;
+    max-width: min(var(--maxw), 1160px);  /* büyüt + container içinde tam merkez */
+    margin: 8px auto 28px;                /* eşit sol/sağ boşluk */
+    border-radius:26px;overflow:hidden;
     border:1px solid rgba(255,255,255,.22);
     background:linear-gradient(180deg,#2a1e5c 0%, #382a76 100%);
     box-shadow:0 20px 70px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.05);
     color:#f5f2ff;
   }
   .compare-table{width:100%;border-collapse:separate;border-spacing:0}
-  .compare-table th,.compare-table td{
-    padding:18px 22px;border-top:1px solid rgba(255,255,255,.14);
-  }
+  .compare-table th,.compare-table td{padding:20px 26px;border-top:1px solid rgba(255,255,255,.14)}
   .compare-table thead th{
-    padding:20px 22px;font-weight:800;font-size:14px;text-align:center;color:#fff;
+    padding:22px 26px;font-weight:800;font-size:14px;text-align:center;color:#fff;
     background:
       linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,.05)),
       linear-gradient(180deg, #3b2a86, #332273);
@@ -207,14 +204,14 @@
   .x{color:#ff8b8b;font-weight:900}
   .check{color:#58e6c7;font-weight:900}
   @media (max-width:780px){
-    .compare-panel{margin:8px 12px 28px}
-    .compare-table th,.compare-table td{padding:16px 16px}
+    .compare-panel{max-width: calc(100% - 24px); margin:8px auto 24px}
+    .compare-table th,.compare-table td{padding:16px}
   }
 
-  /* ===== FAQ (RIGHT-ALIGNED + WHITE) ===== */
-  .faq{margin:38px 0}
-  .faq h2{font-size:30px;margin:0 0 14px;text-align:right}
-  .faq-wrap{max-width:900px;margin:0 0 0 auto}
+  /* ===== FAQ (CENTERED & WIDER) ===== */
+  .faq{margin:42px 0}
+  .faq h2{font-size:30px;margin:0 0 14px;text-align:center}
+  .faq-wrap{max-width:min(980px, 100%);margin:0 auto}
   .faq-item{border:1px solid #e6ddff;border-radius:16px;background:#ffffff;margin-bottom:12px;overflow:hidden;box-shadow:0 14px 40px rgba(16,8,48,.28);color:#1b1530}
   .faq-q{width:100%;text-align:left;background:transparent;border:0;color:inherit;padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
   .faq-q span{opacity:.95}
