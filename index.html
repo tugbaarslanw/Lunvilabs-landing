@@ -75,7 +75,7 @@
   .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
   .panels{display:grid;gap:16px}
   .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden; z-index:0}
-  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%); pointer-events:none;} /* <- click safe */
+  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%); pointer-events:none;}
   .panel h3{margin:0 0 6px;font-size:16px}
   .panel p{margin:0;color:var(--muted);font-size:14px}
   @media (max-width:950px){.hero-grid{grid-template-columns:1fr}.h1{font-size:44px}}
@@ -129,6 +129,39 @@
   .cta-primary:hover{ transform: translateY(-1px) }
   .cta-ghost{background:rgba(255,255,255,.18); color:#043e43; border:1px solid rgba(255,255,255,.32); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
   @media (max-width:900px){ .cta-inner{ flex-direction:column; align-items:flex-start } .cta-copy h3{ font-size:26px } }
+
+  /* ===== Modal (Request Form) ===== */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(7,6,16,.65);backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000}
+  .modal-backdrop.open{display:block}
+  .modal{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:1001}
+  .modal.open{pointer-events:auto}
+  .modal-card{
+    width:min(720px,92vw);
+    border-radius:22px;
+    background:var(--glass);
+    border:1px solid var(--stroke);
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
+    overflow:hidden;
+  }
+  .modal-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 18px;border-bottom:1px solid var(--stroke);
+    background:linear-gradient(180deg, rgba(255,255,255,.08), transparent);
+  }
+  .modal-title{margin:0;font-size:18px;font-weight:800}
+  .modal-close{appearance:none;border:1px solid var(--stroke);background:transparent;color:var(--muted);border-radius:10px;padding:.4rem .6rem;cursor:pointer}
+  .modal-body{padding:16px 18px}
+  .modal-grid{display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr))}
+  .modal-grid label{display:block}
+  .modal-actions{margin-top:12px}
+  .modal footer{padding:0 18px 16px}
+  @media (max-width:700px){ .modal-grid{grid-template-columns:1fr} }
+  /* Inputs (reuse browser defaults but nicer) */
+  input, textarea{
+    width:100%; padding:.7rem .8rem; border-radius:12px; border:1px solid var(--stroke);
+    background:rgba(255,255,255,.04); color:var(--text); outline:none;
+  }
+  textarea{min-height:110px; resize:vertical}
 </style>
 </head>
 <body>
@@ -259,9 +292,8 @@
           <li>Priority support</li>
         </ul>
         <div class="card-actions">
-          <a class="btn btn-primary" href="#inline-form"
-             onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
-             role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
+          <!-- open modal -->
+          <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
           <a class="btn btn-ghost" href="#inline-form"
              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
              role="button">Details</a>
@@ -280,9 +312,8 @@
           <li>SLA</li>
         </ul>
         <div class="card-actions">
-          <a class="btn btn-primary" href="#inline-form"
-             onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
-             role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+          <!-- open modal -->
+          <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
           <a class="btn btn-ghost" href="#inline-form"
              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
              role="button">Details</a>
@@ -295,7 +326,7 @@
       <div class="cta-inner">
         <div class="cta-copy">
           <h3>Looking for a custom approach?</h3>
-          <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+        <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
         </div>
         <div class="cta-actions">
           <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
@@ -304,7 +335,7 @@
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM -->
+    <!-- INLINE REQUEST FORM (Details linkleri için bırakıyoruz) -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -345,6 +376,46 @@
   </div>
 </footer>
 
+<!-- ===== Modal Markup (hidden by default) ===== -->
+<div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
+<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
+      <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+        <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
+        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+        <input type="hidden" name="plan" id="planInput" value="Pro" />
+        <div class="modal-grid">
+          <label>Company
+            <input name="company" required placeholder="e.g., Example Inc." />
+          </label>
+          <label>Email
+            <input type="email" name="email" required placeholder="you@company.com" />
+          </label>
+          <label>Phone
+            <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+          </label>
+          <label>Billing details / Tax ID
+            <input name="billing" placeholder="Vergi dairesi, numara, adres" />
+          </label>
+        </div>
+        <label style="display:block; margin-top:10px;">Notes (optional)
+          <textarea name="notes" placeholder="Kısa notlar"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button class="btn btn-primary" type="submit">Submit request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
   // Mobile nav
   const nav = document.getElementById('nav');
@@ -352,6 +423,52 @@
   navToggle?.addEventListener('click', ()=>{
     const open = nav.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', open ? 'true':'false');
+  });
+
+  // ===== Modal logic for Pricing Request buttons =====
+  const modal = document.getElementById('requestModal');
+  const backdrop = document.getElementById('requestBackdrop');
+  const closeBtn = document.getElementById('requestClose');
+  const planInput = document.getElementById('planInput');
+  const subjectInput = document.getElementById('subjectInput');
+
+  function openModal(plan){
+    // set plan and subject
+    planInput.value = plan || 'Pro';
+    subjectInput.value = `Lunvi Labs — Plan Upgrade Request (${planInput.value})`;
+    // open
+    modal.classList.add('open');
+    backdrop.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    backdrop.setAttribute('aria-hidden','false');
+    // focus first input
+    const first = modal.querySelector('input[name="company"]');
+    setTimeout(()=> first?.focus(), 50);
+    // lock scroll
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    backdrop.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    backdrop.setAttribute('aria-hidden','true');
+    document.documentElement.style.overflow = '';
+  }
+
+  // Attach to all .js-request buttons
+  document.querySelectorAll('.js-request').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const plan = btn.getAttribute('data-plan') || 'Pro';
+      openModal(plan);
+    });
+  });
+
+  // Close handlers
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){ closeModal(); }
   });
 </script>
 </body>
