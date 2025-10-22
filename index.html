@@ -104,9 +104,6 @@
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
   .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
-  /* Footer */
-  footer.site{padding:46px 0;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
-
   /* CTA band (turkuaz darker) */
   .cta-band{
     margin: 26px 0;
@@ -143,7 +140,7 @@
   .modal-card{
     width:min(720px,92vw);
     border-radius:22px;
-    background:#0b0818f2;              /* OPACKER */
+    background:#0b0818f2;
     border:1px solid rgba(255,255,255,.14);
     box-shadow:0 34px 120px rgba(0,0,0,.65);
     overflow:hidden;
@@ -170,6 +167,35 @@
   }
   input::placeholder, textarea::placeholder{color:#cfc9e9cc}
   textarea{min-height:110px; resize:vertical}
+
+  /* === New Footer v2 === */
+  footer.site{
+    padding:48px 0 22px;
+    color:var(--muted);
+    border-top:1px solid var(--stroke);
+    background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35));
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.2fr .9fr .9fr .9fr;
+    gap:24px;
+    align-items:start;
+  }
+  .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
+  .footer-logo{display:flex;align-items:center;gap:.7rem;font-weight:800}
+  .footer-logo .logo{width:26px;height:26px;border-radius:9px;background:linear-gradient(145deg,#a58dff,#3b23a8);box-shadow:inset 0 0 10px #fff2,0 8px 20px #0004}
+  .footer-badge{display:inline-flex;align-items:center;gap:8px;padding:.45rem .7rem;border:1px solid var(--stroke);border-radius:10px;background:var(--glass);color:#eae4ff;width:max-content}
+  .footer-col h4{margin:0 0 10px;color:#f0eaff;font-size:15px}
+  .footer-links{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .footer-links a{color:#d9d2ff;opacity:.9}
+  .footer-links a:hover{opacity:1}
+  .footer-bottom{
+    margin-top:26px;padding-top:16px;border-top:1px solid var(--stroke);
+    display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center
+  }
+  .footer-mini{display:flex;gap:14px;flex-wrap:wrap;opacity:.9}
+  @media (max-width:980px){ .footer-top{grid-template-columns:1fr 1fr} }
+  @media (max-width:620px){ .footer-top{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -374,11 +400,62 @@
   </section>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER v2 -->
 <footer class="site">
-  <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
-    <div>© Lunvi Labs — Privacy-first infrastructure • <a href="#" style="color:#d4caff">Status</a> • <a href="#" style="color:#d4caff">DPA</a></div>
-    <div style="opacity:.8">v0.6 premium demo UI</div>
+  <div class="container">
+    <div class="footer-top">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo" aria-hidden="true"></span>
+          Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
+        </div>
+        <p style="margin:0;opacity:.9">Privacy-first infrastructure for server-side conversions & analytics.</p>
+        <span class="footer-badge">EU Hosting • GDPR / KVKK</span>
+      </div>
+
+      <!-- Product -->
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="#product">Features</a></li>
+          <li><a href="#integrations">Integrations</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#demo">Start Demo</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
+          <li><a href="#docs">Docs</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">DPA</a></li>
+          <li><a href="#">Subprocessors</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
+      <div class="footer-mini">
+        <a href="#">Security</a>
+        <a href="#">Compliance</a>
+        <a href="#">Changelog</a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -466,6 +543,9 @@
   closeBtn?.addEventListener('click', closeModal);
   backdrop?.addEventListener('click', closeModal);
   window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
+
+  // Footer year
+  document.getElementById('y').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
