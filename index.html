@@ -74,7 +74,7 @@
   .chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
   .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
   .panels{display:grid;gap:16px}
-  .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden}
+  .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden; z-index:0; pointer-events:auto}
   .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%)}
   .panel h3{margin:0 0 6px;font-size:16px}
   .panel p{margin:0;color:var(--muted);font-size:14px}
@@ -96,70 +96,53 @@
   /* Pricing */
   .pricing{padding:32px 0 26px}
   .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .price{font-size:40px;line-height:1; color:#cdbbff;font-weight:900}
+  .price{font-size:44px;line-height:1; color:#cdbbff;font-weight:900}
   .price.pro{color:#b49aff}
   .price.agency{color:#41e2c0}
   .features{margin:12px 0 18px;padding:0;list-style:none}
   .features li{margin:8px 0;color:#efeafe}
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
+  /* pricing button row */
+  .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
   /* Footer */
   footer.site{padding:46px 0;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
 
-  /* CTA band — PREMIUM TURQUOISE */
+  /* CTA band — DARKER TURQUOISE */
   .cta-band{
     margin: 26px 0;
     border-radius: 26px;
     border: 1px solid rgba(255,255,255,.18);
-    box-shadow:
-      0 18px 50px rgba(0,0,0,.45),
-      inset 0 0 0 1px rgba(255,255,255,.08);
+    box-shadow: 0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
     background:
-      radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.25), transparent 60%),
-      linear-gradient(135deg, #18d7c6 0%, #4ee7ff 50%, #b9fff3 100%);
+      radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
+      /* biraz koyulaştırıldı */
+      linear-gradient(135deg, #0fb8a9 0%, #2cc7e6 50%, #8af3e4 100%);
     color:#052529;
     position: relative;
     overflow: hidden;
     isolation: isolate;
+    z-index:1;
   }
   .cta-band:after{
-    /* hafif ‘glass’ parçacıkları */
     content:"";
     position:absolute;inset:-2px;
     background:
-      radial-gradient(1200px 300px at 60% 120%, rgba(255,255,255,.22), transparent 70%),
-      radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.15), transparent 70%);
-    pointer-events:none;
-    mix-blend-mode:overlay;
+      radial-gradient(1200px 300px at 60% 120%, rgba(255,255,255,.18), transparent 70%),
+      radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.12), transparent 70%);
+    pointer-events:none;mix-blend-mode:overlay;
   }
-  .cta-inner{
-    position:relative; z-index:1;
-    display:flex; align-items:center; justify-content:space-between;
-    gap:22px; padding:28px 28px;
-    backdrop-filter: blur(4px) saturate(120%);
-  }
+  .cta-inner{position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:22px; padding:28px 28px; backdrop-filter: blur(4px) saturate(120%)}
   .cta-copy h3{ margin:0 0 6px; font-size:30px; line-height:1.15; letter-spacing:-.01em }
   .cta-copy p{ margin:0; opacity:.9; color:#073a40 }
   .cta-actions{ display:flex; gap:12px; flex-wrap:wrap }
-  .cta-primary{
-    background:#0a6; background:linear-gradient(180deg,#0fb69a,#079b86);
-    color:#eafffb; border:1px solid rgba(255,255,255,.22);
-    box-shadow: 0 12px 28px rgba(0,0,0,.28);
-    padding:.9rem 1.3rem; border-radius:14px; font-weight:700;
-  }
+  .cta-primary{background:linear-gradient(180deg,#0fb69a,#079b86); color:#eafffb; border:1px solid rgba(255,255,255,.22); box-shadow: 0 12px 28px rgba(0,0,0,.28); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
   .cta-primary:hover{ transform: translateY(-1px) }
-  .cta-ghost{
-    background:rgba(255,255,255,.18);
-    color:#043e43; border:1px solid rgba(255,255,255,.32);
-    padding:.9rem 1.3rem; border-radius:14px; font-weight:700;
-  }
-  @media (max-width:900px){
-    .cta-inner{ flex-direction:column; align-items:flex-start }
-    .cta-copy h3{ font-size:26px }
-  }
+  .cta-ghost{background:rgba(255,255,255,.18); color:#043e43; border:1px solid rgba(255,255,255,.32); padding:.9rem 1.3rem; border-radius:14px; font-weight:700}
+  @media (max-width:900px){ .cta-inner{ flex-direction:column; align-items:flex-start } .cta-copy h3{ font-size:26px } }
 
-  /* Modal (unused for now) */
-  .modal{display:none}
+  /* Safety: ensure clickable */
+  .panel *{pointer-events:auto}
 </style>
 </head>
 <body>
@@ -272,7 +255,10 @@
           <li>Log viewer</li>
           <li>*.lunvi.run subdomain</li>
         </ul>
-        <a class="btn btn-ghost" href="#demo" aria-label="Dev plan details">Try for free</a>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#demo" role="button">Try for free</a>
+          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+        </div>
       </article>
 
       <!-- Pro -->
@@ -286,8 +272,9 @@
           <li>Custom domain</li>
           <li>Priority support</li>
         </ul>
-        <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn btn-primary" href="#inline-form" aria-label="Request upgrade — Pro">Request upgrade</a>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#inline-form" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
+          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
         </div>
       </article>
 
@@ -302,11 +289,14 @@
           <li>EU region</li>
           <li>SLA</li>
         </ul>
-        <a class="btn btn-primary" href="#inline-form" aria-label="Request upgrade — Agency">Request upgrade</a>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#inline-form" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+        </div>
       </article>
     </div>
 
-    <!-- PREMIUM TURQUOISE CONTACT SALES (pricing ile formun ARASINDA) -->
+    <!-- CONTACT SALES (pricing ile formun ARASINDA) -->
     <div class="cta-band" id="contact-sales">
       <div class="cta-inner">
         <div class="cta-copy">
@@ -314,14 +304,13 @@
           <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
         </div>
         <div class="cta-actions">
-          <!-- Calendly'n varsa buraya koyabilirsin -->
           <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
           <a class="cta-ghost" href="#demo">Try for free</a>
         </div>
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM (Web3Forms) — bir ALTTA -->
+    <!-- INLINE REQUEST FORM -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -358,7 +347,7 @@
 <footer class="site">
   <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
     <div>© Lunvi Labs — Privacy-first infrastructure • <a href="#" style="color:#d4caff">Status</a> • <a href="#" style="color:#d4caff">DPA</a></div>
-    <div style="opacity:.8">v0.5 premium demo UI</div>
+    <div style="opacity:.8">v0.6 premium demo UI</div>
   </div>
 </footer>
 
