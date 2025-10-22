@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
 <meta name="theme-color" content="#0b0818" />
+
+<!-- SEO / Social -->
+<meta name="description" content="Managed sGTM hosting with reliable Meta CAPI & GA4 MP delivery. Custom domains, Consent Mode v2, dedup, and a live debugger.">
+<link rel="canonical" href="https://lunvilabs.com/">
+<meta property="og:title" content="Lunvi Labs — Premium Gateway for Conversions APIs">
+<meta property="og:description" content="Server-side conversions without the DevOps headache.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lunvilabs.com/">
+<meta property="og:image" content="https://lunvilabs.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Lunvi Labs",
+  "url": "https://lunvilabs.com/",
+  "logo": "https://lunvilabs.com/icon.png"
+}
+</script>
+
 <style>
   :root{
     --bg-1:#0c0819; --bg-2:#25114f; --bg-3:#6f44ff;
@@ -104,7 +124,7 @@
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
   .card-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
-  /* CTA band (unchanged) */
+  /* CTA band */
   .cta-band{margin:26px 0;border-radius:26px;border:1px solid rgba(255,255,255,.18);
     box-shadow:0 18px 50px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.08);
     background:radial-gradient(90% 140% at 10% -20%, rgba(255,255,255,.18), transparent 60%),
@@ -122,7 +142,7 @@
   .cta-ghost{background:rgba(255,255,255,.18);color:#043e43;border:1px solid rgba(255,255,255,.32);padding:.9rem 1.3rem;border-radius:14px;font-weight:700}
   @media (max-width:900px){.cta-inner{flex-direction:column;align-items:flex-start}.cta-copy h3{font-size:26px}}
 
-  /* ===== Modal (unchanged) ===== */
+  /* ===== Modal ===== */
   .modal-backdrop{position:fixed;inset:0;background:rgba(7,6,16,.68);backdrop-filter:blur(6px) saturate(120%);display:none;z-index:1000}
   .modal-backdrop.open{display:block}
   .modal{position:fixed;inset:0;display:none;place-items:center;pointer-events:none;z-index:1001}
@@ -145,7 +165,7 @@
   input::placeholder, textarea::placeholder{color:#e2dcffcc}
   textarea{min-height:110px;resize:vertical}
 
-  /* === Footer v2 (unchanged) === */
+  /* === Footer v2 === */
   footer.site{padding:48px 0 22px;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
   .footer-top{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:24px;align-items:start}
   .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
@@ -161,7 +181,7 @@
   @media (max-width:980px){.footer-top{grid-template-columns:1fr 1fr}}
   @media (max-width:620px){.footer-top{grid-template-columns:1fr}}
 
-  /* ===== Showcase (unchanged) ===== */
+  /* ===== Showcase ===== */
   .showcase{background:linear-gradient(180deg,#4a2fd0 0%,#6a4bff 100%);margin:40px auto 30px;border-radius:32px;border:1px solid rgba(255,255,255,.22);box-shadow:0 22px 70px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.08);color:#f5f1ff;overflow:hidden}
   .showcase-inner{padding:46px 34px}
   .showcase-head{text-align:center;margin:0 0 18px;font-size:30px;letter-spacing:-.01em}
@@ -175,13 +195,27 @@
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
   @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
+  /* ===== Integrations strip ===== */
+  .integrations{padding:18px 0 10px}
+  .integrations-wrap{max-width:var(--maxw);margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .brand-chip{padding:.55rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#f7f6ff;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+  .brand-chip:hover{background:rgba(255,255,255,.16)}
+
+  /* ===== How it works ===== */
+  .howit{padding:26px 0 8px}
+  .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .how-card{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:18px;box-shadow:0 12px 34px rgba(0,0,0,.4)}
+  .how-card h4{margin:0 0 6px}
+  .how-card p{margin:0;color:#eae3ff}
+  @media (max-width:900px){.how-grid{grid-template-columns:1fr}}
+
   /* ===== Self-host vs Lunvi (CENTERED & WIDER) ===== */
   .compare{margin:40px 0}
   .compare h2{font-size:32px;letter-spacing:-0.01em;margin:0 0 18px;text-align:center}
   .compare-panel{
     width:100%;
-    max-width: min(var(--maxw), 1160px);  /* büyüt + container içinde tam merkez */
-    margin: 8px auto 28px;                /* eşit sol/sağ boşluk */
+    max-width: min(var(--maxw), 1160px);
+    margin: 8px auto 28px;
     border-radius:26px;overflow:hidden;
     border:1px solid rgba(255,255,255,.22);
     background:linear-gradient(180deg,#2a1e5c 0%, #382a76 100%);
@@ -218,6 +252,9 @@
   .faq-a{padding:0 18px 16px 18px;color:#2b2150;display:none}
   .faq-item.open .faq-a{display:block}
   .faq-item.open .faq-q span{opacity:1}
+
+  /* Scroll-spy active link */
+  header a.active{color:#aeefff;border-bottom:2px solid #41e2c0}
 </style>
 </head>
 <body>
@@ -236,10 +273,10 @@
     <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
     <ul id="menu" aria-label="Main menu">
       <li><a href="#product">Product</a></li>
-      <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#gateways">Solutions</a></li>
+      <li><a href="#compare">Integrations</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
+      <li><a class="btn btn-ghost" href="#faq">Docs</a></li>
       <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
     </ul>
   </div>
@@ -288,6 +325,37 @@
           <h3>Health at a glance</h3>
           <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS STRIP -->
+  <section class="integrations" id="integrations">
+    <div class="integrations-wrap">
+      <span class="brand-chip" title="Meta Conversions API">Meta CAPI</span>
+      <span class="brand-chip" title="Google Analytics 4">GA4</span>
+      <span class="brand-chip" title="TikTok Events API">TikTok</span>
+      <span class="brand-chip" title="Klaviyo">Klaviyo</span>
+      <span class="brand-chip" title="Google BigQuery">BigQuery</span>
+      <span class="brand-chip" title="Generic webhooks">Webhook</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="container howit" id="how">
+    <h2>How it works</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <h4>1) Connect your domain</h4>
+        <p>Point CNAME → managed SSL is provisioned automatically.</p>
+      </div>
+      <div class="how-card">
+        <h4>2) Paste tokens</h4>
+        <p>Add Pixel / Access Tokens or GA4 measurement IDs.</p>
+      </div>
+      <div class="how-card">
+        <h4>3) Start sending</h4>
+        <p>Use our templates and live debugger to verify delivery.</p>
       </div>
     </div>
   </section>
@@ -498,6 +566,8 @@
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+        <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="referrer" id="inline-ref" value="">
         <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
           <label>Company
             <input name="company" autocomplete="organization" required placeholder="e.g., Example Inc." />
@@ -553,7 +623,7 @@
         <h4>Company</h4>
         <ul class="footer-links">
           <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
-          <li><a href="#docs">Docs</a></li>
+          <li><a href="#faq">Docs</a></li>
           <li><a href="#">Status</a></li>
           <li><a href="#">Careers</a></li>
         </ul>
@@ -596,6 +666,8 @@
         <input type="hidden" name="from_name" value="Lunvi Labs Website" />
         <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
         <input type="hidden" name="plan" id="planInput" value="Pro" />
+        <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="referrer" id="modal-ref" value="">
         <div class="modal-grid">
           <label>Company
             <input name="company" autocomplete="organization" required placeholder="e.g., Example Inc." />
@@ -665,6 +737,39 @@
       q.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   });
+
+  // UTM & Referrer capture for all forms
+  (function(){
+    const params = new URLSearchParams(location.search);
+    const utms = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+    const forms = [document.getElementById('requestForm'), ...document.querySelectorAll('#inline-form form')];
+    forms.forEach(form=>{
+      if(!form) return;
+      // referrer
+      const refField = form.querySelector('input[name="referrer"]');
+      if(refField) refField.value = document.referrer || 'direct';
+      // utm hidden inputs
+      utms.forEach(k=>{
+        const i=document.createElement('input');
+        i.type='hidden'; i.name=k; i.value=params.get(k)||'';
+        form.appendChild(i);
+      });
+    });
+  })();
+
+  // Scroll-spy (active menu)
+  (function(){
+    const links=[...document.querySelectorAll('header a[href^="#"]')];
+    const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        const id="#"+e.target.id;
+        const link=links.find(l=>l.getAttribute('href')===id);
+        if(link){ link.classList.toggle('active', e.isIntersecting); }
+      });
+    },{rootMargin:"-40% 0px -50% 0px", threshold:0});
+    sections.forEach(s=>obs.observe(s));
+  })();
 
   // Footer year
   document.getElementById('y').textContent = new Date().getFullYear();
