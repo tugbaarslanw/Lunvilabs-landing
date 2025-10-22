@@ -163,7 +163,7 @@
   @media (max-width:980px){.footer-top{grid-template-columns:1fr 1fr}}
   @media (max-width:620px){.footer-top{grid-template-columns:1fr}}
 
-  /* ===== Showcase (unchanged from previous step) ===== */
+  /* ===== Showcase (unchanged) ===== */
   .showcase{background:linear-gradient(180deg,#4a2fd0 0%,#6a4bff 100%);margin:40px auto 30px;border-radius:32px;border:1px solid rgba(255,255,255,.22);box-shadow:0 22px 70px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.08);color:#f5f1ff;overflow:hidden}
   .showcase-inner{padding:46px 34px}
   .showcase-head{text-align:center;margin:0 0 18px;font-size:30px;letter-spacing:-.01em}
@@ -177,46 +177,48 @@
   .btn-lite:hover,.btn-outline:hover{transform:translateY(-1px)}
   @media (max-width:900px){.showcase-grid{grid-template-columns:1fr}}
 
-  /* ===== Self-host vs Lunvi (CENTERED + OPAQUE) ===== */
+  /* ===== Self-host vs Lunvi (RIGHT-ALIGNED + WHITE / PREMIUM) ===== */
   .compare{margin:34px 0}
-  .compare h2{font-size:30px;margin:0 0 14px;text-align:center}
+  .compare h2{font-size:30px;margin:0 0 14px;text-align:right} /* title to the right */
   .compare-panel{
     max-width:1080px;
-    margin:0 auto;                      /* center */
+    margin:0 0 0 auto;                 /* push to right */
     border-radius:28px;
     overflow:hidden;
-    border:1px solid rgba(255,255,255,.24);
-    box-shadow:0 22px 70px rgba(0,0,0,.55);
-    background:linear-gradient(180deg,#6a56f2 0%, #5a48e6 100%);  /* opaque */
+    border:1px solid #e6ddff;
+    box-shadow:0 26px 80px rgba(16,8,48,.35);
+    background:#ffffff;                 /* solid white card */
+    color:#1b1530;                      /* dark text for readability */
   }
   .compare-table{width:100%;border-collapse:separate;border-spacing:0}
-  .compare-table th,.compare-table td{padding:16px 18px;border-top:1px solid rgba(255,255,255,.18)}
+  .compare-table th,.compare-table td{padding:16px 18px;border-top:1px solid #ece7ff}
   .compare-table thead th{
-    background:#7a64ff;                 /* opaque header */
-    font-size:14px;text-align:center
+    background:#f3efff;                 /* premium soft-lilac header */
+    color:#2b2150;font-size:14px;text-align:center
   }
-  .compare-table tbody tr:nth-child(odd){background:#5d49e0}  /* opaque rows */
-  .compare-table tbody tr:nth-child(even){background:#654fe8}
-  .compare-table td:first-child{width:36%;font-weight:700;opacity:.98}
+  .compare-table tbody tr:nth-child(odd){background:#ffffff}
+  .compare-table tbody tr:nth-child(even){background:#faf8ff}  /* subtle zebra */
+  .compare-table td:first-child{width:36%;font-weight:700}
   .compare-table td:nth-child(2), .compare-table td:nth-child(3){text-align:center}
-  .pill{display:inline-flex;align-items:center;gap:6px;padding:.34rem .62rem;border-radius:999px;background:#2bd6b1;color:#052b1f;font-size:12px;font-weight:800}
-  .x{color:#ffd3d3}
-  .check{color:#d8ffe9}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:.34rem .62rem;border-radius:999px;background:#19d6a8;color:#052b1f;font-size:12px;font-weight:800}
+  .x{color:#b53a3a;font-weight:700}
+  .check{color:#0a875a;font-weight:700}
 
-  /* ===== FAQ (CENTERED + OPAQUE) ===== */
+  /* ===== FAQ (RIGHT-ALIGNED + WHITE) ===== */
   .faq{margin:38px 0}
-  .faq h2{font-size:30px;margin:0 0 14px;text-align:center}
-  .faq-wrap{max-width:1000px;margin:0 auto} /* center */
+  .faq h2{font-size:30px;margin:0 0 14px;text-align:right}
+  .faq-wrap{max-width:900px;margin:0 0 0 auto} /* right align */
   .faq-item{
-    border:1px solid rgba(255,255,255,.24);
+    border:1px solid #e6ddff;
     border-radius:16px;
-    background:linear-gradient(180deg,#5a48e6,#6a56f2); /* opaque */
+    background:#ffffff;                 /* solid white */
     margin-bottom:12px;overflow:hidden;
-    box-shadow:0 12px 32px rgba(0,0,0,.42)
+    box-shadow:0 14px 40px rgba(16,8,48,.28);
+    color:#1b1530;
   }
-  .faq-q{width:100%;text-align:left;background:transparent;border:0;color:var(--text);padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .faq-q{width:100%;text-align:left;background:transparent;border:0;color:inherit;padding:16px 18px;font-weight:800;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
   .faq-q span{opacity:.95}
-  .faq-a{padding:0 18px 16px 18px;color:#f1edff;display:none}
+  .faq-a{padding:0 18px 16px 18px;color:#2b2150;display:none}
   .faq-item.open .faq-a{display:block}
   .faq-item.open .faq-q span{opacity:1}
 </style>
@@ -340,7 +342,7 @@
     </div>
   </section>
 
-  <!-- SELF-HOST VS LUNVI -->
+  <!-- SELF-HOST VS LUNVI (RIGHT) -->
   <section class="container compare" id="compare">
     <h2>Self-host vs Lunvi</h2>
     <div class="compare-panel">
@@ -398,7 +400,7 @@
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ (RIGHT) -->
   <section class="container faq" id="faq">
     <h2>FAQ</h2>
     <div class="faq-wrap">
@@ -499,7 +501,7 @@
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM (Details) -->
+    <!-- INLINE REQUEST FORM -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
