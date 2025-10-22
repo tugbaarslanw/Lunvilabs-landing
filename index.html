@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
-<meta name="theme-color" content="#0b0818" />
+<meta name="theme-color" content="#0b0818">
 <style>
   :root{
     --bg-1:#0c0819; --bg-2:#25114f; --bg-3:#6f44ff;
@@ -17,6 +17,7 @@
   body{margin:0;color:var(--text);font:400 16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg-1);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
 
+  /* Static premium background (no animation) */
   .bg{position:fixed;inset:0;z-index:-4;background:
       radial-gradient(900px 700px at 85% 10%, #bca7ff22, transparent 60%),
       radial-gradient(1000px 720px at 70% 80%, #5f36ff26, transparent 60%),
@@ -26,6 +27,7 @@
     background-size:40px 40px;mask-image:radial-gradient(1100px 700px at 60% 40%, #000, transparent 70%)}
   .grain{position:fixed;inset:-20%;z-index:-2;pointer-events:none;opacity:.9;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.05"/></svg>')}
 
+  /* Dense spheres */
   .spheres{position:fixed;inset:0;pointer-events:none;z-index:-1}
   .sphere{position:absolute;border-radius:50%;filter:saturate(115%);opacity:.9;
     background:
@@ -41,8 +43,10 @@
   .s5{left:6%; bottom:12%; width:420px; height:420px}
   .s6{right:-4%; bottom:-4%; width:520px; height:520px; opacity:.7}
 
+  /* Layout */
   .container{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
 
+  /* Header / Nav */
   header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);
     background:linear-gradient(to bottom, rgba(11,8,24,.7), rgba(11,8,24,.35));border-bottom:1px solid var(--stroke)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
@@ -62,6 +66,7 @@
     .nav.open ul a{padding:14px 24px;display:block}
   }
 
+  /* Hero */
   .hero{padding:90px 0 40px}
   .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
   .h1{font-size:58px;line-height:1.04;letter-spacing:-.02em;margin:0 0 16px;font-weight:900}
@@ -70,37 +75,39 @@
   .chip{padding:.5rem .9rem;border-radius:999px;background:var(--glass);border:1px solid var(--stroke);color:#efeafe}
   .panels{display:grid;gap:16px}
   .panel{position:relative;background:var(--glass);border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--shadow);backdrop-filter:blur(10px) saturate(120%);overflow:hidden}
-  ..panel:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%);
-  pointer-events:none; /* <-- tıklamayı içeriğe geçir */
-}
+  .panel:before{content:"";position:absolute;inset:0;background:radial-gradient(600px 180px at 20% -40%, rgba(255,255,255,.18), transparent 60%)}
   .panel h3{margin:0 0 6px;font-size:16px}
   .panel p{margin:0;color:var(--muted);font-size:14px}
   @media (max-width:950px){.hero-grid{grid-template-columns:1fr}.h1{font-size:44px}}
 
+  /* Sections */
   .section{padding:34px 0 10px}
   .section h2{font-size:30px;margin:0 0 14px}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .icon{width:34px;height:34px;border-radius:10px;margin-bottom:10px;background:linear-gradient(140deg,#b69dff,#6f44ff);box-shadow:inset 0 0 10px #fff3,0 8px 20px #0006}
   @media (max-width:900px){.grid-3{grid-template-columns:1fr}}
 
+  /* Trust / badges */
   .trust{display:flex;gap:18px;flex-wrap:wrap;align-items:center;opacity:.9}
   .badge{padding:.45rem .7rem;border:1px solid var(--stroke);border-radius:10px;background:var(--glass);color:#eae4ff}
 
+  /* Pricing */
   .pricing{padding:32px 0 60px}
   .pricing-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .price{font-size:30px;color:#c7b6ff;font-weight:900}
+  .price{
+    font-size:42px; line-height:1; letter-spacing:-0.01em;
+    color:#c7b6ff; font-weight:900;
+  }
   .price.pro{color:#b49aff}
   .price.agency{color:#41e2c0}
   .features{margin:12px 0 18px;padding:0;list-style:none}
   .features li{margin:8px 0;color:#efeafe}
   .features li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#a88cff;margin-right:10px;vertical-align:1px}
 
+  /* Footer */
   footer.site{padding:46px 0;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
 
+  /* Modal */
   .modal{position:fixed;inset:0;background:rgba(7,5,15,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
   .modal.open{display:flex}
   .dialog{max-width:720px;width:100%;background:var(--glass);border:1px solid var(--stroke);border-radius:20px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}
@@ -210,21 +217,29 @@
   <!-- PRICING -->
   <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
     <h2 id="pricing-title">Pricing</h2>
-    <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
+    <p class="lead" style="margin-top:6px">
+      Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.
+    </p>
+
     <div class="pricing-cards">
-      <article class="panel">
+      <!-- DEV / FREE -->
+      <article class="panel" aria-label="Dev plan">
         <header><h3>Dev</h3></header>
-        <p class="price">$0</p>
+        <p class="price">Free</p>
         <ul class="features">
           <li>1 container</li>
           <li>10k events / month</li>
           <li>Log viewer</li>
           <li>*.lunvi.run subdomain</li>
         </ul>
-        <button class="btn btn-ghost" aria-label="Dev plan details">Details</button>
+        <div class="card-actions" style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn btn-ghost" href="#demo" aria-label="Start free">Start free</a>
+          <button class="btn btn-ghost" aria-label="Dev plan details">Details</button>
+        </div>
       </article>
 
-      <article class="panel" aria-current="true">
+      <!-- PRO -->
+      <article class="panel" aria-current="true" aria-label="Pro plan">
         <header><h3>Pro</h3></header>
         <p class="price pro">$29</p>
         <ul class="features">
@@ -235,12 +250,13 @@
           <li>Priority support</li>
         </ul>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
-          <button class="btn btn-primary" id="openModal">Request upgrade</button>
-          <a class="btn btn-ghost" href="#request" aria-label="Inline request form">Inline form</a>
+          <button class="btn btn-primary" data-plan="Pro" id="openModalPro">Request upgrade</button>
+          <button class="btn btn-ghost" aria-label="Pro plan details">Details</button>
         </div>
       </article>
 
-      <article class="panel">
+      <!-- AGENCY -->
+      <article class="panel" aria-label="Agency plan">
         <header><h3>Agency</h3></header>
         <p class="price agency">$89</p>
         <ul class="features">
@@ -250,32 +266,34 @@
           <li>EU region</li>
           <li>SLA</li>
         </ul>
-        <button class="btn btn-ghost" aria-label="Agency plan details">Details</button>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <button class="btn btn-primary" data-plan="Agency" id="openModalAgency">Request upgrade</button>
+          <button class="btn btn-ghost" aria-label="Agency plan details">Details</button>
+        </div>
       </article>
     </div>
-  </section>
 
-  <!-- Always-visible inline form -->
-  <section class="container" id="request" style="padding:30px 0 70px">
-    <div class="panel">
-      <header><h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3></header>
+    <!-- Inline Web3Forms block (Pro plan form) -->
+    <div class="panel" style="margin-top:22px" id="inline-form">
+      <header><h3>Request upgrade — Pro plan</h3></header>
       <form action="https://api.web3forms.com/submit" method="POST" class="body">
-        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-        <input type="hidden" name="subject" value="Lunvi Labs — Pro Upgrade Request" />
-        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-        <input type="hidden" name="redirect" value="https://lunvilabs.com/?request=ok#pricing" />
-        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-        <div class="row"><label>Company</label><input name="company" required placeholder="e.g., Example Inc." /></div>
-        <div class="row"><label>Email</label><input name="email" type="email" required placeholder="you@company.com" /></div>
-        <div class="row"><label>Phone</label><input name="phone" type="tel" placeholder="+90 5xx xxx xx xx" /></div>
-        <div class="row"><label>Billing details / Tax ID</label><input name="billing" placeholder="Vergi dairesi, numara, adres" /></div>
+        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c">
+        <input type="hidden" name="from_name" value="Lunvi Labs Website">
+        <input type="hidden" name="subject" value="Upgrade request - Pro (inline form)">
+        <div class="row"><label>Company</label><input name="company" required placeholder="e.g., Example Inc."></div>
+        <div class="row"><label>Email</label><input name="email" type="email" required placeholder="you@company.com"></div>
+        <div class="row"><label>Phone</label><input name="phone" type="tel" placeholder="+90 5xx xxx xx xx"></div>
+        <div class="row"><label>Billing details / Tax ID</label><input name="billing" placeholder="Vergi dairesi, numara, adres"></div>
         <div class="row"><label>Notes (optional)</label><textarea name="notes" placeholder="Kısa notlar"></textarea></div>
-        <footer><button type="submit" class="btn btn-primary">Submit request</button></footer>
+        <footer>
+          <button type="submit" class="btn btn-primary">Submit request</button>
+        </footer>
       </form>
     </div>
   </section>
 </main>
 
+<!-- FOOTER -->
 <footer class="site">
   <div class="container" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center">
     <div>© Lunvi Labs — Privacy-first infrastructure • <a href="#" style="color:#d4caff">Status</a> • <a href="#" style="color:#d4caff">DPA</a></div>
@@ -283,25 +301,17 @@
   </div>
 </footer>
 
-<!-- Modal (click “Request upgrade” button to open) -->
+<!-- Modal -->
 <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-labelledby="dialog-title">
   <div class="dialog">
     <header><h3 id="dialog-title">Request upgrade — Pro plan</h3></header>
-    <form class="body" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-      <input type="hidden" name="subject" value="Lunvi Labs — Pro Upgrade Request (Modal)" />
-      <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-      <input type="hidden" name="redirect" value="https://lunvilabs.com/?request=ok#pricing" />
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-      <div class="row"><label for="c1">Company</label><input id="c1" name="company" required placeholder="e.g., Example Inc." /></div>
-      <div class="row"><label for="c2">Email</label><input id="c2" name="email" type="email" required placeholder="you@company.com" /></div>
-      <div class="row"><label for="c3">Phone</label><input id="c3" name="phone" type="tel" placeholder="+90 5xx xxx xx xx" /></div>
-      <div class="row"><label for="c4">Billing details / Tax ID</label><input id="c4" name="billing" placeholder="Vergi dairesi, numara, adres" /></div>
-      <div class="row"><label for="c5">Notes (optional)</label><textarea id="c5" name="notes" placeholder="Kısa notlar, sorular"></textarea></div>
-      <footer>
-        <button type="button" class="btn btn-ghost" id="cancelModal">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit request</button>
-      </footer>
+    <form class="body" onsubmit="event.preventDefault(); closeModal(); alert('Your request has been received. We will get back to you shortly.');">
+      <div class="row"><label for="c1">Company</label><input id="c1" required placeholder="e.g., Example Inc."></div>
+      <div class="row"><label for="c2">Email</label><input id="c2" type="email" required placeholder="you@company.com"></div>
+      <div class="row"><label for="c3">Phone</label><input id="c3" type="tel" placeholder="+1 202 555 0123"></div>
+      <div class="row"><label for="c4">Billing details / Tax ID</label><input id="c4" placeholder="Tax office, number, company address"></div>
+      <div class="row"><label for="c5">Notes (optional)</label><textarea id="c5" placeholder="Short notes, context or questions"></textarea></div>
+      <footer><button type="button" class="btn btn-ghost" onclick="closeModal()">Cancel</button><button type="submit" class="btn btn-primary">Submit request</button></footer>
     </form>
   </div>
 </div>
@@ -315,13 +325,26 @@
     navToggle.setAttribute('aria-expanded', open ? 'true':'false');
   });
 
-  // Modal
+  // Modal helpers
   const modal = document.getElementById('modal');
-  const openBtn = document.getElementById('openModal');
-  const cancelBtn = document.getElementById('cancelModal');
-  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.style.overflow='' }
-  openBtn?.addEventListener('click', ()=>{ modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden' });
-  cancelBtn?.addEventListener('click', closeModal);
+  const dialogTitle = document.getElementById('dialog-title');
+
+  function openModalWith(plan){
+    if (dialogTitle) dialogTitle.textContent = `Request upgrade — ${plan} plan`;
+    modal?.classList.add('open');
+    modal?.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){
+    modal?.classList.remove('open');
+    modal?.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  window.closeModal = closeModal;
+
+  document.getElementById('openModalPro')?.addEventListener('click', ()=>openModalWith('Pro'));
+  document.getElementById('openModalAgency')?.addEventListener('click', ()=>openModalWith('Agency'));
+
   modal?.addEventListener('click', (e)=>{ if(e.target===modal) closeModal() });
 </script>
 </body>
