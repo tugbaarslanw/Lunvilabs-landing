@@ -209,7 +209,7 @@
   .how-card p{margin:0;color:#eae3ff}
   @media (max-width:900px){.how-grid{grid-template-columns:1fr}}
 
-  /* ===== Self-host vs Lunvi (CENTERED & WIDER) ===== */
+  /* ===== Self-host vs Lunvi ===== */
   .compare{margin:40px 0}
   .compare h2{font-size:32px;letter-spacing:-0.01em;margin:0 0 18px;text-align:center}
   .compare-panel{
@@ -242,7 +242,7 @@
     .compare-table th,.compare-table td{padding:16px}
   }
 
-  /* ===== FAQ (CENTERED & WIDER) ===== */
+  /* ===== FAQ ===== */
   .faq{margin:42px 0}
   .faq h2{font-size:30px;margin:0 0 14px;text-align:center}
   .faq-wrap{max-width:min(980px, 100%);margin:0 auto}
@@ -498,7 +498,7 @@
     </div>
   </section>
 
-  <!-- RESULTS STRIP (testimonials-style) -->
+  <!-- RESULTS STRIP -->
   <section class="container" id="results" style="margin:26px 0">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
       <div class="panel" style="background:linear-gradient(180deg,#2a1e5c,#382a76);border:1px solid rgba(255,255,255,.22)">
@@ -718,13 +718,16 @@
   </div>
 </div>
 
-<!-- CONSENT / CMv2 mini banner -->
-<div id="consent-bar" style="position:fixed;left:16px;bottom:16px;z-index:1200;background:#0f0a22cc;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);color:#eae4ff;border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.5);padding:12px 14px;max-width:420px">
-  <div style="font-weight:800;margin-bottom:6px">Consent Mode v2</div>
+<!-- CONSENT / CMv2 mini banner (WHITE VERSION) -->
+<div id="consent-bar" role="dialog" aria-live="polite" aria-label="Consent Mode v2" style="
+  position:fixed;left:16px;bottom:16px;z-index:1200;background:#ffffff;color:#1b1530;
+  border:1px solid #e6e2ff;border-radius:16px;box-shadow:0 18px 50px rgba(0,0,0,.28);
+  padding:14px 16px;max-width:440px">
+  <div style="font-weight:900;margin-bottom:6px">Consent Mode v2</div>
   <div style="opacity:.9;font-size:14px">We use anonymous signals when consent is denied and upgrade to full measurement with consent.</div>
-  <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-    <button id="cm-accept" class="btn btn-primary" style="padding:.55rem .9rem">Accept</button>
-    <button id="cm-deny" class="btn btn-ghost" style="padding:.55rem .9rem">Deny</button>
+  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+    <button id="cm-accept" style="appearance:none;border:0;border-radius:12px;padding:.6rem 1rem;font-weight:800;background:#111827;color:#ffffff;cursor:pointer">Accept</button>
+    <button id="cm-deny" style="appearance:none;border:1px solid #cfd2e9;border-radius:12px;padding:.6rem 1rem;font-weight:800;background:#ffffff;color:#111827;cursor:pointer">Deny</button>
   </div>
 </div>
 
@@ -807,12 +810,14 @@
     sections.forEach(s=>obs.observe(s));
   })();
 
-  // Consent mini banner
+  // Consent mini banner (white) — store decision & hide
   (function(){
     const bar=document.getElementById('consent-bar');
-    if(localStorage.getItem('cmv2')){ bar?.remove(); return; }
-    document.getElementById('cm-accept')?.addEventListener('click',()=>{localStorage.setItem('cmv2','granted');bar.remove();});
-    document.getElementById('cm-deny')?.addEventListener('click',()=>{localStorage.setItem('cmv2','denied');bar.remove();});
+    const k='cmv2';
+    if(localStorage.getItem(k)){ bar?.remove(); return; }
+    const hide=()=>{ bar.style.transition='opacity .2s ease, transform .2s ease'; bar.style.opacity='0'; bar.style.transform='translateY(6px)'; setTimeout(()=>bar.remove(),200); };
+    document.getElementById('cm-accept')?.addEventListener('click',()=>{localStorage.setItem(k,'granted');hide();});
+    document.getElementById('cm-deny')?.addEventListener('click',()=>{localStorage.setItem(k,'denied');hide();});
   })();
 
   // Footer year
