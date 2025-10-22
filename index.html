@@ -374,16 +374,16 @@
         <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
         <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
           <label>Company
-            <input name="company" required placeholder="e.g., Example Inc." />
+            <input name="company" autocomplete="organization" required placeholder="e.g., Example Inc." />
           </label>
           <label>Email
-            <input type="email" name="email" required placeholder="you@company.com" />
+            <input type="email" name="email" autocomplete="email" required placeholder="you@company.com" />
           </label>
           <label>Phone
-            <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+            <input type="tel" name="phone" autocomplete="tel" placeholder="+90 5xx xxx xx xx" />
           </label>
           <label>Billing details / Tax ID
-            <input name="billing" placeholder="Vergi dairesi, numara, adres" />
+            <input name="billing" autocomplete="on" placeholder="Vergi dairesi, numara, adres" />
           </label>
         </div>
         <label style="display:block; margin-top:10px;">Notes (optional)
@@ -462,12 +462,12 @@
 <!-- ===== Modal Markup ===== -->
 <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
 <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
-  <div class="modal-card">
+  <div class="modal-card" role="document">
     <div class="modal-head">
       <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
       <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body" aria-live="polite">
       <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
         <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
@@ -476,16 +476,16 @@
         <input type="hidden" name="plan" id="planInput" value="Pro" />
         <div class="modal-grid">
           <label>Company
-            <input name="company" required placeholder="e.g., Example Inc." />
+            <input name="company" autocomplete="organization" required placeholder="e.g., Example Inc." />
           </label>
           <label>Email
-            <input type="email" name="email" required placeholder="you@company.com" />
+            <input type="email" name="email" autocomplete="email" required placeholder="you@company.com" />
           </label>
           <label>Phone
-            <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+            <input type="tel" name="phone" autocomplete="tel" placeholder="+90 5xx xxx xx xx" />
           </label>
           <label>Billing details / Tax ID
-            <input name="billing" placeholder="Vergi dairesi, numara, adres" />
+            <input name="billing" autocomplete="on" placeholder="Vergi dairesi, numara, adres" />
           </label>
         </div>
         <label style="display:block; margin-top:10px;">Notes (optional)
