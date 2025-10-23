@@ -25,6 +25,36 @@
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 
+<!-- SEO JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Lunvi Labs",
+  "url":"https://lunvilabs.com",
+  "logo":"https://lunvilabs.com/icon.png",
+  "sameAs":[]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "serviceType":"Server-side conversions for e-commerce",
+  "provider":{"@type":"Organization","name":"Lunvi Labs"},
+  "areaServed":["EU","UK","TR"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Service",
+  "serviceType":"Privacy-first analytics for healthcare (no PHI)",
+  "provider":{"@type":"Organization","name":"Lunvi Labs"},
+  "areaServed":["EU","UK","TR"]
+}
+</script>
+
 <style>
   :root{--bg-1:#0c0819; --bg-2:#25114f; --bg-3:#6f44ff; --text:#f7f6ff; --muted:#cfc9e9; --glass:rgba(255,255,255,.06); --glass-strong:rgba(255,255,255,.12); --stroke:rgba(255,255,255,.16); --shadow:0 14px 40px rgba(0,0,0,.45); --primary:#8853ff; --accent:#41e2c0; --radius-lg:22px; --maxw:1200px;}
   *,*:before,*:after{box-sizing:border-box} html,body{height:100%}
@@ -242,7 +272,10 @@
     <div class="hero-grid">
       <div>
         <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
-        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.</p>
+        <p class="lead">
+          Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.
+          <br><span style="opacity:.9">Built for <strong>e-commerce</strong> and <strong>healthcare</strong> teams.</span>
+        </p>
         <div class="actions">
           <a class="btn btn-primary" href="#demo">Start Demo</a>
           <a class="btn btn-ghost" href="#pricing">See Pricing</a>
@@ -271,6 +304,15 @@
     </div>
   </section>
 
+  <!-- INDUSTRIES STRIP -->
+  <section class="container" id="industries" style="padding:12px 0 8px">
+    <div class="panel" style="display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap">
+      <span class="badge">Focus: E-commerce</span>
+      <span class="badge">Focus: Healthcare</span>
+      <span class="badge">EU Hosting • GDPR / KVKK</span>
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section class="section container" id="product">
     <h2>Product</h2>
@@ -278,6 +320,80 @@
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Meta Conversions API</h3><p>Pixel ID & Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p></div>
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>GA4 Server Endpoint</h3><p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p></div>
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Event Router & Destinations</h3><p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p></div>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS (E-commerce & Healthcare) -->
+  <section class="section container" id="solutions" aria-labelledby="solutions-title">
+    <h2 id="solutions-title">Solutions</h2>
+    <div class="grid-3">
+      <article class="panel" id="solutions-ecom">
+        <h3>E-commerce</h3>
+        <p>Server-side GA4 & Meta CAPI delivery. <strong>Purchase</strong>, <strong>AddToCart</strong>, <strong>ViewItem</strong> için browser+server <em>dedup</em>, UTM/affiliate cleanup, ürün/gelir alanlarının normalizasyonu.</p>
+        <ul class="features">
+          <li>Ready mappings: GA4 ↔︎ CAPI (event_id, fbp/fbc)</li>
+          <li>Refund/Cancel senaryoları için event şablonları</li>
+          <li>Real-time log & debugger, test console</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#demo">Start e-commerce demo</a>
+          <a class="btn btn-ghost" href="mailto:info@lunvilabs.com?subject=Lunvi%20for%20E-commerce">Talk to sales</a>
+        </div>
+      </article>
+
+      <article class="panel" id="solutions-health">
+        <h3>Healthcare</h3>
+        <p>Gizlilik-öncelikli ölçüm: <strong>appointment request</strong>, <strong>lead submit</strong>, <strong>phone click</strong>. PHI göndermeden, yalnızca izinli ve anonimleştirilmiş sinyallerle çalışır.</p>
+        <ul class="features">
+          <li>Consent Mode v2 ile bağlamlı ölçüm (izinle yükseltme)</li>
+          <li>IP anonimizasyonu, URL/parametre temizliği</li>
+          <li>DPA & veri işleme sözleşmesi (isteğe bağlı)</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#demo">Start healthcare demo</a>
+          <a class="btn btn-ghost" href="mailto:info@lunvilabs.com?subject=Lunvi%20for%20Healthcare">Talk to sales</a>
+        </div>
+        <p style="color:var(--muted);margin-top:8px;font-size:13px">Not: PHI gönderimi desteklenmez; olay parametrelerinde kişisel sağlık bilgisi bulundurmayın.</p>
+      </article>
+
+      <article class="panel">
+        <h3>Common benefits</h3>
+        <p>Her iki dikey için ortak platform yetenekleri.</p>
+        <ul class="features">
+          <li>Custom domain (CNAME) & managed SSL</li>
+          <li>Regional deploys (EU)</li>
+          <li>Retries, rate-limit guard & observability</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-ghost" href="#integrations">See integrations</a>
+          <a class="btn btn-ghost" href="#security">Security & compliance</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PLAYBOOKS (event önerileri) -->
+  <section class="container" id="playbooks" style="padding:10px 0 6px">
+    <div class="compare-wrap">
+      <div class="compare" role="table" aria-label="Event playbooks">
+        <table class="table">
+          <thead>
+            <tr><th>Playbook</th><th>Core events</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>E-commerce</strong></td>
+              <td>view_item, add_to_cart, begin_checkout, add_payment_info, purchase</td>
+              <td>event_id ile dedup; currency/value/item_id normalizasyonu</td>
+            </tr>
+            <tr>
+              <td><strong>Healthcare</strong></td>
+              <td>lead_submit, appointment_request, phone_click</td>
+              <td>IP anon, PHI yok; consent denied → anonymous pings</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
@@ -457,6 +573,14 @@
         <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
         <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
       </div>
+      <div class="faq-item">
+        <div class="faq-q"><strong>Do you have a ready setup for e-commerce?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">Yes. We provide GA4↔︎CAPI mappings for Purchase/ATC and test tools for match quality and dedup.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><strong>Can I use Lunvi for healthcare sites?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">Yes—without PHI. We support consent-aware lead/appointment events, IP anonymization and DPA on request.</div>
+      </div>
     </div>
   </section>
 </main>
@@ -560,7 +684,7 @@
     });
   })();
 
-  // ========= CONSENT BANNER NEUTRALIZER =========
+  // ========= CONSENT BANNER NEUTRALIZER (no DOM banner added) =========
   (function(){
     var KEY='cmv2';
     function safeGet(k){try{var v=localStorage.getItem(k);if(v)return v;}catch(e){}var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'));return m&&m[1];}
