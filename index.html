@@ -71,7 +71,7 @@
   .hamburger{display:none}
   @media (max-width:950px){
     .nav ul{display:none}
-    .hamburger{display:inline-flex;border:1px solid var(--stroke);background:transparent;padding:.6rem .8rem;border-radius:12px;color:var(--muted)}
+    .hamburger{display:inline-flex;border:1px solid var(--stroke);background:transparent;padding:.6rem .8rem;border-radius:12px;color:#muted}
     .nav.open ul{position:absolute;left:0;right:0;top:68px;display:flex;flex-direction:column;background:rgba(11,8,24,.88);border-bottom:1px solid var(--stroke)}
     .nav.open ul a{padding:14px 24px;display:block}
   }
@@ -137,7 +137,7 @@
   .modal-card{width:min(720px,92vw);border-radius:22px;background:#0b0818f2;border:1px solid rgba(255,255,255,.14);box-shadow:0 34px 120px rgba(0,0,0,.65);overflow:hidden;backdrop-filter:saturate(130%) blur(4px)}
   .modal-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--stroke);background:linear-gradient(180deg, rgba(255,255,255,.06), transparent)}
   .modal-title{margin:0;font-size:18px;font-weight:800}
-  .modal-close{appearance:none;border:1px solid var(--stroke);background:transparent;color:var(--muted);border-radius:10px;padding:.4rem .6rem;cursor:pointer}
+  .modal-close{appearance:none;border:1px solid var(--stroke);background:transparent;color:#muted;border-radius:10px;padding:.4rem .6rem;cursor:pointer}
   .modal-body{padding:16px 18px;max-height:min(70vh,680px);overflow:auto}
   .modal-grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
   .modal-grid label{display:block}
@@ -150,7 +150,7 @@
   textarea{min-height:110px;resize:vertical}
 
   /* Footer v2 */
-  footer.site{padding:48px 0 22px;color:var(--muted);border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
+  footer.site{padding:48px 0 22px;color:#muted;border-top:1px solid var(--stroke);background:linear-gradient(to bottom, transparent, rgba(12,8,24,.35))}
   .footer-top{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:24px;align-items:start}
   .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
   .footer-logo{display:flex;align-items:center;gap:.7rem;font-weight:800}
@@ -198,17 +198,11 @@
 
   /* Consent Banner (white) */
   .consent{
-    position:fixed;
-    left:18px;
-    bottom:18px;
-    z-index:2147483647; /* en üste */
-    display:none;
-    width:min(520px,92vw);
-    background:#fff;color:#0b1020;
-    border:1px solid #e7e3ff;border-radius:18px;
+    position:fixed;left:18px;bottom:18px;z-index:2147483647;
+    display:none;width:min(520px,92vw);
+    background:#fff;color:#0b1020;border:1px solid #e7e3ff;border-radius:18px;
     box-shadow:0 22px 60px rgba(0,0,0,.28);
-    pointer-events:auto !important;
-    isolation:isolate; /* kendi stacking context’i */
+    pointer-events:auto !important;isolation:isolate;
   }
   .consent.show{display:block}
   .consent .body{padding:16px 16px 10px}
@@ -221,7 +215,8 @@
   .consent *{pointer-events:auto}
 </style>
 </head>
-<body>
+
+<body id="top">
 <div class="bg"></div><div class="grid"></div><div class="grain"></div>
 <div class="spheres" aria-hidden="true">
   <span class="sphere s1"></span><span class="sphere s2"></span>
@@ -231,7 +226,8 @@
 
 <header>
   <div class="container nav" id="nav">
-    <a href="#" class="brand" aria-label="Lunvi Labs home"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></a>
+    <!-- # yerine #top -->
+    <a href="#top" class="brand" aria-label="Lunvi Labs home"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></a>
     <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
     <ul id="menu" aria-label="Main menu">
       <li><a href="#product">Product</a></li>
@@ -245,7 +241,6 @@
 </header>
 
 <main>
-  <!-- içerik (değişmedi) -->
   <!-- HERO -->
   <section class="hero container" id="hero">
     <div class="hero-grid">
@@ -317,7 +312,8 @@
           <li>3 containers</li><li>300k events / month</li><li>Meta CAPI + GA4</li><li>Custom domain</li><li>Priority support</li>
         </ul>
         <div class="card-actions">
-          <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
+          <!-- anchor yerine button -->
+          <button class="btn btn-primary js-request" data-plan="Pro" type="button" aria-label="Request upgrade — Pro">Request upgrade</button>
           <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
         </div>
       </article>
@@ -330,7 +326,7 @@
           <li>10 containers</li><li>2M events / month</li><li>Teams & roles</li><li>EU region</li><li>SLA</li>
         </ul>
         <div class="card-actions">
-          <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+          <button class="btn btn-primary js-request" data-plan="Agency" type="button" aria-label="Request upgrade — Agency">Request upgrade</button>
           <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
         </div>
       </article>
@@ -432,15 +428,15 @@
         <ul class="footer-links"><li><a href="#product">Features</a></li><li><a href="#integrations">Integrations</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#demo">Start Demo</a></li></ul>
       </div>
       <div class="footer-col"><h4>Company</h4>
-        <ul class="footer-links"><li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li><li><a href="#docs">Docs</a></li><li><a href="#">Status</a></li><li><a href="#">Careers</a></li></ul>
+        <ul class="footer-links"><li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li><li><a href="#docs">Docs</a></li><li><a href="#top">Status</a></li><li><a href="#top">Careers</a></li></ul>
       </div>
       <div class="footer-col"><h4>Legal</h4>
-        <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">DPA</a></li><li><a href="#">Subprocessors</a></li></ul>
+        <ul class="footer-links"><li><a href="#top">Privacy</a></li><li><a href="#top">Terms</a></li><li><a href="#top">DPA</a></li><li><a href="#top">Subprocessors</a></li></ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-      <div class="footer-mini"><a href="#">Security</a><a href="#">Compliance</a><a href="#">Changelog</a></div>
+      <div class="footer-mini"><a href="#top">Security</a><a href="#top">Compliance</a><a href="#top">Changelog</a></div>
     </div>
   </div>
 </footer>
@@ -480,7 +476,6 @@
     <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
   </div>
   <div class="actions">
-    <!-- Inline fallback kalıyor, ama asıl çözüm aşağıdaki capture listener -->
     <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
     <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
   </div>
@@ -529,7 +524,6 @@
       setKV(KEY,state);
       updateConsent(state);
       hide();
-      // toast
       var t=document.getElementById('submit-toast');
       if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
       t.textContent = state==='granted'?'Consent accepted':'Consent denied';
@@ -556,20 +550,17 @@
       }
     }
 
-    // --- En garanti yöntem: document seviyesinde, CAPTURE fazında dinle ---
+    // document seviyesinde, CAPTURE fazında dinle
     document.addEventListener('click', function(e){
       var target = e.target;
-      if(!target) return;
-      var btn = target.closest ? target.closest('#cm-accept, #cm-deny') : null;
+      if(!target || !target.closest) return;
+      var btn = target.closest('#cm-accept, #cm-deny');
       if(!btn) return;
-      // Consent butonuna tıklandı:
-      e.preventDefault();
-      e.stopPropagation(); // yukarıdaki katmanlar engellemesin
-      var state = (btn.id === 'cm-accept') ? 'granted' : 'denied';
-      window.consentDecide(state);
-    }, true); // <— capture: true (önce biz)
+      e.preventDefault(); e.stopPropagation();
+      window.consentDecide(btn.id === 'cm-accept' ? 'granted' : 'denied');
+    }, true);
 
-    // Yedek: doğrudan butonlara da bağla (çift emniyet)
+    // Emniyet için direkt butonlara da bağla
     var a=document.getElementById('cm-accept'); if(a){ a.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('granted'); }); }
     var d=document.getElementById('cm-deny');   if(d){ d.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('denied');   }); }
   })();
@@ -582,13 +573,13 @@
     }
   })();
 
-  // CTA click measurement
+  // CTA click measurement (anchor + button)
   (function(){
     function send(name,label){ if(window.gtag) gtag('event',name,{event_category:'cta',event_label:label}); }
     var req=document.querySelectorAll('.js-request');
-    for(var i=0;i<req.length;i++){ req[i].addEventListener('click',function(){ send('cta_click','request_'+(this.getAttribute('data-plan')||'unknown')); }); }
-    var ctas=document.querySelectorAll('a.btn-primary, a.btn-ghost');
-    for(var j=0;j<ctas.length;j++){ ctas[j].addEventListener('click',function(){ send('cta_click',this.textContent.trim()); }); }
+    for(var i=0;i<req.length;i++){req[i].addEventListener('click',function(){ send('cta_click','request_'+(this.getAttribute('data-plan')||'unknown')); });}
+    var ctas=document.querySelectorAll('a.btn-primary, a.btn-ghost, button.btn-primary, button.btn-ghost');
+    for(var j=0;j<ctas.length;j++){ ctas[j].addEventListener('click',function(){ send('cta_click',(this.textContent||'').trim()); }); }
   })();
 
   // Form UX: disable submit button briefly
