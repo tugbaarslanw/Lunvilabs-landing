@@ -226,7 +226,6 @@
 
 <header>
   <div class="container nav" id="nav">
-    <!-- # yerine #top -->
     <a href="#top" class="brand" aria-label="Lunvi Labs home"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></a>
     <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
     <ul id="menu" aria-label="Main menu">
@@ -312,7 +311,6 @@
           <li>3 containers</li><li>300k events / month</li><li>Meta CAPI + GA4</li><li>Custom domain</li><li>Priority support</li>
         </ul>
         <div class="card-actions">
-          <!-- anchor yerine button -->
           <button class="btn btn-primary js-request" data-plan="Pro" type="button" aria-label="Request upgrade — Pro">Request upgrade</button>
           <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
         </div>
@@ -390,29 +388,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ===== FAQ ===== -->
-  <section class="faq-wrap">
-    <div class="faq" id="faq">
-      <h3>FAQ</h3>
-      <div class="faq-item">
-        <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">Bring your domain, we provision & auto-renew certificates and handle regional routing.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
-      </div>
-    </div>
-  </section>
 </main>
 
 <!-- FOOTER v2 -->
@@ -482,6 +457,11 @@
 </div>
 
 <script>
+  // --- SAFETY PATCH: Sayfadaki tüm href="#" linklerini DOM yüklendiğinde #top'a çevir ---
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('a[href="#"]').forEach(function(a){ a.setAttribute('href','#top'); });
+  });
+
   // Mobile nav
   (function(){
     var nav=document.getElementById('nav');var navToggle=document.getElementById('navToggle');
@@ -550,7 +530,7 @@
       }
     }
 
-    // document seviyesinde, CAPTURE fazında dinle
+    // document seviyesinde, CAPTURE fazında dinle (diğer scriptler bozamaz)
     document.addEventListener('click', function(e){
       var target = e.target;
       if(!target || !target.closest) return;
