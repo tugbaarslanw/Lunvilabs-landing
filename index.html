@@ -4,44 +4,58 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Lunvi Labs — Pricing</title>
+  <meta name="description" content="Managed SSD Hosting with reliable Meta GPT & 64 IP Delivery. Custom domains, Smart Mode v2, ddos, and a live debugger." />
+  <link rel="icon" href="https://lunvrlabs.com/icon.png" />
   <style>
     /* Temel stil (örnek) */
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:#0b0f15; color:#e6eef6; padding:20px; }
-    .panels { display:flex; gap:16px; margin-bottom:20px; }
-    .panel { background:linear-gradient(180deg,#0f1620,#0b0f15); border-radius:8px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.6); flex:1; }
+    :root { --bg:#0b0f15; --card:#0f1620; --muted:#cfe9f2; --accent1:#6ee7d7; --accent2:#4fd1c5; --accent3:#3ee2b1; --text:#e6eef6; }
+    html,body{height:100%}
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:var(--text); padding:20px; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .panels { display:flex; gap:16px; margin-bottom:20px; flex-wrap:wrap; }
+    .panel { background:linear-gradient(180deg,var(--card),#0b0f15); border-radius:8px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.6); flex:1; min-width:220px; }
     .icon { width:40px; height:40px; border-radius:8px; background:#556; margin-bottom:8px; }
-    .pricing-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-top:20px; }
+    .pricing-cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:20px; align-items:start; }
     .panel header h3{ margin:0 0 8px; font-size:1.05rem; }
     .price{ font-weight:700; font-size:1.4rem; margin:8px 0; color:#9be7c4; }
-    .card-actions{ display:flex; gap:8px; margin-top:12px; }
+    .card-actions{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
     .btn{ display:inline-block; padding:8px 12px; border-radius:6px; text-decoration:none; color:inherit; background:transparent; border:1px solid rgba(255,255,255,.08); cursor:pointer; }
-    .btn-primary{ background:linear-gradient(90deg,#6ee7d7,#4fd1c5); color:#042; border:0; }
-    .btn-ghost{ background:transparent; color:#cfe9f2; }
+    .btn-primary{ background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#042; border:0; }
+    .btn-ghost{ background:transparent; color:var(--muted); }
     .cta-band{ margin-top:24px; background:linear-gradient(90deg,#071023,#0e1b2b); padding:14px; border-radius:8px; }
-    .cta-actions a{ margin-left:8px; }
-    /* Inline form */
+    .cta-inner{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .cta-actions a{ margin-left:8px; text-decoration:none; }
     #inline-form.panel { background:#07111a; padding:16px; border-radius:8px; }
-    /* Consent modal */
-    .consent-overlay{ position:fixed; inset:0; background:rgba(2,6,12,.55); display:flex; align-items:flex-end; justify-content:center; z-index:1000; pointer-events:auto; }
+    .consent-overlay{ position:fixed; inset:0; background:rgba(2,6,12,.55); display:flex; align-items:flex-end; justify-content:center; z-index:10000; pointer-events:auto; }
     .consent-modal{ width:100%; max-width:520px; margin:16px; background:linear-gradient(180deg,#071428,#0b2230); color:#e8f6fb; border-radius:12px; padding:18px; box-shadow:0 12px 32px rgba(0,0,0,.6); }
     .consent-header{ display:flex; gap:12px; align-items:center; }
     .consent-actions{ display:flex; gap:8px; margin-top:12px; }
     .consent-modal button{ padding:10px 14px; border-radius:8px; border:0; cursor:pointer; }
-    .consent-accept{ background:#3ee2b1; color:#012; }
-    .consent-decline{ background:transparent; border:1px solid rgba(255,255,255,.08); color:#cfe9f2; }
+    .consent-accept{ background:var(--accent3); color:#012; }
+    .consent-decline{ background:transparent; border:1px solid rgba(255,255,255,.08); color:var(--muted); }
     .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
-    /* Ensure modal buttons focus visible */
     .consent-modal button:focus { outline:3px solid rgba(62,226,177,.25); outline-offset:2px; }
-    /* Prevent overlay from blocking focusable elements elsewhere when modal open */
     body.modal-open { overflow:hidden; }
+    @media (max-width:560px){ .consent-modal{ margin-bottom:8px; } }
   </style>
 </head>
 <body>
 
   <div class="panels">
-    <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Key capabilities</h3><p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p></div>
-    <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div><h3>Use cases</h3><p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p></div>
-    <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div><h3>Health at a glance</h3><p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p></div>
+    <div class="panel">
+      <div class="icon" aria-hidden="true"></div>
+      <h3>Key capabilities</h3>
+      <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
+    </div>
+    <div class="panel">
+      <div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div>
+      <h3>Use cases</h3>
+      <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
+    </div>
+    <div class="panel">
+      <div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div>
+      <h3>Health at a glance</h3>
+      <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
+    </div>
   </div>
 
   <div class="pricing-cards">
@@ -87,8 +101,11 @@
 
   <!-- CONTACT SALES -->
   <div class="cta-band" id="contact-sales">
-    <div class="cta-inner" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-      <div class="cta-copy"><h3 style="margin:0">Looking for a custom approach?</h3><p style="margin:6px 0 0">We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
+    <div class="cta-inner">
+      <div class="cta-copy">
+        <h3 style="margin:0">Looking for a custom approach?</h3>
+        <p style="margin:6px 0 0">We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+      </div>
       <div class="cta-actions">
         <a class="cta-primary btn btn-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
         <a class="cta-ghost btn btn-ghost" href="#demo">Try for free</a>
@@ -115,14 +132,14 @@
     </form>
   </div>
 
-  <!-- Consent Mode V2 Modal (accessible, non-blocking overlay) -->
+  <!-- Consent Mode V2 Modal (accessible, fallback, bridge) -->
   <div id="consent-overlay" class="consent-overlay" role="dialog" aria-modal="true" aria-labelledby="consent-title" style="display:none;">
     <div class="consent-modal" role="document">
       <div class="consent-header">
         <div style="width:48px;height:48px;border-radius:8px;background:linear-gradient(140deg,#6ee7d7,#4fd1c5)" aria-hidden="true"></div>
         <div>
           <h2 id="consent-title" style="margin:0 0 6px; font-size:1.05rem;">Consent Mode V2</h2>
-          <p id="consent-desc" style="margin:0;color:#cdeef8;">This website uses cookies. Consent is defined and managed via Consent Mode V2. Choose your preference to continue.</p>
+          <p id="consent-desc" style="margin:0;color:#cdeef8;">Bu site çerez kullanıyor. Consent Mode V2 ile tercihlerini yönet.</p>
         </div>
       </div>
       <div class="consent-actions" style="justify-content:flex-end;">
@@ -138,26 +155,22 @@
 
   <script>
     (function(){
-      // Basit, güvenli consent kontrolü: modal görünürlüğü, keyboard erişimi, fallback
       const overlay = document.getElementById('consent-overlay');
       const acceptBtn = document.getElementById('consent-accept');
       const declineBtn = document.getElementById('consent-decline');
-      const statusNode = document.querySelector('.sr-only#consent-status');
+      const statusNode = document.getElementById('consent-status');
 
-      // Helper: show modal and trap focus minimally
       function showConsentModal(){
         if (!overlay) return;
         overlay.style.display = 'flex';
         document.body.classList.add('modal-open');
-        // set initial focus
-        acceptBtn.focus();
-        // set inert for background (minimal approach)
-        document.querySelectorAll('a, button, input, textarea, [tabindex]').forEach(el=>{
+        setTimeout(()=> acceptBtn.focus(), 50);
+        // minimal inert: temporarily remove tabbable ability from background
+        document.querySelectorAll('a,button,input,textarea,select,[tabindex]').forEach(el=>{
           if (!overlay.contains(el)) {
             el.dataset._savedTabindex = el.getAttribute('tabindex') || '';
-            el.setAttribute('tabindex', '-1');
-            // mark temporarily inert for screenreaders
-            el.setAttribute('aria-hidden', 'true');
+            el.setAttribute('tabindex','-1');
+            el.setAttribute('aria-hidden','true');
           }
         });
       }
@@ -166,79 +179,72 @@
         if (!overlay) return;
         overlay.style.display = 'none';
         document.body.classList.remove('modal-open');
-        // restore tabbables
-        document.querySelectorAll('[data-_saved-tabindex]').forEach(el=>{
-          const saved = el.dataset._savedTabindex;
+        document.querySelectorAll('[data-_savedTabindex]').forEach(el=>{
+          // no-op for compatibility with different attr name
+        });
+        document.querySelectorAll('[data-_savedTabindex],[data-_saved-tabindex]').forEach(el=>{
+          const saved = el.dataset._savedTabindex || el.dataset._savedTabindex;
           if (saved === '') el.removeAttribute('tabindex'); else el.setAttribute('tabindex', saved);
-          el.removeAttribute('data-_saved-tabindex');
+          el.removeAttribute('data-_savedTabindex'); el.removeAttribute('data-_saved-tabindex');
           el.removeAttribute('aria-hidden');
         });
       }
 
-      // Safe apply of consent (no external libs assumed)
       function applyConsent(choice){
-        // choice = 'accept' | 'decline'
         statusNode.textContent = 'Consent chosen: ' + choice;
-        // store locally
         try { localStorage.setItem('lunvi_consent_v2', choice); } catch(e){}
-        hideConsentModal();
-        // Simulate CMP callback hook: dispatch event so other scripts can listen
         window.dispatchEvent(new CustomEvent('lunvi:consent', { detail: { consent: choice } }));
+        hideConsentModal();
       }
 
-      // Button handlers
       acceptBtn.addEventListener('click', ()=> applyConsent('accept'));
       declineBtn.addEventListener('click', ()=> applyConsent('decline'));
 
-      // keyboard: Esc closes by declining (explicit)
       document.addEventListener('keydown', (e)=>{
         if (overlay.style.display !== 'flex') return;
-        if (e.key === 'Escape') {
-          e.preventDefault();
-          applyConsent('decline');
-        }
+        if (e.key === 'Escape') { e.preventDefault(); applyConsent('decline'); }
       });
 
-      // If a CMP script defines a ready callback, integrate; otherwise fallback
-      // Try to read stored consent first
       try {
         const existing = localStorage.getItem('lunvi_consent_v2');
         if (existing) {
-          // Apply silently and broadcast (so page can react)
           window.dispatchEvent(new CustomEvent('lunvi:consent', { detail: { consent: existing } }));
         } else {
-          // show modal
-          // Wait a tick to avoid blocking paint
-          setTimeout(showConsentModal, 250);
-          // fallback: if third-party CMP fails to load, ensure buttons active (they already are)
-          // global timeout to make sure modal appears and remains interactive
-          setTimeout(() => {
-            if (overlay.style.display !== 'flex') showConsentModal();
-          }, 1500);
+          setTimeout(showConsentModal, 200);
+          setTimeout(()=> {
+            // fallback to re-enable if disabled by other scripts
+            [acceptBtn, declineBtn].forEach(b => { if (b) { b.disabled = false; b.style.pointerEvents = 'auto'; b.removeAttribute('aria-disabled'); } });
+          }, 5000);
         }
       } catch(e){
-        // If localStorage denied, still show modal
-        setTimeout(showConsentModal, 250);
+        setTimeout(showConsentModal, 200);
       }
 
-      // Safety net: if some script disables buttons or overlay appears above them,
-      // ensure accept/decline remain enabled after 5s (fallback)
-      setTimeout(() => {
-        [acceptBtn, declineBtn].forEach(b => {
-          if (b) {
-            b.disabled = false;
-            b.style.pointerEvents = 'auto';
-            b.removeAttribute('aria-disabled');
-          }
-        });
-      }, 5000);
-
-      // Expose simple API so site scripts can check consent synchronously
+      // Exposed API
       window.LunviConsent = {
         get: function(){ try { return localStorage.getItem('lunvi_consent_v2'); } catch(e){ return null; } },
-        onChange: function(fn){ window.addEventListener('lunvi:consent', (e)=> fn(e.detail.consent)); }
+        onChange: function(fn){ window.addEventListener('lunvi:consent', (ev)=> fn(ev.detail.consent)); },
+        apply: applyConsent
       };
+
+      // Auto-bridge examples for common CMPs (if present)
+      if (window.OneTrust && typeof OneTrust.OnConsentChanged === 'function') {
+        try {
+          OneTrust.OnConsentChanged(function(){ const c = localStorage.getItem('lunvi_consent_v2') || 'decline'; window.dispatchEvent(new CustomEvent('lunvi:consent',{detail:{consent:c}})); hideConsentModal(); });
+        } catch(e){}
+      }
+
+      window.addEventListener('lunvi:consent', function(e){
+        try {
+          if (window.gtag) {
+            const mode = e.detail.consent === 'accept' ? 'granted' : 'denied';
+            gtag('consent', 'update', { 'analytics_storage': mode, 'ad_storage': mode });
+          }
+        } catch(err){}
+      });
+
     })();
   </script>
+
 </body>
 </html>
