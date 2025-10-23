@@ -14,14 +14,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
-
   gtag('consent','default',{
     ad_storage:'denied',
     analytics_storage:'denied',
     functionality_storage:'granted',
     security_storage:'granted'
   });
-
   gtag('js', new Date());
   gtag('config','G-XXXXXXXXXX',{ anonymize_ip:true });
 </script>
@@ -196,16 +194,23 @@
   .toast.show{display:block;animation:fadeup .2s ease}
   @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
 
-  /* (Eski beyaz consent banner için .consent sınıfı kalsa da kullanılmıyor) */
-  .consent{position:fixed;left:18px;bottom:18px;z-index:1100;display:none;width:min(520px,92vw);background:#fff;color:#0b1020;border:1px solid #e7e3ff;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.28);pointer-events:auto}
-  .consent.show{display:block}
-  .consent .body{padding:16px 16px 10px}
-  .consent .title{font-weight:800;margin:0 0 6px}
-  .consent p{margin:0 0 10px;color:#35405a}
-  .consent .actions{display:flex;gap:10px;padding:0 16px 14px}
-  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer}
-  .consent .accept{background:#111827;color:#fff;border-color:#111827}
-  .consent .deny{background:#fff;color:#111827}
+  /* ===== NEW: Integrations section ===== */
+  .int-sub{color:var(--muted);margin:0 0 18px}
+  .int-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+  .int-card{display:flex;align-items:center;gap:10px;padding:16px;border:1px solid var(--stroke);border-radius:16px;background:var(--glass);box-shadow:var(--shadow);min-height:64px}
+  .int-card .i{width:30px;height:30px;border-radius:10px;background:linear-gradient(140deg,#b69dff,#6f44ff)}
+  .int-card small{color:var(--muted)}
+  @media (max-width:1020px){.int-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:640px){.int-grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* ===== NEW: Security & Compliance ===== */
+  .sec-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+  .sec-list{margin:0;padding:0 0 0 18px}
+  .sec-list li{margin:8px 0}
+  .seals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .seal{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid var(--stroke);border-radius:14px;background:var(--glass)}
+  .dot{width:10px;height:10px;border-radius:8px;background:var(--accent);box-shadow:0 0 0 3px rgba(65,226,192,.18)}
+  .sec-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 </style>
 </head>
 <body>
@@ -273,6 +278,20 @@
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Meta Conversions API</h3><p>Pixel ID & Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p></div>
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>GA4 Server Endpoint</h3><p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p></div>
       <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Event Router & Destinations</h3><p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== NEW: INTEGRATIONS ===== -->
+  <section class="section container" id="integrations" aria-labelledby="integrations-title">
+    <h2 id="integrations-title">Integrations</h2>
+    <p class="int-sub">Works seamlessly with your existing stack. Monitored delivery, retry & dedup built in.</p>
+    <div class="int-grid">
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Meta Conversions API</strong><br><small>Event & user matching</small></div></div>
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Google Analytics 4</strong><br><small>Measurement Protocol v2</small></div></div>
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>TikTok</strong><br><small>Events API</small></div></div>
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Klaviyo</strong><br><small>Profiles & events</small></div></div>
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>BigQuery</strong><br><small>Raw event export</small></div></div>
+      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Webhook</strong><br><small>Custom destinations</small></div></div>
     </div>
   </section>
 
@@ -371,7 +390,6 @@
             <tr><td>CNAME & SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
             <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
             <tr><td>Log & Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
-            <tr><td>Consent Mode v2</td><td class="bad">Partial</td><td class="good">Full support</td></tr>
             <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
             <tr><td>Destinations</td><td>One-by-one integration</td><td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td></tr>
             <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
@@ -381,13 +399,51 @@
     </div>
   </section>
 
+  <!-- ===== NEW: SECURITY & COMPLIANCE ===== -->
+  <section class="section container" id="security" aria-labelledby="security-title">
+    <h2 id="security-title">Security & Compliance</h2>
+    <div class="sec-wrap">
+      <article class="panel">
+        <h3 style="margin:0 0 6px">Built for privacy-first teams</h3>
+        <ul class="sec-list">
+          <li>EU-region hosting & data residency options</li>
+          <li>Encryption in transit & at rest (TLS, AES-256)</li>
+          <li>Scoped API keys, roles & SSO (on request)</li>
+          <li>Isolated projects & per-destination secrets</li>
+          <li>Access logs and audit trails</li>
+          <li>DPA & Subprocessors list provided</li>
+        </ul>
+        <div class="sec-cta">
+          <a class="btn btn-ghost" href="#compliance">Compliance docs</a>
+          <a class="btn btn-ghost" href="#dpa">DPA</a>
+          <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a>
+        </div>
+      </article>
+      <aside class="panel">
+        <h3 style="margin:0 0 6px">Operational health</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px">
+          <span class="badge"><span class="dot" aria-hidden="true"></span>&nbsp;All systems operational</span>
+          <span class="badge">P95 180ms</span>
+          <span class="badge">99.9% uptime target</span>
+        </div>
+        <div class="seals" aria-label="assurance badges">
+          <div class="seal">EU Hosting</div>
+          <div class="seal">GDPR / KVKK</div>
+          <div class="seal">DPA Available</div>
+        </div>
+        <p class="int-sub" style="margin-top:10px">Need more? Ask about dedicated regions, private clusters and SLAs.</p>
+        <a class="btn btn-primary" href="mailto:info@lunvilabs.com?subject=Security%20&%20Compliance">Talk to security</a>
+      </aside>
+    </div>
+  </section>
+
   <!-- ===== FAQ ===== -->
   <section class="faq-wrap">
     <div class="faq" id="faq">
       <h3>FAQ</h3>
       <div class="faq-item">
         <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with the server event to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
+        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
@@ -421,12 +477,12 @@
         <ul class="footer-links"><li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li><li><a href="#docs">Docs</a></li><li><a href="#">Status</a></li><li><a href="#">Careers</a></li></ul>
       </div>
       <div class="footer-col"><h4>Legal</h4>
-        <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">DPA</a></li><li><a href="#">Subprocessors</a></li></ul>
+        <ul class="footer-links"><li><a href="#compliance">Privacy</a></li><li><a href="#compliance">Terms</a></li><li><a href="#dpa">DPA</a></li><li><a href="#subprocessors">Subprocessors</a></li></ul>
       </div>
     </div>
     <div class="footer-bottom">
       <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-      <div class="footer-mini"><a href="#">Security</a><a href="#">Compliance</a><a href="#">Changelog</a></div>
+      <div class="footer-mini"><a href="#security">Security</a><a href="#compliance">Compliance</a><a href="#">Changelog</a></div>
     </div>
   </div>
 </footer>
@@ -507,65 +563,23 @@
   // ========= CONSENT BANNER NEUTRALIZER =========
   (function(){
     var KEY='cmv2';
-
-    function safeGet(k){
-      try{ var v=localStorage.getItem(k); if(v) return v; }catch(e){}
-      var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)')); return m && m[1];
-    }
-    function safeSet(k,val){
-      try{ localStorage.setItem(k,val); }catch(e){}
-      document.cookie=k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
-    }
-    function updateConsent(state){
-      var m=(state==='granted')?'granted':'denied';
-      if(typeof window.gtag==='function'){ gtag('consent','update',{ ad_storage:m, analytics_storage:m }); }
-    }
-    function destroy(el){
-      if(!el) return;
-      try{ el.parentNode && el.parentNode.removeChild(el); }catch(_){}
-    }
+    function safeGet(k){try{var v=localStorage.getItem(k);if(v)return v;}catch(e){}var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'));return m&&m[1];}
+    function safeSet(k,val){try{localStorage.setItem(k,val);}catch(e){}document.cookie=k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';}
+    function updateConsent(state){var m=(state==='granted')?'granted':'denied'; if(typeof window.gtag==='function'){gtag('consent','update',{ad_storage:m,analytics_storage:m});}}
+    function destroy(el){if(el&&el.parentNode){try{el.parentNode.removeChild(el);}catch(_){}}}
     function wire(el){
-      if(!el) return;
-      var a=el.querySelector('#cm-accept'), d=el.querySelector('#cm-deny');
-      function decide(s){ safeSet(KEY,s); updateConsent(s); destroy(el); }
-      if(a) a.addEventListener('click', function(e){ e.preventDefault(); decide('granted'); });
-      if(d) d.addEventListener('click', function(e){ e.preventDefault(); decide('denied');  });
-      // fail-safe: köşede küçük dursun
-      requestAnimationFrame(function(){
-        try{
-          el.style.position='fixed'; el.style.left='16px'; el.style.bottom='16px';
-          el.style.zIndex='1200'; el.style.maxWidth='520px';
-        }catch(_){}
-      });
+      if(!el) return; var a=el.querySelector('#cm-accept'), d=el.querySelector('#cm-deny');
+      function decide(s){safeSet(KEY,s);updateConsent(s);destroy(el);}
+      if(a) a.addEventListener('click',e=>{e.preventDefault();decide('granted');});
+      if(d) d.addEventListener('click',e=>{e.preventDefault();decide('denied');});
+      requestAnimationFrame(()=>{try{el.style.position='fixed';el.style.left='16px';el.style.bottom='16px';el.style.zIndex='1200';el.style.maxWidth='520px';}catch(_){}})
     }
-    function findAny(root){
-      return (root.querySelector && (root.querySelector('#consent-bar') || root.querySelector('#consent-bnr'))) || null;
-    }
-
-    var stored=safeGet(KEY);
-    var existing=findAny(document);
-    if(stored){
-      updateConsent(stored);
-      if(existing) destroy(existing);
-    }else if(existing){
-      wire(existing);
-    }
-
-    // Geç gelirse yakala ve temizle
-    var mo=new MutationObserver(function(muts){
-      for(var i=0;i<muts.length;i++){
-        var nodes=muts[i].addedNodes;
-        for(var j=0;j<nodes.length;j++){
-          var n=nodes[j];
-          var el = (n.id==='consent-bar'||n.id==='consent-bnr') ? n : findAny(n);
-          if(el){
-            if(safeGet(KEY)){ destroy(el); }
-            else{ wire(el); }
-          }
-        }
-      }
-    });
-    try{ mo.observe(document.documentElement,{childList:true,subtree:true}); }catch(_){}
+    function findAny(root){return (root.querySelector&& (root.querySelector('#consent-bar')||root.querySelector('#consent-bnr')))||null;}
+    var stored=safeGet(KEY); var existing=findAny(document);
+    if(stored){updateConsent(stored); if(existing) destroy(existing);} else if(existing){wire(existing);}
+    var mo=new MutationObserver(function(m){
+      for(var i=0;i<m.length;i++){var nodes=m[i].addedNodes;for(var j=0;j<nodes.length;j++){var n=nodes[j];var el=(n.id==='consent-bar'||n.id==='consent-bnr')?n:findAny(n); if(el){ if(safeGet(KEY)) destroy(el); else wire(el); }}}});
+    try{mo.observe(document.documentElement,{childList:true,subtree:true});}catch(_){}
   })();
   // ========= /CONSENT BANNER NEUTRALIZER =========
 </script>
