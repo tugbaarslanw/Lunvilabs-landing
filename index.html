@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- GA4 + Consent Mode v2 (default denied) -->
+<!-- GA4 (privacy-safe defaults) -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
@@ -226,7 +226,7 @@
     <div class="hero-grid">
       <div>
         <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
-        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.</p>
+        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em> and a live <em>log & debugger</em>.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#demo">Start Demo</a>
           <a class="btn btn-ghost" href="#pricing">See Pricing</a>
@@ -242,7 +242,6 @@
           <span class="chip" role="listitem">Meta CAPI preset</span>
           <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
           <span class="chip" role="listitem">Event Router</span>
-          <span class="chip" role="listitem">Consent Mode v2</span>
           <span class="chip" role="listitem">Log & Debugger</span>
         </div>
       </div>
@@ -360,7 +359,6 @@
             <tr><td>CNAME & SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
             <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
             <tr><td>Log & Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
-            <tr><td>Consent Mode v2</td><td class="bad">Partial</td><td class="good">Full support</td></tr>
             <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
             <tr><td>Destinations</td><td>One-by-one integration</td><td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td></tr>
             <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
@@ -377,10 +375,6 @@
       <div class="faq-item">
         <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
         <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
