@@ -195,17 +195,6 @@
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#ffffff;color:#111827;border:1px solid #e6e2ff;box-shadow:0 18px 50px rgba(0,0,0,.28);border-radius:14px;padding:12px 16px;z-index:1200;display:none;max-width:560px}
   .toast.show{display:block;animation:fadeup .2s ease}
   @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
-
-  /* Consent Banner (white) */
-  .consent{position:fixed;left:18px;bottom:18px;z-index:1100;display:none;width:min(520px,92vw);background:#fff;color:#0b1020;border:1px solid #e7e3ff;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.28);pointer-events:auto}
-  .consent.show{display:block}
-  .consent .body{padding:16px 16px 10px}
-  .consent .title{font-weight:800;margin:0 0 6px}
-  .consent p{margin:0 0 10px;color:#35405a}
-  .consent .actions{display:flex;gap:10px;padding:0 16px 14px}
-  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer}
-  .consent .accept{background:#111827;color:#fff;border-color:#111827}
-  .consent .deny{background:#fff;color:#111827}
 </style>
 </head>
 <body>
@@ -478,54 +467,6 @@
 
   // FAQ toggle
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
-
-  // ---------- Consent banner: robust handlers + global fallback ----------
-  (function(){
-    const KEY='cmv2';
-    const bar=document.getElementById('consent-bar');
-    const acceptBtn=document.getElementById('cm-accept');
-    const denyBtn=document.getElementById('cm-deny');
-
-    function safeGet(k){
-      try{ return localStorage.getItem(k) || (document.cookie.match(/(?:^|; )cmv2=([^;]+)/)?.[1] || null); }
-      catch(e){ return document.cookie.match(/(?:^|; )cmv2=([^;]+)/)?.[1] || null; }
-    }
-    function safeSet(k,val){
-      try{ localStorage.setItem(k,val); }catch(e){}
-      document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
-    }
-    function hideBanner(){ bar?.classList.remove('show'); }
-    function showBanner(){ bar?.classList.add('show'); }
-    function updateConsent(state){
-      if (typeof gtag === 'function'){
-        const m = state==='granted' ? 'granted' : 'denied';
-        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
-      }
-    }
-    function toast(msg){
-      let t=document.getElementById('submit-toast');
-      if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
-      t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
-    }
-
-    // Global fallback (used by inline onclicks)
-    window.consentDecide = function(state){
-      safeSet(KEY, state);
-      updateConsent(state);
-      hideBanner();
-      toast(state==='granted'?'Consent accepted':'Consent denied');
-      return false;
-    };
-
-    // First paint
-    const stored = safeGet(KEY);
-    if(!stored){ /* showBanner(); */ } else { updateConsent(stored); }
-
-    // Progressive enhancement listeners
-    function handle(e, state){ e?.preventDefault(); e?.stopPropagation(); window.consentDecide(state); }
-    acceptBtn?.addEventListener('click', (e)=>handle(e,'granted'));
-    denyBtn?.addEventListener('click', (e)=>handle(e,'denied'));
-  })();
 
   // Success toast (`?submitted=true`)
   (function(){
