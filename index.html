@@ -492,14 +492,15 @@
 
   // ---------- Consent banner: robust handlers + global fallback ----------
   (function(){
-    const KEY='cmv2';
+    // proje-özel anahtar (çakışmaları önler)
+    const KEY='lunvi_cmv2';
     const bar=document.getElementById('consent-bar');
     const acceptBtn=document.getElementById('cm-accept');
     const denyBtn=document.getElementById('cm-deny');
 
     function safeGet(k){
-      try{ return localStorage.getItem(k) || (document.cookie.match(/(?:^|; )cmv2=([^;]+)/)?.[1] || null); }
-      catch(e){ return document.cookie.match(/(?:^|; )cmv2=([^;]+)/)?.[1] || null; }
+      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null); }
+      catch(e){ return document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null; }
     }
     function safeSet(k,val){
       try{ localStorage.setItem(k,val); }catch(e){}
@@ -510,7 +511,10 @@
     function updateConsent(state){
       if (typeof gtag === 'function'){
         const m = state==='granted' ? 'granted' : 'denied';
-        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
+        gtag('consent','update',{
+          ad_storage:m,
+          analytics_storage:m
+        });
       }
     }
     function toast(msg){
@@ -532,7 +536,7 @@
     const stored = safeGet(KEY);
     if(!stored){ showBanner(); } else { updateConsent(stored); }
 
-    // Progressive enhancement listeners
+    // Progressive enhancement listeners (inline varsa da çalışır)
     function handle(e, state){ e?.preventDefault(); e?.stopPropagation(); window.consentDecide(state); }
     acceptBtn?.addEventListener('click', (e)=>handle(e,'granted'));
     denyBtn?.addEventListener('click', (e)=>handle(e,'denied'));
