@@ -196,8 +196,17 @@
   .toast.show{display:block;animation:fadeup .2s ease}
   @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
 
-  /* hard-kill any leftover consent elements (defensive) */
-  #consent-bar, .consent {display:none !important}
+  /* HARD KILL: herhangi bir consent bileşenini gizle */
+  #consent-bar,
+  .consent,
+  [id*="consent" i],
+  [class*="consent" i],
+  [aria-label*="consent" i]{
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
 </style>
 </head>
 <body>
@@ -314,35 +323,35 @@
       </article>
     </div>
 
-    <!-- CONTACT SALES -->
-    <div class="cta-band" id="contact-sales">
-      <div class="cta-inner">
-        <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
-        <div class="cta-actions">
-          <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
-          <a class="cta-ghost" href="#demo">Try for free</a>
-        </div>
+  <!-- CONTACT SALES -->
+  <div class="cta-band" id="contact-sales">
+    <div class="cta-inner">
+      <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
+      <div class="cta-actions">
+        <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+        <a class="cta-ghost" href="#demo">Try for free</a>
       </div>
     </div>
+  </div>
 
-    <!-- INLINE REQUEST FORM (Details) -->
-    <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-      <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
-      <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-        <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
-          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
-        </div>
-        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
-        <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
-        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-        <div style="margin-top:12px;"><button class="btn btn-primary" type="submit">Submit request</button></div>
-      </form>
-    </div>
+  <!-- INLINE REQUEST FORM (Details) -->
+  <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
+    <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+      <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
+        <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+        <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+        <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+        <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+      </div>
+      <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
+      <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
+      <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+      <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+      <div style="margin-top:12px;"><button class="btn btn-primary" type="submit">Submit request</button></div>
+    </form>
+  </div>
   </section>
 
   <!-- ===== Self-host vs Lunvi ===== -->
@@ -451,7 +460,7 @@
   </div>
 </div>
 
-<!-- (Consent banner markup/CSS/JS removed completely) -->
+<!-- (Consent banner markup/CSS/JS yok) -->
 
 <script>
   // Mobile nav
@@ -470,6 +479,28 @@
 
   // FAQ toggle
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+  // HARD KILL runtime: enjekte edilen consent balonlarını anında kaldır
+  (function(){
+    const killers = [
+      '#consent-bar','.consent','[id*="consent" i]','[class*="consent" i]','[aria-label*="consent" i]'
+    ];
+    const nuke = (root=document)=> {
+      try{
+        killers.forEach(sel=>root.querySelectorAll(sel).forEach(el=>el.remove()));
+        // Metin tabanlı ve fixed duran tipik panelleri de temizle
+        root.querySelectorAll('div,section,aside').forEach(el=>{
+          if(getComputedStyle(el).position==='fixed' && /consent\s*mode\s*v?2/i.test(el.textContent||'')) el.remove();
+        });
+      }catch(e){}
+    };
+    nuke();
+    new MutationObserver(muts=>{
+      muts.forEach(m=>{
+        if(m.addedNodes && m.addedNodes.length) nuke(document);
+      });
+    }).observe(document.documentElement,{subtree:true,childList:true});
+  })();
 
   // Success toast (`?submitted=true`)
   (function(){
