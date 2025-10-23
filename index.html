@@ -33,9 +33,6 @@
   body{margin:0;color:var(--text);font:400 16px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:var(--bg-1);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
 
-  /* --- KILL SWITCH: Eski consent banner'ı tamamen gizle --- */
-  #consent-bar, .consent { display:none !important; visibility:hidden !important; pointer-events:none !important; }
-
   /* Background */
   .bg{position:fixed;inset:0;z-index:-4;background:
     radial-gradient(900px 700px at 85% 10%, #bca7ff22, transparent 60%),
@@ -157,4 +154,349 @@
   .footer-top{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:24px;align-items:start}
   .footer-brand{display:flex;flex-direction:column;gap:10px;color:#efeafe}
   .footer-logo{display:flex;align-items:center;gap:.7rem;font-weight:800}
-  .footer-logo .logo{width:26px;height:26px;border-radius:9px;background:linear-gradient(145deg,#a58dff,#3b23a8);box-shadow:in
+  .footer-logo .logo{width:26px;height:26px;border-radius:9px;background:linear-gradient(145deg,#a58dff,#3b23a8);box-shadow:inset 0 0 10px #fff2,0 8px 20px #0004}
+  .footer-badge{display:inline-flex;align-items:center;gap:8px;padding:.45rem .7rem;border:1px solid var(--stroke);border-radius:10px;background:var(--glass);color:#eae4ff;width:max-content}
+  .footer-col h4{margin:0 0 10px;color:#f0eaff;font-size:15px}
+  .footer-links{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .footer-links a{color:#d9d2ff;opacity:.9}.footer-links a:hover{opacity:1}
+  .footer-bottom{margin-top:26px;padding-top:16px;border-top:1px solid var(--stroke);display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+  .footer-mini{display:flex;gap:14px;flex-wrap:wrap;opacity:.9}
+  @media (max-width:980px){.footer-top{grid-template-columns:1fr 1fr}}
+  @media (max-width:620px){.footer-top{grid-template-columns:1fr}}
+
+  /* ===== Compare Block ===== */
+  .compare-wrap{display:flex;justify-content:center}
+  .compare{width:min(1020px,96vw);margin:32px auto;border-radius:22px;border:1px solid rgba(255,255,255,.16);overflow:hidden;background:
+    linear-gradient(180deg, rgba(22,16,44,.85) 0%, rgba(20,14,40,.88) 100%), radial-gradient(1200px 700px at 50% -10%, rgba(255,255,255,.08), transparent 60%);box-shadow:0 22px 80px rgba(0,0,0,.5)}
+  .compare h3{margin:0 auto 12px;max-width:min(1020px,96vw);padding:0 12px;font-size:36px;letter-spacing:.2px}
+  .table{width:100%;border-collapse:collapse}
+  .table th,.table td{padding:18px 22px;border-top:1px solid rgba(255,255,255,.12)}
+  .table thead th{font-weight:800;text-align:center;color:#efeafe;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+  .table tbody td:first-child{width:260px;color:#e9e4ff;font-weight:700}
+  .table tbody tr:nth-child(odd){background:rgba(255,255,255,.03)}
+  .table tbody tr:nth-child(even){background:rgba(255,255,255,.055)}
+  .pill{display:inline-block;padding:.25rem .6rem;border-radius:999px;background:#0ecf9f;color:#062b26;font-weight:800;font-size:.82rem}
+  .bad{color:#ff8779;font-weight:800}
+  .good{color:#45e6c4;font-weight:800}
+  @media (max-width:640px){.table tbody td:first-child{width:auto}}
+
+  /* ===== FAQ ===== */
+  .faq-wrap{display:flex;justify-content:center}
+  .faq{width:min(1020px,96vw);margin:8px auto 34px}
+  .faq h3{font-size:32px;margin:28px 0 16px;text-align:center}
+  .faq-item{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);border-radius:16px;margin:10px 0;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.35)}
+  .faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer}
+  .faq-a{display:none;padding:0 16px 16px;color:#eae4ff}
+  .faq-item.open .faq-a{display:block}
+  .faq-item.open .caret{transform:rotate(180deg)}
+  .caret{transition:.2s ease}
+
+  /* Success toast */
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#ffffff;color:#111827;border:1px solid #e6e2ff;box-shadow:0 18px 50px rgba(0,0,0,.28);border-radius:14px;padding:12px 16px;z-index:1200;display:none;max-width:560px}
+  .toast.show{display:block;animation:fadeup .2s ease}
+  @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+
+  /* hard-kill any leftover consent elements (defensive) */
+  #consent-bar, .consent {display:none !important}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="grid"></div><div class="grain"></div>
+<div class="spheres" aria-hidden="true">
+  <span class="sphere s1"></span><span class="sphere s2"></span>
+  <span class="sphere s3"></span><span class="sphere s4"></span>
+  <span class="sphere s5"></span><span class="sphere s6"></span>
+</div>
+
+<header>
+  <div class="container nav" id="nav">
+    <a href="#" class="brand" aria-label="Lunvi Labs home"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></a>
+    <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
+    <ul id="menu" aria-label="Main menu">
+      <li><a href="#product">Product</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#integrations">Integrations</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
+      <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero container" id="hero">
+    <div class="hero-grid">
+      <div>
+        <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
+        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#demo">Start Demo</a>
+          <a class="btn btn-ghost" href="#pricing">See Pricing</a>
+        </div>
+        <div style="height:12px"></div>
+        <div class="trust" role="list" aria-label="Trust badges">
+          <span class="badge" role="listitem">EU Hosting</span>
+          <span class="badge" role="listitem">GDPR / KVKK</span>
+          <span class="badge" role="listitem">99.9% Uptime target</span>
+          <span class="badge" role="listitem">1-click Deploy</span>
+        </div>
+        <div class="chips" role="list" aria-label="Highlights">
+          <span class="chip" role="listitem">Meta CAPI preset</span>
+          <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
+          <span class="chip" role="listitem">Event Router</span>
+          <span class="chip" role="listitem">Consent Mode v2</span>
+          <span class="chip" role="listitem">Log & Debugger</span>
+        </div>
+      </div>
+
+      <div class="panels">
+        <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Key capabilities</h3><p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p></div>
+        <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div><h3>Use cases</h3><p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p></div>
+        <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div><h3>Health at a glance</h3><p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section container" id="product">
+    <h2>Product</h2>
+    <div class="grid-3">
+      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Meta Conversions API</h3><p>Pixel ID & Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p></div>
+      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>GA4 Server Endpoint</h3><p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p></div>
+      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Event Router & Destinations</h3><p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
+    <h2 id="pricing-title">Pricing</h2>
+    <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
+
+    <div class="pricing-cards">
+      <!-- Dev -->
+      <article class="panel">
+        <header><h3>Dev</h3></header>
+        <p class="price">$0</p>
+        <ul class="features">
+          <li>1 container</li><li>10k events / month</li><li>Log viewer</li><li>*.lunvi.run subdomain</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary" href="#demo" role="button">Try for free</a>
+          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+        </div>
+      </article>
+
+      <!-- Pro -->
+      <article class="panel" aria-current="true">
+        <header><h3>Pro</h3></header>
+        <p class="price pro">$29</p>
+        <ul class="features">
+          <li>3 containers</li><li>300k events / month</li><li>Meta CAPI + GA4</li><li>Custom domain</li><li>Priority support</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
+          <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
+        </div>
+      </article>
+
+      <!-- Agency -->
+      <article class="panel">
+        <header><h3>Agency</h3></header>
+        <p class="price agency">$89</p>
+        <ul class="features">
+          <li>10 containers</li><li>2M events / month</li><li>Teams & roles</li><li>EU region</li><li>SLA</li>
+        </ul>
+        <div class="card-actions">
+          <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+          <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
+        </div>
+      </article>
+    </div>
+
+    <!-- CONTACT SALES -->
+    <div class="cta-band" id="contact-sales">
+      <div class="cta-inner">
+        <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
+        <div class="cta-actions">
+          <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+          <a class="cta-ghost" href="#demo">Try for free</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INLINE REQUEST FORM (Details) -->
+    <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
+      <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+        <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
+          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+        </div>
+        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
+        <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
+        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+        <div style="margin-top:12px;"><button class="btn btn-primary" type="submit">Submit request</button></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Self-host vs Lunvi ===== -->
+  <section class="container" style="padding:24px 0 8px;">
+    <div class="compare-wrap">
+      <div style="width:min(1020px,96vw)">
+        <h2 style="text-align:center;margin:0 0 10px;font-size:34px">Self-host vs Lunvi</h2>
+      </div>
+    </div>
+    <div class="compare-wrap">
+      <div class="compare" role="table" aria-label="Self-host vs Lunvi comparison">
+        <table class="table">
+          <thead>
+            <tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Setup time</td><td>Days / weeks</td><td><span class="pill">Minutes</span></td></tr>
+            <tr><td>CNAME & SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
+            <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
+            <tr><td>Log & Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
+            <tr><td>Consent Mode v2</td><td class="bad">Partial</td><td class="good">Full support</td></tr>
+            <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
+            <tr><td>Destinations</td><td>One-by-one integration</td><td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td></tr>
+            <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-wrap">
+    <div class="faq" id="faq">
+      <h3>FAQ</h3>
+      <div class="faq-item">
+        <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">Bring your domain, we provision & auto-renew certificates and handle regional routing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
+        <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER v2 -->
+<footer class="site">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></div>
+        <p style="margin:0;opacity:.9">Privacy-first infrastructure for server-side conversions & analytics.</p>
+        <span class="footer-badge">EU Hosting • GDPR / KVKK</span>
+      </div>
+      <div class="footer-col"><h4>Product</h4>
+        <ul class="footer-links"><li><a href="#product">Features</a></li><li><a href="#integrations">Integrations</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#demo">Start Demo</a></li></ul>
+      </div>
+      <div class="footer-col"><h4>Company</h4>
+        <ul class="footer-links"><li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li><li><a href="#docs">Docs</a></li><li><a href="#">Status</a></li><li><a href="#">Careers</a></li></ul>
+      </div>
+      <div class="footer-col"><h4>Legal</h4>
+        <ul class="footer-links"><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">DPA</a></li><li><a href="#">Subprocessors</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
+      <div class="footer-mini"><a href="#">Security</a><a href="#">Compliance</a><a href="#">Changelog</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- Success toast -->
+<div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
+
+<!-- ===== Modal Markup ===== -->
+<div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
+<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head"><h4 class="modal-title" id="requestTitle">Request upgrade</h4><button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+        <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
+        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+        <input type="hidden" name="plan" id="planInput" value="Pro" />
+        <div class="modal-grid">
+          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+        </div>
+        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
+        <div class="modal-actions"><button class="btn btn-primary" type="submit">Submit request</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- (Consent banner markup/CSS/JS removed completely) -->
+
+<script>
+  // Mobile nav
+  const nav=document.getElementById('nav');const navToggle=document.getElementById('navToggle');
+  navToggle?.addEventListener('click',()=>{const open=nav.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');});
+
+  // Modal logic
+  const modal=document.getElementById('requestModal');const backdrop=document.getElementById('requestBackdrop');const closeBtn=document.getElementById('requestClose');const planInput=document.getElementById('planInput');const subjectInput=document.getElementById('subjectInput');
+  function openModal(plan){planInput.value=plan||'Pro';subjectInput.value=`Lunvi Labs — Plan Upgrade Request (${planInput.value})`;modal.classList.add('open');backdrop.classList.add('open');modal.setAttribute('aria-hidden','false');backdrop.setAttribute('aria-hidden','false');const first=modal.querySelector('input[name="company"]');setTimeout(()=>first?.focus(),40);document.documentElement.style.overflow='hidden';}
+  function closeModal(){modal.classList.remove('open');backdrop.classList.remove('open');modal.setAttribute('aria-hidden','true');backdrop.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
+  document.querySelectorAll('.js-request').forEach(btn=>{btn.addEventListener('click',(e)=>{e.preventDefault();openModal(btn.getAttribute('data-plan'));});});
+  closeBtn?.addEventListener('click', closeModal);backdrop?.addEventListener('click', closeModal);window.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeModal();});
+
+  // Footer year
+  document.getElementById('y').textContent=new Date().getFullYear();
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+  // Success toast (`?submitted=true`)
+  (function(){
+    const url=new URL(location.href);
+    if(url.searchParams.get('submitted')==='true'){
+      const t=document.getElementById('submit-toast'); if(t){t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),6000); url.searchParams.delete('submitted'); history.replaceState({},'',url.pathname+url.hash);}
+    }
+  })();
+
+  // CTA click measurement
+  (function(){
+    const send=(name,label)=>window.gtag&&gtag('event',name,{event_category:'cta',event_label:label});
+    document.querySelectorAll('.js-request').forEach(a=>a.addEventListener('click',()=>send('cta_click','request_'+(a.getAttribute('data-plan')||'unknown'))));
+    document.querySelectorAll('a.btn-primary, a.btn-ghost').forEach(a=>a.addEventListener('click',()=>send('cta_click',a.textContent.trim())));
+  })();
+
+  // Form UX: disable submit button briefly
+  (function(){
+    const forms=document.querySelectorAll('form[action*="web3forms"]');
+    forms.forEach(f=>{
+      f.addEventListener('submit',()=>{
+        const btn=f.querySelector('button[type="submit"]');
+        if(btn){btn.disabled=true;btn.textContent='Submitting...';}
+        setTimeout(()=>{if(btn){btn.disabled=false;btn.textContent='Submit request';}},8000);
+      });
+    });
+  })();
+</script>
+</body>
+</html>
