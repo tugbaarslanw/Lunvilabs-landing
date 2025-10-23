@@ -201,24 +201,24 @@
     position:fixed;
     left:18px;
     bottom:18px;
-    /* z-index boost to stay above any glow/overlay layers */
-    z-index:2147483647;
+    z-index:2147483647; /* en üste */
     display:none;
     width:min(520px,92vw);
     background:#fff;color:#0b1020;
     border:1px solid #e7e3ff;border-radius:18px;
     box-shadow:0 22px 60px rgba(0,0,0,.28);
-    pointer-events:auto;
-    will-change:transform; /* promote layer */
+    pointer-events:auto !important;
   }
   .consent.show{display:block}
   .consent .body{padding:16px 16px 10px}
   .consent .title{font-weight:800;margin:0 0 6px}
   .consent p{margin:0 0 10px;color:#35405a}
   .consent .actions{display:flex;gap:10px;padding:0 16px 14px}
-  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer}
+  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer;pointer-events:auto}
   .consent .accept{background:#111827;color:#fff;border-color:#111827}
   .consent .deny{background:#fff;color:#111827}
+  /* her ihtimale karşı tüm çocuklarda tıklama açık */
+  .consent *{pointer-events:auto}
 </style>
 </head>
 <body>
@@ -245,6 +245,7 @@
 </header>
 
 <main>
+  <!-- içerik (değişmedi) -->
   <!-- HERO -->
   <section class="hero container" id="hero">
     <div class="hero-grid">
@@ -479,9 +480,9 @@
     <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
   </div>
   <div class="actions">
-    <!-- CSP-safe: no inline onclick -->
-    <button id="cm-accept" class="btn accept" type="button">Accept</button>
-    <button id="cm-deny" class="btn deny" type="button">Deny</button>
+    <!-- Fallback + JS dinleyici: ikisi birden -->
+    <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
+    <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
   </div>
 </div>
 
@@ -503,49 +504,58 @@
   // FAQ toggle
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
 
-  // ---------- Consent banner: CSP-safe + highest z-index ----------
+  // ------- Consent helpers (GLOBAL) -------
   (function(){
     const KEY='lunvi_cmv2';
-    const bar=document.getElementById('consent-bar');
-    const acceptBtn=document.getElementById('cm-accept');
-    const denyBtn=document.getElementById('cm-deny');
-
-    function safeGet(k){
-      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null); }
-      catch(e){ return document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null; }
-    }
-    function safeSet(k,val){
-      try{ localStorage.setItem(k,val); }catch(e){}
-      document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
-    }
-    function show(){ bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
-    function hide(){ bar?.classList.remove('show'); bar?.setAttribute('aria-hidden','true'); }
     function updateConsent(state){
       if (typeof gtag === 'function'){
         const m = state==='granted' ? 'granted' : 'denied';
         gtag('consent','update',{ ad_storage:m, analytics_storage:m });
       }
     }
-    function toast(msg){
-      let t=document.getElementById('submit-toast');
-      if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
-      t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
+    function set(k,val){
+      try{ localStorage.setItem(k,val); }catch(e){}
+      document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
     }
-    function decide(state){
-      safeSet(KEY,state);
+    function show(){ const bar=document.getElementById('consent-bar'); bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
+    function hide(){ const bar=document.getElementById('consent-bar'); bar?.classList.remove('show'); bar?.setAttribute('aria-hidden','true'); }
+    window.consentDecide = function(state){
+      set(KEY,state);
       updateConsent(state);
       hide();
-      toast(state==='granted'?'Consent accepted':'Consent denied');
+      // toast
+      let t=document.getElementById('submit-toast');
+      if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
+      t.textContent = state==='granted'?'Consent accepted':'Consent denied';
+      t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
+    };
+    window.__resetConsent = () => { try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
+  })();
+
+  // ---------- Consent banner (bind listeners + first paint) ----------
+  (function(){
+    const KEY='lunvi_cmv2';
+    const bar=document.getElementById('consent-bar');
+    const acceptBtn=document.getElementById('cm-accept');
+    const denyBtn=document.getElementById('cm-deny');
+
+    function get(k){
+      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null); }
+      catch(e){ return document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null; }
+    }
+    const stored=get(KEY);
+    if(!stored){ bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
+    else{
+      // kararı uygula (gtag update)
+      if (typeof gtag === 'function'){
+        const m = stored==='granted' ? 'granted' : 'denied';
+        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
+      }
     }
 
-    const stored = safeGet(KEY);
-    if(!stored){ show(); } else { updateConsent(stored); }
-
-    acceptBtn?.addEventListener('click',()=>decide('granted'));
-    denyBtn?.addEventListener('click',()=>decide('denied'));
-
-    // Dev helper (konsolda çağır): window.__resetConsent()
-    window.__resetConsent = () => { try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
+    // Dinleyiciler (inline fallback ile birlikte)
+    acceptBtn?.addEventListener('click', ()=>window.consentDecide('granted'));
+    denyBtn  ?.addEventListener('click', ()=>window.consentDecide('denied'));
   })();
 
   // Success toast (`?submitted=true`)
