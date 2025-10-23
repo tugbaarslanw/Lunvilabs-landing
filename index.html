@@ -182,42 +182,101 @@
 
   /* ===== FAQ ===== */
   .faq-wrap{display:flex;justify-content:center}
-  .faq{width:min(1020px,96vw);margin:8px auto 34px}
-  .faq h3{font-size:32px;margin:28px 0 16px;text-align:center}
-  .faq-item{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);border-radius:16px;margin:10px 0;overflow:hidden;box-shadow:0 16px 50px rgba(0,0,0,.35)}
-  .faq-q{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;cursor:pointer}
-  .faq-a{display:none;padding:0 16px 16px;color:#eae4ff}
-  .faq-item.open .faq-a{display:block}
-  .faq-item.open .caret{transform:rotate(180deg)}
-  .caret{transition:.2s ease}
-
-  /* Success toast */
-  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#ffffff;color:#111827;border:1px solid #e6e2ff;box-shadow:0 18px 50px rgba(0,0,0,.28);border-radius:14px;padding:12px 16px;z-index:1200;display:none;max-width:560px}
-  .toast.show{display:block;animation:fadeup .2s ease}
-  @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
-
-  /* Consent Banner (white) */
-  .consent{
-    position:fixed;left:18px;bottom:18px;z-index:2147483647;
-    display:none;width:min(520px,92vw);
-    background:#fff;color:#0b1020;border:1px solid #e7e3ff;border-radius:18px;
-    box-shadow:0 22px 60px rgba(0,0,0,.28);
-    pointer-events:auto !important;isolation:isolate;
-  }
-  .consent.show{display:block}
-  .consent .body{padding:16px 16px 10px}
-  .consent .title{font-weight:800;margin:0 0 6px}
-  .consent p{margin:0 0 10px;color:#35405a}
-  .consent .actions{display:flex;gap:10px;padding:0 16px 14px}
-  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer;pointer-events:auto}
-  .consent .accept{background:#111827;color:#fff;border-color:#111827}
-  .consent .deny{background:#fff;color:#111827}
-  .consent *{pointer-events:auto}
+  <div class="faq" id="faq">
+    <h3>FAQ</h3>
+    <div class="faq-item">
+      <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
+      <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
+      <div class="faq-a">We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
+      <div class="faq-a">Bring your domain, we provision & auto-renew certificates and handle regional routing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
+      <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
+    </div>
+  </div>
 </style>
 </head>
 
 <body id="top">
 <div class="bg"></div><div class="grid"></div><div class="grain"></div>
+
+<!-- Consent banner (white) — HTML -->
+<div id="consent-bar" class="consent" role="dialog" aria-live="polite" aria-label="Consent Mode v2" aria-hidden="true">
+  <div class="body">
+    <div class="title">Consent Mode v2</div>
+    <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
+  </div>
+  <div class="actions">
+    <!-- inline onclick KALDIRILDI (CSP güvenli) -->
+    <button id="cm-accept" class="btn accept" type="button">Accept</button>
+    <button id="cm-deny" class="btn deny" type="button">Deny</button>
+  </div>
+</div>
+
+<!-- CONSENT CORE (en üste, izole, hataya dayanıklı) -->
+<script>
+;(() => {
+  const KEY = 'lunvi_cmv2';
+
+  const get = k => {
+    try { return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
+    catch(e){ return (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
+  };
+  const set = (k,v) => {
+    try { localStorage.setItem(k,v); } catch(e){}
+    document.cookie = k+'='+v+'; Max-Age=31536000; Path=/; SameSite=Lax';
+  };
+  const show = () => { const b=document.getElementById('consent-bar'); if(b){ b.classList.add('show'); b.setAttribute('aria-hidden','false'); b.style.pointerEvents='auto'; } };
+  const hide = () => { const b=document.getElementById('consent-bar'); if(b){ b.classList.remove('show'); b.setAttribute('aria-hidden','true'); } };
+  const updateConsent = (state) => {
+    const m = state==='granted' ? 'granted' : 'denied';
+    if (typeof window.gtag === 'function') {
+      try { window.gtag('consent','update',{ ad_storage:m, analytics_storage:m }); } catch(e){}
+    }
+  };
+  const toast = (msg) => {
+    let t=document.getElementById('submit-toast');
+    if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3000);
+  };
+
+  // Global API
+  window.consentDecide = function(state){
+    set(KEY,state);
+    updateConsent(state);
+    hide();
+    toast(state==='granted'?'Consent accepted':'Consent denied');
+  };
+
+  // İlk durum
+  const stored = get(KEY);
+  if (!stored) { show(); } else { updateConsent(stored); }
+
+  // CAPTURE fazında belge genelinde yakala (diğer scriptler bozamaz)
+  document.addEventListener('click', function(ev){
+    const btn = ev.target && ev.target.closest ? ev.target.closest('#cm-accept, #cm-deny') : null;
+    if(!btn) return;
+    ev.preventDefault(); ev.stopPropagation();
+    window.consentDecide(btn.id === 'cm-accept' ? 'granted' : 'denied');
+  }, true);
+
+  // Bubble fazında da bağla (çifte güvence)
+  const a = document.getElementById('cm-accept');
+  const d = document.getElementById('cm-deny');
+  a && a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); window.consentDecide('granted'); });
+  d && d.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); window.consentDecide('denied'); });
+})();
+</script>
+
 <div class="spheres" aria-hidden="true">
   <span class="sphere s1"></span><span class="sphere s2"></span>
   <span class="sphere s3"></span><span class="sphere s4"></span>
@@ -419,47 +478,11 @@
 <!-- Success toast -->
 <div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
 
-<!-- ===== Modal Markup ===== -->
-<div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
-<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
-  <div class="modal-card">
-    <div class="modal-head"><h4 class="modal-title" id="requestTitle">Request upgrade</h4><button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button></div>
-    <div class="modal-body">
-      <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-        <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
-        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-        <input type="hidden" name="plan" id="planInput" value="Pro" />
-        <div class="modal-grid">
-          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
-        </div>
-        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
-        <div class="modal-actions"><button class="btn btn-primary" type="submit">Submit request</button></div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Consent banner (white) -->
-<div id="consent-bar" class="consent" role="dialog" aria-live="polite" aria-label="Consent Mode v2" aria-hidden="true">
-  <div class="body">
-    <div class="title">Consent Mode v2</div>
-    <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
-  </div>
-  <div class="actions">
-    <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
-    <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
-  </div>
-</div>
-
+<!-- ==== Remaining JS (site scripts) ==== -->
 <script>
-  // --- SAFETY PATCH: Sayfadaki tüm href="#" linklerini DOM yüklendiğinde #top'a çevir ---
+  // Hızlı güvenlik: href="#" -> #top
   document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('a[href="#"]').forEach(function(a){ a.setAttribute('href','#top'); });
+    document.querySelectorAll('a[href="#"]').forEach(a => a.setAttribute('href','#top'));
   });
 
   // Mobile nav
@@ -485,75 +508,7 @@
   // FAQ toggle
   (function(){var qs=document.querySelectorAll('.faq-item .faq-q');for(var i=0;i<qs.length;i++){qs[i].addEventListener('click',function(){this.parentElement.classList.toggle('open');});}})();
 
-  // ------- Consent helpers (GLOBAL) -------
-  (function(){
-    var KEY='lunvi_cmv2';
-    function updateConsent(state){
-      if (typeof gtag === 'function'){
-        var m = state==='granted' ? 'granted' : 'denied';
-        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
-      }
-    }
-    function setKV(k,val){
-      try{ localStorage.setItem(k,val); }catch(e){}
-      document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
-    }
-    function show(){ var bar=document.getElementById('consent-bar'); if(bar){ bar.classList.add('show'); bar.setAttribute('aria-hidden','false'); bar.style.pointerEvents='auto'; } }
-    function hide(){ var bar=document.getElementById('consent-bar'); if(bar){ bar.classList.remove('show'); bar.setAttribute('aria-hidden','true'); } }
-    window.consentDecide = function(state){
-      setKV(KEY,state);
-      updateConsent(state);
-      hide();
-      var t=document.getElementById('submit-toast');
-      if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
-      t.textContent = state==='granted'?'Consent accepted':'Consent denied';
-      t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},3000);
-    };
-    window.__resetConsent = function(){ try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
-  })();
-
-  // ---------- Consent banner (first paint + CAPTURE-PHASE event delegation) ----------
-  (function(){
-    var KEY='lunvi_cmv2';
-    var bar=document.getElementById('consent-bar');
-
-    function getKV(k){
-      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
-      catch(e){ return (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
-    }
-    var stored=getKV(KEY);
-    if(!stored){ if(bar){ bar.classList.add('show'); bar.setAttribute('aria-hidden','false'); bar.style.pointerEvents='auto'; } }
-    else{
-      if (typeof gtag === 'function'){
-        var m = stored==='granted' ? 'granted' : 'denied';
-        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
-      }
-    }
-
-    // document seviyesinde, CAPTURE fazında dinle (diğer scriptler bozamaz)
-    document.addEventListener('click', function(e){
-      var target = e.target;
-      if(!target || !target.closest) return;
-      var btn = target.closest('#cm-accept, #cm-deny');
-      if(!btn) return;
-      e.preventDefault(); e.stopPropagation();
-      window.consentDecide(btn.id === 'cm-accept' ? 'granted' : 'denied');
-    }, true);
-
-    // Emniyet için direkt butonlara da bağla
-    var a=document.getElementById('cm-accept'); if(a){ a.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('granted'); }); }
-    var d=document.getElementById('cm-deny');   if(d){ d.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('denied');   }); }
-  })();
-
-  // Success toast (`?submitted=true`)
-  (function(){
-    var url; try{ url=new URL(location.href); }catch(e){}
-    if(url && url.searchParams.get('submitted')==='true'){
-      var t=document.getElementById('submit-toast'); if(t){t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},6000); url.searchParams.delete('submitted'); history.replaceState({},'',url.pathname+url.hash);}
-    }
-  })();
-
-  // CTA click measurement (anchor + button)
+  // CTA click measurement
   (function(){
     function send(name,label){ if(window.gtag) gtag('event',name,{event_category:'cta',event_label:label}); }
     var req=document.querySelectorAll('.js-request');
@@ -562,7 +517,7 @@
     for(var j=0;j<ctas.length;j++){ ctas[j].addEventListener('click',function(){ send('cta_click',(this.textContent||'').trim()); }); }
   })();
 
-  // Form UX: disable submit button briefly
+  // Form UX
   (function(){
     var forms=document.querySelectorAll('form[action*="web3forms"]');
     for(var i=0;i<forms.length;i++){
