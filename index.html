@@ -197,7 +197,20 @@
   @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
 
   /* Consent Banner (white) */
-  .consent{position:fixed;left:18px;bottom:18px;z-index:1100;display:none;width:min(520px,92vw);background:#fff;color:#0b1020;border:1px solid #e7e3ff;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.28);pointer-events:auto}
+  .consent{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    /* z-index boost to stay above any glow/overlay layers */
+    z-index:2147483647;
+    display:none;
+    width:min(520px,92vw);
+    background:#fff;color:#0b1020;
+    border:1px solid #e7e3ff;border-radius:18px;
+    box-shadow:0 22px 60px rgba(0,0,0,.28);
+    pointer-events:auto;
+    will-change:transform; /* promote layer */
+  }
   .consent.show{display:block}
   .consent .body{padding:16px 16px 10px}
   .consent .title{font-weight:800;margin:0 0 6px}
@@ -460,15 +473,15 @@
 </div>
 
 <!-- Consent banner (white) -->
-<div id="consent-bar" class="consent" role="dialog" aria-live="polite" aria-label="Consent Mode v2">
+<div id="consent-bar" class="consent" role="dialog" aria-live="polite" aria-label="Consent Mode v2" aria-hidden="true">
   <div class="body">
     <div class="title">Consent Mode v2</div>
     <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
   </div>
   <div class="actions">
-    <!-- Inline fallback onclicks + IDs for listeners -->
-    <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
-    <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
+    <!-- CSP-safe: no inline onclick -->
+    <button id="cm-accept" class="btn accept" type="button">Accept</button>
+    <button id="cm-deny" class="btn deny" type="button">Deny</button>
   </div>
 </div>
 
@@ -490,9 +503,8 @@
   // FAQ toggle
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
 
-  // ---------- Consent banner: robust handlers + global fallback ----------
+  // ---------- Consent banner: CSP-safe + highest z-index ----------
   (function(){
-    // proje-özel anahtar (çakışmaları önler)
     const KEY='lunvi_cmv2';
     const bar=document.getElementById('consent-bar');
     const acceptBtn=document.getElementById('cm-accept');
@@ -506,15 +518,12 @@
       try{ localStorage.setItem(k,val); }catch(e){}
       document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
     }
-    function hideBanner(){ bar?.classList.remove('show'); }
-    function showBanner(){ bar?.classList.add('show'); }
+    function show(){ bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
+    function hide(){ bar?.classList.remove('show'); bar?.setAttribute('aria-hidden','true'); }
     function updateConsent(state){
       if (typeof gtag === 'function'){
         const m = state==='granted' ? 'granted' : 'denied';
-        gtag('consent','update',{
-          ad_storage:m,
-          analytics_storage:m
-        });
+        gtag('consent','update',{ ad_storage:m, analytics_storage:m });
       }
     }
     function toast(msg){
@@ -522,24 +531,21 @@
       if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
       t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
     }
-
-    // Global fallback (used by inline onclicks)
-    window.consentDecide = function(state){
-      safeSet(KEY, state);
+    function decide(state){
+      safeSet(KEY,state);
       updateConsent(state);
-      hideBanner();
+      hide();
       toast(state==='granted'?'Consent accepted':'Consent denied');
-      return false;
-    };
+    }
 
-    // First paint
     const stored = safeGet(KEY);
-    if(!stored){ showBanner(); } else { updateConsent(stored); }
+    if(!stored){ show(); } else { updateConsent(stored); }
 
-    // Progressive enhancement listeners (inline varsa da çalışır)
-    function handle(e, state){ e?.preventDefault(); e?.stopPropagation(); window.consentDecide(state); }
-    acceptBtn?.addEventListener('click', (e)=>handle(e,'granted'));
-    denyBtn?.addEventListener('click', (e)=>handle(e,'denied'));
+    acceptBtn?.addEventListener('click',()=>decide('granted'));
+    denyBtn?.addEventListener('click',()=>decide('denied'));
+
+    // Dev helper (konsolda çağır): window.__resetConsent()
+    window.__resetConsent = () => { try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
   })();
 
   // Success toast (`?submitted=true`)
