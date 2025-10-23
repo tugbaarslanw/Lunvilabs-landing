@@ -208,6 +208,7 @@
     border:1px solid #e7e3ff;border-radius:18px;
     box-shadow:0 22px 60px rgba(0,0,0,.28);
     pointer-events:auto !important;
+    isolation:isolate; /* kendi stacking context’i */
   }
   .consent.show{display:block}
   .consent .body{padding:16px 16px 10px}
@@ -217,7 +218,6 @@
   .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer;pointer-events:auto}
   .consent .accept{background:#111827;color:#fff;border-color:#111827}
   .consent .deny{background:#fff;color:#111827}
-  /* her ihtimale karşı tüm çocuklarda tıklama açık */
   .consent *{pointer-events:auto}
 </style>
 </head>
@@ -480,7 +480,7 @@
     <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
   </div>
   <div class="actions">
-    <!-- Fallback + JS dinleyici: ikisi birden -->
+    <!-- Inline fallback kalıyor, ama asıl çözüm aşağıdaki capture listener -->
     <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
     <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
   </div>
@@ -488,101 +488,119 @@
 
 <script>
   // Mobile nav
-  const nav=document.getElementById('nav');const navToggle=document.getElementById('navToggle');
-  navToggle?.addEventListener('click',()=>{const open=nav.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');});
+  (function(){
+    var nav=document.getElementById('nav');var navToggle=document.getElementById('navToggle');
+    if(navToggle){navToggle.addEventListener('click',function(){var open=nav.classList.toggle('open');navToggle.setAttribute('aria-expanded',open?'true':'false');});}
+  })();
 
   // Modal logic
-  const modal=document.getElementById('requestModal');const backdrop=document.getElementById('requestBackdrop');const closeBtn=document.getElementById('requestClose');const planInput=document.getElementById('planInput');const subjectInput=document.getElementById('subjectInput');
-  function openModal(plan){planInput.value=plan||'Pro';subjectInput.value=`Lunvi Labs — Plan Upgrade Request (${planInput.value})`;modal.classList.add('open');backdrop.classList.add('open');modal.setAttribute('aria-hidden','false');backdrop.setAttribute('aria-hidden','false');const first=modal.querySelector('input[name="company"]');setTimeout(()=>first?.focus(),40);document.documentElement.style.overflow='hidden';}
-  function closeModal(){modal.classList.remove('open');backdrop.classList.remove('open');modal.setAttribute('aria-hidden','true');backdrop.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
-  document.querySelectorAll('.js-request').forEach(btn=>{btn.addEventListener('click',(e)=>{e.preventDefault();openModal(btn.getAttribute('data-plan'));});});
-  closeBtn?.addEventListener('click', closeModal);backdrop?.addEventListener('click', closeModal);window.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeModal();});
+  (function(){
+    var modal=document.getElementById('requestModal');var backdrop=document.getElementById('requestBackdrop');var closeBtn=document.getElementById('requestClose');var planInput=document.getElementById('planInput');var subjectInput=document.getElementById('subjectInput');
+    function openModal(plan){planInput.value=plan||'Pro';subjectInput.value='Lunvi Labs — Plan Upgrade Request ('+planInput.value+')';modal.classList.add('open');backdrop.classList.add('open');modal.setAttribute('aria-hidden','false');backdrop.setAttribute('aria-hidden','false');var first=modal.querySelector('input[name="company"]');setTimeout(function(){first&&first.focus();},40);document.documentElement.style.overflow='hidden';}
+    function closeModal(){modal.classList.remove('open');backdrop.classList.remove('open');modal.setAttribute('aria-hidden','true');backdrop.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
+    var reqBtns=document.querySelectorAll('.js-request');for(var i=0;i<reqBtns.length;i++){reqBtns[i].addEventListener('click',function(e){e.preventDefault();openModal(this.getAttribute('data-plan'));});}
+    if(closeBtn) closeBtn.addEventListener('click', closeModal);
+    if(backdrop) backdrop.addEventListener('click', closeModal);
+    window.addEventListener('keydown',function(e){if(e.key==='Escape') closeModal();});
+  })();
 
   // Footer year
-  document.getElementById('y').textContent=new Date().getFullYear();
+  (function(){var y=document.getElementById('y'); if(y) y.textContent=new Date().getFullYear();})();
 
   // FAQ toggle
-  document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+  (function(){var qs=document.querySelectorAll('.faq-item .faq-q');for(var i=0;i<qs.length;i++){qs[i].addEventListener('click',function(){this.parentElement.classList.toggle('open');});}})();
 
   // ------- Consent helpers (GLOBAL) -------
   (function(){
-    const KEY='lunvi_cmv2';
+    var KEY='lunvi_cmv2';
     function updateConsent(state){
       if (typeof gtag === 'function'){
-        const m = state==='granted' ? 'granted' : 'denied';
+        var m = state==='granted' ? 'granted' : 'denied';
         gtag('consent','update',{ ad_storage:m, analytics_storage:m });
       }
     }
-    function set(k,val){
+    function setKV(k,val){
       try{ localStorage.setItem(k,val); }catch(e){}
       document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
     }
-    function show(){ const bar=document.getElementById('consent-bar'); bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
-    function hide(){ const bar=document.getElementById('consent-bar'); bar?.classList.remove('show'); bar?.setAttribute('aria-hidden','true'); }
+    function show(){ var bar=document.getElementById('consent-bar'); if(bar){ bar.classList.add('show'); bar.setAttribute('aria-hidden','false'); bar.style.pointerEvents='auto'; } }
+    function hide(){ var bar=document.getElementById('consent-bar'); if(bar){ bar.classList.remove('show'); bar.setAttribute('aria-hidden','true'); } }
     window.consentDecide = function(state){
-      set(KEY,state);
+      setKV(KEY,state);
       updateConsent(state);
       hide();
       // toast
-      let t=document.getElementById('submit-toast');
+      var t=document.getElementById('submit-toast');
       if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
       t.textContent = state==='granted'?'Consent accepted':'Consent denied';
-      t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
+      t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},3000);
     };
-    window.__resetConsent = () => { try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
+    window.__resetConsent = function(){ try{localStorage.removeItem(KEY);}catch(e){} document.cookie=KEY+'=; Max-Age=0; Path=/'; show(); };
   })();
 
-  // ---------- Consent banner (bind listeners + first paint) ----------
+  // ---------- Consent banner (first paint + CAPTURE-PHASE event delegation) ----------
   (function(){
-    const KEY='lunvi_cmv2';
-    const bar=document.getElementById('consent-bar');
-    const acceptBtn=document.getElementById('cm-accept');
-    const denyBtn=document.getElementById('cm-deny');
+    var KEY='lunvi_cmv2';
+    var bar=document.getElementById('consent-bar');
 
-    function get(k){
-      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null); }
-      catch(e){ return document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))?.[1] || null; }
+    function getKV(k){
+      try{ return localStorage.getItem(k) || (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
+      catch(e){ return (document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'))||[])[1] || null; }
     }
-    const stored=get(KEY);
-    if(!stored){ bar?.classList.add('show'); bar?.setAttribute('aria-hidden','false'); }
+    var stored=getKV(KEY);
+    if(!stored){ if(bar){ bar.classList.add('show'); bar.setAttribute('aria-hidden','false'); bar.style.pointerEvents='auto'; } }
     else{
-      // kararı uygula (gtag update)
       if (typeof gtag === 'function'){
-        const m = stored==='granted' ? 'granted' : 'denied';
+        var m = stored==='granted' ? 'granted' : 'denied';
         gtag('consent','update',{ ad_storage:m, analytics_storage:m });
       }
     }
 
-    // Dinleyiciler (inline fallback ile birlikte)
-    acceptBtn?.addEventListener('click', ()=>window.consentDecide('granted'));
-    denyBtn  ?.addEventListener('click', ()=>window.consentDecide('denied'));
+    // --- En garanti yöntem: document seviyesinde, CAPTURE fazında dinle ---
+    document.addEventListener('click', function(e){
+      var target = e.target;
+      if(!target) return;
+      var btn = target.closest ? target.closest('#cm-accept, #cm-deny') : null;
+      if(!btn) return;
+      // Consent butonuna tıklandı:
+      e.preventDefault();
+      e.stopPropagation(); // yukarıdaki katmanlar engellemesin
+      var state = (btn.id === 'cm-accept') ? 'granted' : 'denied';
+      window.consentDecide(state);
+    }, true); // <— capture: true (önce biz)
+
+    // Yedek: doğrudan butonlara da bağla (çift emniyet)
+    var a=document.getElementById('cm-accept'); if(a){ a.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('granted'); }); }
+    var d=document.getElementById('cm-deny');   if(d){ d.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); window.consentDecide('denied');   }); }
   })();
 
   // Success toast (`?submitted=true`)
   (function(){
-    const url=new URL(location.href);
-    if(url.searchParams.get('submitted')==='true'){
-      const t=document.getElementById('submit-toast'); if(t){t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),6000); url.searchParams.delete('submitted'); history.replaceState({},'',url.pathname+url.hash);}
+    var url; try{ url=new URL(location.href); }catch(e){}
+    if(url && url.searchParams.get('submitted')==='true'){
+      var t=document.getElementById('submit-toast'); if(t){t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},6000); url.searchParams.delete('submitted'); history.replaceState({},'',url.pathname+url.hash);}
     }
   })();
 
   // CTA click measurement
   (function(){
-    const send=(name,label)=>window.gtag&&gtag('event',name,{event_category:'cta',event_label:label});
-    document.querySelectorAll('.js-request').forEach(a=>a.addEventListener('click',()=>send('cta_click','request_'+(a.getAttribute('data-plan')||'unknown'))));
-    document.querySelectorAll('a.btn-primary, a.btn-ghost').forEach(a=>a.addEventListener('click',()=>send('cta_click',a.textContent.trim())));
+    function send(name,label){ if(window.gtag) gtag('event',name,{event_category:'cta',event_label:label}); }
+    var req=document.querySelectorAll('.js-request');
+    for(var i=0;i<req.length;i++){ req[i].addEventListener('click',function(){ send('cta_click','request_'+(this.getAttribute('data-plan')||'unknown')); }); }
+    var ctas=document.querySelectorAll('a.btn-primary, a.btn-ghost');
+    for(var j=0;j<ctas.length;j++){ ctas[j].addEventListener('click',function(){ send('cta_click',this.textContent.trim()); }); }
   })();
 
   // Form UX: disable submit button briefly
   (function(){
-    const forms=document.querySelectorAll('form[action*="web3forms"]');
-    forms.forEach(f=>{
-      f.addEventListener('submit',()=>{
-        const btn=f.querySelector('button[type="submit"]');
+    var forms=document.querySelectorAll('form[action*="web3forms"]');
+    for(var i=0;i<forms.length;i++){
+      forms[i].addEventListener('submit',function(){
+        var btn=this.querySelector('button[type="submit"]');
         if(btn){btn.disabled=true;btn.textContent='Submitting...';}
-        setTimeout(()=>{if(btn){btn.disabled=false;btn.textContent='Submit request';}},8000);
+        setTimeout(function(){if(btn){btn.disabled=false;btn.textContent='Submit request';}},8000);
       });
-    });
+    }
   })();
 </script>
 </body>
