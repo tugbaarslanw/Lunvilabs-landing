@@ -459,18 +459,7 @@
   </div>
 </div>
 
-<!-- Consent banner (white) -->
-<div id="consent-bar" class="consent" role="dialog" aria-live="polite" aria-label="Consent Mode v2">
-  <div class="body">
-    <div class="title">Consent Mode v2</div>
-    <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
-  </div>
-  <div class="actions">
-    <!-- Inline fallback onclicks + IDs for listeners -->
-    <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
-    <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
-  </div>
-</div>
+<!-- (Consent banner markup removed) -->
 
 <script>
   // Mobile nav
@@ -530,7 +519,7 @@
 
     // First paint
     const stored = safeGet(KEY);
-    if(!stored){ showBanner(); } else { updateConsent(stored); }
+    if(!stored){ /* showBanner(); */ } else { updateConsent(stored); }
 
     // Progressive enhancement listeners
     function handle(e, state){ e?.preventDefault(); e?.stopPropagation(); window.consentDecide(state); }
