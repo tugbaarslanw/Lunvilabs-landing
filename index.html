@@ -237,10 +237,16 @@
   .sec-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
   .sec-list{margin:0;padding:0 0 0 18px}
   .sec-list li{margin:8px 0}
-  .seals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .seal{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid var(--stroke);border-radius:14px;background:var(--glass)}
-  .dot{width:10px;height:10px;border-radius:8px;background:var(--accent);box-shadow:0 0 0 3px rgba(65,226,192,.18)}
   .sec-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+  /* ===== NEW: Logo rows (compliance & tech) ===== */
+  .logo-row{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+  .logo{display:flex;align-items:center;justify-content:center;min-width:84px;min-height:56px;padding:10px 14px;border:1px solid var(--stroke);border-radius:14px;background:var(--glass);box-shadow:var(--shadow)}
+  .logo img{height:44px;filter:grayscale(100%) contrast(1.05) opacity(.9);transition:.15s ease;image-rendering:auto}
+  .logo:hover img{filter:none;transform:translateY(-1px)}
+  .logo small{color:var(--muted)}
+  .logo--tech img{height:28px}
+  .hidden{display:none}
 </style>
 </head>
 <body>
@@ -323,7 +329,7 @@
     </div>
   </section>
 
-  <!-- SOLUTIONS (E-commerce & Healthcare) -->
+  <!-- SOLUTIONS -->
   <section class="section container" id="solutions" aria-labelledby="solutions-title">
     <h2 id="solutions-title">Solutions</h2>
     <div class="grid-3">
@@ -372,7 +378,7 @@
     </div>
   </section>
 
-  <!-- PLAYBOOKS (event önerileri) -->
+  <!-- PLAYBOOKS -->
   <section class="container" id="playbooks" style="padding:10px 0 6px">
     <div class="compare-wrap">
       <div class="compare" role="table" aria-label="Event playbooks">
@@ -397,7 +403,7 @@
     </div>
   </section>
 
-  <!-- ===== NEW: INTEGRATIONS ===== -->
+  <!-- INTEGRATIONS -->
   <section class="section container" id="integrations" aria-labelledby="integrations-title">
     <h2 id="integrations-title">Integrations</h2>
     <p class="int-sub">Works seamlessly with your existing stack. Monitored delivery, retry & dedup built in.</p>
@@ -409,6 +415,37 @@
       <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>BigQuery</strong><br><small>Raw event export</small></div></div>
       <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Webhook</strong><br><small>Custom destinations</small></div></div>
     </div>
+
+    <!-- Tech Ecosystem logos (separate strip) -->
+    <div class="panel" style="margin-top:16px">
+      <div class="logo-row" aria-label="Tech ecosystem">
+        <div class="logo logo--tech">
+          <img src="/assets/logos/tech/meta.png" alt="Meta" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <small class="hidden">Meta</small>
+        </div>
+        <div class="logo logo--tech">
+          <img src="/assets/logos/tech/ga4.png" alt="Google Analytics 4" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <small class="hidden">GA4</small>
+        </div>
+        <div class="logo logo--tech">
+          <img src="/assets/logos/tech/tiktok.png" alt="TikTok" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <small class="hidden">TikTok</small>
+        </div>
+        <div class="logo logo--tech">
+          <img src="/assets/logos/tech/klaviyo.png" alt="Klaviyo" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <small class="hidden">Klaviyo</small>
+        </div>
+        <div class="logo logo--tech">
+          <img src="/assets/logos/tech/bigquery.png" alt="BigQuery" loading="lazy"
+               onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <small class="hidden">BigQuery</small>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- PRICING -->
@@ -417,7 +454,6 @@
     <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
 
     <div class="pricing-cards">
-      <!-- Dev -->
       <article class="panel">
         <header><h3>Dev</h3></header>
         <p class="price">$0</p>
@@ -430,7 +466,6 @@
         </div>
       </article>
 
-      <!-- Pro -->
       <article class="panel" aria-current="true">
         <header><h3>Pro</h3></header>
         <p class="price pro">$29</p>
@@ -443,7 +478,6 @@
         </div>
       </article>
 
-      <!-- Agency -->
       <article class="panel">
         <header><h3>Agency</h3></header>
         <p class="price agency">$89</p>
@@ -457,7 +491,6 @@
       </article>
     </div>
 
-    <!-- CONTACT SALES -->
     <div class="cta-band" id="contact-sales">
       <div class="cta-inner">
         <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
@@ -468,7 +501,6 @@
       </div>
     </div>
 
-    <!-- INLINE REQUEST FORM (Details) -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -488,7 +520,7 @@
     </div>
   </section>
 
-  <!-- ===== Self-host vs Lunvi ===== -->
+  <!-- Self-host vs Lunvi -->
   <section class="container" style="padding:24px 0 8px;">
     <div class="compare-wrap">
       <div style="width:min(1020px,96vw)">
@@ -498,14 +530,13 @@
     <div class="compare-wrap">
       <div class="compare" role="table" aria-label="Self-host vs Lunvi comparison">
         <table class="table">
-          <thead>
-            <tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr>
-          </thead>
+          <thead><tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr></thead>
           <tbody>
             <tr><td>Setup time</td><td>Days / weeks</td><td><span class="pill">Minutes</span></td></tr>
             <tr><td>CNAME & SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
             <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
             <tr><td>Log & Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
+            <tr><td>Consent Mode v2</td><td class="bad">Partial</td><td class="good">Full support</td></tr>
             <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
             <tr><td>Destinations</td><td>One-by-one integration</td><td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td></tr>
             <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
@@ -515,7 +546,7 @@
     </div>
   </section>
 
-  <!-- ===== NEW: SECURITY & COMPLIANCE ===== -->
+  <!-- SECURITY & COMPLIANCE -->
   <section class="section container" id="security" aria-labelledby="security-title">
     <h2 id="security-title">Security & Compliance</h2>
     <div class="sec-wrap">
@@ -535,25 +566,38 @@
           <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a>
         </div>
       </article>
-      <aside class="panel">
-        <h3 style="margin:0 0 6px">Operational health</h3>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px">
-          <span class="badge"><span class="dot" aria-hidden="true"></span>&nbsp;All systems operational</span>
-          <span class="badge">P95 180ms</span>
-          <span class="badge">99.9% uptime target</span>
+
+      <!-- Compliance seals with real images -->
+      <aside class="panel" aria-label="Compliance seals">
+        <h3 style="margin:0 0 10px">Assurance</h3>
+        <div class="logo-row" style="margin-top:6px">
+          <div class="logo">
+            <img src="/assets/logos/compliance/soc2.png" alt="AICPA SOC 2" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+            <small class="hidden">SOC 2</small>
+          </div>
+          <div class="logo">
+            <img src="/assets/logos/compliance/iso27001.png" alt="ISO 27001" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+            <small class="hidden">ISO 27001</small>
+          </div>
+          <div class="logo">
+            <img src="/assets/logos/compliance/hipaa.png" alt="HIPAA" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+            <small class="hidden">HIPAA</small>
+          </div>
+          <div class="logo">
+            <img src="/assets/logos/compliance/gdpr.png" alt="GDPR" loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+            <small class="hidden">GDPR</small>
+          </div>
         </div>
-        <div class="seals" aria-label="assurance badges">
-          <div class="seal">EU Hosting</div>
-          <div class="seal">GDPR / KVKK</div>
-          <div class="seal">DPA Available</div>
-        </div>
-        <p class="int-sub" style="margin-top:10px">Need more? Ask about dedicated regions, private clusters and SLAs.</p>
-        <a class="btn btn-primary" href="mailto:info@lunvilabs.com?subject=Security%20&%20Compliance">Talk to security</a>
+        <p class="int-sub" style="margin-top:10px">Visual seals are for illustrative purposes; formal attestations available on request.</p>
       </aside>
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- FAQ -->
   <section class="faq-wrap">
     <div class="faq" id="faq">
       <h3>FAQ</h3>
@@ -585,7 +629,7 @@
   </section>
 </main>
 
-<!-- FOOTER v2 -->
+<!-- FOOTER -->
 <footer class="site">
   <div class="container">
     <div class="footer-top">
@@ -614,7 +658,7 @@
 <!-- Success toast -->
 <div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
 
-<!-- ===== Modal Markup ===== -->
+<!-- Modal -->
 <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
 <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
   <div class="modal-card">
@@ -684,7 +728,7 @@
     });
   })();
 
-  // ========= CONSENT BANNER NEUTRALIZER (no DOM banner added) =========
+  // Consent banner neutralizer
   (function(){
     var KEY='cmv2';
     function safeGet(k){try{var v=localStorage.getItem(k);if(v)return v;}catch(e){}var m=document.cookie.match(new RegExp('(?:^|; )'+k+'=([^;]+)'));return m&&m[1];}
@@ -705,7 +749,6 @@
       for(var i=0;i<m.length;i++){var nodes=m[i].addedNodes;for(var j=0;j<nodes.length;j++){var n=nodes[j];var el=(n.id==='consent-bar'||n.id==='consent-bnr')?n:findAny(n); if(el){ if(safeGet(KEY)) destroy(el); else wire(el); }}}});
     try{mo.observe(document.documentElement,{childList:true,subtree:true});}catch(_){}
   })();
-  // ========= /CONSENT BANNER NEUTRALIZER =========
 </script>
 </body>
 </html>
