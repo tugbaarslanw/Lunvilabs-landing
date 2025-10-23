@@ -15,7 +15,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
 
-  // Default: denied
   gtag('consent','default',{
     ad_storage:'denied',
     analytics_storage:'denied',
@@ -204,7 +203,7 @@
   .consent .title{font-weight:800;margin:0 0 6px}
   .consent p{margin:0 0 10px;color:#35405a}
   .consent .actions{display:flex;gap:10px;padding:0 16px 14px}
-  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb}
+  .consent .btn{padding:.55rem 1rem;border-radius:12px;border:1px solid #e5e7eb;cursor:pointer}
   .consent .accept{background:#111827;color:#fff;border-color:#111827}
   .consent .deny{background:#fff;color:#111827}
 </style>
@@ -354,7 +353,7 @@
     </div>
   </section>
 
-  <!-- ===== Self-host vs Lunvi (centered) ===== -->
+  <!-- ===== Self-host vs Lunvi ===== -->
   <section class="container" style="padding:24px 0 8px;">
     <div class="compare-wrap">
       <div style="width:min(1020px,96vw)">
@@ -382,7 +381,7 @@
     </div>
   </section>
 
-  <!-- ===== FAQ (centered) ===== -->
+  <!-- ===== FAQ ===== -->
   <section class="faq-wrap">
     <div class="faq" id="faq">
       <h3>FAQ</h3>
@@ -467,8 +466,9 @@
     <p>We use anonymous signals when consent is denied and upgrade to full measurement with consent.</p>
   </div>
   <div class="actions">
-    <button id="cm-accept" class="btn accept" type="button">Accept</button>
-    <button id="cm-deny" class="btn deny" type="button">Deny</button>
+    <!-- Inline fallback onclicks + IDs for listeners -->
+    <button id="cm-accept" class="btn accept" type="button" onclick="consentDecide('granted')">Accept</button>
+    <button id="cm-deny" class="btn deny" type="button" onclick="consentDecide('denied')">Deny</button>
   </div>
 </div>
 
@@ -482,7 +482,7 @@
   function openModal(plan){planInput.value=plan||'Pro';subjectInput.value=`Lunvi Labs — Plan Upgrade Request (${planInput.value})`;modal.classList.add('open');backdrop.classList.add('open');modal.setAttribute('aria-hidden','false');backdrop.setAttribute('aria-hidden','false');const first=modal.querySelector('input[name="company"]');setTimeout(()=>first?.focus(),40);document.documentElement.style.overflow='hidden';}
   function closeModal(){modal.classList.remove('open');backdrop.classList.remove('open');modal.setAttribute('aria-hidden','true');backdrop.setAttribute('aria-hidden','true');document.documentElement.style.overflow='';}
   document.querySelectorAll('.js-request').forEach(btn=>{btn.addEventListener('click',(e)=>{e.preventDefault();openModal(btn.getAttribute('data-plan'));});});
-  closeBtn?.addEventListener('click',closeModal);backdrop?.addEventListener('click',closeModal);window.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeModal();});
+  closeBtn?.addEventListener('click', closeModal);backdrop?.addEventListener('click', closeModal);window.addEventListener('keydown',(e)=>{if(e.key==='Escape') closeModal();});
 
   // Footer year
   document.getElementById('y').textContent=new Date().getFullYear();
@@ -490,7 +490,7 @@
   // FAQ toggle
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
 
-  // ---------- Consent banner: robust handlers + fallbacks ----------
+  // ---------- Consent banner: robust handlers + global fallback ----------
   (function(){
     const KEY='cmv2';
     const bar=document.getElementById('consent-bar');
@@ -503,34 +503,39 @@
     }
     function safeSet(k,val){
       try{ localStorage.setItem(k,val); }catch(e){}
-      // cookie fallback (1 yıl)
       document.cookie = k+'='+val+'; Max-Age=31536000; Path=/; SameSite=Lax';
     }
     function hideBanner(){ bar?.classList.remove('show'); }
     function showBanner(){ bar?.classList.add('show'); }
     function updateConsent(state){
-      // GA4 güncelle
       if (typeof gtag === 'function'){
         const m = state==='granted' ? 'granted' : 'denied';
         gtag('consent','update',{ ad_storage:m, analytics_storage:m });
       }
     }
+    function toast(msg){
+      let t=document.getElementById('submit-toast');
+      if(!t){ t=document.createElement('div'); t.id='submit-toast'; t.className='toast'; document.body.appendChild(t); }
+      t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000);
+    }
 
-    // İlk yükleme
-    const stored=safeGet(KEY);
-    if(!stored){ showBanner(); }
-    else { updateConsent(stored); }
-
-    function decide(e, state){
-      e?.preventDefault(); e?.stopPropagation();
+    // Global fallback (used by inline onclicks)
+    window.consentDecide = function(state){
       safeSet(KEY, state);
       updateConsent(state);
       hideBanner();
+      toast(state==='granted'?'Consent accepted':'Consent denied');
       return false;
-    }
+    };
 
-    acceptBtn?.addEventListener('click', (e)=>decide(e,'granted'));
-    denyBtn?.addEventListener('click', (e)=>decide(e,'denied'));
+    // First paint
+    const stored = safeGet(KEY);
+    if(!stored){ showBanner(); } else { updateConsent(stored); }
+
+    // Progressive enhancement listeners
+    function handle(e, state){ e?.preventDefault(); e?.stopPropagation(); window.consentDecide(state); }
+    acceptBtn?.addEventListener('click', (e)=>handle(e,'granted'));
+    denyBtn?.addEventListener('click', (e)=>handle(e,'denied'));
   })();
 
   // Success toast (`?submitted=true`)
