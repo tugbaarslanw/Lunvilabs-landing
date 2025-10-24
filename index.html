@@ -238,8 +238,7 @@
         <div class="sec-cta">
           <a class="btn btn-ghost" href="#compliance">Compliance docs</a>
           <a class="btn btn-ghost" href="#dpa">DPA</a>
-          <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a>
-        </div>
+          <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a></div>
       </article>
       <aside class="panel">
         <h3 style="margin:0 0 6px">Operational health</h3>
@@ -339,6 +338,33 @@
     </div>
   </div>
 </div>
+
+<!-- GA4 generate_lead on form submit -->
+<script>
+(function(){
+  // Hem modal form, hem de inline formu hedefler (web3forms kullananlar)
+  var forms = document.querySelectorAll('form[action*="web3forms"]');
+  forms.forEach(function(f){
+    f.addEventListener('submit', function(){
+      var plan = (f.querySelector('input[name="plan"]') && f.querySelector('input[name="plan"]').value)
+                 || (f.closest('#inline-form') ? 'Pro' : 'Unknown');
+      var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]').value) || '';
+      var email_domain = (email.split('@')[1] || '').toLowerCase();
+      if (typeof gtag === 'function') {
+        gtag('event','generate_lead',{
+          method: 'web3forms',
+          plan: plan,
+          email_domain: email_domain
+        });
+      }
+    });
+  });
+
+  // Footer yılı
+  var y = document.getElementById('y');
+  if (y) y.textContent = new Date().getFullYear();
+})();
+</script>
 
 <!-- App JS -->
 <script src="/assets/app.js"></script>
