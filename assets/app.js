@@ -48,14 +48,30 @@ document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
   q.addEventListener('click',()=>q.parentElement.classList.toggle('open'));
 });
 
-// Success toast (?submitted=true)
-(function(){
-  const url=new URL(location.href);
-  if(url.searchParams.get('submitted')==='true'){
-    const t=document.getElementById('submit-toast');
-    if(t){t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),6000);}
+// Success toast + GA4 form_submit (`?submitted=true`)
+(function () {
+  const url = new URL(location.href);
+  if (url.searchParams.get('submitted') === 'true') {
+
+    // GA4: form gönderimini işaretle
+    if (typeof window.gtag === 'function') {
+      gtag('event', 'form_submit', {
+        form_id: 'upgrade_request',
+        method: 'web3forms',
+        status: 'sent'
+      });
+    }
+
+    // toast göster
+    const t = document.getElementById('submit-toast');
+    if (t) {
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 6000);
+    }
+
+    // URL'i temizle
     url.searchParams.delete('submitted');
-    history.replaceState({},'',url.pathname+url.hash);
+    history.replaceState({}, '', url.pathname + url.hash);
   }
 })();
 
