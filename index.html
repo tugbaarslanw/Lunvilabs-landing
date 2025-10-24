@@ -10,38 +10,27 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- Site CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- GA4 + Consent defaults (ölçüm kimliğini değiştir) -->
+<!-- GA4 + Consent defaults -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
-
-  // Consent Mode varsayılanları (uyumlu başlangıç)
   gtag('consent','default',{
     ad_storage:'denied',
     analytics_storage:'denied',
     functionality_storage:'granted',
     security_storage:'granted'
   });
-
-  // GA init + config
   gtag('js', new Date());
-  gtag('config','G-3VQHGCGTPN',{ anonymize_ip:true }); // ← BURAYI değiştir
+  gtag('config','G-3VQHGCGTPN',{ anonymize_ip:true });
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VQHGCGTPN"></script>
-<!-- İsteğe bağlı test kısayolu: URL’ye ?consent=granted ekleyince sadece kendi oturumunda analytics_storage 'granted' olur -->
-<script>
-  (function(){
-    var p=new URLSearchParams(location.search);
-    if(p.get('consent')==='granted'){
-      gtag('consent','update',{analytics_storage:'granted'});
-    }
-  })();
-</script>
 </head>
+
 <body>
+<!-- Decorative BG -->
 <div class="bg"></div><div class="grid"></div><div class="grain"></div>
 <div class="spheres" aria-hidden="true">
   <span class="sphere s1"></span><span class="sphere s2"></span>
@@ -49,9 +38,12 @@
   <span class="sphere s5"></span><span class="sphere s6"></span>
 </div>
 
+<!-- Header / Nav -->
 <header>
   <div class="container nav" id="nav">
-    <a href="#" class="brand" aria-label="Lunvi Labs home"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></a>
+    <a href="/" class="brand" aria-label="Lunvi Labs home">
+      <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
+    </a>
     <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
     <ul id="menu" aria-label="Main menu">
       <li><a href="#product">Product</a></li>
@@ -75,6 +67,7 @@
           <a class="btn btn-primary" href="#demo">Start Demo</a>
           <a class="btn btn-ghost" href="#pricing">See Pricing</a>
         </div>
+
         <div style="height:12px"></div>
         <div class="trust" role="list" aria-label="Trust badges">
           <span class="badge" role="listitem">EU Hosting</span>
@@ -82,6 +75,7 @@
           <span class="badge" role="listitem">99.9% Uptime target</span>
           <span class="badge" role="listitem">1-click Deploy</span>
         </div>
+
         <div class="chips" role="list" aria-label="Highlights">
           <span class="chip" role="listitem">Meta CAPI preset</span>
           <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
@@ -129,6 +123,7 @@
     <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
 
     <div class="pricing-cards">
+      <!-- Dev -->
       <article class="panel">
         <header><h3>Dev</h3></header>
         <p class="price">$0</p>
@@ -141,6 +136,7 @@
         </div>
       </article>
 
+      <!-- Pro -->
       <article class="panel" aria-current="true">
         <header><h3>Pro</h3></header>
         <p class="price pro">$29</p>
@@ -149,10 +145,11 @@
         </ul>
         <div class="card-actions">
           <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
-          <a class="btn btn-ghost" href="#inline-form" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})" role="button">Details</a>
+          <a class="btn btn-ghost" href="#inline-form" role="button" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">Details</a>
         </div>
       </article>
 
+      <!-- Agency -->
       <article class="panel">
         <header><h3>Agency</h3></header>
         <p class="price agency">$89</p>
@@ -166,6 +163,7 @@
       </article>
     </div>
 
+    <!-- CONTACT SALES -->
     <div class="cta-band" id="contact-sales">
       <div class="cta-inner">
         <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
@@ -176,6 +174,7 @@
       </div>
     </div>
 
+    <!-- INLINE REQUEST FORM -->
     <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
       <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -195,7 +194,7 @@
     </div>
   </section>
 
-  <!-- Compare -->
+  <!-- SELF-HOST VS LUNVI -->
   <section class="container" style="padding:24px 0 8px;">
     <div class="compare-wrap">
       <div style="width:min(1020px,96vw)">
@@ -222,7 +221,7 @@
     </div>
   </section>
 
-  <!-- Security -->
+  <!-- SECURITY -->
   <section class="section container" id="security" aria-labelledby="security-title">
     <h2 id="security-title">Security & Compliance</h2>
     <div class="sec-wrap">
@@ -284,6 +283,7 @@
   </section>
 </main>
 
+<!-- FOOTER -->
 <footer class="site">
   <div class="container">
     <div class="footer-top">
@@ -309,7 +309,38 @@
   </div>
 </footer>
 
-<!-- Uygulama JS -->
+<!-- Success toast -->
+<div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
+<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
+      <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+        <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
+        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+        <input type="hidden" name="plan" id="planInput" value="Pro" />
+        <div class="modal-grid">
+          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+        </div>
+        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
+        <div class="modal-actions"><button class="btn btn-primary" type="submit">Submit request</button></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- App JS -->
 <script src="/assets/app.js"></script>
 </body>
 </html>
