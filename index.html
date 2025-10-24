@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!-- noop: trigger checks -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
   <meta name="theme-color" content="#0b0818" />
-
   <link rel="icon" href="/icon.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://www.googletagmanager.com">
@@ -216,7 +214,7 @@
       </div>
     </section>
 
-    <!-- Security & Compliance -->
+    <!-- SECURITY & COMPLIANCE -->
     <section class="section container" id="security" aria-labelledby="security-title">
       <h2 id="security-title">Security & Compliance</h2>
       <div class="sec-wrap">
@@ -307,13 +305,13 @@
   <!-- Success toast -->
   <div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
 
-  <!-- Modal Markup -->
+  <!-- Modal -->
   <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
   <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
     <div class="modal-card">
       <div class="modal-head"><h4 class="modal-title" id="requestTitle">Request upgrade</h4><button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button></div>
       <div class="modal-body">
-        <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+        <form id="requestForm" action="https://api/web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
           <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
           <input type="hidden" name="from_name" value="Lunvi Labs Website" />
@@ -332,7 +330,7 @@
     </div>
   </div>
 
-  <!-- External JS -->
-  <script src="/assets/app.js" defer></script>
+  <!-- App JS -->
+  <script src="/assets/app.js"></script>
 </body>
 </html>
