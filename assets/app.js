@@ -114,3 +114,25 @@ document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
     for(var i=0;i<m.length;i++){var nodes=m[i].addedNodes;for(var j=0;j<nodes.length;j++){var n=nodes[j];var el=(n.id==='consent-bar'||n.id==='consent-bnr')?n:findAny(n); if(el){ if(safeGet(KEY)) destroy(el); else wire(el); }}}});
   try{mo.observe(document.documentElement,{childList:true,subtree:true});}catch(_){}
 })();
+
+// GA4: Upgrade form gönderimini 'generate_lead' olarak işaretle
+(function () {
+  const forms = document.querySelectorAll('form[action*="web3forms"]');
+  forms.forEach(f => {
+    f.addEventListener('submit', () => {
+      try {
+        const plan =
+          document.getElementById('planInput')?.value ||
+          f.querySelector('input[name="plan"]')?.value ||
+          'Unknown';
+        if (window.gtag) {
+          gtag('event', 'generate_lead', {
+            event_category: 'form',
+            event_label: 'upgrade_request',
+            plan: plan
+          });
+        }
+      } catch (_) {}
+    });
+  });
+})();
