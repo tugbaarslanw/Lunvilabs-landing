@@ -152,3 +152,37 @@ document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
     });
   });
 })();
+
+// --- GA4: form_submit (modal + inline), güvenli gönderim ---
+(function () {
+  const MID = 'G-3VQHGCGTPN'; // GA4 Measurement ID'in
+  // Web3Forms'a POST eden tüm formlar (modal + inline)
+  const forms = Array.from(document.querySelectorAll('form[action*="web3forms"]'));
+
+  function sendFormSubmit(evt) {
+    if (typeof gtag !== 'function') return;
+    const f = evt.currentTarget || evt.target;
+    const plan = (document.getElementById('planInput')?.value || '').toString();
+
+    // Olayı hem tıkta hem submitte yakalayalım; GA4'e hemen gönderelim
+    gtag('event', 'form_submit', {
+      send_to: MID,
+      form_id: f.id || 'web3forms',
+      method: 'web3forms',
+      plan: plan || undefined,
+      location: location.pathname + location.hash,
+      debug_mode: true,
+      // Sayfa yönlenmeden önce GA'ye fırsat ver
+      event_timeout: 1000,
+      event_callback: function () { /* no-op */ }
+    });
+  }
+
+  forms.forEach((f) => {
+    // Submit anında
+    f.addEventListener('submit', sendFormSubmit, { capture: true });
+    // Kullanıcı butona tıklar tıklamaz
+    const btn = f.querySelector('button[type="submit"], [type="submit"]');
+    if (btn) btn.addEventListener('click', sendFormSubmit, { capture: true });
+  });
+})();
