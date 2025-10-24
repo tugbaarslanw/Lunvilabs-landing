@@ -78,6 +78,21 @@ document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
   });
 })();
 
+// GA4: lead conversion (form submit)
+(function(){
+  const send = (name, params) => window.gtag && gtag('event', name, params || {});
+  document.querySelectorAll('form[action*="web3forms"]').forEach(f => {
+    f.addEventListener('submit', () => {
+      const plan =
+        document.getElementById('planInput')?.value ||
+        f.querySelector('[name="plan"]')?.value ||
+        (f.id === 'requestForm' ? 'Pro' : 'Inline');
+      const where = (f.id === 'requestForm') ? 'modal' : 'inline';
+      send('generate_lead', { plan, location: where });
+    });
+  });
+})();
+
 // Consent banner helper (optional)
 (function(){
   var KEY='cmv2';
