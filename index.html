@@ -277,9 +277,10 @@
               <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
               <tr><td>Log &amp; Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
               <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
-              <tr><td>Destinations</td>
-                  <td>One-by-one integration</td>
-                  <td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td>
+              <tr>
+                <td>Destinations</td>
+                <td>One-by-one integration</td>
+                <td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td>
               </tr>
               <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
             </tbody>
@@ -360,6 +361,74 @@
         </div>
       </div>
     </section>
+
+    <!-- COMPLIANCE / LEGAL DOCS SECTION -->
+    <section class="section container" id="compliance" aria-labelledby="compliance-title" style="scroll-margin-top:90px;">
+      <h2 id="compliance-title">Compliance &amp; Legal Docs</h2>
+      <p class="int-sub" style="margin-bottom:20px;max-width:640px;">
+        We provide enterprise-style legal paperwork on request. Below is an overview of what you’ll receive during onboarding and before going live in production.
+      </p>
+
+      <div class="sec-wrap" style="flex-wrap:wrap;gap:16px;">
+        <!-- Compliance Overview -->
+        <article class="panel" style="flex:1 1 280px;min-width:260px;">
+          <h3 style="margin:0 0 6px;">Compliance overview</h3>
+          <p class="int-sub" style="margin:0 0 12px;">
+            High-level security posture, data residency options, incident response policy, retention &amp; deletion timeline.
+          </p>
+          <ul class="sec-list">
+            <li>Regional data control (EU available)</li>
+            <li>KVKK / GDPR alignment</li>
+            <li>Encryption in transit &amp; at rest</li>
+            <li>Access controls &amp; audit logs</li>
+          </ul>
+          <a class="btn btn-primary" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=Compliance%20Docs%20Request">
+            Request compliance pack
+          </a>
+        </article>
+
+        <!-- DPA -->
+        <article class="panel" id="dpa" style="flex:1 1 280px;min-width:260px;scroll-margin-top:90px;">
+          <h3 style="margin:0 0 6px;">Data Processing Agreement (DPA)</h3>
+          <p class="int-sub" style="margin:0 0 12px;">
+            Standard controller/processor terms, breach notification, subprocessor obligations, and data subject rights workflow.
+          </p>
+          <ul class="sec-list">
+            <li>GDPR / KVKK style obligations</li>
+            <li>Breach notification clauses</li>
+            <li>Data subject request handling</li>
+            <li>Retention &amp; deletion commitments</li>
+          </ul>
+          <a class="btn btn-ghost" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=DPA%20Request">
+            Request signed DPA
+          </a>
+          <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;">
+            Available for Pro / Agency and enterprise custom plans.
+          </div>
+        </article>
+
+        <!-- Subprocessors -->
+        <article class="panel" id="subprocessors" style="flex:1 1 280px;min-width:260px;scroll-margin-top:90px;">
+          <h3 style="margin:0 0 6px;">Subprocessors list</h3>
+          <p class="int-sub" style="margin:0 0 12px;">
+            We maintain a list of infrastructure and service partners who help us deliver logging, alerting, email, and hosting.
+          </p>
+          <ul class="sec-list">
+            <li>Cloud hosting / regions</li>
+            <li>Logging &amp; alerting providers</li>
+            <li>Support / email delivery</li>
+            <li>Analytics (consent-mode aware)</li>
+          </ul>
+          <a class="btn btn-ghost" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=Subprocessors%20List%20Request">
+            Request current list
+          </a>
+          <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;">
+            We’ll send the latest list and notify you of material changes.
+          </div>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -465,7 +534,7 @@
       f.addEventListener('submit', function(){
         var plan = (f.querySelector('input[name="plan"]') && f.querySelector('input[name="plan"]').value)
                    || (f.closest('#inline-form') ? 'Pro' : 'Unknown');
-        var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]').value) || '';
+        var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]')?.value) || '';
         var email_domain = (email.split('@')[1] || '').toLowerCase();
         if (typeof gtag === 'function') {
           gtag('event','generate_lead',{
