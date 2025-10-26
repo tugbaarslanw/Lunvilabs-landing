@@ -238,134 +238,138 @@
         Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.
       </p>
 
-      <div class="pricing-cards">
-        <!-- Dev -->
-        <article class="panel">
-          <header><h3>Dev</h3></header>
-          <p class="price">$0</p>
-          <ul class="features">
-            <li>1 container</li>
-            <li>10k events / month</li>
-            <li>Log viewer</li>
-            <li>*.lunvi.run subdomain</li>
-          </ul>
-          <div class="card-actions">
-            <!-- GÜNCELLENDİ: js-request + data-plan="Dev" + fallback inline-form -->
-            <a
-              class="btn btn-primary js-request"
-              href="#inline-form"
-              data-plan="Dev"
-              role="button"
-              aria-label="Request upgrade — Dev"
-            >Try for free</a>
+      <!-- FRESH NEW BACKGROUND SURFACE FOR PRICING -->
+      <div class="pricing-surface">
 
-            <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
-          </div>
-        </article>
+        <div class="pricing-cards">
+          <!-- Dev -->
+          <article class="plan-card plan-card--dev">
+            <header><h3>Dev</h3></header>
+            <p class="price">$0</p>
+            <ul class="features">
+              <li>1 container</li>
+              <li>10k events / month</li>
+              <li>Log viewer</li>
+              <li>*.lunvi.run subdomain</li>
+            </ul>
+            <div class="card-actions">
+              <a
+                class="btn btn-primary js-request"
+                href="#inline-form"
+                data-plan="Dev"
+                role="button"
+                aria-label="Request upgrade — Dev"
+              >Try for free</a>
 
-        <!-- Pro -->
-        <article class="panel" aria-current="true">
-          <header><h3>Pro</h3></header>
-          <p class="price pro">$29</p>
-          <ul class="features">
-            <li>3 containers</li>
-            <li>300k events / month</li>
-            <li>Meta CAPI + GA4</li>
-            <li>Custom domain</li>
-            <li>Priority support</li>
-          </ul>
-          <div class="card-actions">
-            <a
-              class="btn btn-primary js-request"
-              href="#inline-form"
-              data-plan="Pro"
-              role="button"
-              aria-label="Request upgrade — Pro"
-            >Request upgrade</a>
+              <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+            </div>
+          </article>
 
-            <a
-              class="btn btn-ghost"
-              href="#inline-form"
-              role="button"
-              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
-            >Details</a>
-          </div>
-        </article>
+          <!-- Pro -->
+          <article class="plan-card plan-card--pro" aria-current="true">
+            <header><h3>Pro</h3></header>
+            <p class="price pro">$29</p>
+            <ul class="features">
+              <li>3 containers</li>
+              <li>300k events / month</li>
+              <li>Meta CAPI + GA4</li>
+              <li>Custom domain</li>
+              <li>Priority support</li>
+            </ul>
+            <div class="card-actions">
+              <a
+                class="btn btn-primary js-request"
+                href="#inline-form"
+                data-plan="Pro"
+                role="button"
+                aria-label="Request upgrade — Pro"
+              >Request upgrade</a>
 
-        <!-- Agency -->
-        <article class="panel">
-          <header><h3>Agency</h3></header>
-          <p class="price agency">$89</p>
-          <ul class="features">
-            <li>10 containers</li>
-            <li>2M events / month</li>
-            <li>Teams &amp; roles</li>
-            <li>EU region</li>
-            <li>SLA</li>
-          </ul>
-          <div class="card-actions">
-            <a
-              class="btn btn-primary js-request"
-              href="#inline-form"
-              data-plan="Agency"
-              role="button"
-              aria-label="Request upgrade — Agency"
-            >Request upgrade</a>
+              <a
+                class="btn btn-ghost"
+                href="#inline-form"
+                role="button"
+                onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
+              >Details</a>
+            </div>
+          </article>
 
-            <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
-          </div>
-        </article>
-      </div>
+          <!-- Agency -->
+          <article class="plan-card plan-card--agency">
+            <header><h3>Agency</h3></header>
+            <p class="price agency">$89</p>
+            <ul class="features">
+              <li>10 containers</li>
+              <li>2M events / month</li>
+              <li>Teams &amp; roles</li>
+              <li>EU region</li>
+              <li>SLA</li>
+            </ul>
+            <div class="card-actions">
+              <a
+                class="btn btn-primary js-request"
+                href="#inline-form"
+                data-plan="Agency"
+                role="button"
+                aria-label="Request upgrade — Agency"
+              >Request upgrade</a>
 
-      <!-- CONTACT SALES -->
-      <div class="cta-band" id="contact-sales">
-        <div class="cta-inner">
-          <div class="cta-copy">
-            <h3>Looking for a custom approach?</h3>
-            <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
-          </div>
-          <div class="cta-actions">
-            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
-            <a class="cta-ghost" href="#demo">Try for free</a>
+              <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+            </div>
+          </article>
+        </div>
+
+        <!-- CONTACT SALES (teal band) -->
+        <div class="cta-band" id="contact-sales">
+          <div class="cta-inner">
+            <div class="cta-copy">
+              <h3>Looking for a custom approach?</h3>
+              <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+            </div>
+            <div class="cta-actions">
+              <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+              <a class="cta-ghost" href="#demo">Try for free</a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- INLINE REQUEST FORM -->
-      <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-        <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
-        <form action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-          <input type="hidden" name="plan" value="Pro" />
+        <!-- INLINE REQUEST FORM -->
+        <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
+          <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+          <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+            <input type="hidden" name="plan" value="Pro" />
 
-          <div class="inline-grid">
-            <label>Company
-              <input name="company" required placeholder="e.g., Example Inc." />
+            <div class="inline-grid">
+              <label>Company
+                <input name="company" required placeholder="e.g., Example Inc." />
+              </label>
+              <label>Email
+                <input type="email" name="email" required placeholder="you@company.com" />
+              </label>
+              <label>Phone
+                <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+              </label>
+              <label>Billing details / Tax ID
+                <input name="billing" placeholder="Tax office, number, address" />
+              </label>
+            </div>
+
+            <label style="display:block; margin-top:10px;">Notes (optional)
+              <textarea name="notes" placeholder="Short notes"></textarea>
             </label>
-            <label>Email
-              <input type="email" name="email" required placeholder="you@company.com" />
-            </label>
-            <label>Phone
-              <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
-            </label>
-            <label>Billing details / Tax ID
-              <input name="billing" placeholder="Tax office, number, address" />
-            </label>
-          </div>
 
-          <label style="display:block; margin-top:10px;">Notes (optional)
-            <textarea name="notes" placeholder="Short notes"></textarea>
-          </label>
+            <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
+            <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+            <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
 
-          <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
-          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+            <div style="margin-top:12px;">
+              <button class="btn btn-primary" type="submit">Submit request</button>
+            </div>
+          </form>
+        </div>
 
-          <div style="margin-top:12px;">
-            <button class="btn btn-primary" type="submit">Submit request</button>
-          </div>
-        </form>
-      </div>
+      </div><!-- /pricing-surface -->
     </section>
 
     <!-- SELF-HOST VS LUNVI -->
