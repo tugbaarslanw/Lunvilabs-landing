@@ -124,16 +124,17 @@
   text-shadow:0 0 8px rgba(0,0,0,.6);
 }
 
-/* ACTIVE STATE (now subtle, no neon) */
+/* ACTIVE STATE: now purple, not neon crazy */
 .bill-btn.active{
-  background:rgba(255,255,255,.18);
+  background:linear-gradient(145deg,#7f58ff 0%, #4e2bd9 60%);
   color:#fff;
   text-shadow:none;
-  box-shadow:none;
+  box-shadow:0 12px 32px rgba(0,0,0,.6);
 }
 
 /* Save 20% text inside Annual button:
-   no colored pill box anymore, just orange-ish text */
+   no pill bg, just orange text.
+   We'll show/hide this via JS depending on mode */
 .bill-btn .save-pill{
   background:none;
   border:0;
@@ -229,7 +230,7 @@
 }
 
 /* Most popular pill:
-   now flat, no glow/neon */
+   flat orange, no glow */
 .plan-pill{
   font-size:11px;
   font-weight:600;
@@ -1059,6 +1060,10 @@
     // default: Annual first (cheaper numbers)
     let mode = 'annual';
 
+    // reference for Save 20%
+    const annualBtn = toggleWrap.querySelector('.bill-btn[data-mode="annual"]');
+    const savePill  = annualBtn ? annualBtn.querySelector('.save-pill') : null;
+
     function applyPrices(){
       plans.forEach(card=>{
         const priceEl = card.querySelector('.plan-price-number');
@@ -1078,18 +1083,29 @@
       });
     }
 
+    function updateSaveVisibility(){
+      if(!savePill) return;
+      if(mode === 'annual'){
+        savePill.style.display = 'inline-block';
+      } else {
+        savePill.style.display = 'none';
+      }
+    }
+
     buttons.forEach(btn=>{
       btn.addEventListener('click',()=>{
         mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
 
-        // toggle active classes so CSS can style
+        // toggle active button (purple bg)
         buttons.forEach(b=>b.classList.toggle('active', b===btn));
 
+        updateSaveVisibility();
         applyPrices();
       });
     });
 
     // initial sync
+    updateSaveVisibility();
     applyPrices();
   })();
   </script>
