@@ -37,7 +37,7 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Premium Pricing / Neon styles + billing toggle (updated) -->
+<!-- Premium Pricing / Neon styles + billing toggle (UPDATED per request) -->
 <style>
 /* ===== PRICING SECTION OVERRIDES ===== */
 
@@ -124,38 +124,26 @@
   text-shadow:0 0 8px rgba(0,0,0,.6);
 }
 
-/* Save 20% pill -> warm orange/yellow */
-.bill-btn .save-pill{
-  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
-  color:#1a0f00;
-  font-size:15px;
-  font-weight:700;
-  line-height:1;
-  padding:4px 6px;
-  border-radius:6px;
-  box-shadow:
-    0 10px 25px rgba(255,123,0,.45),
-    0 0 30px rgba(255,200,0,.6);
-  border:1px solid rgba(255,155,0,.6);
+/* ACTIVE STATE (now subtle, no neon) */
+.bill-btn.active{
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  text-shadow:none;
+  box-shadow:none;
 }
 
-/* Active states per mode */
-.bill-btn[data-mode="monthly"].active{
-  color:#fff;
-  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.8),
-    0 0 30px rgba(136,83,255,.7),
-    0 0 60px rgba(136,83,255,.5);
-}
-.bill-btn[data-mode="annual"].active{
-  color:#1a0f00;
-  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.8),
-    0 0 30px rgba(255,155,0,.7),
-    0 0 60px rgba(255,200,0,.5);
-  text-shadow:none;
+/* Save 20% text inside Annual button:
+   no colored pill box anymore, just orange-ish text */
+.bill-btn .save-pill{
+  background:none;
+  border:0;
+  box-shadow:none;
+  padding:0;
+  border-radius:0;
+  font-size:15px;
+  font-weight:600;
+  line-height:1;
+  color:#ffb347; /* soft orange text */
 }
 
 /* grid of plans */
@@ -182,9 +170,7 @@
     0 0 60px rgba(105,67,255,.3) inset;
 }
 
-/* neon variants per plan */
-
-/* Starter: give it a cooler violet/blue neon pop */
+/* Starter: violet/blue base */
 .plan-card.starter{
   background:
     radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
@@ -197,7 +183,7 @@
     0 0 60px rgba(64,148,255,.25) inset;
 }
 
-/* Growth: green / cyber */
+/* Growth: green base */
 .plan-card.growth{
   background:
     radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
@@ -211,7 +197,7 @@
   transform:translateY(-2px);
 }
 
-/* Enterprise: magenta/rose neon */
+/* Enterprise: magenta base */
 .plan-card.enterprise{
   background:
     radial-gradient(circle at 15% 15%, rgba(255,79,154,.22) 0%, rgba(0,0,0,0) 60%),
@@ -242,20 +228,20 @@
   gap:8px;
 }
 
-/* Most popular pill -> warm orange style */
+/* Most popular pill:
+   now flat, no glow/neon */
 .plan-pill{
   font-size:11px;
   font-weight:600;
   line-height:1;
   padding:4px 6px;
-  border-radius:6px;
-  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
+  border-radius:4px;
+  background:#ffb347;
   color:#1a0f00;
-  border:1px solid rgba(255,155,0,.6);
-  box-shadow:
-    0 10px 25px rgba(255,123,0,.4),
-    0 0 25px rgba(255,155,0,.8);
+  border:1px solid rgba(0,0,0,.15);
+  box-shadow:none;
 }
+
 .plan-desc{
   color:var(--muted);
   font-size:14px;
@@ -1096,14 +1082,14 @@
       btn.addEventListener('click',()=>{
         mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
 
-        // toggle active classes, so CSS can color them differently
+        // toggle active classes so CSS can style
         buttons.forEach(b=>b.classList.toggle('active', b===btn));
 
         applyPrices();
       });
     });
 
-    // initial sync to be safe
+    // initial sync
     applyPrices();
   })();
   </script>
