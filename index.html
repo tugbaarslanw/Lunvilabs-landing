@@ -130,7 +130,7 @@
       </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- PRODUCT -->
     <section class="section container" id="product">
       <h2>Product</h2>
       <div class="grid-3">
@@ -149,6 +149,52 @@
           <h3>Event Router &amp; Destinations</h3>
           <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
         </div>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS (NEW) -->
+    <section class="section container" id="solutions" aria-labelledby="solutions-title">
+      <h2 id="solutions-title">Solutions</h2>
+      <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
+        We cover common growth / analytics setups out of the box, so you don't spend weeks wiring tracking, consent, and attribution.
+      </p>
+
+      <div class="grid-3">
+        <article class="panel">
+          <h3 style="margin-top:0">E-commerce</h3>
+          <p style="margin-top:6px">
+            Purchase / AddToCart events piped to Meta CAPI & GA4, deduped browser+server, with consent-aware fallback pings.
+          </p>
+          <ul class="sec-list">
+            <li>Purchase value & currency</li>
+            <li>UTM / referral cleanup</li>
+            <li>EU-friendly measurement</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0">Lead gen / B2B</h3>
+          <p style="margin-top:6px">
+            Form submits go to CRM + ads platforms with hashed identifiers and audit trail for compliance.
+          </p>
+          <ul class="sec-list">
+            <li>generate_lead events</li>
+            <li>Email domain enrichment</li>
+            <li>SLA / DPA available</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0">Agencies / Partners</h3>
+          <p style="margin-top:6px">
+            Multi-tenant setup with isolated containers per client, managed SSL, and shared debugging access.
+          </p>
+          <ul class="sec-list">
+            <li>Custom domains per client</li>
+            <li>Team / role control</li>
+            <li>White-label friendly</li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -548,34 +594,7 @@
     </div>
   </div>
 
-  <!-- GA4 generate_lead on form submit -->
-  <script>
-  (function(){
-    // Hem modal form, hem de inline formu hedefler (web3forms kullananlar)
-    var forms = document.querySelectorAll('form[action*="web3forms"]');
-    forms.forEach(function(f){
-      f.addEventListener('submit', function(){
-        var plan = (f.querySelector('input[name="plan"]') && f.querySelector('input[name="plan"]').value)
-                   || (f.closest('#inline-form') ? 'Pro' : 'Unknown');
-        var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]')?.value) || '';
-        var email_domain = (email.split('@')[1] || '').toLowerCase();
-        if (typeof gtag === 'function') {
-          gtag('event','generate_lead',{
-            method: 'web3forms',
-            plan: plan,
-            email_domain: email_domain
-          });
-        }
-      });
-    });
-
-    // Footer yılı
-    var y = document.getElementById('y');
-    if (y) y.textContent = new Date().getFullYear();
-  })();
-  </script>
-
-  <!-- App JS -->
+  <!-- GA4 + App logic -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
