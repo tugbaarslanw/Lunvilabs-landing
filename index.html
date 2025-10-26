@@ -152,7 +152,7 @@
       </div>
     </section>
 
-    <!-- SOLUTIONS (NEW) -->
+    <!-- SOLUTIONS -->
     <section class="section container" id="solutions" aria-labelledby="solutions-title">
       <h2 id="solutions-title">Solutions</h2>
       <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
@@ -308,18 +308,23 @@
         <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
         <form action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-          <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
+
+          <!-- GRID: was inline style, now class="inline-grid" -->
+          <div class="inline-grid">
             <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
             <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
             <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
             <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
           </div>
-            <label style="display:block; margin-top:10px;">Notes (optional)
-              <textarea name="notes" placeholder="Short notes"></textarea>
-            </label>
+
+          <label style="display:block; margin-top:10px;">Notes (optional)
+            <textarea name="notes" placeholder="Short notes"></textarea>
+          </label>
+
           <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
           <input type="hidden" name="from_name" value="Lunvi Labs Website" />
           <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+
           <div style="margin-top:12px;">
             <button class="btn btn-primary" type="submit">Submit request</button>
           </div>
@@ -577,15 +582,18 @@
           <input type="hidden" name="from_name" value="Lunvi Labs Website" />
           <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
           <input type="hidden" name="plan" id="planInput" value="Pro" />
+
           <div class="modal-grid">
             <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
             <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
             <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
             <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
           </div>
+
           <label style="display:block; margin-top:10px;">Notes (optional)
             <textarea name="notes" placeholder="Short notes"></textarea>
           </label>
+
           <div class="modal-actions">
             <button class="btn btn-primary" type="submit">Submit request</button>
           </div>
