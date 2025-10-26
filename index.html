@@ -37,7 +37,7 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Premium Pricing / Neon styles + billing toggle -->
+<!-- Premium Pricing / Neon styles + billing toggle (updated) -->
 <style>
 /* ===== PRICING SECTION OVERRIDES ===== */
 
@@ -51,60 +51,6 @@
   margin-top:6px;
   color:var(--muted);
   max-width:720px;
-}
-
-/* Billing toggle pill buttons */
-.billing-toggle-wrap{
-  margin-top:18px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  align-items:center;
-  color:#fff;
-}
-.billing-label{
-  font-size:14px;
-  color:var(--muted);
-}
-.billing-toggle{
-  display:inline-flex;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;
-  padding:4px;
-  box-shadow:0 18px 50px rgba(0,0,0,.6);
-}
-.bill-btn{
-  appearance:none;
-  border:0;
-  cursor:pointer;
-  font-size:13px;
-  font-weight:600;
-  line-height:1;
-  padding:8px 12px;
-  color:var(--muted);
-  background:transparent;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.bill-btn .save-pill{
-  background:linear-gradient(90deg,#ff7bd7,#ff4f9a 60%);
-  color:#0b0814;
-  font-size:10px;
-  font-weight:700;
-  line-height:1;
-  padding:3px 5px;
-  border-radius:5px;
-  box-shadow:0 8px 20px rgba(255,79,154,.45);
-}
-.bill-btn.active{
-  color:#fff;
-  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.8),
-    0 0 30px rgba(136,83,255,.7);
 }
 
 /* dark container behind plans  */
@@ -135,6 +81,83 @@
   opacity:.6;
 }
 
+/* Billing toggle wrapper INSIDE pricing-bg, centered */
+.billing-toggle-wrap{
+  margin:0 0 24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:8px;
+  color:#fff;
+  position:relative;
+  z-index:2;
+}
+.billing-label{
+  font-size:15px;
+  font-weight:500;
+  color:var(--muted);
+}
+.billing-toggle{
+  display:inline-flex;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  padding:4px;
+  box-shadow:0 18px 50px rgba(0,0,0,.6);
+}
+.bill-btn{
+  appearance:none;
+  border:0;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:600;
+  line-height:1;
+  padding:10px 14px;
+  color:var(--muted);
+  background:transparent;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:94px;
+  text-shadow:0 0 8px rgba(0,0,0,.6);
+}
+
+/* Save 20% pill -> warm orange/yellow */
+.bill-btn .save-pill{
+  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
+  color:#1a0f00;
+  font-size:15px;
+  font-weight:700;
+  line-height:1;
+  padding:4px 6px;
+  border-radius:6px;
+  box-shadow:
+    0 10px 25px rgba(255,123,0,.45),
+    0 0 30px rgba(255,200,0,.6);
+  border:1px solid rgba(255,155,0,.6);
+}
+
+/* Active states per mode */
+.bill-btn[data-mode="monthly"].active{
+  color:#fff;
+  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.8),
+    0 0 30px rgba(136,83,255,.7),
+    0 0 60px rgba(136,83,255,.5);
+}
+.bill-btn[data-mode="annual"].active{
+  color:#1a0f00;
+  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.8),
+    0 0 30px rgba(255,155,0,.7),
+    0 0 60px rgba(255,200,0,.5);
+  text-shadow:none;
+}
+
 /* grid of plans */
 .price-layout{
   position:relative;
@@ -160,18 +183,21 @@
 }
 
 /* neon variants per plan */
+
+/* Starter: give it a cooler violet/blue neon pop */
 .plan-card.starter{
   background:
-    radial-gradient(circle at 15% 15%, rgba(168,140,255,.18) 0%, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(111,68,255,.22) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(22,16,44,.9) 0%, rgba(15,12,28,.7) 100%);
-  border:1px solid rgba(168,140,255,.4);
+    radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(circle at 80% 20%, rgba(64,148,255,.18) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(180deg, rgba(16,14,36,.9) 0%, rgba(12,10,26,.75) 100%);
+  border:1px solid rgba(136,83,255,.45);
   box-shadow:
     0 40px 120px rgba(0,0,0,.9),
-    0 0 100px rgba(168,140,255,.4),
-    0 0 60px rgba(168,140,255,.2) inset;
+    0 0 120px rgba(136,83,255,.4),
+    0 0 60px rgba(64,148,255,.25) inset;
 }
 
+/* Growth: green / cyber */
 .plan-card.growth{
   background:
     radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
@@ -185,6 +211,7 @@
   transform:translateY(-2px);
 }
 
+/* Enterprise: magenta/rose neon */
 .plan-card.enterprise{
   background:
     radial-gradient(circle at 15% 15%, rgba(255,79,154,.22) 0%, rgba(0,0,0,0) 60%),
@@ -214,15 +241,20 @@
   flex-wrap:wrap;
   gap:8px;
 }
+
+/* Most popular pill -> warm orange style */
 .plan-pill{
   font-size:11px;
   font-weight:600;
   line-height:1;
   padding:4px 6px;
   border-radius:6px;
-  background:rgba(65,226,192,.16);
-  color:#41e2c0;
-  border:1px solid rgba(65,226,192,.4);
+  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
+  color:#1a0f00;
+  border:1px solid rgba(255,155,0,.6);
+  box-shadow:
+    0 10px 25px rgba(255,123,0,.4),
+    0 0 25px rgba(255,155,0,.8);
 }
 .plan-desc{
   color:var(--muted);
@@ -351,7 +383,7 @@
 }
 @media(max-width:700px){
   .modal-grid{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr !important;
   }
 }
 
@@ -564,18 +596,19 @@
         High-match, consent-aware server-side tracking. No free tier — you own the data.
       </p>
 
-      <!-- billing toggle -->
-      <div class="billing-toggle-wrap">
-        <span class="billing-label">Billing:</span>
-        <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
-          <button class="bill-btn active" data-mode="monthly" type="button">Monthly</button>
-          <button class="bill-btn" data-mode="annual" type="button">
-            Annual <span class="save-pill">Save 20%</span>
-          </button>
-        </div>
-      </div>
-
       <div class="pricing-bg">
+
+        <!-- billing toggle (centered above cards) -->
+        <div class="billing-toggle-wrap">
+          <span class="billing-label">Billing</span>
+          <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
+            <button class="bill-btn" data-mode="monthly" type="button">Monthly</button>
+            <button class="bill-btn active" data-mode="annual" type="button">
+              Annual <span class="save-pill">Save 20%</span>
+            </button>
+          </div>
+        </div>
+
         <div class="price-layout">
 
           <!-- Starter -->
@@ -590,9 +623,9 @@
                 <span class="currency">$</span>
                 <span class="plan-price-number"
                       data-month="99"
-                      data-annual="79">99</span>
+                      data-annual="79">79</span>
                 <span class="per">/mo</span>
-                <span class="plan-price-note">billed monthly</span>
+                <span class="plan-price-note">billed annually</span>
               </p>
             </div>
 
@@ -636,9 +669,9 @@
                 <span class="currency">$</span>
                 <span class="plan-price-number"
                       data-month="189"
-                      data-annual="149">189</span>
+                      data-annual="149">149</span>
                 <span class="per">/mo</span>
-                <span class="plan-price-note">billed monthly</span>
+                <span class="plan-price-note">billed annually</span>
               </p>
             </div>
 
@@ -679,9 +712,9 @@
                 <span class="currency">$</span>
                 <span class="plan-price-number"
                       data-month="349"
-                      data-annual="299">349</span>
+                      data-annual="299">299</span>
                 <span class="per">/mo</span>
-                <span class="plan-price-note">billed monthly</span>
+                <span class="plan-price-note">billed annually</span>
               </p>
             </div>
 
@@ -1037,7 +1070,8 @@
     const buttons = Array.from(toggleWrap.querySelectorAll('.bill-btn'));
     const plans   = Array.from(document.querySelectorAll('.plan-card'));
 
-    let mode = 'monthly'; // default
+    // default: Annual first (cheaper numbers)
+    let mode = 'annual';
 
     function applyPrices(){
       plans.forEach(card=>{
@@ -1061,12 +1095,15 @@
     buttons.forEach(btn=>{
       btn.addEventListener('click',()=>{
         mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
+
+        // toggle active classes, so CSS can color them differently
         buttons.forEach(b=>b.classList.toggle('active', b===btn));
+
         applyPrices();
       });
     });
 
-    // initial sync
+    // initial sync to be safe
     applyPrices();
   })();
   </script>
