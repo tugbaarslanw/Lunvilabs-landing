@@ -235,141 +235,136 @@
     <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
       <h2 id="pricing-title">Pricing</h2>
       <p class="lead" style="margin-top:6px">
-        Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.
+        Fully managed infrastructure. Dedicated compliance and regional data handling. Plans activate after payment.
       </p>
 
-      <!-- FRESH NEW BACKGROUND SURFACE FOR PRICING -->
+      <!-- darker / glass surface behind cards -->
       <div class="pricing-surface">
-
         <div class="pricing-cards">
-          <!-- Dev -->
-          <article class="plan-card plan-card--dev">
-            <header><h3>Dev</h3></header>
-            <p class="price">$0</p>
+          <!-- Starter -->
+          <article class="panel plan-card plan-card--starter">
+            <header><h3>Starter</h3></header>
+            <p class="price">$79<span style="font-size:16px;font-weight:500;color:#9f97d9">/month</span></p>
             <ul class="features">
               <li>1 container</li>
-              <li>10k events / month</li>
-              <li>Log viewer</li>
+              <li>100k events / month</li>
+              <li>Shared EU endpoint</li>
+              <li>Basic log &amp; debugger</li>
               <li>*.lunvi.run subdomain</li>
             </ul>
             <div class="card-actions">
-              <a
-                class="btn btn-primary js-request"
-                href="#inline-form"
-                data-plan="Dev"
-                role="button"
-                aria-label="Request upgrade — Dev"
-              >Try for free</a>
+              <a class="btn btn-primary js-request"
+                 href="#"
+                 data-plan="Starter"
+                 role="button"
+                 aria-label="Request upgrade — Starter">Start now</a>
 
-              <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+              <a class="btn btn-ghost"
+                 href="#inline-form"
+                 role="button"
+                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
+                 Details
+              </a>
             </div>
           </article>
 
           <!-- Pro -->
-          <article class="plan-card plan-card--pro" aria-current="true">
+          <article class="panel plan-card plan-card--pro" aria-current="true">
             <header><h3>Pro</h3></header>
-            <p class="price pro">$29</p>
+            <p class="price pro">$249<span style="font-size:16px;font-weight:500;color:#9f97d9">/month</span></p>
             <ul class="features">
               <li>3 containers</li>
-              <li>300k events / month</li>
-              <li>Meta CAPI + GA4</li>
-              <li>Custom domain</li>
+              <li>1M events / month</li>
+              <li>Custom domain &amp; managed SSL</li>
+              <li>Meta&nbsp;CAPI + GA4 + TikTok</li>
               <li>Priority support</li>
             </ul>
             <div class="card-actions">
-              <a
-                class="btn btn-primary js-request"
-                href="#inline-form"
-                data-plan="Pro"
-                role="button"
-                aria-label="Request upgrade — Pro"
-              >Request upgrade</a>
+              <a class="btn btn-primary js-request"
+                 href="#"
+                 data-plan="Pro"
+                 role="button"
+                 aria-label="Request upgrade — Pro">Request upgrade</a>
 
-              <a
-                class="btn btn-ghost"
-                href="#inline-form"
-                role="button"
-                onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
-              >Details</a>
+              <a class="btn btn-ghost"
+                 href="#inline-form"
+                 role="button"
+                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
+                 Details
+              </a>
             </div>
           </article>
 
-          <!-- Agency -->
-          <article class="plan-card plan-card--agency">
-            <header><h3>Agency</h3></header>
-            <p class="price agency">$89</p>
+          <!-- Agency / Enterprise -->
+          <article class="panel plan-card plan-card--agency">
+            <header><h3>Agency / Enterprise</h3></header>
+            <p class="price agency">$699<span style="font-size:16px;font-weight:500;color:#41e2c0">/month</span></p>
             <ul class="features">
               <li>10 containers</li>
-              <li>2M events / month</li>
-              <li>Teams &amp; roles</li>
-              <li>EU region</li>
-              <li>SLA</li>
+              <li>5M events / month</li>
+              <li>EU-only data residency</li>
+              <li>Team roles &amp; audit logs</li>
+              <li>SLA &amp; dedicated support</li>
             </ul>
             <div class="card-actions">
-              <a
-                class="btn btn-primary js-request"
-                href="#inline-form"
-                data-plan="Agency"
-                role="button"
-                aria-label="Request upgrade — Agency"
-              >Request upgrade</a>
+              <a class="btn btn-primary js-request"
+                 href="#"
+                 data-plan="Agency"
+                 role="button"
+                 aria-label="Request upgrade — Agency">Request upgrade</a>
 
-              <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+              <a class="btn btn-ghost"
+                 href="#inline-form"
+                 role="button"
+                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
+                 Details
+              </a>
             </div>
           </article>
         </div>
+      </div>
 
-        <!-- CONTACT SALES (teal band) -->
-        <div class="cta-band" id="contact-sales">
-          <div class="cta-inner">
-            <div class="cta-copy">
-              <h3>Looking for a custom approach?</h3>
-              <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
-            </div>
-            <div class="cta-actions">
-              <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
-              <a class="cta-ghost" href="#demo">Try for free</a>
-            </div>
+      <!-- CONTACT SALES -->
+      <div class="cta-band" id="contact-sales">
+        <div class="cta-inner">
+          <div class="cta-copy">
+            <h3>Looking for a custom approach?</h3>
+            <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+            <a class="cta-ghost" href="#demo">Try for free</a>
           </div>
         </div>
+      </div>
 
-        <!-- INLINE REQUEST FORM -->
-        <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-          <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
-          <form action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-            <input type="hidden" name="plan" value="Pro" />
+      <!-- INLINE REQUEST FORM -->
+      <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
+        <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
 
-            <div class="inline-grid">
-              <label>Company
-                <input name="company" required placeholder="e.g., Example Inc." />
-              </label>
-              <label>Email
-                <input type="email" name="email" required placeholder="you@company.com" />
-              </label>
-              <label>Phone
-                <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
-              </label>
-              <label>Billing details / Tax ID
-                <input name="billing" placeholder="Tax office, number, address" />
-              </label>
-            </div>
+          <!-- form grid -->
+          <div class="inline-grid">
+            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+          </div>
 
-            <label style="display:block; margin-top:10px;">Notes (optional)
-              <textarea name="notes" placeholder="Short notes"></textarea>
-            </label>
+          <label style="display:block; margin-top:10px;">Notes (optional)
+            <textarea name="notes" placeholder="Short notes"></textarea>
+          </label>
 
-            <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
-            <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-            <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+          <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
+          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
 
-            <div style="margin-top:12px;">
-              <button class="btn btn-primary" type="submit">Submit request</button>
-            </div>
-          </form>
-        </div>
-
-      </div><!-- /pricing-surface -->
+          <div style="margin-top:12px;">
+            <button class="btn btn-primary" type="submit">Submit request</button>
+          </div>
+        </form>
+      </div>
     </section>
 
     <!-- SELF-HOST VS LUNVI -->
