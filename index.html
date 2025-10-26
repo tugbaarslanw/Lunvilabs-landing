@@ -30,343 +30,460 @@
 </head>
 
 <body>
-<!-- Decorative BG -->
-<div class="bg"></div><div class="grid"></div><div class="grain"></div>
-<div class="spheres" aria-hidden="true">
-  <span class="sphere s1"></span><span class="sphere s2"></span>
-  <span class="sphere s3"></span><span class="sphere s4"></span>
-  <span class="sphere s5"></span><span class="sphere s6"></span>
-</div>
-
-<!-- Header / Nav -->
-<header>
-  <div class="container nav" id="nav">
-    <a href="/" class="brand" aria-label="Lunvi Labs home">
-      <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
-    </a>
-    <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
-    <ul id="menu" aria-label="Main menu">
-      <li><a href="#product">Product</a></li>
-      <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#integrations">Integrations</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
-      <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
-    </ul>
+  <!-- Decorative BG -->
+  <div class="bg"></div><div class="grid"></div><div class="grain"></div>
+  <div class="spheres" aria-hidden="true">
+    <span class="sphere s1"></span><span class="sphere s2"></span>
+    <span class="sphere s3"></span><span class="sphere s4"></span>
+    <span class="sphere s5"></span><span class="sphere s6"></span>
   </div>
-</header>
 
-<main>
-  <!-- HERO -->
-  <section class="hero container" id="hero">
-    <div class="hero-grid">
-      <div>
-        <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
-        <p class="lead">Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> & <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log & debugger</em>.</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#demo">Start Demo</a>
-          <a class="btn btn-ghost" href="#pricing">See Pricing</a>
+  <!-- Header / Nav -->
+  <header>
+    <div class="container nav" id="nav">
+      <a href="/" class="brand" aria-label="Lunvi Labs home">
+        <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
+      </a>
+      <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
+      <ul id="menu" aria-label="Main menu">
+        <li><a href="#product">Product</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
+        <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="hero">
+      <div class="hero-grid">
+        <div>
+          <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
+          <p class="lead">
+            Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> &amp; <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log &amp; debugger</em>.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#demo">Start Demo</a>
+            <a class="btn btn-ghost" href="#pricing">See Pricing</a>
+          </div>
+
+          <div style="height:12px"></div>
+          <div class="trust" role="list" aria-label="Trust badges">
+            <span class="badge" role="listitem">EU Hosting</span>
+            <span class="badge" role="listitem">GDPR / KVKK</span>
+            <span class="badge" role="listitem">99.9% Uptime target</span>
+            <span class="badge" role="listitem">1-click Deploy</span>
+          </div>
+
+          <div class="chips" role="list" aria-label="Highlights">
+            <span class="chip" role="listitem">Meta CAPI preset</span>
+            <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
+            <span class="chip" role="listitem">Event Router</span>
+            <span class="chip" role="listitem">Consent Mode v2</span>
+            <span class="chip" role="listitem">Log &amp; Debugger</span>
+          </div>
         </div>
 
-        <div style="height:12px"></div>
-        <div class="trust" role="list" aria-label="Trust badges">
-          <span class="badge" role="listitem">EU Hosting</span>
-          <span class="badge" role="listitem">GDPR / KVKK</span>
-          <span class="badge" role="listitem">99.9% Uptime target</span>
-          <span class="badge" role="listitem">1-click Deploy</span>
-        </div>
-
-        <div class="chips" role="list" aria-label="Highlights">
-          <span class="chip" role="listitem">Meta CAPI preset</span>
-          <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
-          <span class="chip" role="listitem">Event Router</span>
-          <span class="chip" role="listitem">Consent Mode v2</span>
-          <span class="chip" role="listitem">Log & Debugger</span>
-        </div>
-      </div>
-
-      <div class="panels">
-        <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Key capabilities</h3><p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p></div>
-        <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div><h3>Use cases</h3><p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p></div>
-        <div class="panel"><div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div><h3>Health at a glance</h3><p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="section container" id="product">
-    <h2>Product</h2>
-    <div class="grid-3">
-      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Meta Conversions API</h3><p>Pixel ID & Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p></div>
-      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>GA4 Server Endpoint</h3><p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p></div>
-      <div class="panel"><div class="icon" aria-hidden="true"></div><h3>Event Router & Destinations</h3><p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p></div>
-    </div>
-  </section>
-
-  <!-- INTEGRATIONS -->
-  <section class="section container" id="integrations" aria-labelledby="integrations-title">
-    <h2 id="integrations-title">Integrations</h2>
-    <p class="int-sub">Works seamlessly with your existing stack. Monitored delivery, retry & dedup built in.</p>
-    <div class="int-grid">
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Meta Conversions API</strong><br><small>Event & user matching</small></div></div>
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Google Analytics 4</strong><br><small>Measurement Protocol v2</small></div></div>
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>TikTok</strong><br><small>Events API</small></div></div>
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Klaviyo</strong><br><small>Profiles & events</small></div></div>
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>BigQuery</strong><br><small>Raw event export</small></div></div>
-      <div class="int-card" role="listitem"><span class="i" aria-hidden="true"></span><div><strong>Webhook</strong><br><small>Custom destinations</small></div></div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
-    <h2 id="pricing-title">Pricing</h2>
-    <p class="lead" style="margin-top:6px">Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.</p>
-
-    <div class="pricing-cards">
-      <!-- Dev -->
-      <article class="panel">
-        <header><h3>Dev</h3></header>
-        <p class="price">$0</p>
-        <ul class="features">
-          <li>1 container</li><li>10k events / month</li><li>Log viewer</li><li>*.lunvi.run subdomain</li>
-        </ul>
-        <div class="card-actions">
-          <a class="btn btn-primary" href="#demo" role="button">Try for free</a>
-          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
-        </div>
-      </article>
-
-      <!-- Pro -->
-      <article class="panel" aria-current="true">
-        <header><h3>Pro</h3></header>
-        <p class="price pro">$29</p>
-        <ul class="features">
-          <li>3 containers</li><li>300k events / month</li><li>Meta CAPI + GA4</li><li>Custom domain</li><li>Priority support</li>
-        </ul>
-        <div class="card-actions">
-          <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
-          <a class="btn btn-ghost" href="#inline-form" role="button" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">Details</a>
-        </div>
-      </article>
-
-      <!-- Agency -->
-      <article class="panel">
-        <header><h3>Agency</h3></header>
-        <p class="price agency">$89</p>
-        <ul class="features">
-          <li>10 containers</li><li>2M events / month</li><li>Teams & roles</li><li>EU region</li><li>SLA</li>
-        </ul>
-        <div class="card-actions">
-          <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
-          <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
-        </div>
-      </article>
-    </div>
-
-    <!-- CONTACT SALES -->
-    <div class="cta-band" id="contact-sales">
-      <div class="cta-inner">
-        <div class="cta-copy"><h3>Looking for a custom approach?</h3><p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p></div>
-        <div class="cta-actions">
-          <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
-          <a class="cta-ghost" href="#demo">Try for free</a>
+        <div class="panels">
+          <div class="panel">
+            <div class="icon" aria-hidden="true"></div>
+            <h3>Key capabilities</h3>
+            <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
+          </div>
+          <div class="panel">
+            <div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div>
+            <h3>Use cases</h3>
+            <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
+          </div>
+          <div class="panel">
+            <div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div>
+            <h3>Health at a glance</h3>
+            <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- INLINE REQUEST FORM -->
-    <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-      <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
-      <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-        <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
-          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+    <!-- FEATURES -->
+    <section class="section container" id="product">
+      <h2>Product</h2>
+      <div class="grid-3">
+        <div class="panel">
+          <div class="icon" aria-hidden="true"></div>
+          <h3>Meta Conversions API</h3>
+          <p>Pixel ID &amp; Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p>
         </div>
-        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
-        <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
-        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-        <div style="margin-top:12px;"><button class="btn btn-primary" type="submit">Submit request</button></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- SELF-HOST VS LUNVI -->
-  <section class="container" style="padding:24px 0 8px;">
-    <div class="compare-wrap">
-      <div style="width:min(1020px,96vw)">
-        <h2 style="text-align:center;margin:0 0 10px;font-size:34px">Self-host vs Lunvi</h2>
-      </div>
-    </div>
-    <div class="compare-wrap">
-      <div class="compare" role="table" aria-label="Self-host vs Lunvi comparison">
-        <table class="table">
-          <thead>
-            <tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Setup time</td><td>Days / weeks</td><td><span class="pill">Minutes</span></td></tr>
-            <tr><td>CNAME & SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
-            <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
-            <tr><td>Log & Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
-            <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
-            <tr><td>Destinations</td><td>One-by-one integration</td><td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td></tr>
-            <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECURITY -->
-  <section class="section container" id="security" aria-labelledby="security-title">
-    <h2 id="security-title">Security & Compliance</h2>
-    <div class="sec-wrap">
-      <article class="panel">
-        <h3 style="margin:0 0 6px">Built for privacy-first teams</h3>
-        <ul class="sec-list">
-          <li>EU-region hosting & data residency options</li>
-          <li>Encryption in transit & at rest (TLS, AES-256)</li>
-          <li>Scoped API keys, roles & SSO (on request)</li>
-          <li>Isolated projects & per-destination secrets</li>
-          <li>Access logs and audit trails</li>
-          <li>DPA & Subprocessors list provided</li>
-        </ul>
-        <div class="sec-cta">
-          <a class="btn btn-ghost" href="#compliance">Compliance docs</a>
-          <a class="btn btn-ghost" href="#dpa">DPA</a>
-          <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a></div>
-      </article>
-      <aside class="panel">
-        <h3 style="margin:0 0 6px">Operational health</h3>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px">
-          <span class="badge"><span class="dot" aria-hidden="true"></span>&nbsp;All systems operational</span>
-          <span class="badge">P95 180ms</span>
-          <span class="badge">99.9% uptime target</span>
+        <div class="panel">
+          <div class="icon" aria-hidden="true"></div>
+          <h3>GA4 Server Endpoint</h3>
+          <p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p>
         </div>
-        <div class="seals" aria-label="assurance badges">
-          <div class="seal">EU Hosting</div>
-          <div class="seal">GDPR / KVKK</div>
-          <div class="seal">DPA Available</div>
+        <div class="panel">
+          <div class="icon" aria-hidden="true"></div>
+          <h3>Event Router &amp; Destinations</h3>
+          <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
         </div>
-        <p class="int-sub" style="margin-top:10px">Need more? Ask about dedicated regions, private clusters and SLAs.</p>
-        <a class="btn btn-primary" href="mailto:info@lunvilabs.com?subject=Security%20&%20Compliance">Talk to security</a>
-      </aside>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- FAQ -->
-  <section class="faq-wrap">
-    <div class="faq" id="faq">
-      <h3>FAQ</h3>
-      <div class="faq-item">
-        <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.</div>
+    <!-- INTEGRATIONS -->
+    <section class="section container" id="integrations" aria-labelledby="integrations-title">
+      <h2 id="integrations-title">Integrations</h2>
+      <p class="int-sub">Works seamlessly with your existing stack. Monitored delivery, retry &amp; dedup built in.</p>
+      <div class="int-grid">
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>Meta Conversions API</strong><br><small>Event &amp; user matching</small></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>Google Analytics 4</strong><br><small>Measurement Protocol v2</small></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>TikTok</strong><br><small>Events API</small></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>Klaviyo</strong><br><small>Profiles &amp; events</small></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>BigQuery</strong><br><small>Raw event export</small></div>
+        </div>
+        <div class="int-card" role="listitem">
+          <span class="i" aria-hidden="true"></span>
+          <div><strong>Webhook</strong><br><small>Custom destinations</small></div>
+        </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">Bring your domain, we provision & auto-renew certificates and handle regional routing.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
-      </div>
-    </div>
-  </section>
-</main>
+    </section>
 
-<!-- FOOTER -->
-<footer class="site">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo"><span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span></div>
-        <p style="margin:0;opacity:.9">Privacy-first infrastructure for server-side conversions & analytics.</p>
-        <span class="footer-badge">EU Hosting • GDPR / KVKK</span>
+    <!-- PRICING -->
+    <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Pricing</h2>
+      <p class="lead" style="margin-top:6px">
+        Phase-1 launch without payment gateway. Submit a request — we activate your plan after payment.
+      </p>
+
+      <div class="pricing-cards">
+        <!-- Dev -->
+        <article class="panel">
+          <header><h3>Dev</h3></header>
+          <p class="price">$0</p>
+          <ul class="features">
+            <li>1 container</li>
+            <li>10k events / month</li>
+            <li>Log viewer</li>
+            <li>*.lunvi.run subdomain</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="#demo" role="button">Try for free</a>
+            <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+          </div>
+        </article>
+
+        <!-- Pro -->
+        <article class="panel" aria-current="true">
+          <header><h3>Pro</h3></header>
+          <p class="price pro">$29</p>
+          <ul class="features">
+            <li>3 containers</li>
+            <li>300k events / month</li>
+            <li>Meta CAPI + GA4</li>
+            <li>Custom domain</li>
+            <li>Priority support</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
+            <a class="btn btn-ghost" href="#inline-form" role="button" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">Details</a>
+          </div>
+        </article>
+
+        <!-- Agency -->
+        <article class="panel">
+          <header><h3>Agency</h3></header>
+          <p class="price agency">$89</p>
+          <ul class="features">
+            <li>10 containers</li>
+            <li>2M events / month</li>
+            <li>Teams &amp; roles</li>
+            <li>EU region</li>
+            <li>SLA</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+            <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
+          </div>
+        </article>
       </div>
-      <div class="footer-col"><h4>Product</h4>
-        <ul class="footer-links"><li><a href="#product">Features</a></li><li><a href="#integrations">Integrations</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#demo">Start Demo</a></li></ul>
+
+      <!-- CONTACT SALES -->
+      <div class="cta-band" id="contact-sales">
+        <div class="cta-inner">
+          <div class="cta-copy">
+            <h3>Looking for a custom approach?</h3>
+            <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+            <a class="cta-ghost" href="#demo">Try for free</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-col"><h4>Company</h4>
-        <ul class="footer-links"><li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li><li><a href="#docs">Docs</a></li><li><a href="#">Status</a></li><li><a href="#">Careers</a></li></ul>
+
+      <!-- INLINE REQUEST FORM -->
+      <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
+        <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+          <div style="display:grid; gap:10px; grid-template-columns:repeat(2,minmax(0,1fr));">
+            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+          </div>
+          <label style="display:block; margin-top:10px;">Notes (optional)
+            <textarea name="notes" placeholder="Short notes"></textarea>
+          </label>
+          <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
+          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+          <div style="margin-top:12px;">
+            <button class="btn btn-primary" type="submit">Submit request</button>
+          </div>
+        </form>
       </div>
-      <div class="footer-col"><h4>Legal</h4>
-        <ul class="footer-links"><li><a href="#compliance">Privacy</a></li><li><a href="#compliance">Terms</a></li><li><a href="#dpa">DPA</a></li><li><a href="#subprocessors">Subprocessors</a></li></ul>
+    </section>
+
+    <!-- SELF-HOST VS LUNVI -->
+    <section class="container" style="padding:24px 0 8px;">
+      <div class="compare-wrap">
+        <div style="width:min(1020px,96vw)">
+          <h2 style="text-align:center;margin:0 0 10px;font-size:34px">Self-host vs Lunvi</h2>
+        </div>
+      </div>
+      <div class="compare-wrap">
+        <div class="compare" role="table" aria-label="Self-host vs Lunvi comparison">
+          <table class="table">
+            <thead>
+              <tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Setup time</td><td>Days / weeks</td><td><span class="pill">Minutes</span></td></tr>
+              <tr><td>CNAME &amp; SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
+              <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
+              <tr><td>Log &amp; Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
+              <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
+              <tr><td>Destinations</td>
+                  <td>One-by-one integration</td>
+                  <td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td>
+              </tr>
+              <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="section container" id="security" aria-labelledby="security-title">
+      <h2 id="security-title">Security &amp; Compliance</h2>
+      <div class="sec-wrap">
+        <article class="panel">
+          <h3 style="margin:0 0 6px">Built for privacy-first teams</h3>
+          <ul class="sec-list">
+            <li>EU-region hosting &amp; data residency options</li>
+            <li>Encryption in transit &amp; at rest (TLS, AES-256)</li>
+            <li>Scoped API keys, roles &amp; SSO (on request)</li>
+            <li>Isolated projects &amp; per-destination secrets</li>
+            <li>Access logs and audit trails</li>
+            <li>DPA &amp; Subprocessors list provided</li>
+          </ul>
+          <div class="sec-cta">
+            <a class="btn btn-ghost" href="#compliance">Compliance docs</a>
+            <a class="btn btn-ghost" href="#dpa">DPA</a>
+            <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a>
+          </div>
+        </article>
+        <aside class="panel">
+          <h3 style="margin:0 0 6px">Operational health</h3>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px">
+            <span class="badge"><span class="dot" aria-hidden="true"></span>&nbsp;All systems operational</span>
+            <span class="badge">P95 180ms</span>
+            <span class="badge">99.9% uptime target</span>
+          </div>
+          <div class="seals" aria-label="assurance badges">
+            <div class="seal">EU Hosting</div>
+            <div class="seal">GDPR / KVKK</div>
+            <div class="seal">DPA Available</div>
+          </div>
+          <p class="int-sub" style="margin-top:10px">Need more? Ask about dedicated regions, private clusters and SLAs.</p>
+          <a class="btn btn-primary" href="mailto:info@lunvilabs.com?subject=Security%20&%20Compliance">Talk to security</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-wrap">
+      <div class="faq" id="faq">
+        <h3>FAQ</h3>
+
+        <div class="faq-item">
+          <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
+          <div class="faq-a">
+            We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
+          <div class="faq-a">
+            We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
+          <div class="faq-a">
+            Bring your domain, we provision &amp; auto-renew certificates and handle regional routing.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
+          <div class="faq-a">
+            We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo" aria-hidden="true"></span> Lunvi
+            <span style="opacity:.75;font-weight:700">Labs</span>
+          </div>
+          <p style="margin:0;opacity:.9">
+            Privacy-first infrastructure for server-side conversions &amp; analytics.
+          </p>
+          <span class="footer-badge">EU Hosting • GDPR / KVKK</span>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-links">
+            <li><a href="#product">Features</a></li>
+            <li><a href="#integrations">Integrations</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#demo">Start Demo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
+            <li><a href="#docs">Docs</a></li>
+            <li><a href="#">Status</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="/privacy.html">Privacy</a></li>
+            <li><a href="/terms.html">Terms</a></li>
+            <li><a href="#dpa">DPA</a></li>
+            <li><a href="#subprocessors">Subprocessors</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
+        <div class="footer-mini">
+          <a href="#security">Security</a>
+          <a href="#compliance">Compliance</a>
+          <a href="#">Changelog</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-      <div class="footer-mini"><a href="#security">Security</a><a href="#compliance">Compliance</a><a href="#">Changelog</a></div>
+  </footer>
+
+  <!-- Success toast -->
+  <div id="submit-toast" class="toast" role="status" aria-live="polite">
+    Thanks! We received your request — we’ll get back to you shortly.
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
+  <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
+        <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+          <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
+          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
+          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
+          <input type="hidden" name="plan" id="planInput" value="Pro" />
+          <div class="modal-grid">
+            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
+            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
+            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
+            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+          </div>
+          <label style="display:block; margin-top:10px;">Notes (optional)
+            <textarea name="notes" placeholder="Short notes"></textarea>
+          </label>
+          <div class="modal-actions">
+            <button class="btn btn-primary" type="submit">Submit request</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-</footer>
 
-<!-- Success toast -->
-<div id="submit-toast" class="toast" role="status" aria-live="polite">Thanks! We received your request — we’ll get back to you shortly.</div>
-
-<!-- Modal -->
-<div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
-<div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
-  <div class="modal-card">
-    <div class="modal-head">
-      <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
-      <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body">
-      <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-        <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
-        <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-        <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-        <input type="hidden" name="plan" id="planInput" value="Pro" />
-        <div class="modal-grid">
-          <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-          <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-          <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
-        </div>
-        <label style="display:block; margin-top:10px;">Notes (optional)<textarea name="notes" placeholder="Short notes"></textarea></label>
-        <div class="modal-actions"><button class="btn btn-primary" type="submit">Submit request</button></div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- GA4 generate_lead on form submit -->
-<script>
-(function(){
-  // Hem modal form, hem de inline formu hedefler (web3forms kullananlar)
-  var forms = document.querySelectorAll('form[action*="web3forms"]');
-  forms.forEach(function(f){
-    f.addEventListener('submit', function(){
-      var plan = (f.querySelector('input[name="plan"]') && f.querySelector('input[name="plan"]').value)
-                 || (f.closest('#inline-form') ? 'Pro' : 'Unknown');
-      var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]').value) || '';
-      var email_domain = (email.split('@')[1] || '').toLowerCase();
-      if (typeof gtag === 'function') {
-        gtag('event','generate_lead',{
-          method: 'web3forms',
-          plan: plan,
-          email_domain: email_domain
-        });
-      }
+  <!-- GA4 generate_lead on form submit -->
+  <script>
+  (function(){
+    // Hem modal form, hem de inline formu hedefler (web3forms kullananlar)
+    var forms = document.querySelectorAll('form[action*="web3forms"]');
+    forms.forEach(function(f){
+      f.addEventListener('submit', function(){
+        var plan = (f.querySelector('input[name="plan"]') && f.querySelector('input[name="plan"]').value)
+                   || (f.closest('#inline-form') ? 'Pro' : 'Unknown');
+        var email = (f.querySelector('input[type="email"]') && f.querySelector('input[type="email"]').value) || '';
+        var email_domain = (email.split('@')[1] || '').toLowerCase();
+        if (typeof gtag === 'function') {
+          gtag('event','generate_lead',{
+            method: 'web3forms',
+            plan: plan,
+            email_domain: email_domain
+          });
+        }
+      });
     });
-  });
 
-  // Footer yılı
-  var y = document.getElementById('y');
-  if (y) y.textContent = new Date().getFullYear();
-})();
-</script>
+    // Footer yılı
+    var y = document.getElementById('y');
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+  </script>
 
-<!-- App JS -->
-<script src="/assets/app.js"></script>
+  <!-- App JS -->
+  <script src="/assets/app.js"></script>
 </body>
 </html>
