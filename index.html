@@ -37,7 +37,7 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Premium Pricing / Billing toggle styles -->
+<!-- Pricing visual overrides, billing toggle styles, details section -->
 <style>
 /* ===== PRICING SECTION OVERRIDES ===== */
 
@@ -81,7 +81,7 @@
   opacity:.6;
 }
 
-/* Billing toggle wrapper INSIDE pricing-bg, centered */
+/* Billing toggle wrapper INSIDE pricing-bg */
 .billing-toggle-wrap{
   margin:0 0 24px;
   display:flex;
@@ -98,6 +98,8 @@
   font-weight:500;
   color:var(--muted);
 }
+
+/* Toggle group */
 .billing-toggle{
   display:inline-flex;
   background:rgba(255,255,255,.06);
@@ -122,10 +124,21 @@
   gap:8px;
   min-width:94px;
   text-shadow:0 0 8px rgba(0,0,0,.6);
+  transition:.14s ease;
 }
 
-/* Save 20% pill, default hidden. We'll show it via JS only if Annual is active */
-.save-pill{
+/* Active state (purple chip) */
+.bill-btn.active{
+  color:#fff;
+  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
+  box-shadow:
+    0 16px 30px rgba(0,0,0,.8),
+    0 0 30px rgba(136,83,255,.4);
+  text-shadow:none;
+}
+
+/* Save 20% pill, only visible on Annual when active */
+.bill-btn .save-pill{
   display:none;
   background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
   color:#1a0f00;
@@ -139,16 +152,8 @@
     0 0 30px rgba(255,200,0,.6);
   border:1px solid rgba(255,155,0,.6);
 }
-
-/* Active state (both Monthly & Annual use same purple look, no neon/orange here) */
-.bill-btn.active{
-  color:#fff;
-  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.8),
-    0 0 30px rgba(136,83,255,.6),
-    0 0 60px rgba(136,83,255,.4);
-  text-shadow:none;
+.bill-btn[data-mode="annual"].active .save-pill{
+  display:inline-flex;
 }
 
 /* grid of plans */
@@ -175,7 +180,7 @@
     0 0 60px rgba(105,67,255,.3) inset;
 }
 
-/* Starter card look */
+/* Starter: violet / blue */
 .plan-card.starter{
   background:
     radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
@@ -188,7 +193,7 @@
     0 0 60px rgba(64,148,255,.25) inset;
 }
 
-/* Growth card look */
+/* Growth: teal / green */
 .plan-card.growth{
   background:
     radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
@@ -202,7 +207,7 @@
   transform:translateY(-2px);
 }
 
-/* Enterprise card look */
+/* Enterprise: magenta / rose */
 .plan-card.enterprise{
   background:
     radial-gradient(circle at 15% 15%, rgba(255,79,154,.22) 0%, rgba(0,0,0,0) 60%),
@@ -233,7 +238,7 @@
   gap:8px;
 }
 
-/* Most popular pill (turuncu kalıyor, bunu değiştirmemizi istemedin) */
+/* "Most popular" pill (we keep the warm orange look) */
 .plan-pill{
   font-size:11px;
   font-weight:600;
@@ -292,7 +297,7 @@
   color:var(--muted);
 }
 
-/* features with green ticks */
+/* features list with green ticks */
 .plan-features{
   list-style:none;
   margin:18px 0 24px;
@@ -325,7 +330,7 @@
   color:#062b26;
 }
 
-/* CTA buttons bottom */
+/* CTA buttons */
 .plan-cta{
   margin-top:auto;
   display:flex;
@@ -354,6 +359,94 @@
   box-shadow:0 22px 40px #0008;
 }
 
+/* --- Details section styles (inside inline-form) --- */
+
+.plan-details-wrap{
+  display:grid;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.plan-details{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+  color:var(--text);
+  overflow:hidden;
+}
+
+.plan-details summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:600;
+  font-size:15px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  list-style:none;
+  outline:none;
+}
+.plan-details summary::-webkit-details-marker{
+  display:none;
+}
+
+.plan-details summary .summ-head{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  line-height:1.3;
+}
+.plan-details summary .summ-left{
+  display:flex;
+  flex-direction:column;
+}
+.plan-details summary .plan-label{
+  font-size:14px;
+  font-weight:700;
+  color:#fff;
+}
+.plan-details summary .mini-desc{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:400;
+}
+
+.plan-details summary .caret{
+  font-size:14px;
+  color:var(--muted);
+  transition:.18s ease;
+}
+.plan-details[open] summary .caret{
+  transform:rotate(180deg);
+  color:#fff;
+}
+
+.plan-details-body{
+  padding:0 16px 16px;
+  font-size:14px;
+  line-height:1.5;
+  color:var(--muted);
+}
+.plan-details-body p{
+  margin:0 0 10px;
+  color:var(--muted);
+}
+.plan-details-body p strong{
+  color:#fff;
+  font-weight:600;
+}
+.plan-details-body ul{
+  margin:0 0 12px;
+  padding:0 0 0 18px;
+}
+.plan-details-body li{
+  margin:6px 0;
+  color:#efeafe;
+}
+
 /* responsive tweaks */
 @media(max-width:1000px){
   .price-layout{
@@ -367,11 +460,13 @@
     transform:none;
   }
 }
+
 @media(max-width:600px){
   .inline-grid{
     grid-template-columns:1fr;
   }
 }
+
 @media(max-width:700px){
   .modal-grid{
     grid-template-columns:1fr !important;
@@ -595,7 +690,7 @@
           <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
             <button class="bill-btn" data-mode="monthly" type="button">Monthly</button>
             <button class="bill-btn active" data-mode="annual" type="button">
-              Annual <span class="save-pill" id="savePill">Save 20%</span>
+              Annual <span class="save-pill">Save 20%</span>
             </button>
           </div>
         </div>
@@ -638,8 +733,10 @@
                 Request upgrade
               </a>
 
-              <a class="btn btn-ghost" href="#inline-form" role="button"
-                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
+              <a class="btn btn-ghost"
+                 href="#plan-starter-details"
+                 role="button"
+                 onclick="event.preventDefault();const sec=document.getElementById('plan-starter-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
                 Details
               </a>
             </div>
@@ -684,8 +781,10 @@
                 Request upgrade
               </a>
 
-              <a class="btn btn-ghost" href="#inline-form" role="button"
-                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
+              <a class="btn btn-ghost"
+                 href="#plan-growth-details"
+                 role="button"
+                 onclick="event.preventDefault();const sec=document.getElementById('plan-growth-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
                 Details
               </a>
             </div>
@@ -728,8 +827,10 @@
               </a>
 
               <a class="btn btn-ghost"
-                 href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20%E2%80%94%20Enterprise%20Inquiry">
-                Contact sales
+                 href="#plan-enterprise-details"
+                 role="button"
+                 onclick="event.preventDefault();const sec=document.getElementById('plan-enterprise-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
+                Details
               </a>
             </div>
           </article>
@@ -751,20 +852,141 @@
         </div>
       </div>
 
-      <!-- INLINE REQUEST FORM -->
+      <!-- INLINE DETAILS + REQUEST FORM -->
       <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-        <h3 style="margin:0 0 10px">Request upgrade — Starter / Growth / Enterprise</h3>
+        <h3 style="margin:0 0 10px">Plan details &amp; upgrade request</h3>
+        <p style="color:var(--muted);font-size:14px;line-height:1.4;margin:0 0 16px;">
+          Compare what’s included in each plan, then send us a request. We’ll activate
+          your chosen plan and handle onboarding.
+        </p>
+
+        <!-- Collapsible details blocks -->
+        <div class="plan-details-wrap">
+
+          <!-- Starter details -->
+          <details class="plan-details" id="plan-starter-details">
+            <summary>
+              <span class="summ-left">
+                <span class="plan-label">Starter plan details</span>
+                <span class="mini-desc">Single brand, fast clean server-side tracking.</span>
+              </span>
+              <span class="caret">▾</span>
+            </summary>
+            <div class="plan-details-body">
+              <p><strong>Who it’s for</strong><br>
+                One brand / one storefront that just needs accurate server-to-server tracking, quickly.
+              </p>
+              <p><strong>Included</strong></p>
+              <ul class="sec-list">
+                <li>1 container (isolated runtime) for 1 brand</li>
+                <li>100k server-side events / month</li>
+                <li>Managed SSL and *.lunvi.run subdomain</li>
+                <li>Optional custom subdomain via CNAME (SSL handled by us)</li>
+                <li>Meta Conversions API &amp; GA4 MP v2 templates</li>
+                <li>Basic browser+server dedup &amp; Consent Mode v2 support</li>
+                <li>IP anonymization &amp; basic PII scrubbing</li>
+                <li>Simple event log view (recent sends + status codes)</li>
+                <li>Email support during business hours</li>
+              </ul>
+              <p><strong>Limits</strong></p>
+              <ul class="sec-list">
+                <li>No guaranteed EU-only region (shared infra)</li>
+                <li>No advanced audit trail or multi-user access</li>
+                <li>Above 100k events/mo billed as overage blocks</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Growth details -->
+          <details class="plan-details" id="plan-growth-details" open>
+            <summary>
+              <span class="summ-left">
+                <span class="plan-label">Growth plan details</span>
+                <span class="mini-desc">Multi-brand, EU hosting, live debugger &amp; priority support.</span>
+              </span>
+              <span class="caret">▾</span>
+            </summary>
+            <div class="plan-details-body">
+              <p><strong>Who it’s for</strong><br>
+                Teams or agencies running multiple brands / shops, who care about data quality, consent,
+                and being able to prove attribution.
+              </p>
+              <p><strong>Included</strong></p>
+              <ul class="sec-list">
+                <li>3 containers / brands (isolated per brand)</li>
+                <li>500k+ events / month total capacity</li>
+                <li>Custom domain (CNAME) + EU-region data residency option</li>
+                <li>Meta CAPI + GA4 + Event Router (branch one event to multiple destinations)</li>
+                <li>Advanced dedup logic &amp; Consent Mode v2 fallback (anonymous ping → full payload)</li>
+                <li>Live Log &amp; Debugger UI (why an event was accepted/rejected, match quality, etc.)</li>
+                <li>UTM / referral cleanup &amp; IP normalization</li>
+                <li>Lightweight audit trail (config changes, deploy history)</li>
+                <li>Simple shared view you can give to clients (read-only debugging)</li>
+                <li>Priority support / SLA preview response times</li>
+              </ul>
+              <p><strong>Notes</strong></p>
+              <ul class="sec-list">
+                <li>Extra containers beyond 3 are add-on</li>
+                <li>Signed DPA / SLA can be prepared here, but it’s guaranteed under Enterprise</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Enterprise details -->
+          <details class="plan-details" id="plan-enterprise-details">
+            <summary>
+              <span class="summ-left">
+                <span class="plan-label">Enterprise plan details</span>
+                <span class="mini-desc">Dedicated region, audit log, white-label / agency mode.</span>
+              </span>
+              <span class="caret">▾</span>
+            </summary>
+            <div class="plan-details-body">
+              <p><strong>Who it’s for</strong><br>
+                High-compliance orgs and agencies that need regional isolation, formal DPA / SLA,
+                and per-client segregation.
+              </p>
+              <p><strong>Included</strong></p>
+              <ul class="sec-list">
+                <li>10 containers out of the box (each client isolated)</li>
+                <li>2M+ events / month burst capacity for campaigns</li>
+                <li>Dedicated region &amp; residency options (EU-only / per-client cluster, etc.)</li>
+                <li>Team / role-based access, per-client audit trail</li>
+                <li>Custom webhooks + BigQuery export (full raw event stream)</li>
+                <li>Signed DPA, SLA, white-label mode for agencies</li>
+                <li>Defined data retention / deletion policy and incident response terms</li>
+              </ul>
+              <p><strong>Why Enterprise</strong></p>
+              <ul class="sec-list">
+                <li>You can show auditors where data lives</li>
+                <li>You can prove who touched what &amp; when</li>
+                <li>You can present Lunvi as “your own infra” to end clients</li>
+              </ul>
+            </div>
+          </details>
+
+        </div>
+
+        <!-- Upgrade Request Form -->
+        <h4 style="margin:0 0 10px;color:#fff;font-size:16px;font-weight:700;">
+          Request upgrade
+        </h4>
         <form action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
 
-          <!-- NEW: capture chosen plan here too -->
-          <input type="hidden" name="plan" id="inlinePlanInput" value="">
-
           <div class="inline-grid">
-            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+            <label>Company
+              <input name="company" required placeholder="e.g., Example Inc." />
+            </label>
+            <label>Email
+              <input type="email" name="email" required placeholder="you@company.com" />
+            </label>
+            <label>Phone
+              <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+            </label>
+            <label>Billing details / Tax ID
+              <input name="billing" placeholder="Tax office, number, address" />
+            </label>
           </div>
 
           <label style="display:block; margin-top:10px;">Notes (optional)
@@ -1031,8 +1253,6 @@
           <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
           <input type="hidden" name="from_name" value="Lunvi Labs Website" />
           <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-
-          <!-- this will get updated dynamically -->
           <input type="hidden" name="plan" id="planInput" value="Growth" />
 
           <div class="modal-grid" style="display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));">
@@ -1057,16 +1277,16 @@
   <!-- GA4 + App logic -->
   <script src="/assets/app.js"></script>
 
-  <!-- Billing toggle script + sync chosen plan for both forms -->
+  <!-- Billing toggle logic -->
   <script>
   (function(){
-    // ----- BILLING TOGGLE -----
     const toggleWrap = document.getElementById('billingToggle');
-    const savePill   = document.getElementById('savePill'); // "Save 20%" span
-    const buttons    = toggleWrap ? Array.from(toggleWrap.querySelectorAll('.bill-btn')) : [];
-    const plans      = Array.from(document.querySelectorAll('.plan-card'));
+    if(!toggleWrap) return;
 
-    // start with annual active
+    const buttons = Array.from(toggleWrap.querySelectorAll('.bill-btn'));
+    const plans   = Array.from(document.querySelectorAll('.plan-card'));
+
+    // default: Annual
     let mode = 'annual';
 
     function applyPrices(){
@@ -1086,66 +1306,27 @@
           noteEl.textContent  = 'billed monthly';
         }
       });
-
-      // Save 20% sadece annual modda görünsün
-      if (savePill){
-        if (mode === 'annual'){
-          savePill.style.display = 'inline-block';
-        } else {
-          savePill.style.display = 'none';
-        }
-      }
-    }
-
-    function setMode(newMode){
-      mode = newMode;
-      buttons.forEach(b=>{
-        const isActive = b.getAttribute('data-mode') === mode;
-        if(isActive){ b.classList.add('active'); }
-        else{ b.classList.remove('active'); }
-      });
-      applyPrices();
     }
 
     buttons.forEach(btn=>{
       btn.addEventListener('click',()=>{
-        const m = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
-        setMode(m);
+        mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
+
+        // highlight active button
+        buttons.forEach(b=>b.classList.toggle('active', b===btn));
+
+        applyPrices();
       });
     });
 
-    // init
-    setMode('annual');
-
-
-    // ----- PLAN CAPTURE SYNC -----
-    const modalPlanInput   = document.getElementById('planInput');
-    const inlinePlanInput  = document.getElementById('inlinePlanInput');
-    const subjInput        = document.getElementById('subjectInput');
-
-    // her ".js-request" butonuna tıklanınca ilgili planı hem modal formuna
-    // hem inline forma yaz
-    document.querySelectorAll('.js-request').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const chosen = btn.getAttribute('data-plan') || 'Growth';
-
-        // inline form gizli input
-        if (inlinePlanInput) {
-          inlinePlanInput.value = chosen;
-        }
-
-        // modal gizli input
-        if (modalPlanInput) {
-          modalPlanInput.value = chosen;
-        }
-
-        // subject'e de plan ekleyelim
-        if (subjInput) {
-          subjInput.value = 'Lunvi Labs — Plan Upgrade Request (' + chosen + ')';
-        }
-      }, {capture:true});
-    });
+    // sync default
+    applyPrices();
   })();
+  </script>
+
+  <!-- Footer year -->
+  <script>
+  document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
