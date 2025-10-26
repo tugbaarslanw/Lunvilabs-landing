@@ -37,6 +37,220 @@
 <!-- CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
+<!-- Pricing / premium cards overrides -->
+<style>
+/* ===== PREMIUM PRICING WRAP ===== */
+.pricing { padding:32px 0 26px; position:relative; z-index:2; }
+
+.pricing-lead {
+  margin-top:6px;
+  color:var(--muted);
+  max-width:720px;
+}
+
+/* big dark panel behind the plans */
+.pricing-bg{
+  margin-top:24px;
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.16);
+  background:
+    radial-gradient(900px 600px at 20% 15%, rgba(255,255,255,.06) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(180deg, rgba(10,8,20,.9) 0%, rgba(20,16,40,.55) 100%);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.8),
+    0 0 160px rgba(111,68,255,.28);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.pricing-bg:after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(800px 300px at 70% 120%, rgba(255,255,255,.12), transparent 70%),
+    radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.07), transparent 70%);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  opacity:.6;
+}
+
+/* grid of plan cards */
+.price-layout{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  z-index:1;
+}
+
+/* individual plan cards */
+.plan-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  border-radius:20px;
+  padding:22px 24px 24px;
+  min-height:420px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, rgba(15,12,28,.9) 0%, rgba(20,16,40,.7) 100%);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.8),
+    0 0 60px rgba(105,67,255,.3) inset;
+}
+
+.plan-card.featured{
+  border:1px solid rgba(130,255,210,.5);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.9),
+    0 0 120px rgba(65,226,192,.4),
+    0 0 60px rgba(65,226,192,.18) inset;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(16,27,24,.9) 0%, rgba(12,10,24,.8) 100%);
+}
+
+/* header info inside a card */
+.plan-head{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:16px;
+}
+.plan-name{
+  font-size:18px;
+  line-height:1.3;
+  font-weight:700;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.plan-pill{
+  font-size:11px;
+  font-weight:600;
+  line-height:1;
+  padding:4px 6px;
+  border-radius:6px;
+  background:rgba(65,226,192,.16);
+  color:#41e2c0;
+  border:1px solid rgba(65,226,192,.4);
+}
+.plan-desc{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.4;
+  margin:0;
+}
+
+.plan-price{
+  font-size:42px;
+  line-height:1.1;
+  font-weight:800;
+  color:#fff;
+  margin:0;
+}
+.plan-price span{
+  font-size:15px;
+  font-weight:400;
+  color:var(--muted);
+  margin-left:4px;
+}
+
+/* feature list with green checks */
+.plan-features{
+  list-style:none;
+  margin:18px 0 24px;
+  padding:0;
+  display:grid;
+  gap:10px;
+  font-size:14px;
+  color:#efeafe;
+}
+.plan-features li{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  line-height:1.4;
+}
+.check-icon{
+  flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:18px;
+  height:18px;
+  border-radius:6px;
+  background:#0ecf9f;
+  box-shadow:
+    0 8px 16px rgba(0,0,0,.5),
+    0 0 20px rgba(14,207,159,.6) inset;
+  font-size:12px;
+  font-weight:800;
+  color:#062b26;
+}
+
+/* CTA buttons bottom of each card */
+.plan-cta{
+  margin-top:auto;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.plan-cta .btn-primary{
+  width:100%;
+  justify-content:center;
+  font-weight:600;
+  font-size:15px;
+  padding:.8rem 1rem;
+}
+.plan-cta .btn-ghost{
+  width:100%;
+  justify-content:center;
+  font-weight:600;
+  font-size:15px;
+  padding:.8rem 1rem;
+  border-color:rgba(255,255,255,.22);
+  color:#fff;
+  background:rgba(255,255,255,.06);
+}
+.plan-cta .btn-primary:hover{
+  transform:translateY(-1px);
+  box-shadow:0 22px 40px #0008;
+}
+
+/* responsive */
+@media(max-width:1000px){
+  .price-layout{
+    grid-template-columns:1fr;
+  }
+  .plan-card{
+    min-height:0;
+  }
+}
+
+/* inline form grid helper (just in case it's not already in styles.css) */
+.inline-grid{
+  display:grid;
+  gap:10px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+@media(max-width:600px){
+  .inline-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:700px){
+  .modal-grid{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
 <!-- GA4 + Consent defaults -->
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -234,97 +448,118 @@
     <!-- PRICING -->
     <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
       <h2 id="pricing-title">Pricing</h2>
-      <p class="lead" style="margin-top:6px">
-        Fully managed infrastructure. Dedicated compliance and regional data handling. Plans activate after payment.
+      <p class="lead pricing-lead">
+        High-match, consent-aware server-side tracking. No free tier — monthly billing. You own the data.
       </p>
 
-      <!-- darker / glass surface behind cards -->
-      <div class="pricing-surface">
-        <div class="pricing-cards">
+      <div class="pricing-bg">
+        <div class="price-layout">
           <!-- Starter -->
-          <article class="panel plan-card plan-card--starter">
-            <header><h3>Starter</h3></header>
-            <p class="price">$79<span style="font-size:16px;font-weight:500;color:#9f97d9">/month</span></p>
-            <ul class="features">
-              <li>1 container</li>
-              <li>100k events / month</li>
-              <li>Shared EU endpoint</li>
-              <li>Basic log &amp; debugger</li>
-              <li>*.lunvi.run subdomain</li>
-            </ul>
-            <div class="card-actions">
-              <a class="btn btn-primary js-request"
-                 href="#"
-                 data-plan="Starter"
-                 role="button"
-                 aria-label="Request upgrade — Starter">Start now</a>
+          <article class="plan-card">
+            <div class="plan-head">
+              <div class="plan-name">
+                Starter
+              </div>
+              <p class="plan-desc">
+                For a single brand that needs clean server-to-server tracking fast.
+              </p>
+              <p class="plan-price">$79<span>/mo</span></p>
+            </div>
 
-              <a class="btn btn-ghost"
-                 href="#inline-form"
-                 role="button"
+            <ul class="plan-features">
+              <li><span class="check-icon">✓</span><span>1 container / brand</span></li>
+              <li><span class="check-icon">✓</span><span>100k events / month</span></li>
+              <li><span class="check-icon">✓</span><span>Managed SSL &amp; custom subdomain</span></li>
+              <li><span class="check-icon">✓</span><span>Meta Conversions API + GA4 MP v2</span></li>
+              <li><span class="check-icon">✓</span><span>Consent Mode v2 &amp; basic dedup</span></li>
+              <li><span class="check-icon">✓</span><span>Email support</span></li>
+            </ul>
+
+            <div class="plan-cta">
+              <a class="btn btn-primary" href="#demo" role="button">Start demo</a>
+              <a class="btn btn-ghost" href="#inline-form" role="button"
                  onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
-                 Details
+                Details
               </a>
             </div>
           </article>
 
-          <!-- Pro -->
-          <article class="panel plan-card plan-card--pro" aria-current="true">
-            <header><h3>Pro</h3></header>
-            <p class="price pro">$249<span style="font-size:16px;font-weight:500;color:#9f97d9">/month</span></p>
-            <ul class="features">
-              <li>3 containers</li>
-              <li>1M events / month</li>
-              <li>Custom domain &amp; managed SSL</li>
-              <li>Meta&nbsp;CAPI + GA4 + TikTok</li>
-              <li>Priority support</li>
+          <!-- Growth (featured) -->
+          <article class="plan-card featured" aria-current="true">
+            <div class="plan-head">
+              <div class="plan-name">
+                Growth
+                <span class="plan-pill">Most popular</span>
+              </div>
+              <p class="plan-desc">
+                Multi-brand setups, EU-region hosting and advanced debugging.
+              </p>
+              <p class="plan-price">$149<span>/mo</span></p>
+            </div>
+
+            <ul class="plan-features">
+              <li><span class="check-icon">✓</span><span>3 containers / brands</span></li>
+              <li><span class="check-icon">✓</span><span>500k events / month</span></li>
+              <li><span class="check-icon">✓</span><span>Custom domain (CNAME) &amp; EU data residency</span></li>
+              <li><span class="check-icon">✓</span><span>Meta CAPI + GA4 + Event Router</span></li>
+              <li><span class="check-icon">✓</span><span>Advanced dedup &amp; live log / debugger</span></li>
+              <li><span class="check-icon">✓</span><span>Priority support / SLA preview</span></li>
             </ul>
-            <div class="card-actions">
+
+            <div class="plan-cta">
               <a class="btn btn-primary js-request"
                  href="#"
-                 data-plan="Pro"
+                 data-plan="Growth"
                  role="button"
-                 aria-label="Request upgrade — Pro">Request upgrade</a>
+                 aria-label="Request upgrade — Growth">Request upgrade</a>
 
-              <a class="btn btn-ghost"
-                 href="#inline-form"
-                 role="button"
+              <a class="btn btn-ghost" href="#inline-form" role="button"
                  onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
-                 Details
+                Details
               </a>
             </div>
           </article>
 
-          <!-- Agency / Enterprise -->
-          <article class="panel plan-card plan-card--agency">
-            <header><h3>Agency / Enterprise</h3></header>
-            <p class="price agency">$699<span style="font-size:16px;font-weight:500;color:#41e2c0">/month</span></p>
-            <ul class="features">
-              <li>10 containers</li>
-              <li>5M events / month</li>
-              <li>EU-only data residency</li>
-              <li>Team roles &amp; audit logs</li>
-              <li>SLA &amp; dedicated support</li>
+          <!-- Enterprise -->
+          <article class="plan-card">
+            <div class="plan-head">
+              <div class="plan-name">
+                Enterprise
+              </div>
+              <p class="plan-desc">
+                Dedicated regions, audit trail, white-label / agency mode.
+              </p>
+              <p class="plan-price">$299<span>/mo</span></p>
+            </div>
+
+            <ul class="plan-features">
+              <li><span class="check-icon">✓</span><span>10 containers (isolation per client)</span></li>
+              <li><span class="check-icon">✓</span><span>2M+ events / month burst capacity</span></li>
+              <li><span class="check-icon">✓</span><span>Dedicated region &amp; residency options</span></li>
+              <li><span class="check-icon">✓</span><span>Team / role control &amp; audit log</span></li>
+              <li><span class="check-icon">✓</span><span>Custom webhooks / BigQuery export</span></li>
+              <li><span class="check-icon">✓</span><span>Signed DPA, SLA, white-label mode</span></li>
             </ul>
-            <div class="card-actions">
+
+            <div class="plan-cta">
               <a class="btn btn-primary js-request"
                  href="#"
-                 data-plan="Agency"
+                 data-plan="Enterprise"
                  role="button"
-                 aria-label="Request upgrade — Agency">Request upgrade</a>
+                 aria-label="Request upgrade — Enterprise">
+                Request upgrade
+              </a>
 
               <a class="btn btn-ghost"
-                 href="#inline-form"
-                 role="button"
-                 onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">
-                 Details
+                 href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20%E2%80%94%20Enterprise%20Inquiry">
+                Contact sales
               </a>
             </div>
           </article>
         </div>
       </div>
 
-      <!-- CONTACT SALES -->
+      <!-- CONTACT SALES BAND (kept) -->
       <div class="cta-band" id="contact-sales">
         <div class="cta-inner">
           <div class="cta-copy">
@@ -332,7 +567,7 @@
             <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
           </div>
           <div class="cta-actions">
-            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Custom%20Plan%20Inquiry">Contact sales</a>
+            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20%E2%80%94%20Custom%20Plan%20Inquiry">Contact sales</a>
             <a class="cta-ghost" href="#demo">Try for free</a>
           </div>
         </div>
@@ -340,11 +575,10 @@
 
       <!-- INLINE REQUEST FORM -->
       <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-        <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
+        <h3 style="margin:0 0 10px">Request upgrade — Growth / Enterprise</h3>
         <form action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
 
-          <!-- form grid -->
           <div class="inline-grid">
             <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
             <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
@@ -512,7 +746,7 @@
             Request signed DPA
           </a>
           <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;">
-            Available for Pro / Agency and enterprise custom plans.
+            Available for Growth / Enterprise and custom plans.
           </div>
         </article>
 
@@ -616,9 +850,9 @@
           <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
           <input type="hidden" name="from_name" value="Lunvi Labs Website" />
           <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-          <input type="hidden" name="plan" id="planInput" value="Pro" />
+          <input type="hidden" name="plan" id="planInput" value="Growth" />
 
-          <div class="modal-grid">
+          <div class="modal-grid" style="display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));">
             <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
             <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
             <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
@@ -629,7 +863,7 @@
             <textarea name="notes" placeholder="Short notes"></textarea>
           </label>
 
-          <div class="modal-actions">
+          <div class="modal-actions" style="margin-top:12px;">
             <button class="btn btn-primary" type="submit">Submit request</button>
           </div>
         </form>
