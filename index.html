@@ -164,10 +164,10 @@
         <article class="panel">
           <h3 style="margin-top:0">E-commerce</h3>
           <p style="margin-top:6px">
-            Purchase / AddToCart events piped to Meta CAPI & GA4, deduped browser+server, with consent-aware fallback pings.
+            Purchase / AddToCart events piped to Meta CAPI &amp; GA4, deduped browser+server, with consent-aware fallback pings.
           </p>
           <ul class="sec-list">
-            <li>Purchase value & currency</li>
+            <li>Purchase value &amp; currency</li>
             <li>UTM / referral cleanup</li>
             <li>EU-friendly measurement</li>
           </ul>
@@ -267,8 +267,21 @@
             <li>Priority support</li>
           </ul>
           <div class="card-actions">
-            <a class="btn btn-primary js-request" href="#" data-plan="Pro" role="button" aria-label="Request upgrade — Pro">Request upgrade</a>
-            <a class="btn btn-ghost" href="#inline-form" role="button" onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})">Details</a>
+            <!-- fallback: href="#inline-form"  -->
+            <a
+              class="btn btn-primary js-request"
+              href="#inline-form"
+              data-plan="Pro"
+              role="button"
+              aria-label="Request upgrade — Pro"
+            >Request upgrade</a>
+
+            <a
+              class="btn btn-ghost"
+              href="#inline-form"
+              role="button"
+              onclick="document.querySelector('#inline-form')?.scrollIntoView({behavior:'smooth',block:'start'})"
+            >Details</a>
           </div>
         </article>
 
@@ -284,7 +297,15 @@
             <li>SLA</li>
           </ul>
           <div class="card-actions">
-            <a class="btn btn-primary js-request" href="#" data-plan="Agency" role="button" aria-label="Request upgrade — Agency">Request upgrade</a>
+            <!-- fallback: href="#inline-form"  -->
+            <a
+              class="btn btn-primary js-request"
+              href="#inline-form"
+              data-plan="Agency"
+              role="button"
+              aria-label="Request upgrade — Agency"
+            >Request upgrade</a>
+
             <a class="btn btn-ghost" href="#inline-form" role="button">Details</a>
           </div>
         </article>
@@ -309,13 +330,21 @@
         <h3 style="margin:0 0 10px">Request upgrade — Pro plan</h3>
         <form action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
+          <input type="hidden" name="plan" value="Pro" />
 
-          <!-- GRID: was inline style, now class="inline-grid" -->
           <div class="inline-grid">
-            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
+            <label>Company
+              <input name="company" required placeholder="e.g., Example Inc." />
+            </label>
+            <label>Email
+              <input type="email" name="email" required placeholder="you@company.com" />
+            </label>
+            <label>Phone
+              <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
+            </label>
+            <label>Billing details / Tax ID
+              <input name="billing" placeholder="Tax office, number, address" />
+            </label>
           </div>
 
           <label style="display:block; margin-top:10px;">Notes (optional)
