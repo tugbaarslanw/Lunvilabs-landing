@@ -642,3 +642,29 @@ footer.site{
   flex-wrap:wrap;
   margin-top:10px
 }
+/* --- Responsive tweaks for mobile --- */
+
+/* Pricing cards: 3 sütun -> 2 sütun -> 1 sütun */
+@media (max-width:1020px){
+  .pricing-cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+@media (max-width:680px){
+  .pricing-cards{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Inline request form grid:
+   desktop = 2 kolon, mobile = 1 kolon */
+.inline-grid{
+  display:grid;
+  gap:10px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+@media (max-width:600px){
+  .inline-grid{
+    grid-template-columns:1fr;
+  }
+}
