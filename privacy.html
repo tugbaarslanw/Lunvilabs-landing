@@ -20,12 +20,33 @@
 <style>
 /* ====== LEGAL PAGE OVERRIDES ====== */
 
-/* put legal content above the decorative bg layers */
+/* create a dark overlay layer above the spheres/bg but below text */
 .legal-shell {
   position: relative;
   z-index: 5;
   color: #fff;
   padding-bottom: 80px;
+  overflow: hidden;
+}
+
+/* full-screen dark veil for readability (not a boxed card) */
+.legal-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      1200px 800px at 50% 0%,
+      rgba(15,10,32,.6) 0%,
+      rgba(10,8,20,.88) 40%,
+      rgba(6,4,14,.95) 70%
+    ),
+    rgba(6,4,14,.85);
+  box-shadow:
+    0 80px 200px rgba(0,0,0,.9) inset,
+    0 -40px 120px rgba(0,0,0,.8) inset;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* top nav for legal pages */
@@ -58,7 +79,9 @@
   height: 28px;
   border-radius: 8px;
   background: radial-gradient(circle at 20% 20%, #cfc0ff 0%, #6b36ff 40%, #2a0a5a 70%);
-  box-shadow: 0 16px 32px rgba(111,68,255,.6), 0 0 40px rgba(111,68,255,.8);
+  box-shadow:
+    0 16px 32px rgba(111,68,255,.6),
+    0 0 40px rgba(111,68,255,.8);
   flex-shrink: 0;
 }
 
@@ -79,8 +102,10 @@
   color:#fff;
 }
 
-/* hero title block (big headline + intro meta) */
+/* hero title block */
 .legal-hero {
+  position: relative;
+  z-index: 11;
   max-width: 800px;
   margin: 40px auto 24px;
   padding: 0 16px;
@@ -108,8 +133,10 @@
   margin: 0;
 }
 
-/* main legal body text */
+/* body text */
 .legal-body {
+  position: relative;
+  z-index: 11;
   max-width: 800px;
   margin: 24px auto 0;
   padding: 0 16px 120px;
@@ -131,12 +158,10 @@
 .legal-body h3 {
   font-size: 16px;
 }
-
 .legal-body p {
   margin:0 0 16px;
   color: rgba(255,255,255,.75);
 }
-
 .legal-body ul {
   margin:0 0 16px 20px;
   padding:0;
@@ -184,7 +209,7 @@
 </head>
 
 <body>
-  <!-- Decorative Lunvi background (same vibe as homepage) -->
+  <!-- Lunvi purple background / spheres -->
   <div class="bg"></div>
   <div class="grid"></div>
   <div class="grain"></div>
@@ -195,6 +220,8 @@
   </div>
 
   <div class="legal-shell">
+    <!-- overlay is ::before -->
+
     <!-- Top nav -->
     <header class="legal-topbar">
       <a class="legal-left" href="/" aria-label="Back to Lunvi Labs home">
@@ -367,7 +394,6 @@
     </main>
   </div>
 
-  <!-- we still load app.js so shared stuff (like mobile nav logic) works if reused -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
