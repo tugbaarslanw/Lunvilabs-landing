@@ -8,9 +8,9 @@
 <title>Privacy Policy — Lunvi Labs</title>
 
 <meta name="description" content="Lunvi Labs privacy policy. How we collect, use, store and protect data for our server-side Conversions API infrastructure." />
-<meta name="theme-color" content="#0b0818" />
+<meta name="theme-color" content="#ffffff" />
 
-<!-- Favicon / Icons (same as index) -->
+<!-- Favicon / Icons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
 <link rel="icon" href="/icon.png">
@@ -34,36 +34,36 @@
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- Main site CSS -->
+<!-- main site css (logo styles vs) -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
 <style>
-/* ===== Legal page layout (scoped) ===== */
+/* ======== LEGAL PAGE LAYOUT (LIGHT MODE) ======== */
 
-body {
-  color:#fff;
-  background-color:#0b0818;
+:root {
+  -webkit-font-smoothing: antialiased;
 }
 
-/* reuse background layers from index */
-.bg, .grid, .grain, .spheres { pointer-events:none; }
+body {
+  background:#fff;
+  color:#0a0a0a;
+  margin:0;
+  font-size:16px;
+  line-height:1.5;
+  font-family:-apple-system, BlinkMacSystemFont, "Inter", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 
-/* translucent top bar */
-.legal-header {
-  position:fixed;
+/* top nav (like heydrop/meta: white bar, subtle border) */
+.legal-topbar{
+  position:sticky;
   top:0;
   left:0;
   right:0;
   z-index:1000;
-  background:rgba(8,5,20,.4);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  -webkit-backdrop-filter:blur(12px);
-  backdrop-filter:blur(12px);
-  color:#fff;
-  font-size:14px;
-  line-height:1.2;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.08);
 }
-.legal-nav {
+.legal-topbar-inner{
   max-width:1200px;
   width:100%;
   margin:0 auto;
@@ -74,134 +74,142 @@ body {
   flex-wrap:wrap;
   gap:12px;
 }
-.legal-left {
+.legal-brand{
   display:flex;
   align-items:center;
   gap:10px;
+  color:#0a0a0a;
   font-weight:600;
-  color:#fff;
-  text-decoration:none;
   font-size:15px;
+  line-height:1.2;
+  text-decoration:none;
 }
-.legal-left span.logo {
-  flex-shrink:0;
+.legal-brand .logo{
   width:28px;
   height:28px;
   border-radius:8px;
-  display:inline-block;
+  flex-shrink:0;
 }
-.legal-left .brand-text {
+.legal-brand .brand-text{
   display:flex;
   align-items:baseline;
   gap:4px;
   font-weight:600;
   line-height:1.2;
+  color:#0a0a0a;
 }
-.legal-left .brand-text .labs-dim {
-  opacity:.7;
+.legal-brand .labs-dim{
+  opacity:.6;
   font-weight:700;
 }
-.legal-links {
+
+.legal-nav-links{
   display:flex;
   flex-wrap:wrap;
   gap:16px;
   font-size:14px;
+  line-height:1.3;
 }
-.legal-links a {
-  color:rgba(255,255,255,.8);
-  text-decoration:none;
+.legal-nav-links a{
+  color:rgba(0,0,0,.8);
   font-weight:500;
+  text-decoration:none;
 }
-.legal-links a:hover {
-  color:#fff;
+.legal-nav-links a:hover{
+  color:#000;
 }
 
-/* main legal content wrapper */
-.legal-main {
-  position:relative;
-  z-index:2;
-  padding-top:110px; /* header spacing */
-  padding-bottom:120px;
-}
-.legal-inner {
+/* main article */
+.legal-main{
   max-width:800px;
   width:100%;
-  margin:0 auto;
-  padding:24px 16px 80px;
-  line-height:1.5;
-  color:rgba(255,255,255,.88);
-  font-size:15.5px;
+  margin:48px auto 120px;
+  padding:0 16px 80px;
+  color:#0a0a0a;
 }
 
-/* header block (title, meta info) */
-.legal-doc-head {
-  margin-bottom:28px;
-}
-.legal-doc-head h1 {
-  font-size:32px;
+.legal-main h1{
+  font-size:34px;
   line-height:1.15;
   font-weight:600;
-  color:#fff;
-  margin:0 0 16px;
+  color:#0a0a0a;
   letter-spacing:-0.03em;
+  margin:0 0 16px;
 }
-.legal-meta {
-  font-size:13px;
+
+.legal-meta{
+  font-size:14px;
   line-height:1.4;
-  color:rgba(255,255,255,.6);
-  margin-bottom:16px;
+  color:rgba(0,0,0,.6);
+  margin:0 0 20px;
 }
-.legal-intro {
-  font-size:15.5px;
+
+.legal-intro{
+  font-size:16px;
   line-height:1.5;
-  color:rgba(255,255,255,.88);
+  color:rgba(0,0,0,.8);
   margin:0 0 32px;
   max-width:800px;
 }
 
-/* section headings */
-.legal-section-title {
-  font-size:17px;
+.legal-section-title{
+  font-size:18px;
   font-weight:600;
-  color:#fff;
-  margin:28px 0 12px;
   line-height:1.3;
+  color:#0a0a0a;
+  margin:28px 0 12px;
   letter-spacing:-0.02em;
 }
-.legal-inner p {
+
+.legal-main p{
+  font-size:15.5px;
+  line-height:1.5;
+  color:rgba(0,0,0,.8);
   margin:0 0 16px;
 }
-.legal-inner ul {
+
+.legal-main ul{
   margin:0 0 16px 20px;
   padding:0;
 }
-.legal-inner li {
+.legal-main li{
   margin:0 0 10px;
+  font-size:15.5px;
+  line-height:1.5;
+  color:rgba(0,0,0,.8);
 }
 
-/* small footer at bottom */
-.legal-footer {
+.legal-main code{
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:14px;
+  background:rgba(0,0,0,.05);
+  padding:2px 4px;
+  border-radius:4px;
+  color:#0a0a0a;
+}
+
+/* footer in-page */
+.legal-footer{
+  margin-top:48px;
+  border-top:1px solid rgba(0,0,0,.08);
+  padding-top:24px;
   font-size:13px;
   line-height:1.4;
-  color:rgba(255,255,255,.5);
-  margin-top:48px;
-  border-top:1px solid rgba(255,255,255,.08);
-  padding-top:24px;
+  color:rgba(0,0,0,.55);
 }
-.legal-footer a {
-  color:rgba(255,255,255,.7);
+.legal-footer a{
+  color:rgba(0,0,0,.7);
   text-decoration:none;
 }
-.legal-footer a:hover {
-  color:#fff;
+.legal-footer a:hover{
+  color:#000;
 }
 
-/* mobile tweaks */
 @media(max-width:480px){
-  .legal-doc-head h1 {
+  .legal-main h1{
     font-size:28px;
   }
-  .legal-links {
+  .legal-nav-links{
     font-size:13px;
     gap:12px;
   }
@@ -225,23 +233,11 @@ body {
 </head>
 
 <body>
-  <!-- same decorative background stack as homepage -->
-  <div class="bg"></div>
-  <div class="grid"></div>
-  <div class="grain"></div>
-  <div class="spheres" aria-hidden="true">
-    <span class="sphere s1"></span>
-    <span class="sphere s2"></span>
-    <span class="sphere s3"></span>
-    <span class="sphere s4"></span>
-    <span class="sphere s5"></span>
-    <span class="sphere s6"></span>
-  </div>
 
-  <!-- translucent top header -->
-  <header class="legal-header">
-    <div class="legal-nav">
-      <a class="legal-left" href="/" aria-label="Back to Lunvi Labs home">
+  <!-- top nav -->
+  <header class="legal-topbar">
+    <div class="legal-topbar-inner">
+      <a class="legal-brand" href="/" aria-label="Back to Lunvi Labs home">
         <span class="logo" aria-hidden="true"></span>
         <span class="brand-text">
           <span>Lunvi</span>
@@ -249,7 +245,7 @@ body {
         </span>
       </a>
 
-      <nav class="legal-links" aria-label="Quick links">
+      <nav class="legal-nav-links" aria-label="Quick links">
         <a href="/#pricing">Pricing</a>
         <a href="/#security">Security</a>
         <a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20Inquiry">Contact</a>
@@ -257,166 +253,165 @@ body {
     </div>
   </header>
 
+  <!-- main legal content -->
   <main class="legal-main">
-    <article class="legal-inner">
-      <header class="legal-doc-head">
-        <h1>Privacy Policy</h1>
-        <div class="legal-meta">
-          Last updated: 27 Oct 2025<br/>
-          Controller: Lunvi Labs (“we”, “us”, “our”)
-        </div>
+    <header class="legal-head">
+      <h1>Privacy Policy</h1>
+      <div class="legal-meta">
+        Last updated: 27 Oct 2025<br/>
+        Controller: Lunvi Labs (“we”, “us”, “our”)
+      </div>
 
-        <p class="legal-intro">
-          Lunvi Labs provides server-side event delivery (Meta Conversions API, GA4 Measurement
-          Protocol v2, Event Router, etc.). Our platform focuses on privacy-first tracking:
-          regional hosting, consent enforcement, and minimized identifiers. This Privacy Policy
-          explains what data we collect, how we use it, and the rights you have.
-        </p>
-      </header>
+      <p class="legal-intro">
+        Lunvi Labs provides server-side event delivery (Meta Conversions API, GA4 Measurement
+        Protocol v2, Event Router, etc.). Our platform focuses on privacy-first tracking:
+        regional hosting, consent enforcement, and minimized identifiers.
+        This Privacy Policy explains what data we collect, how we use it, and the rights you have.
+      </p>
+    </header>
 
-      <section>
-        <h2 class="legal-section-title">1. What data we collect</h2>
+    <section>
+      <h2 class="legal-section-title">1. What data we collect</h2>
 
-        <p>We collect two main categories of data:</p>
+      <p>We collect two main categories of data:</p>
 
-        <p><strong>Lead / contact data you submit.</strong> When you request an upgrade,
-        start a demo, or contact us, you may send us:</p>
-        <ul>
-          <li>Company name</li>
-          <li>Work email / phone number</li>
-          <li>Billing / tax details and invoicing info</li>
-          <li>Free-text notes (questions, integration requirements, etc.)</li>
-        </ul>
-        <p>We use this to respond, create an account/offer, provision infrastructure,
-        and handle billing / support.</p>
+      <p><strong>Lead / contact data you submit.</strong> When you request an upgrade,
+      start a demo, or contact us, you may send us:</p>
+      <ul>
+        <li>Company name</li>
+        <li>Work email / phone number</li>
+        <li>Billing / tax details and invoicing info</li>
+        <li>Free-text notes (questions, integration requirements, etc.)</li>
+      </ul>
+      <p>We use this to respond, create an account/offer, provision infrastructure,
+      and handle billing / support.</p>
 
-        <p><strong>Technical / analytics data.</strong> We measure basic product
-        interest on <code>lunvilabs.com</code> — e.g. which pricing plan was viewed,
-        which form was submitted, approximate page usage, and aggregated performance
-        metrics for our endpoints. We currently use Google Analytics 4
-        with IP anonymization and Consent Mode v2 style behavior. We do not attempt
-        to personally identify you from this analytics data.</p>
-      </section>
+      <p><strong>Technical / analytics data.</strong> We measure basic product
+      interest on <code>lunvilabs.com</code> — e.g. which pricing plan was viewed,
+      which form was submitted, approximate page usage, and aggregated performance
+      metrics for our endpoints. We currently use Google Analytics 4
+      with IP anonymization and Consent Mode v2 style behavior. We do not attempt
+      to personally identify you from this analytics data.</p>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">2. How we use this data</h2>
+    <section>
+      <h2 class="legal-section-title">2. How we use this data</h2>
 
-        <ul>
-          <li><strong>To provide the service.</strong> Set up server-to-server
-          tracking containers, custom domains (CNAME), SSL, event routing and debugging
-          for you or your organization.</li>
+      <ul>
+        <li><strong>To provide the service.</strong> Set up server-to-server
+        tracking containers, custom domains (CNAME), SSL, event routing and debugging
+        for you or your organization.</li>
 
-          <li><strong>To reply and support.</strong> Answer questions, share
-          onboarding docs, schedule technical reviews, and deliver SLAs where
-          applicable.</li>
+        <li><strong>To reply and support.</strong> Answer questions, share
+        onboarding docs, schedule technical reviews, and deliver SLAs where
+        applicable.</li>
 
-          <li><strong>To maintain security &amp; compliance.</strong> Detect abuse,
-          audit delivery, respect consent signals, and keep regional data residency
-          (e.g. EU) where required.</li>
+        <li><strong>To maintain security &amp; compliance.</strong> Detect abuse,
+        audit delivery, respect consent signals, and keep regional data residency
+        (e.g. EU) where required.</li>
 
-          <li><strong>To invoice.</strong> Generate or update quotes,
-          pro/enterprise agreements, and billing records.</li>
-        </ul>
-      </section>
+        <li><strong>To invoice.</strong> Generate or update quotes,
+        pro/enterprise agreements, and billing records.</li>
+      </ul>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">3. Cookies, consent, measurement</h2>
+    <section>
+      <h2 class="legal-section-title">3. Cookies, consent, measurement</h2>
 
-        <p>We aim to send conversion / analytics events using consent-aware,
-        server-side calls instead of browser trackers wherever possible. In practice:</p>
+      <p>We aim to send conversion / analytics events using consent-aware,
+      server-side calls instead of browser trackers wherever possible. In practice:</p>
 
-        <ul>
-          <li>We honor Consent Mode–style “granted / denied” signals and fall back
-          to anonymized pings if consent is denied.</li>
+      <ul>
+        <li>We honor Consent Mode–style “granted / denied” signals and fall back
+        to anonymized pings if consent is denied.</li>
 
-          <li>We anonymize IPs for GA4 and avoid storing raw ad identifiers unless
-          you explicitly provide them for matching (for example, hashed email or
-          event_id dedup keys).</li>
+        <li>We anonymize IPs for GA4 and avoid storing raw ad identifiers unless
+        you explicitly provide them for matching (for example, hashed email or
+        event_id dedup keys).</li>
 
-          <li>We may still use strictly necessary cookies or similar tech for
-          security, session continuity, anti-fraud, and load balancing.</li>
-        </ul>
-      </section>
+        <li>We may still use strictly necessary cookies or similar tech for
+        security, session continuity, anti-fraud, and load balancing.</li>
+      </ul>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">4. Data residency &amp; retention</h2>
+    <section>
+      <h2 class="legal-section-title">4. Data residency &amp; retention</h2>
 
-        <ul>
-          <li><strong>Regional hosting.</strong> Many customers request EU-region
-          routing and storage. We can isolate a container / endpoint in specific regions
-          (for example EU) to meet data residency requirements.</li>
+      <ul>
+        <li><strong>Regional hosting.</strong> Many customers request EU-region
+        routing and storage. We can isolate a container / endpoint in specific regions
+        (for example EU) to meet data residency requirements.</li>
 
-          <li><strong>Retention.</strong> Operational logs, delivery traces,
-          and audit trails are kept only as long as needed for debugging, billing,
-          compliance, and SLA enforcement — then periodically minimized or deleted.</li>
+        <li><strong>Retention.</strong> Operational logs, delivery traces,
+        and audit trails are kept only as long as needed for debugging, billing,
+        compliance, and SLA enforcement — then periodically minimized or deleted.</li>
 
-          <li><strong>Backup / disaster recovery.</strong> We maintain secure backups
-          for continuity, which may briefly retain data after primary deletion.</li>
-        </ul>
-      </section>
+        <li><strong>Backup / disaster recovery.</strong> We maintain secure backups
+        for continuity, which may briefly retain data after primary deletion.</li>
+      </ul>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">5. Who we share data with</h2>
+    <section>
+      <h2 class="legal-section-title">5. Who we share data with</h2>
 
-        <ul>
-          <li><strong>Service providers / subprocessors.</strong> We rely on
-          infrastructure (cloud hosting, logging/alerting, email delivery, analytics)
-          to run Lunvi Labs. We require confidentiality and security commitments from
-          these providers.</li>
+      <ul>
+        <li><strong>Service providers / subprocessors.</strong> We rely on
+        infrastructure (cloud hosting, logging/alerting, email delivery, analytics)
+        to run Lunvi Labs. We require confidentiality and security commitments from
+        these providers.</li>
 
-          <li><strong>Compliance / legal.</strong> We may disclose minimal necessary
-          information if required by law, regulation, court order, or to defend our rights.</li>
+        <li><strong>Compliance / legal.</strong> We may disclose minimal necessary
+        information if required by law, regulation, court order, or to defend our rights.</li>
 
-          <li><strong>No selling of personal data.</strong> We do not sell your
-          contact details as a lead list.</li>
-        </ul>
-      </section>
+        <li><strong>No selling of personal data.</strong> We do not sell your
+        contact details as a lead list.</li>
+      </ul>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">6. Your rights</h2>
+    <section>
+      <h2 class="legal-section-title">6. Your rights</h2>
 
-        <p>Depending on where you’re located (for example under GDPR / KVKK),
-        you may have the right to:</p>
+      <p>Depending on where you’re located (for example under GDPR / KVKK),
+      you may have the right to:</p>
 
-        <ul>
-          <li>Access the personal data we hold about you</li>
-          <li>Correct or update inaccurate information</li>
-          <li>Request deletion (“right to be forgotten”)</li>
-          <li>Object to or restrict certain processing</li>
-          <li>Request a copy (portability)</li>
-          <li>Lodge a complaint with a supervisory authority</li>
-        </ul>
+      <ul>
+        <li>Access the personal data we hold about you</li>
+        <li>Correct or update inaccurate information</li>
+        <li>Request deletion (“right to be forgotten”)</li>
+        <li>Object to or restrict certain processing</li>
+        <li>Request a copy (portability)</li>
+        <li>Lodge a complaint with a supervisory authority</li>
+      </ul>
 
-        <p>We’ll respond to requests in line with applicable law. For security, we
-        may need to verify that you’re the rightful contact for the account / company.</p>
-      </section>
+      <p>We’ll respond to requests in line with applicable law. For security, we
+      may need to verify that you’re the rightful contact for the account / company.</p>
+    </section>
 
-      <section>
-        <h2 class="legal-section-title">7. Contact us</h2>
+    <section>
+      <h2 class="legal-section-title">7. Contact us</h2>
 
-        <p>
-          To exercise a privacy right, ask for our DPA (Data Processing Agreement),
-          or request the current subprocessor list, email:<br/>
-          <a href="mailto:info@lunvilabs.com?subject=Privacy%20Request"
-             style="color:#fff;text-decoration:underline;">info@lunvilabs.com</a>
-        </p>
+      <p>
+        To exercise a privacy right, ask for our DPA (Data Processing Agreement),
+        or request the current subprocessor list, email:<br/>
+        <a href="mailto:info@lunvilabs.com?subject=Privacy%20Request"
+           style="color:#000;text-decoration:underline;">info@lunvilabs.com</a>
+      </p>
 
-        <p>If you are an enterprise / agency customer with a signed agreement, you
-        may also contact us through your dedicated support channel listed in your SLA.</p>
-      </section>
+      <p>If you are an enterprise / agency customer with a signed agreement, you
+      may also contact us through your dedicated support channel listed in your SLA.</p>
+    </section>
 
-      <footer class="legal-footer">
-        <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-        <div style="margin-top:8px;">
-          <a href="/terms.html">Terms of Service</a> ·
-          <a href="/privacy.html">Privacy Policy</a> ·
-          <a href="/#security">Security</a>
-        </div>
-      </footer>
-    </article>
+    <footer class="legal-footer">
+      <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
+      <div style="margin-top:8px;">
+        <a href="/terms.html">Terms of Service</a> ·
+        <a href="/privacy.html">Privacy Policy</a> ·
+        <a href="/#security">Security</a>
+      </div>
+    </footer>
   </main>
 
-  <!-- Reuse main app.js so the footer year etc keeps working -->
+  <!-- reuse app.js for footer year etc -->
   <script src="/assets/app.js"></script>
 </body>
 </html>
