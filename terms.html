@@ -7,205 +7,155 @@
 
 <title>Terms of Service — Lunvi Labs</title>
 
-<meta name="description" content="Lunvi Labs Terms of Service. Conditions for using our server-side Conversions API infrastructure and related services." />
-<meta name="theme-color" content="#ffffff" />
+<meta name="description" content="Lunvi Labs Terms of Service. Access and acceptable use for our managed server-side tracking infrastructure." />
+<meta name="theme-color" content="#0b0818" />
 
-<!-- Favicon / Icons -->
 <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Terms of Service — Lunvi Labs" />
-<meta property="og:description" content="Service terms for Lunvi Labs infrastructure: billing, SLA, data handling, and acceptable use." />
-<meta property="og:url" content="https://lunvilabs.com/terms.html" />
-<meta property="og:image" content="https://lunvilabs.com/social-card.png" />
-<meta property="og:image:alt" content="Lunvi Labs Terms of Service" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Terms of Service — Lunvi Labs" />
-<meta name="twitter:description" content="Read the terms that govern your use of Lunvi Labs." />
-<meta name="twitter:image" content="https://lunvilabs.com/social-card.png" />
-
-<!-- Preconnect for GA4 -->
-<link rel="preconnect" href="https://www.googletagmanager.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-<!-- main site css -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
 <style>
-/* same light legal layout as privacy.html */
+/* same legal look as privacy page */
 
-:root {
-  -webkit-font-smoothing: antialiased;
-}
-
-body {
-  background:#fff;
-  color:#0a0a0a;
-  margin:0;
-  font-size:16px;
-  line-height:1.5;
-  font-family:-apple-system, BlinkMacSystemFont, "Inter", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
+.legal-shell {
+  position: relative;
+  z-index: 5;
+  color: #fff;
+  padding-bottom: 80px;
 }
 
-.legal-topbar{
-  position:sticky;
-  top:0;
-  left:0;
-  right:0;
-  z-index:1000;
-  background:#fff;
-  border-bottom:1px solid rgba(0,0,0,.08);
-}
-.legal-topbar-inner{
-  max-width:1200px;
-  width:100%;
-  margin:0 auto;
-  padding:14px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.legal-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#0a0a0a;
-  font-weight:600;
-  font-size:15px;
-  line-height:1.2;
-  text-decoration:none;
-}
-.legal-brand .logo{
-  width:28px;
-  height:28px;
-  border-radius:8px;
-  flex-shrink:0;
-}
-.legal-brand .brand-text{
-  display:flex;
-  align-items:baseline;
-  gap:4px;
-  font-weight:600;
-  line-height:1.2;
-  color:#0a0a0a;
-}
-.legal-brand .labs-dim{
-  opacity:.6;
-  font-weight:700;
+.legal-topbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(10,8,20,.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  box-shadow: 0 30px 60px rgba(0,0,0,.7);
 }
 
-.legal-nav-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:16px;
-  font-size:14px;
+.legal-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #fff;
+  text-decoration: none;
+}
+.legal-left .logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 20% 20%, #cfc0ff 0%, #6b36ff 40%, #2a0a5a 70%);
+  box-shadow: 0 16px 32px rgba(111,68,255,.6), 0 0 40px rgba(111,68,255,.8);
+  flex-shrink: 0;
+}
+
+.legal-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(255,255,255,.75);
+}
+.legal-nav a {
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  font-weight: 500;
+}
+.legal-nav a:hover {
+  color:#fff;
+}
+
+.legal-hero {
+  max-width: 800px;
+  margin: 40px auto 24px;
+  padding: 0 16px;
+  color: #fff;
+}
+.legal-hero h1 {
+  font-size: clamp(30px, 2vw + 24px, 40px);
+  line-height: 1.15;
+  font-weight: 600;
+  color:#fff;
+  margin: 0 0 16px;
+  text-shadow: 0 30px 80px rgba(0,0,0,.9), 0 0 40px rgba(180,140,255,.4);
+}
+.legal-meta {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 20px;
+}
+.legal-intro {
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(255,255,255,.75);
+  margin: 0;
+}
+
+.legal-body {
+  max-width: 800px;
+  margin: 24px auto 0;
+  padding: 0 16px 120px;
+  color: rgba(255,255,255,.75);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.legal-body h2,
+.legal-body h3 {
+  color:#fff;
   line-height:1.3;
-}
-.legal-nav-links a{
-  color:rgba(0,0,0,.8);
-  font-weight:500;
-  text-decoration:none;
-}
-.legal-nav-links a:hover{
-  color:#000;
-}
-
-/* main article */
-.legal-main{
-  max-width:800px;
-  width:100%;
-  margin:48px auto 120px;
-  padding:0 16px 80px;
-  color:#0a0a0a;
-}
-
-.legal-main h1{
-  font-size:34px;
-  line-height:1.15;
   font-weight:600;
-  color:#0a0a0a;
-  letter-spacing:-0.03em;
+  margin:32px 0 12px;
+  text-shadow:0 20px 60px rgba(0,0,0,.8),0 0 30px rgba(180,140,255,.3);
+}
+.legal-body h2 {
+  font-size: 20px;
+}
+.legal-body h3 {
+  font-size: 16px;
+}
+.legal-body p {
   margin:0 0 16px;
+  color: rgba(255,255,255,.75);
 }
-
-.legal-meta{
-  font-size:14px;
-  line-height:1.4;
-  color:rgba(0,0,0,.6);
-  margin:0 0 20px;
-}
-
-.legal-intro{
-  font-size:16px;
-  line-height:1.5;
-  color:rgba(0,0,0,.8);
-  margin:0 0 32px;
-  max-width:800px;
-}
-
-.legal-section-title{
-  font-size:18px;
-  font-weight:600;
-  line-height:1.3;
-  color:#0a0a0a;
-  margin:28px 0 12px;
-  letter-spacing:-0.02em;
-}
-
-.legal-main p{
-  font-size:15.5px;
-  line-height:1.5;
-  color:rgba(0,0,0,.8);
-  margin:0 0 16px;
-}
-
-.legal-main ul{
+.legal-body ul {
   margin:0 0 16px 20px;
   padding:0;
+  color: rgba(255,255,255,.75);
 }
-.legal-main li{
+.legal-body li {
   margin:0 0 10px;
-  font-size:15.5px;
   line-height:1.5;
-  color:rgba(0,0,0,.8);
 }
 
-.legal-main a{
-  color:#000;
-  text-decoration:underline;
+.legal-footer-spacer {
+  height: 40px;
 }
 
-.legal-footer{
-  margin-top:48px;
-  border-top:1px solid rgba(0,0,0,.08);
-  padding-top:24px;
-  font-size:13px;
-  line-height:1.4;
-  color:rgba(0,0,0,.55);
-}
-.legal-footer a{
-  color:rgba(0,0,0,.7);
-  text-decoration:none;
-}
-.legal-footer a:hover{
-  color:#000;
-}
-
-@media(max-width:480px){
-  .legal-main h1{
-    font-size:28px;
+@media(max-width:600px){
+  .legal-topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    text-align: center;
   }
-  .legal-nav-links{
+  .legal-nav {
+    flex-wrap: wrap;
+    gap:12px 16px;
     font-size:13px;
-    gap:12px;
   }
 }
 </style>
@@ -227,232 +177,182 @@ body {
 </head>
 
 <body>
+  <!-- Lunvi purple background -->
+  <div class="bg"></div>
+  <div class="grid"></div>
+  <div class="grain"></div>
+  <div class="spheres" aria-hidden="true">
+    <span class="sphere s1"></span><span class="sphere s2"></span>
+    <span class="sphere s3"></span><span class="sphere s4"></span>
+    <span class="sphere s5"></span><span class="sphere s6"></span>
+  </div>
 
-  <!-- top nav -->
-  <header class="legal-topbar">
-    <div class="legal-topbar-inner">
-      <a class="legal-brand" href="/" aria-label="Back to Lunvi Labs home">
+  <div class="legal-shell">
+    <!-- Top nav -->
+    <header class="legal-topbar">
+      <a class="legal-left" href="/" aria-label="Back to Lunvi Labs home">
         <span class="logo" aria-hidden="true"></span>
-        <span class="brand-text">
-          <span>Lunvi</span>
-          <span class="labs-dim">Labs</span>
-        </span>
+        <span>Lunvi Labs</span>
       </a>
-
-      <nav class="legal-nav-links" aria-label="Quick links">
+      <nav class="legal-nav" aria-label="Secondary">
         <a href="/#pricing">Pricing</a>
         <a href="/#security">Security</a>
         <a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20Inquiry">Contact</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <!-- main legal content -->
-  <main class="legal-main">
-    <header class="legal-head">
+    <!-- Hero / Heading -->
+    <section class="legal-hero">
       <h1>Terms of Service</h1>
+
       <div class="legal-meta">
-        Last updated: 27 Oct 2025<br/>
-        These Terms govern access to and use of Lunvi Labs infrastructure.
+        <div><strong>Last updated:</strong> 27 Oct 2025</div>
+        <div>These Terms govern access to and use of Lunvi Labs infrastructure.</div>
       </div>
 
       <p class="legal-intro">
-        Lunvi Labs provides managed, server-side tracking infrastructure:
-        Meta Conversions API delivery, GA4 Measurement Protocol v2, consent-aware
-        fallback, container hosting, and debugging / audit tooling.
-        By using our site or requesting activation of a plan (Starter, Growth,
-        Enterprise, or a custom / SLA plan), you agree to these Terms.
+        Lunvi Labs provides managed, server-side tracking infrastructure: Meta Conversions API
+        delivery, GA4 Measurement Protocol v2, consent-aware fallback, container hosting, and
+        debugging / audit tooling. By using our site or requesting activation of a plan
+        (Starter, Growth, Enterprise, or a custom / SLA plan), you agree to these Terms.
       </p>
-    </header>
+    </section>
 
-    <section>
-      <h2 class="legal-section-title">1. Accepting these Terms</h2>
-
+    <!-- Body -->
+    <main class="legal-body">
+      <h2>1. Accepting these Terms</h2>
       <p>
-        You must have authority to bind your company or client accounts. By
-        accessing or using Lunvi Labs, you confirm that:
+        You must have authority to bind your company or client accounts. By accessing or using
+        Lunvi Labs, you confirm that:
       </p>
-
       <ul>
-        <li>You are legally allowed to share the data you send us;</li>
-        <li>You will comply with applicable privacy / consent laws (GDPR, KVKK,
-            ePrivacy, etc.);</li>
-        <li>You will not use Lunvi Labs for unlawful tracking or attribution.</li>
+        <li>You are legally allowed to share the data you send us.</li>
+        <li>
+          You will comply with applicable privacy / consent laws (GDPR, KVKK, ePrivacy, etc.).
+        </li>
+        <li>
+          You will not use Lunvi Labs for unlawful tracking, attribution, or profiling.
+        </li>
       </ul>
-
       <p>
         If you do not agree, do not activate or continue using the service.
       </p>
-    </section>
 
-    <section>
-      <h2 class="legal-section-title">2. Our service</h2>
-
+      <h2>2. Our service</h2>
       <p>
-        We host containers, endpoints, and routing logic that forward events
-        (for example purchases, leads, add-to-cart, etc.) to destinations like
-        Meta CAPI, GA4 MP v2, TikTok Events API, or your own webhook / data
-        warehouse. We also provide debugging views (logs, dedup inspections,
-        delivery status, latency metrics).
+        We provide server-to-server tracking containers, custom domains (CNAME) and SSL,
+        event router logic, Consent Mode–aware fallbacks, dedup keys for browser+server, and
+        debugging / audit tools. Depending on your plan, we may also offer:
       </p>
-
-      <p>
-        Certain features (EU data residency, custom domains / SSL, audit trail,
-        white-label isolation per client, etc.) are available only on specific
-        plans (Growth / Enterprise / custom).
-      </p>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">3. Customer responsibilities</h2>
-
       <ul>
-        <li><strong>Accuracy of data.</strong> You are responsible for the
-            correctness and lawfulness of events you send through our endpoints.</li>
-
-        <li><strong>Consent / notices.</strong> You must provide end users with
-            any legally required notices and obtain any required consents before
-            sending personal data or identifiers to Lunvi Labs.</li>
-
-        <li><strong>No illegal content.</strong> You may not use Lunvi Labs to
-            send or store content that is illegal, abusive, or violates the rights
-            of others (including IP rights).</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">4. Plans, billing &amp; usage</h2>
-
-      <p>
-        You select a plan (e.g. Starter / Growth / Enterprise) or request a
-        custom agreement. Plans define pricing (monthly vs annual), container
-        counts, event volume, residency, and support / SLA level.
-      </p>
-
-      <ul>
-        <li><strong>Fees.</strong> Fees are based on published pricing or on a
-            signed order form / invoice we send you after your request upgrade.</li>
-
-        <li><strong>Overages.</strong> If you substantially exceed included
-            event volume or bursts, we may propose an upgrade or additional
-            capacity pricing. We will not silently drop events without telling you,
-            unless required to protect platform stability or security.</li>
-
-        <li><strong>Taxes &amp; billing info.</strong> You agree to provide
-            accurate billing / tax details and pay any applicable taxes, duties,
-            or VAT.</li>
+        <li>Regional / EU data residency routing</li>
+        <li>White-label / multi-tenant isolation for agencies</li>
+        <li>Per-destination secrets &amp; access controls</li>
+        <li>Log viewer and delivery health metrics</li>
       </ul>
 
-      <p>
-        Unless otherwise agreed in writing, fees are non-refundable.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">5. Data &amp; confidentiality</h2>
-
-      <p>
-        We treat event payloads and configuration details as confidential.
-        We will not sell this data. We may use aggregated / anonymized delivery
-        metrics (e.g. uptime %, latency, error rates) to operate and improve
-        the service.
-      </p>
-
-      <p>
-        Our Privacy Policy describes how we handle personal data, consent,
-        hosting location, retention, and subprocessors. By using Lunvi Labs,
-        you also accept the
-        <a href="/privacy.html">Privacy Policy</a>.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">6. Availability, SLA &amp; changes</h2>
-
-      <p>
-        We target high uptime and low latency. Growth / Enterprise (and custom
-        contracts) may include explicit SLA terms like response time,
-        dedicated region routing, audit trail retention, or signed DPA.
-      </p>
-
-      <p>
-        We may update or improve components (for example, upgrading
-        dedup logic or adding consent-mode fallbacks for new ad platforms).
-        If we remove a material feature you rely on, we’ll try to give
-        reasonable advance notice.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">7. Disclaimer &amp; limitation of liability</h2>
-
-      <p>
-        Lunvi Labs is provided “as is”, to the maximum extent allowed by law.
-        We do not guarantee a specific ad platform outcome (for example,
-        a certain ROAS lift, cost per lead, or attribution result).
-      </p>
-
-      <p>
-        To the fullest extent permitted by law:
-      </p>
-
+      <h2>3. Acceptable use</h2>
+      <p>You agree not to:</p>
       <ul>
-        <li>We are not liable for indirect, incidental, special, consequential,
-            or punitive damages, including lost revenue or lost data;</li>
-        <li>Our total liability for any claim relating to these Terms or the
-            service is limited to the total fees you paid (or that are payable)
-            to us for the 3 months prior to the event giving rise to the claim.</li>
+        <li>
+          Send unlawful data (for example, data collected without consent or in violation of
+          platform policies).
+        </li>
+        <li>
+          Misrepresent identity or spoof events to ad platforms, analytics platforms, regulators,
+          or downstream destinations.
+        </li>
+        <li>
+          Attempt to reverse engineer, probe, or break other customers’ containers or regions.
+        </li>
+        <li>
+          Use Lunvi Labs for high-risk tracking that would violate applicable consent laws,
+          biometric restrictions, or explicit platform terms.
+        </li>
       </ul>
-    </section>
 
-    <section>
-      <h2 class="legal-section-title">8. Termination</h2>
-
+      <h2>4. Plans, billing &amp; upgrades</h2>
       <p>
-        Either party may terminate for material breach if the other party does
-        not cure within a reasonable notice period. We may suspend or terminate
-        access immediately if: (a) you use Lunvi Labs for illegal activity,
-        (b) you attempt to attack / reverse engineer the platform, or
-        (c) continued service would violate law or create unacceptable risk
-        to us or our infrastructure providers.
+        Our public plans (Starter / Growth / Enterprise) and any custom / SLA plan define what
+        you’re entitled to: container count, event volume, support level, region / residency
+        options, etc. By requesting an upgrade you authorize us to contact you, issue pricing,
+        and — if accepted — invoice you under that plan. Some plans require annual billing,
+        minimum commitment, or overage fees if event volume exceeds the limit.
+      </p>
+      <p>
+        Failure to pay agreed invoices or repeated overages without resolution can result in
+        suspension or throttling of delivery.
       </p>
 
+      <h2>5. Data handling &amp; compliance</h2>
       <p>
-        After termination, we may disable endpoints / containers and begin
-        scheduled data cleanup according to our retention policy.
+        You are responsible for obtaining all required user permissions / consents for any data
+        that flows through Lunvi Labs. We act as a processor / service provider: we route,
+        normalize, deduplicate, and forward events to the destinations you configure (Meta,
+        GA4, TikTok, BigQuery, Webhook, etc.).
       </p>
-    </section>
-
-    <section>
-      <h2 class="legal-section-title">9. Updates to these Terms</h2>
-
       <p>
-        We may update these Terms from time to time. If we make a change that
-        materially affects your current paid plan, we’ll aim to notify your
-        primary contact (for example, the email used in your “Request upgrade”
-        form or on your order form / SLA).
+        For advanced plans, we can help with EU data residency, signed DPA, audit trails, and
+        role-based access control for multi-brand / agency mode. You agree to sign or accept a
+        DPA where required by law.
       </p>
-    </section>
 
-    <section>
-      <h2 class="legal-section-title">10. Contact</h2>
-
+      <h2>6. Availability / SLA</h2>
       <p>
-        For questions about these Terms, invoicing, SLAs, DPA, or region
-        residency options, email:<br/>
-        <a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20Terms%20Question">info@lunvilabs.com</a>
+        We target high uptime and low latency, and we monitor delivery health. “Priority support”
+        and formal SLA commitments are only available on certain plans (for example Growth /
+        Enterprise or custom). Outages, maintenance windows, and emergency fixes may occur.
       </p>
-    </section>
+      <p>
+        We reserve the right to rate-limit or throttle abusive or clearly misconfigured traffic
+        to protect platform stability.
+      </p>
 
-    <footer class="legal-footer">
-      <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-      <div style="margin-top:8px;">
-        <a href="/terms.html">Terms of Service</a> ·
-        <a href="/privacy.html">Privacy Policy</a> ·
-        <a href="/#security">Security</a>
-      </div>
-    </footer>
-  </main>
+      <h2>7. Limitation of liability</h2>
+      <p>
+        To the maximum extent allowed by law, Lunvi Labs is not liable for indirect, incidental,
+        special, consequential, or punitive damages; lost revenue; lost ads performance;
+        attribution or measurement discrepancies; or regulatory penalties arising from how you
+        collect or submit data.
+      </p>
+      <p>
+        Our direct liability, if any, is limited to the amount you paid us for the service in the
+        three (3) months before the event giving rise to the claim.
+      </p>
+
+      <h2>8. Termination</h2>
+      <p>
+        You may stop using the service at any time (subject to any contracted billing term).
+        We may suspend or terminate access if:
+      </p>
+      <ul>
+        <li>Invoices are not paid on the agreed schedule,</li>
+        <li>You violate these Terms or applicable law,</li>
+        <li>Your usage creates material risk to platform stability or other customers.</li>
+      </ul>
+      <p>
+        On termination, we may disable containers, revoke access tokens, and schedule deletion
+        of data that we process for you — except for what we must keep for audit, dispute,
+        tax, or legal reasons.
+      </p>
+
+      <h2>9. Changes to these Terms</h2>
+      <p>
+        We may update these Terms as we ship new features, add regions, or change legal
+        requirements. If changes are material, we’ll update the “Last updated” date above
+        and make a reasonable effort to notify active customers or account owners.
+      </p>
+
+      <h2>10. Contact</h2>
+      <p>
+        If you have questions about these Terms, SLAs, or regional data options, reach us at
+        <a href="mailto:info@lunvilabs.com?subject=Terms%20question"
+           style="color:#41e2c0;text-decoration:none;">info@lunvilabs.com</a>.
+      </p>
+
+      <div class="legal-footer-spacer"></div>
+    </main>
+  </div>
 
   <script src="/assets/app.js"></script>
 </body>
