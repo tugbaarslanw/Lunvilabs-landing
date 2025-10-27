@@ -37,9 +37,245 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Pricing visual overrides, billing toggle styles, details section, integrations/solutions cards -->
 <style>
-/* ===== PRICING SECTION OVERRIDES ===== */
+/* =========================================================
+   PRODUCT / SOLUTIONS / INTEGRATIONS CARDS (premium blocks)
+   ========================================================= */
+
+/* --- PRODUCT (lavender glass, slightly brighter to break monotony) --- */
+.product-grid{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  position:relative;
+  z-index:2;
+}
+.product-card{
+  position:relative;
+  border-radius:16px;
+  padding:20px 24px;
+  min-height:160px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.28) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(150deg, rgba(140,110,255,.45) 0%, rgba(73,45,217,.28) 60%, rgba(0,0,0,.2) 100%);
+  border:1px solid rgba(200,170,255,.5);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.8),
+    0 0 120px rgba(111,68,255,.55);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.p-icon{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(136,83,255,.6);
+  flex-shrink:0;
+}
+.p-icon svg{
+  width:18px;
+  height:18px;
+  stroke:#fff;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+.p-icon-purple{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,#a97cff 0%,#4e2bd9 70%);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(169,124,255,.8);
+}
+.p-icon-cyan{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,#7bffe8 0%,#007e62 70%);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(14,207,159,.8);
+}
+.p-icon-pink{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,#ff8bd6 0%,#6b1b5a 70%);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(255,139,214,.7);
+}
+.p-title{
+  margin:10px 0 6px;
+  font-size:16px;
+  line-height:1.3;
+  font-weight:600;
+  color:#fff;
+}
+.p-desc{
+  margin:0;
+  font-size:14px;
+  line-height:1.4;
+  color:#efeafe;
+}
+
+/* --- SOLUTIONS (approved dark neon cards with check list) --- */
+.sol-grid{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;
+  position:relative;
+  z-index:2;
+}
+.sol-card{
+  position:relative;
+  border-radius:16px;
+  padding:20px 24px;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(circle at 80% 20%, rgba(64,148,255,.18) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(180deg, rgba(16,14,36,.9) 0%, rgba(12,10,26,.75) 100%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.9),
+    0 0 120px rgba(111,68,255,.4),
+    0 0 60px rgba(64,148,255,.25) inset;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.sol-icon{
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,#0ecf9f 0%,#005f49 70%);
+  border:1px solid rgba(14,207,159,.6);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(14,207,159,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+}
+.sol-icon svg{
+  width:18px;
+  height:18px;
+  stroke:#0ef7be;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+.sol-title{
+  margin:0 0 8px;
+  font-size:16px;
+  line-height:1.3;
+  font-weight:600;
+  color:#fff;
+}
+.sol-desc{
+  margin:0 0 12px;
+  font-size:14px;
+  line-height:1.4;
+  color:#efeafe;
+}
+.sol-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:8px;
+  font-size:14px;
+  line-height:1.4;
+  color:#efeafe;
+}
+.sol-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+}
+
+/* --- INTEGRATIONS (approved dark neon cards grid) --- */
+.int-grid-pro{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  position:relative;
+  z-index:2;
+}
+.int-card-pro{
+  position:relative;
+  border-radius:16px;
+  padding:20px 24px;
+  min-height:170px;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(circle at 80% 20%, rgba(64,148,255,.18) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(180deg, rgba(16,14,36,.9) 0%, rgba(12,10,26,.75) 100%);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.9),
+    0 0 120px rgba(111,68,255,.4),
+    0 0 60px rgba(64,148,255,.25) inset;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+}
+.int-icon-pro{
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(160deg,#0ecf9f 0%,#005f49 70%);
+  border:1px solid rgba(14,207,159,.6);
+  box-shadow:
+    0 20px 30px rgba(0,0,0,.6),
+    0 0 30px rgba(14,207,159,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+}
+.int-icon-pro svg{
+  width:18px;
+  height:18px;
+  stroke:#0ef7be;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  fill:none;
+}
+.int-head{
+  margin:0 0 8px;
+  font-size:15px;
+  font-weight:600;
+  line-height:1.3;
+  color:#fff;
+}
+.int-desc{
+  margin:0;
+  font-size:14px;
+  line-height:1.4;
+  color:#efeafe;
+}
+
+/* =========================================================
+   PRICING SECTION OVERRIDES (keep as approved)
+   ========================================================= */
 
 .pricing {
   padding:32px 0 26px;
@@ -238,7 +474,7 @@
   gap:8px;
 }
 
-/* "Most popular" pill */
+/* "Most popular" pill (orange / warm) */
 .plan-pill{
   font-size:11px;
   font-weight:600;
@@ -360,13 +596,11 @@
 }
 
 /* --- Details section styles (inside inline-form) --- */
-
 .plan-details-wrap{
   display:grid;
   gap:12px;
   margin-bottom:20px;
 }
-
 .plan-details{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.16);
@@ -375,7 +609,6 @@
   color:var(--text);
   overflow:hidden;
 }
-
 .plan-details summary{
   cursor:pointer;
   padding:14px 16px;
@@ -391,14 +624,6 @@
 .plan-details summary::-webkit-details-marker{
   display:none;
 }
-
-.plan-details summary .summ-head{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  align-items:center;
-  line-height:1.3;
-}
 .plan-details summary .summ-left{
   display:flex;
   flex-direction:column;
@@ -413,7 +638,6 @@
   color:var(--muted);
   font-weight:400;
 }
-
 .plan-details summary .caret{
   font-size:14px;
   color:var(--muted);
@@ -423,7 +647,6 @@
   transform:rotate(180deg);
   color:#fff;
 }
-
 .plan-details-body{
   padding:0 16px 16px;
   font-size:14px;
@@ -459,17 +682,24 @@
   .plan-card.growth{
     transform:none;
   }
-}
-
-@media(max-width:600px){
-  .inline-grid{
+  .sol-grid{
+    grid-template-columns:1fr;
+  }
+  .int-grid-pro{
+    grid-template-columns:1fr;
+  }
+  .product-grid{
     grid-template-columns:1fr;
   }
 }
-
 @media(max-width:700px){
   .modal-grid{
     grid-template-columns:1fr !important;
+  }
+}
+@media(max-width:600px){
+  .inline-grid{
+    grid-template-columns:1fr;
   }
 }
 
@@ -478,198 +708,6 @@
   display:grid;
   gap:10px;
   grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-/* ===== INTEGRATIONS CARDS ===== */
-
-#integrations {
-  position: relative;
-  z-index: 2;
-}
-
-.int-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px,100%),1fr));
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.int-card {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(120,70,240,.4) 0%, rgba(30,10,60,.9) 60%),
-    linear-gradient(180deg, rgba(28,12,56,.9) 0%, rgba(18,8,40,.82) 100%);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.85),
-    0 0 60px rgba(111,68,255,.4);
-  padding: 20px 20px 18px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  min-height: 200px;
-  position: relative;
-  isolation: isolate;
-}
-
-.int-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  background: rgba(65,226,192,.12);
-  border: 1px solid rgba(65,226,192,.6);
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.7),
-    0 0 20px rgba(65,226,192,.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  flex-shrink: 0;
-}
-
-.int-icon svg {
-  width: 18px;
-  height: 18px;
-  stroke: #41e2c0;
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.int-card h3 {
-  font-size: 16px;
-  line-height: 1.3;
-  font-weight: 600;
-  margin: 0 0 8px;
-  color: #fff;
-  text-shadow:
-    0 20px 60px rgba(0,0,0,.8),
-    0 0 30px rgba(180,140,255,.35);
-}
-
-.int-card p {
-  font-size: 14px;
-  line-height: 1.4;
-  color: rgba(255,255,255,.78);
-  margin: 0;
-}
-
-@media(max-width:500px){
-  .int-card {
-    min-height: 0;
-    padding: 18px 18px 16px;
-  }
-}
-
-/* ===== SOLUTIONS CARDS (same premium style) ===== */
-
-.sol-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.sol-card {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(120,70,240,.4) 0%, rgba(30,10,60,.9) 60%),
-    linear-gradient(180deg, rgba(28,12,56,.9) 0%, rgba(18,8,40,.82) 100%);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.85),
-    0 0 60px rgba(111,68,255,.4);
-  padding: 20px 20px 18px;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  min-height:240px;
-  position:relative;
-  isolation:isolate;
-}
-
-.sol-icon {
-  width:32px;
-  height:32px;
-  border-radius:10px;
-  background:rgba(65,226,192,.12);
-  border:1px solid rgba(65,226,192,.6);
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.7),
-    0 0 20px rgba(65,226,192,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-  flex-shrink:0;
-}
-.sol-icon svg {
-  width:18px;
-  height:18px;
-  stroke:#41e2c0;
-  stroke-width:2;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.sol-card h3{
-  font-size:16px;
-  line-height:1.3;
-  font-weight:600;
-  margin:0 0 8px;
-  color:#fff;
-  text-shadow:
-    0 20px 60px rgba(0,0,0,.8),
-    0 0 30px rgba(180,140,255,.35);
-}
-
-.sol-card p{
-  font-size:14px;
-  line-height:1.4;
-  color:rgba(255,255,255,.78);
-  margin:0 0 12px;
-}
-
-.sol-list{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:grid;
-  gap:8px;
-  font-size:14px;
-  line-height:1.4;
-  color:rgba(255,255,255,.78);
-}
-.sol-list li{
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-}
-.sol-bullet{
-  flex-shrink:0;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:16px;
-  height:16px;
-  border-radius:6px;
-  background:#0ecf9f;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,.5),
-    0 0 20px rgba(14,207,159,.6) inset;
-  font-size:11px;
-  font-weight:800;
-  color:#062b26;
-}
-
-@media(max-width:500px){
-  .sol-card{
-    min-height:0;
-    padding:18px 18px 16px;
-  }
 }
 </style>
 
@@ -767,226 +805,273 @@
       </div>
     </section>
 
-    <!-- PRODUCT -->
+    <!-- PRODUCT (updated premium cards) -->
     <section class="section container" id="product">
       <h2>Product</h2>
-      <div class="grid-3">
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Meta Conversions API</h3>
-          <p>Pixel ID &amp; Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p>
+
+      <div class="product-grid">
+        <!-- Meta Conversions API -->
+        <div class="product-card">
+          <div class="p-icon p-icon-purple" aria-hidden="true">
+            <!-- network / attribution icon -->
+            <svg viewBox="0 0 24 24">
+              <circle cx="6" cy="12" r="2"></circle>
+              <circle cx="18" cy="6" r="2"></circle>
+              <circle cx="18" cy="18" r="2"></circle>
+              <path d="M8 12l8-6M8 12l8 6"></path>
+            </svg>
+          </div>
+          <h3 class="p-title">Meta Conversions API</h3>
+          <p class="p-desc">
+            Pixel ID &amp; Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.
+          </p>
         </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>GA4 Server Endpoint</h3>
-          <p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p>
+
+        <!-- GA4 Server Endpoint -->
+        <div class="product-card">
+          <div class="p-icon p-icon-cyan" aria-hidden="true">
+            <!-- bar chart / analytics icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M5 14v6M11 10v10M17 6v14M23 2v18"></path>
+            </svg>
+          </div>
+          <h3 class="p-title">GA4 Server Endpoint</h3>
+          <p class="p-desc">
+            Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.
+          </p>
         </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Event Router &amp; Destinations</h3>
-          <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
+
+        <!-- Event Router & Destinations -->
+        <div class="product-card">
+          <div class="p-icon p-icon-pink" aria-hidden="true">
+            <!-- branching / routing icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14"></path>
+              <path d="M8 9l4-4 4 4"></path>
+              <path d="M8 15l4 4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="p-title">Event Router &amp; Destinations</h3>
+          <p class="p-desc">
+            Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- SOLUTIONS (upgraded premium cards) -->
+    <!-- SOLUTIONS (approved premium cards with icons & checklist) -->
     <section class="section container" id="solutions" aria-labelledby="solutions-title">
       <h2 id="solutions-title">Solutions</h2>
       <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
-        We cover common growth / analytics setups out of the box, so you don't spend weeks wiring tracking, consent, and attribution.
+        We cover common growth / analytics setups out of the box, so you don't spend weeks wiring
+        tracking, consent, and attribution.
       </p>
 
-      <div class="sol-grid" role="list" aria-label="Solutions list">
-
+      <div class="sol-grid">
         <!-- E-commerce -->
-        <article class="sol-card" role="listitem">
+        <article class="sol-card">
           <div class="sol-icon" aria-hidden="true">
-            <!-- shopping bag / cart icon -->
+            <!-- shopping bag -->
             <svg viewBox="0 0 24 24">
-              <path d="M6 7h12l-1 13H7L6 7z"></path>
+              <path d="M6 7h12l1 13H5L6 7Z"></path>
               <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
             </svg>
           </div>
-          <h3>E-commerce</h3>
-          <p>
+
+          <h3 class="sol-title">E-commerce</h3>
+          <p class="sol-desc">
             Purchase / AddToCart events piped to Meta CAPI &amp; GA4, deduped browser+server,
             with consent-aware fallback pings.
           </p>
+
           <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>Purchase value &amp; currency</span></li>
-            <li><span class="sol-bullet">✓</span><span>UTM / referral cleanup</span></li>
-            <li><span class="sol-bullet">✓</span><span>EU-friendly measurement</span></li>
+            <li><span class="check-icon">✓</span><span>Purchase value &amp; currency</span></li>
+            <li><span class="check-icon">✓</span><span>UTM / referral cleanup</span></li>
+            <li><span class="check-icon">✓</span><span>EU-friendly measurement</span></li>
           </ul>
         </article>
 
         <!-- Lead gen / B2B -->
-        <article class="sol-card" role="listitem">
+        <article class="sol-card">
           <div class="sol-icon" aria-hidden="true">
-            <!-- handshake / contact icon -->
+            <!-- id card / contact card -->
             <svg viewBox="0 0 24 24">
-              <path d="M8 11l4-4 4 4"></path>
-              <path d="M3 12v7h7v-7H3z"></path>
-              <path d="M14 12v7h7v-7h-7z"></path>
-              <path d="M8 15h8"></path>
+              <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+              <path d="M9 10h6M9 14h3"></path>
+              <circle cx="7" cy="14" r="1.5"></circle>
             </svg>
           </div>
-          <h3>Lead gen / B2B</h3>
-          <p>
-            Form submits go to CRM + ads platforms with hashed identifiers
-            and audit trail for compliance.
+
+          <h3 class="sol-title">Lead gen / B2B</h3>
+          <p class="sol-desc">
+            Form submits go to CRM + ads platforms with hashed identifiers and audit trail for compliance.
           </p>
+
           <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>generate_lead events</span></li>
-            <li><span class="sol-bullet">✓</span><span>Email domain enrichment</span></li>
-            <li><span class="sol-bullet">✓</span><span>SLA / DPA available</span></li>
+            <li><span class="check-icon">✓</span><span>generate_lead events</span></li>
+            <li><span class="check-icon">✓</span><span>Email domain enrichment</span></li>
+            <li><span class="check-icon">✓</span><span>SLA / DPA available</span></li>
           </ul>
         </article>
 
         <!-- Agencies / Partners -->
-        <article class="sol-card" role="listitem">
+        <article class="sol-card">
           <div class="sol-icon" aria-hidden="true">
-            <!-- briefcase / team icon -->
+            <!-- briefcase -->
             <svg viewBox="0 0 24 24">
-              <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
-              <rect x="3" y="6" width="18" height="14" rx="2" ry="2"></rect>
-              <path d="M3 13h18"></path>
-              <path d="M10 10h4"></path>
+              <path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8Z"></path>
+              <path d="M9 8V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3"></path>
+              <path d="M3 12h18"></path>
             </svg>
           </div>
-          <h3>Agencies / Partners</h3>
-          <p>
+
+          <h3 class="sol-title">Agencies / Partners</h3>
+          <p class="sol-desc">
             Multi-tenant setup with isolated containers per client, managed SSL,
             and shared debugging access.
           </p>
+
           <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>Custom domains per client</span></li>
-            <li><span class="sol-bullet">✓</span><span>Team / role control</span></li>
-            <li><span class="sol-bullet">✓</span><span>White-label friendly</span></li>
+            <li><span class="check-icon">✓</span><span>Custom domains per client</span></li>
+            <li><span class="check-icon">✓</span><span>Team / role control</span></li>
+            <li><span class="check-icon">✓</span><span>White-label friendly</span></li>
           </ul>
         </article>
-
       </div>
     </section>
 
-    <!-- INTEGRATIONS -->
+    <!-- INTEGRATIONS (approved premium cards grid, now with CRM/CDP) -->
     <section class="section container" id="integrations" aria-labelledby="integrations-title">
       <h2 id="integrations-title">Integrations</h2>
       <p class="int-sub">Works seamlessly with your existing stack. Monitored delivery, retry &amp; dedup built in.</p>
 
-      <div class="int-grid" role="list" aria-label="Integrations list">
+      <div class="int-grid-pro">
         <!-- Meta CAPI -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: network / nodes -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
             <svg viewBox="0 0 24 24">
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="6" r="3"></circle>
-              <circle cx="18" cy="18" r="3"></circle>
-              <line x1="8.5" y1="10.5" x2="15.5" y2="7.5"></line>
-              <line x1="8.5" y1="13.5" x2="15.5" y2="16.5"></line>
+              <circle cx="6" cy="12" r="2"></circle>
+              <circle cx="18" cy="6" r="2"></circle>
+              <circle cx="18" cy="18" r="2"></circle>
+              <path d="M8 12l8-6M8 12l8 6"></path>
             </svg>
           </div>
-          <h3>Meta Conversions API</h3>
-          <p>High-match server events with browser+server dedup keys and test console visibility.</p>
+          <div class="int-head">Meta Conversions API</div>
+          <p class="int-desc">
+            High-match server events with browser+server dedup keys and test console visibility.
+          </p>
         </div>
 
         <!-- GA4 -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: bar chart -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
             <svg viewBox="0 0 24 24">
-              <line x1="5" y1="20" x2="5" y2="12"></line>
-              <line x1="12" y1="20" x2="12" y2="6"></line>
-              <line x1="19" y1="20" x2="19" y2="10"></line>
-              <line x1="3" y1="20" x2="21" y2="20"></line>
+              <path d="M5 14v6M11 10v10M17 6v14M23 2v18"></path>
             </svg>
           </div>
-          <h3>Google Analytics 4</h3>
-          <p>Measurement Protocol v2 with normalization, referral cleanup, and IP anonymization.</p>
+          <div class="int-head">Google Analytics 4</div>
+          <p class="int-desc">
+            Measurement Protocol v2 with normalization, referral cleanup, and IP anonymization.
+          </p>
         </div>
 
         <!-- TikTok -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: bolt -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- lightning -->
             <svg viewBox="0 0 24 24">
-              <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
+              <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8Z"></path>
             </svg>
           </div>
-          <h3>TikTok Events API</h3>
-          <p>Server-to-server events for paid social attribution, with retry &amp; delivery monitoring.</p>
+          <div class="int-head">TikTok Events API</div>
+          <p class="int-desc">
+            Server-to-server events for paid social attribution, with retry &amp; delivery monitoring.
+          </p>
         </div>
 
         <!-- Klaviyo -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: envelope -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- envelope / messaging -->
             <svg viewBox="0 0 24 24">
               <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-              <polyline points="3 7 12 13 21 7"></polyline>
+              <path d="M3 7l9 6 9-6"></path>
             </svg>
           </div>
-          <h3>Klaviyo</h3>
-          <p>Profile + event sync for lifecycle messaging and retention automations.</p>
+          <div class="int-head">Klaviyo</div>
+          <p class="int-desc">
+            Profile + event sync for lifecycle messaging and retention automations.
+          </p>
         </div>
 
         <!-- BigQuery -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: database -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- database cylinder -->
             <svg viewBox="0 0 24 24">
-              <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
-              <path d="M5 5v8c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
-              <path d="M5 13v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
+              <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+              <path d="M4 5v10c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path>
+              <path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"></path>
             </svg>
           </div>
-          <h3>BigQuery Export</h3>
-          <p>Raw event export for deeper attribution, BI dashboards, and custom modeling.</p>
+          <div class="int-head">BigQuery Export</div>
+          <p class="int-desc">
+            Raw event export for deeper attribution, BI dashboards, and custom modeling.
+          </p>
         </div>
 
         <!-- Webhook -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: link -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- webhook / loop arrows -->
             <svg viewBox="0 0 24 24">
-              <path d="M10 13a5 5 0 0 1 0-10h2"></path>
-              <path d="M14 11a5 5 0 0 1 0 10h-2"></path>
-              <line x1="9" y1="12" x2="15" y2="12"></line>
+              <path d="M9 3H5v4"></path>
+              <path d="M15 21h4v-4"></path>
+              <path d="M5 7l7 7"></path>
+              <path d="M12 10l7-7"></path>
+              <circle cx="9" cy="15" r="2"></circle>
+              <circle cx="15" cy="9" r="2"></circle>
             </svg>
           </div>
-          <h3>Webhook Destinations</h3>
-          <p>Send any mapped event payload to your own endpoint or internal systems.</p>
+          <div class="int-head">Webhook Destinations</div>
+          <p class="int-desc">
+            Send any mapped event payload to your own endpoint or internal systems.
+          </p>
         </div>
 
         <!-- CRM Integration -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: users / crm -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- handshake-ish / align sales+marketing -->
             <svg viewBox="0 0 24 24">
-              <circle cx="9" cy="8" r="3"></circle>
-              <circle cx="17" cy="13" r="3"></circle>
-              <path d="M2 20c0-3.3 2.7-6 6-6h2"></path>
-              <path d="M12 20c0-2.6 2.1-4.7 4.7-4.7H19"></path>
+              <path d="M8 12l3-3a2 2 0 0 1 3 0l2 2a2 2 0 0 1 0 3l-3 3"></path>
+              <path d="M2 12l4-4 4 4-4 4-4-4Z"></path>
+              <path d="M22 12l-4-4-4 4 4 4 4-4Z"></path>
             </svg>
           </div>
-          <h3>CRM Integration</h3>
-          <p>Customer Relationship Management sync: push qualified leads, map lifecycle stage, keep sales teams aligned.</p>
+          <div class="int-head">CRM Integration</div>
+          <p class="int-desc">
+            Push qualified leads + attribution into your CRM (HubSpot / Salesforce style),
+            keeping sales &amp; marketing aligned.
+          </p>
         </div>
 
         <!-- CDP Integration -->
-        <div class="int-card" role="listitem">
-          <div class="int-icon" aria-hidden="true">
-            <!-- icon: layers / CDP -->
+        <div class="int-card-pro" role="listitem">
+          <div class="int-icon-pro" aria-hidden="true">
+            <!-- layered stack / segments -->
             <svg viewBox="0 0 24 24">
-              <polygon points="12 2 3 7 12 12 21 7 12 2"></polygon>
-              <polyline points="3 12 12 17 21 12"></polyline>
-              <polyline points="3 17 12 22 21 17"></polyline>
+              <path d="M12 2l9 4-9 4-9-4 9-4Z"></path>
+              <path d="M3 10l9 4 9-4"></path>
+              <path d="M3 16l9 4 9-4"></path>
             </svg>
           </div>
-          <h3>CDP Integration</h3>
-          <p>Customer Data Platform enrichment: unify identifiers, build audience segments, activate downstream channels.</p>
+          <div class="int-head">CDP Integration</div>
+          <p class="int-desc">
+            Stream structured events and IDs into your CDP / warehouse so you can build
+            downstream audience segments and suppression lists.
+          </p>
         </div>
-
       </div>
     </section>
 
