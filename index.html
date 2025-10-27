@@ -37,7 +37,7 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Pricing visual overrides, billing toggle styles, details section, integrations cards -->
+<!-- Pricing visual overrides, billing toggle styles, details section, integrations/solutions cards -->
 <style>
 /* ===== PRICING SECTION OVERRIDES ===== */
 
@@ -480,7 +480,7 @@
   grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
-/* ===== INTEGRATIONS CARDS REWORK ===== */
+/* ===== INTEGRATIONS CARDS ===== */
 
 #integrations {
   position: relative;
@@ -560,6 +560,115 @@
   .int-card {
     min-height: 0;
     padding: 18px 18px 16px;
+  }
+}
+
+/* ===== SOLUTIONS CARDS (same premium style) ===== */
+
+.sol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.sol-card {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(120,70,240,.4) 0%, rgba(30,10,60,.9) 60%),
+    linear-gradient(180deg, rgba(28,12,56,.9) 0%, rgba(18,8,40,.82) 100%);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.85),
+    0 0 60px rgba(111,68,255,.4);
+  padding: 20px 20px 18px;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  min-height:240px;
+  position:relative;
+  isolation:isolate;
+}
+
+.sol-icon {
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:rgba(65,226,192,.12);
+  border:1px solid rgba(65,226,192,.6);
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.7),
+    0 0 20px rgba(65,226,192,.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+  flex-shrink:0;
+}
+.sol-icon svg {
+  width:18px;
+  height:18px;
+  stroke:#41e2c0;
+  stroke-width:2;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.sol-card h3{
+  font-size:16px;
+  line-height:1.3;
+  font-weight:600;
+  margin:0 0 8px;
+  color:#fff;
+  text-shadow:
+    0 20px 60px rgba(0,0,0,.8),
+    0 0 30px rgba(180,140,255,.35);
+}
+
+.sol-card p{
+  font-size:14px;
+  line-height:1.4;
+  color:rgba(255,255,255,.78);
+  margin:0 0 12px;
+}
+
+.sol-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:8px;
+  font-size:14px;
+  line-height:1.4;
+  color:rgba(255,255,255,.78);
+}
+.sol-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+}
+.sol-bullet{
+  flex-shrink:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:16px;
+  height:16px;
+  border-radius:6px;
+  background:#0ecf9f;
+  box-shadow:
+    0 8px 16px rgba(0,0,0,.5),
+    0 0 20px rgba(14,207,159,.6) inset;
+  font-size:11px;
+  font-weight:800;
+  color:#062b26;
+}
+
+@media(max-width:500px){
+  .sol-card{
+    min-height:0;
+    padding:18px 18px 16px;
   }
 }
 </style>
@@ -680,49 +789,82 @@
       </div>
     </section>
 
-    <!-- SOLUTIONS -->
+    <!-- SOLUTIONS (upgraded premium cards) -->
     <section class="section container" id="solutions" aria-labelledby="solutions-title">
       <h2 id="solutions-title">Solutions</h2>
       <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
         We cover common growth / analytics setups out of the box, so you don't spend weeks wiring tracking, consent, and attribution.
       </p>
 
-      <div class="grid-3">
-        <article class="panel">
-          <h3 style="margin-top:0">E-commerce</h3>
-          <p style="margin-top:6px">
-            Purchase / AddToCart events piped to Meta CAPI &amp; GA4, deduped browser+server, with consent-aware fallback pings.
+      <div class="sol-grid" role="list" aria-label="Solutions list">
+
+        <!-- E-commerce -->
+        <article class="sol-card" role="listitem">
+          <div class="sol-icon" aria-hidden="true">
+            <!-- shopping bag / cart icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M6 7h12l-1 13H7L6 7z"></path>
+              <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
+            </svg>
+          </div>
+          <h3>E-commerce</h3>
+          <p>
+            Purchase / AddToCart events piped to Meta CAPI &amp; GA4, deduped browser+server,
+            with consent-aware fallback pings.
           </p>
-          <ul class="sec-list">
-            <li>Purchase value &amp; currency</li>
-            <li>UTM / referral cleanup</li>
-            <li>EU-friendly measurement</li>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>Purchase value &amp; currency</span></li>
+            <li><span class="sol-bullet">✓</span><span>UTM / referral cleanup</span></li>
+            <li><span class="sol-bullet">✓</span><span>EU-friendly measurement</span></li>
           </ul>
         </article>
 
-        <article class="panel">
-          <h3 style="margin-top:0">Lead gen / B2B</h3>
-          <p style="margin-top:6px">
-            Form submits go to CRM + ads platforms with hashed identifiers and audit trail for compliance.
+        <!-- Lead gen / B2B -->
+        <article class="sol-card" role="listitem">
+          <div class="sol-icon" aria-hidden="true">
+            <!-- handshake / contact icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M8 11l4-4 4 4"></path>
+              <path d="M3 12v7h7v-7H3z"></path>
+              <path d="M14 12v7h7v-7h-7z"></path>
+              <path d="M8 15h8"></path>
+            </svg>
+          </div>
+          <h3>Lead gen / B2B</h3>
+          <p>
+            Form submits go to CRM + ads platforms with hashed identifiers
+            and audit trail for compliance.
           </p>
-          <ul class="sec-list">
-            <li>generate_lead events</li>
-            <li>Email domain enrichment</li>
-            <li>SLA / DPA available</li>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>generate_lead events</span></li>
+            <li><span class="sol-bullet">✓</span><span>Email domain enrichment</span></li>
+            <li><span class="sol-bullet">✓</span><span>SLA / DPA available</span></li>
           </ul>
         </article>
 
-        <article class="panel">
-          <h3 style="margin-top:0">Agencies / Partners</h3>
-          <p style="margin-top:6px">
-            Multi-tenant setup with isolated containers per client, managed SSL, and shared debugging access.
+        <!-- Agencies / Partners -->
+        <article class="sol-card" role="listitem">
+          <div class="sol-icon" aria-hidden="true">
+            <!-- briefcase / team icon -->
+            <svg viewBox="0 0 24 24">
+              <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
+              <rect x="3" y="6" width="18" height="14" rx="2" ry="2"></rect>
+              <path d="M3 13h18"></path>
+              <path d="M10 10h4"></path>
+            </svg>
+          </div>
+          <h3>Agencies / Partners</h3>
+          <p>
+            Multi-tenant setup with isolated containers per client, managed SSL,
+            and shared debugging access.
           </p>
-          <ul class="sec-list">
-            <li>Custom domains per client</li>
-            <li>Team / role control</li>
-            <li>White-label friendly</li>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>Custom domains per client</span></li>
+            <li><span class="sol-bullet">✓</span><span>Team / role control</span></li>
+            <li><span class="sol-bullet">✓</span><span>White-label friendly</span></li>
           </ul>
         </article>
+
       </div>
     </section>
 
