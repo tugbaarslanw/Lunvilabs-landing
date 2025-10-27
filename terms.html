@@ -18,13 +18,33 @@
 <link rel="stylesheet" href="/assets/styles.css" />
 
 <style>
-/* same legal look as privacy page */
+/* same legal styling + dark overlay for readability */
 
 .legal-shell {
   position: relative;
   z-index: 5;
   color: #fff;
   padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.legal-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      1200px 800px at 50% 0%,
+      rgba(15,10,32,.6) 0%,
+      rgba(10,8,20,.88) 40%,
+      rgba(6,4,14,.95) 70%
+    ),
+    rgba(6,4,14,.85);
+  box-shadow:
+    0 80px 200px rgba(0,0,0,.9) inset,
+    0 -40px 120px rgba(0,0,0,.8) inset;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .legal-topbar {
@@ -56,7 +76,9 @@
   height: 28px;
   border-radius: 8px;
   background: radial-gradient(circle at 20% 20%, #cfc0ff 0%, #6b36ff 40%, #2a0a5a 70%);
-  box-shadow: 0 16px 32px rgba(111,68,255,.6), 0 0 40px rgba(111,68,255,.8);
+  box-shadow:
+    0 16px 32px rgba(111,68,255,.6),
+    0 0 40px rgba(111,68,255,.8);
   flex-shrink: 0;
 }
 
@@ -78,6 +100,8 @@
 }
 
 .legal-hero {
+  position: relative;
+  z-index: 11;
   max-width: 800px;
   margin: 40px auto 24px;
   padding: 0 16px;
@@ -106,6 +130,8 @@
 }
 
 .legal-body {
+  position: relative;
+  z-index: 11;
   max-width: 800px;
   margin: 24px auto 0;
   padding: 0 16px 120px;
@@ -177,7 +203,7 @@
 </head>
 
 <body>
-  <!-- Lunvi purple background -->
+  <!-- Lunvi purple background / spheres -->
   <div class="bg"></div>
   <div class="grid"></div>
   <div class="grain"></div>
@@ -188,6 +214,8 @@
   </div>
 
   <div class="legal-shell">
+    <!-- overlay is ::before -->
+
     <!-- Top nav -->
     <header class="legal-topbar">
       <a class="legal-left" href="/" aria-label="Back to Lunvi Labs home">
