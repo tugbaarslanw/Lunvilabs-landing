@@ -2,1886 +2,270 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
 
-<meta name="description" content="Privacy-first, server-side Conversions API gateway. Managed sGTM hosting, Meta CAPI, GA4 Measurement Protocol, EU-region data, KVKK/GDPR alignment, and real-time debugging." />
-<meta name="theme-color" content="#0b0818" />
-
-<!-- Favicon / Icons -->
-<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<!-- Open Graph / Social Preview -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
-<meta property="og:description" content="Server-side Conversions API hosting with Meta CAPI, GA4 MP v2, Consent Mode v2, EU data residency and live debugging." />
-<meta property="og:url" content="https://lunvilabs.com/" />
-<meta property="og:image" content="https://lunvilabs.com/social-card.png" />
-<meta property="og:image:alt" content="Lunvi Labs — privacy-first server-side conversion infrastructure" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
-<meta name="twitter:description" content="EU-hosted, consent-aware Conversions API delivery. Meta CAPI • GA4 • Debugger • KVKK / GDPR aligned." />
-<meta name="twitter:image" content="https://lunvilabs.com/social-card.png" />
-
-<!-- Preconnect for GA4 -->
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
-<!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Pricing visual overrides, billing toggle styles, details section, integrations/solutions cards -->
 <style>
-/* ===== PRICING SECTION OVERRIDES ===== */
-
-.pricing {
-  padding:32px 0 26px;
-  position:relative;
-  z-index:2;
-}
-
-.pricing-lead {
-  margin-top:6px;
-  color:var(--muted);
-  max-width:720px;
-}
-
-/* dark container behind plans  */
-.pricing-bg{
-  margin-top:24px;
-  border-radius:26px;
-  border:1px solid rgba(255,255,255,.16);
+/* ==== SCOPE: only integrations section ==== */
+#integrations { scroll-margin-top: 96px; }
+.integrations-wrap{
+  max-width:min(1120px,94vw);
+  margin:0 auto;
+  border-radius:28px;
+  border:1px solid rgba(140,170,255,.18);
+  padding:44px 28px 34px;
   background:
-    radial-gradient(900px 600px at 20% 15%, rgba(255,255,255,.06) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(10,8,20,.9) 0%, rgba(20,16,40,.55) 100%);
+    radial-gradient(1200px 700px at 15% -10%, rgba(123,160,255,.10), transparent 60%),
+    radial-gradient(900px 600px at 110% 30%, rgba(232, 68, 255, .09), transparent 65%),
+    linear-gradient(180deg, rgba(7,8,18,.92), rgba(7,8,18,.72));
   box-shadow:
-    0 40px 120px rgba(0,0,0,.8),
-    0 0 160px rgba(111,68,255,.28);
-  padding:24px;
-  position:relative;
-  overflow:hidden;
-  isolation:isolate;
-}
-.pricing-bg:after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:
-    radial-gradient(800px 300px at 70% 120%, rgba(255,255,255,.12), transparent 70%),
-    radial-gradient(600px 220px at -10% 50%, rgba(255,255,255,.07), transparent 70%);
-  mix-blend-mode:overlay;
-  pointer-events:none;
-  opacity:.6;
+    0 60px 160px rgba(0,0,0,.65),
+    inset 0 0 0 1px rgba(255,255,255,.02);
 }
 
-/* Billing toggle wrapper INSIDE pricing-bg */
-.billing-toggle-wrap{
-  margin:0 0 24px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:8px;
-  color:#fff;
-  position:relative;
-  z-index:2;
-}
-.billing-label{
-  font-size:15px;
-  font-weight:500;
-  color:var(--muted);
+/* top chip (outlined, no fill) */
+.int-chip{
+  display:inline-flex; align-items:center; justify-content:center;
+  margin:0 auto 16px; padding:8px 22px 9px;
+  border-radius:999px; border:1.6px solid rgba(96,170,255,.75);
+  color:#bfe0ff; font-weight:700; letter-spacing:.02em; font-size:16px;
+  background:transparent; filter: drop-shadow(0 0 8px rgba(96,170,255,.35));
 }
 
-/* Toggle group */
-.billing-toggle{
-  display:inline-flex;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.18);
-  border-radius:999px;
-  padding:4px;
-  box-shadow:0 18px 50px rgba(0,0,0,.6);
-}
-.bill-btn{
-  appearance:none;
-  border:0;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:600;
-  line-height:1;
-  padding:10px 14px;
-  color:var(--muted);
-  background:transparent;
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-width:94px;
-  text-shadow:0 0 8px rgba(0,0,0,.6);
-  transition:.14s ease;
-}
-
-/* Active state (purple chip) */
-.bill-btn.active{
-  color:#fff;
-  background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
-  box-shadow:
-    0 16px 30px rgba(0,0,0,.8),
-    0 0 30px rgba(136,83,255,.4);
-  text-shadow:none;
-}
-
-/* Save 20% pill, only visible on Annual when active */
-.bill-btn .save-pill{
-  display:none;
-  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
-  color:#1a0f00;
-  font-size:15px;
-  font-weight:700;
-  line-height:1;
-  padding:4px 6px;
-  border-radius:6px;
-  box-shadow:
-    0 10px 25px rgba(255,123,0,.45),
-    0 0 30px rgba(255,200,0,.6);
-  border:1px solid rgba(255,155,0,.6);
-}
-.bill-btn[data-mode="annual"].active .save-pill{
-  display:inline-flex;
-}
-
-/* grid of plans */
-.price-layout{
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  z-index:1;
-}
-
-/* base plan card */
-.plan-card{
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  border-radius:20px;
-  padding:22px 24px 24px;
-  min-height:440px;
-  background:radial-gradient(circle at 20% 20%, rgba(255,255,255,.07) 0%, rgba(255,255,255,0) 70%),linear-gradient(180deg, rgba(15,12,28,.9) 0%, rgba(20,16,40,.7) 100%);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.8),
-    0 0 60px rgba(105,67,255,.3) inset;
-}
-
-/* Starter: violet / blue */
-.plan-card.starter{
-  background:
-    radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(64,148,255,.18) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(16,14,36,.9) 0%, rgba(12,10,26,.75) 100%);
-  border:1px solid rgba(136,83,255,.45);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.9),
-    0 0 120px rgba(136,83,255,.4),
-    0 0 60px rgba(64,148,255,.25) inset;
-}
-
-/* Growth: teal / green */
-.plan-card.growth{
-  background:
-    radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(0,180,120,.22) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(16,27,24,.9) 0%, rgba(12,10,24,.75) 100%);
-  border:1px solid rgba(65,226,192,.5);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.9),
-    0 0 120px rgba(65,226,192,.45),
-    0 0 60px rgba(65,226,192,.2) inset;
-  transform:translateY(-2px);
-}
-
-/* Enterprise: magenta / rose */
-.plan-card.enterprise{
-  background:
-    radial-gradient(circle at 15% 15%, rgba(255,79,154,.22) 0%, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(255,140,220,.18) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(34,14,32,.9) 0%, rgba(15,9,20,.75) 100%);
-  border:1px solid rgba(255,140,220,.4);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.9),
-    0 0 120px rgba(255,79,154,.4),
-    0 0 60px rgba(255,79,154,.2) inset;
-}
-
-/* header block */
-.plan-head{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  margin-bottom:16px;
-}
-.plan-name{
-  font-size:18px;
-  line-height:1.3;
-  font-weight:700;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-/* "Most popular" pill */
-.plan-pill{
-  font-size:11px;
-  font-weight:600;
-  line-height:1;
-  padding:4px 6px;
-  border-radius:6px;
-  background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
-  color:#1a0f00;
-  border:1px solid rgba(255,155,0,.6);
-  box-shadow:
-    0 10px 25px rgba(255,123,0,.4),
-    0 0 25px rgba(255,155,0,.8);
-}
-.plan-desc{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.4;
-  margin:0;
-}
-
-/* price row */
-.plan-price{
-  margin:0;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-end;
-  gap:6px;
-  line-height:1.1;
-  color:#fff;
-  font-weight:800;
-  font-size:42px;
-}
-.plan-price .currency{
-  font-size:42px;
-  line-height:1.1;
-  font-weight:800;
-  color:#fff;
-}
-.plan-price-number{
-  font-size:42px;
-  line-height:1.1;
-  font-weight:800;
-  color:#fff;
-}
-.plan-price .per{
-  font-size:15px;
-  font-weight:500;
-  line-height:1.2;
-  color:var(--muted);
-}
-.plan-price-note{
-  width:100%;
-  font-size:13px;
-  line-height:1.3;
-  font-weight:400;
-  color:var(--muted);
-}
-
-/* features list with green ticks */
-.plan-features{
-  list-style:none;
-  margin:18px 0 24px;
-  padding:0;
-  display:grid;
-  gap:10px;
-  font-size:14px;
-  color:#efeafe;
-}
-.plan-features li{
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-  line-height:1.4;
-}
-.check-icon{
-  flex-shrink:0;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:18px;
-  height:18px;
-  border-radius:6px;
-  background:#0ecf9f;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,.5),
-    0 0 20px rgba(14,207,159,.6) inset;
-  font-size:12px;
-  font-weight:800;
-  color:#062b26;
-}
-
-/* CTA buttons */
-.plan-cta{
-  margin-top:auto;
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.plan-cta .btn-primary{
-  width:100%;
-  justify-content:center;
-  font-weight:600;
-  font-size:15px;
-  padding:.8rem 1rem;
-}
-.plan-cta .btn-ghost{
-  width:100%;
-  justify-content:center;
-  font-weight:600;
-  font-size:15px;
-  padding:.8rem 1rem;
-  border-color:rgba(255,255,255,.22);
-  color:#fff;
-  background:rgba(255,255,255,.06);
-}
-.plan-cta .btn-primary:hover{
-  transform:translateY(-1px);
-  box-shadow:0 22px 40px #0008;
-}
-
-/* --- Details section styles (inside inline-form) --- */
-
-.plan-details-wrap{
-  display:grid;
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.plan-details{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:16px;
-  box-shadow:0 16px 40px rgba(0,0,0,.5);
-  color:var(--text);
-  overflow:hidden;
-}
-
-.plan-details summary{
-  cursor:pointer;
-  padding:14px 16px;
-  font-weight:600;
-  font-size:15px;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  list-style:none;
-  outline:none;
-}
-.plan-details summary::-webkit-details-marker{
-  display:none;
-}
-
-.plan-details summary .summ-head{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  align-items:center;
-  line-height:1.3;
-}
-.plan-details summary .summ-left{
-  display:flex;
-  flex-direction:column;
-}
-.plan-details summary .plan-label{
-  font-size:14px;
-  font-weight:700;
-  color:#fff;
-}
-.plan-details summary .mini-desc{
-  font-size:13px;
-  color:var(--muted);
-  font-weight:400;
-}
-
-.plan-details summary .caret{
-  font-size:14px;
-  color:var(--muted);
-  transition:.18s ease;
-}
-.plan-details[open] summary .caret{
-  transform:rotate(180deg);
-  color:#fff;
-}
-
-.plan-details-body{
-  padding:0 16px 16px;
-  font-size:14px;
-  line-height:1.5;
-  color:var(--muted);
-}
-.plan-details-body p{
-  margin:0 0 10px;
-  color:var(--muted);
-}
-.plan-details-body p strong{
-  color:#fff;
-  font-weight:600;
-}
-.plan-details-body ul{
-  margin:0 0 12px;
-  padding:0 0 0 18px;
-}
-.plan-details-body li{
-  margin:6px 0;
-  color:#efeafe;
-}
-
-/* responsive tweaks */
-@media(max-width:1000px){
-  .price-layout{
-    grid-template-columns:1fr;
-  }
-  .plan-card{
-    min-height:0;
-    transform:none;
-  }
-  .plan-card.growth{
-    transform:none;
-  }
-}
-
-@media(max-width:600px){
-  .inline-grid{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:700px){
-  .modal-grid{
-    grid-template-columns:1fr !important;
-  }
-}
-
-/* helper for inline form grid */
-.inline-grid{
-  display:grid;
-  gap:10px;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-}
-
-/* ====== NEW: INTEGRATIONS (neon layout like reference) ====== */
-#integrations {
-  position:relative;
-  z-index:2;
-  scroll-margin-top:90px;
-}
-
-.integrations-shell {
-  background:
-    radial-gradient(1100px 600px at 20% 0%, rgba(124, 145, 255, .08) 0%, rgba(5,4,12,0) 60%),
-    radial-gradient(800px 520px at 120% 40%, rgba(232, 68, 255, .08) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(160deg, rgba(7,6,12,.9) 0%, rgba(6,5,10,.65) 100%);
-  border:1px solid rgba(132, 161, 255, .16);
-  border-radius:32px;
-  padding:44px 40px 38px;
-  box-shadow:
-    0 50px 140px rgba(0,0,0,.55),
-    0 0 80px rgba(124,145,255,.18);
-  overflow:hidden;
-}
-
-.int-top-chip {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:6px 28px 7px;
-  border-radius:999px;
-  border:1.5px solid rgba(112, 180, 255, .65);
-  color:rgba(189,222,255,.95);
-  font-weight:600;
-  letter-spacing:.02em;
-  font-size:15px;
-  background:rgba(10,18,32,0);
-  margin:0 auto 18px;
-}
-
-.int-headline {
-  text-align:center;
-  font-size:34px;
-  line-height:1.05;
-  font-weight:700;
-  color:#fff;
-  margin-bottom:10px;
-}
-
-.int-subline {
-  text-align:center;
-  color:rgba(227,236,255,.65);
-  font-size:15px;
-  margin-bottom:22px;
-}
-
-.int-filters {
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-bottom:26px;
-}
-
-.int-filter-btn {
-  appearance:none;
-  border:1px solid rgba(161,186,255,.18);
-  background:rgba(7,8,18,0);
-  color:rgba(231,238,255,.55);
-  border-radius:999px;
-  padding:7px 18px 8px;
-  font-size:14px;
-  font-weight:500;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  transition:.12s ease;
-  cursor:default;
-}
-.int-filter-btn.active {
-  background:linear-gradient(140deg, rgba(109,186,255,1) 0%, rgba(65,120,252,1) 80%);
-  color:#0a1221;
-  border-color:rgba(151,201,255,.6);
-  box-shadow:0 12px 30px rgba(74,131,255,.45);
-}
-.int-filter-dot{
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:currentColor;
-  opacity:.5;
-}
-.int-filter-btn.active .int-filter-dot{ opacity:1; }
-
-.int-grid {
-  display:grid;
-  grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:22px;
-}
-
-.int-card {
-  border-radius:26px;
-  border:1px solid rgba(199, 214, 255, .06);
-  background:radial-gradient(280px 220px at 10% 18%, rgba(153,255,255,.46) 0%, rgba(21,36,42,.12) 60%), rgba(2,5,12,.5);
-  min-height:180px;
-  padding:20px 20px 16px;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.01),
-    0 28px 60px rgba(0,0,0,.35);
-}
-
-.int-card:before {
-  content:"";
-  position:absolute;
-  inset:-16px -12px auto;
-  height:120px;
-  background:radial-gradient(230px 90px at 10% 10%, rgba(171,207,255,.35), rgba(6,8,12,0));
-  pointer-events:none;
-  mix-blend-mode:screen;
-}
-
-.int-card-title {
-  font-size:15.5px;
-  font-weight:600;
-  color:#fff;
-  letter-spacing:.01em;
-}
-
-.int-card-body {
-  font-size:13.2px;
-  line-height:1.35;
-  color:rgba(229,236,255,.75);
-  max-width:90%;
-}
-
-.int-pill-row {
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:auto;
-}
-
-.int-pill {
-  background:rgba(3,6,12,0);
-  border:1px solid rgba(219,236,255,.25);
-  border-radius:999px;
-  padding:3px 10px 4px;
-  font-size:11.8px;
-  color:rgba(235,242,255,.82);
-  backdrop-filter:blur(10px);
-}
-
-.int-icon-ring {
-  width:48px;
-  height:48px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 12px 40px rgba(0,0,0,.45);
-  margin-bottom:2px;
-}
-.int-icon-ring svg {
-  width:22px;
-  height:22px;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.int-card.meta {
-  background:
-    radial-gradient(240px 190px at 8% 18%, rgba(108, 227, 255, .35) 0%, rgba(6,8,12,0) 60%),
-    linear-gradient(180deg, rgba(2,12,18,.35) 0%, rgba(3,7,13,.18) 100%);
-  border:1px solid rgba(123,237,255,.28);
-  box-shadow:0 18px 50px rgba(82,195,233,.12);
-}
-.int-card.meta .int-icon-ring {
-  background:radial-gradient(circle at 10% 10%, rgba(124,254,255,1) 0%, rgba(30,98,143,1) 70%);
-  border:1px solid rgba(146,254,255,.7);
-}
-.int-card.meta svg { stroke:#0f2b38; }
-
-.int-card.ga4 {
-  background:
-    radial-gradient(240px 190px at 30% 18%, rgba(138, 168, 255, .28) 0%, rgba(6,8,12,0) 60%),
-    linear-gradient(180deg, rgba(5,10,22,.4) 0%, rgba(4,9,17,.1) 100%);
-  border:1px solid rgba(161,185,255,.32);
-}
-.int-card.ga4 .int-icon-ring {
-  background:radial-gradient(circle at 20% 10%, rgba(175,205,255,1) 0%, rgba(54,82,133,1) 70%);
-  border:1px solid rgba(209,227,255,.82);
-}
-.int-card.ga4 svg { stroke:#0b1729; }
-
-.int-card.tiktok {
-  background:
-    radial-gradient(240px 190px at 10% 18%, rgba(236,113,208,.4) 0%, rgba(13,5,16,0) 60%),
-    linear-gradient(190deg, rgba(20,3,17,.4) 0%, rgba(6,3,8,.1) 100%);
-  border:1px solid rgba(255,171,230,.32);
-}
-.int-card.tiktok .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(251,151,255,1) 0%, rgba(149,43,141,1) 70%);
-  border:1px solid rgba(255,205,251,.6);
-}
-.int-card.tiktok svg{ stroke:#23071d; }
-
-.int-card.klaviyo {
-  background:
-    radial-gradient(240px 190px at 15% 18%, rgba(131,255,150,.32) 0%, rgba(6,8,12,0) 60%),
-    linear-gradient(170deg, rgba(2,15,10,.6) 0%, rgba(2,9,6,.1) 100%);
-  border:1px solid rgba(134,229,165,.32);
-}
-.int-card.klaviyo .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(139,255,170,1) 0%, rgba(17,98,76,1) 70%);
-  border:1px solid rgba(188,255,211,.7);
-}
-.int-card.klaviyo svg{ stroke:#062a19; }
-
-.int-card.bigquery {
-  background:
-    radial-gradient(280px 200px at 16% 18%, rgba(255,201,131,.45) 0%, rgba(16,11,7,0) 65%),
-    linear-gradient(150deg, rgba(35,21,7,.6) 0%, rgba(6,4,2,.1) 100%);
-  border:1px solid rgba(255,208,145,.3);
-}
-.int-card.bigquery .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(254,190,124,1) 0%, rgba(143,86,35,1) 70%);
-  border:1px solid rgba(255,214,156,.9);
-}
-.int-card.bigquery svg{ stroke:#31210f; }
-
-.int-card.webhook {
-  background:
-    radial-gradient(240px 200px at 10% 18%, rgba(252,144,214,.35) 0%, rgba(6,4,8,0) 60%),
-    linear-gradient(165deg, rgba(34,13,42,.55) 0%, rgba(4,2,6,.1) 100%);
-  border:1px solid rgba(246,180,238,.25);
-}
-.int-card.webhook .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(255,155,247,1) 0%, rgba(106,16,91,1) 70%);
-  border:1px solid rgba(255,214,247,.8);
-}
-.int-card.webhook svg{ stroke:#25071b; }
-
-.int-card.crm {
-  background:
-    radial-gradient(240px 190px at 10% 18%, rgba(173,139,255,.35) 0%, rgba(6,8,12,0) 60%),
-    linear-gradient(165deg, rgba(26,16,56,.55) 0%, rgba(5,3,9,.15) 100%);
-  border:1px solid rgba(173,139,255,.25);
-}
-.int-card.crm .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(173,139,255,1) 0%, rgba(49,27,111,1) 70%);
-  border:1px solid rgba(214,194,255,.8);
-}
-.int-card.crm svg{ stroke:#1a1133; }
-
-.int-card.cdp {
-  background:
-    radial-gradient(240px 200px at 10% 18%, rgba(144,236,255,.35) 0%, rgba(6,8,12,0) 60%),
-    linear-gradient(170deg, rgba(6,29,34,.6) 0%, rgba(3,8,10,.15) 100%);
-  border:1px solid rgba(167,240,255,.28);
-}
-.int-card.cdp .int-icon-ring{
-  background:radial-gradient(circle at 10% 10%, rgba(145,236,255,1) 0%, rgba(20,93,110,1) 70%);
-  border:1px solid rgba(199,243,255,.8);
-}
-.int-card.cdp svg{ stroke:#092430; }
-
-@media(max-width:1100px){
-  .int-grid{
-    grid-template-columns:repeat(2, minmax(0,1fr));
-  }
-}
-@media(max-width:650px){
-  .integrations-shell{
-    padding:32px 16px 22px;
-    border-radius:22px;
-  }
-  .int-headline{
-    font-size:28px;
-  }
-  .int-grid{
-    grid-template-columns:1fr;
-  }
-  .int-card{
-    border-radius:22px;
-  }
-}
-
-/* ===== SOLUTIONS CARDS (keep) ===== */
-
-.sol-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.sol-card {
-  background:
-    radial-gradient(circle at 20% 20%, rgba(120,70,240,.4) 0%, rgba(30,10,60,.9) 60%),
-    linear-gradient(180deg, rgba(28,12,56,.9) 0%, rgba(18,8,40,.82) 100%);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 18px;
-  box-shadow:
-    0 30px 80px rgba(0,0,0,.85),
-    0 0 60px rgba(111,68,255,.4);
-  padding: 20px 20px 18px;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  min-height:240px;
-  position:relative;
-  isolation:isolate;
-}
-
-.sol-icon {
-  width:32px;
-  height:32px;
-  border-radius:10px;
-  background:rgba(65,226,192,.12);
-  border:1px solid rgba(65,226,192,.6);
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.7),
-    0 0 20px rgba(65,226,192,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-  flex-shrink:0;
-}
-.sol-icon svg {
-  width:18px;
-  height:18px;
-  stroke:#41e2c0;
-  stroke-width:2;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.sol-card h3{
-  font-size:16px;
-  line-height:1.3;
-  font-weight:600;
+/* headline & subline */
+.int-title{
+  text-align:center; color:#fff; font-size:40px; line-height:1.08; font-weight:800;
+  text-shadow: 0 24px 60px rgba(0,0,0,.8);
   margin:0 0 8px;
-  color:#fff;
-  text-shadow:
-    0 20px 60px rgba(0,0,0,.8),
-    0 0 30px rgba(180,140,255,.35);
+}
+.int-sub{
+  text-align:center; color:rgba(225,235,255,.72); font-size:15px; margin:0 0 22px;
 }
 
-.sol-card p{
-  font-size:14px;
-  line-height:1.4;
-  color:rgba(255,255,255,.78);
-  margin:0 0 12px;
+/* outline pills row */
+.int-pills{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-bottom:22px; }
+.int-pill{
+  padding:8px 16px; border-radius:999px; background:transparent;
+  border:1.4px solid rgba(160,190,255,.28);
+  color:#a9c4ff; font-weight:700; font-size:14px;
+  filter: drop-shadow(0 0 10px rgba(120,160,255,.22));
+}
+.int-pill:hover{ border-color:rgba(160,190,255,.45); }
+
+/* grid: 3 columns x 2 rows */
+.int-grid{
+  display:grid; gap:22px; grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-.sol-list{
-  list-style:none;
-  margin:0;
-  padding:0;
-  display:grid;
-  gap:8px;
-  font-size:14px;
-  line-height:1.4;
-  color:rgba(255,255,255,.78);
+/* base card */
+.int-card{
+  position:relative; border-radius:22px; padding:18px 18px 14px; min-height:216px;
+  background: linear-gradient(180deg, rgba(15,18,30,.88), rgba(10,12,22,.78));
+  border:1.2px solid rgba(200,220,255,.10);
+  box-shadow: 0 36px 90px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.02);
+  display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px;
+  overflow:hidden;
 }
-.sol-list li{
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-}
-.sol-bullet{
-  flex-shrink:0;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:16px;
-  height:16px;
-  border-radius:6px;
-  background:#0ecf9f;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,.5),
-    0 0 20px rgba(14,207,159,.6) inset;
-  font-size:11px;
-  font-weight:800;
-  color:#062b26;
+.int-card::after{
+  content:""; position:absolute; inset:-20px -10px auto; height:110px;
+  background:radial-gradient(260px 90px at 50% 0%, rgba(255,255,255,.10), transparent 70%);
+  pointer-events:none; mix-blend-mode:screen;
 }
 
-@media(max-width:500px){
-  .sol-card{
-    min-height:0;
-    padding:18px 18px 16px;
-  }
+/* icon ring (centered) */
+.int-ico{
+  width:62px; height:62px; border-radius:20px; display:grid; place-items:center;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.02);
+  margin-top:4px;
 }
+.int-ico svg{ width:28px; height:28px; fill:none; stroke-width:2.2; }
+
+/* text */
+.int-h3{ color:#fff; font-weight:800; font-size:18px; margin:2px 0 0; }
+.int-desc{ color:rgba(230,238,255,.80); font-size:13.4px; line-height:1.35; max-width:92%; }
+
+/* small pills inside card */
+.int-tags{ margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+.int-tag{
+  font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid rgba(220,235,255,.28);
+  color:#e8f0ff; background:rgba(4,8,16,.15); backdrop-filter:blur(8px);
+}
+
+/* THEMES (neon) */
+.theme-cyan   { border-color:rgba(120,235,255,.35); box-shadow:0 26px 80px rgba(60,190,230,.18), inset 0 0 40px rgba(70,220,255,.10); }
+.theme-cyan .int-ico{ border-color:rgba(140,255,255,.75); background:radial-gradient(circle at 35% 25%, #7bfbff, #1d5a86 70%); }
+.theme-cyan .int-ico svg{ stroke:#07202b; filter: drop-shadow(0 0 12px #79f3ff) drop-shadow(0 0 28px #79f3ff); }
+
+.theme-blue   { border-color:rgba(150,180,255,.35); box-shadow:0 26px 80px rgba(90,140,255,.16), inset 0 0 40px rgba(120,160,255,.10); }
+.theme-blue .int-ico{ border-color:rgba(190,215,255,.8); background:radial-gradient(circle at 35% 25%, #beddff, #37598f 72%); }
+.theme-blue .int-ico svg{ stroke:#0a1730; filter: drop-shadow(0 0 12px #9fc3ff) drop-shadow(0 0 28px #9fc3ff); }
+
+.theme-magenta{ border-color:rgba(255,170,235,.35); box-shadow:0 26px 80px rgba(250,120,230,.16), inset 0 0 40px rgba(255,160,235,.10); }
+.theme-magenta .int-ico{ border-color:rgba(255,210,245,.8); background:radial-gradient(circle at 35% 25%, #ffb7ff, #751c6e 70%); }
+.theme-magenta .int-ico svg{ stroke:#2a0b28; filter: drop-shadow(0 0 12px #ff9dfb) drop-shadow(0 0 28px #ff9dfb); }
+
+.theme-green  { border-color:rgba(155,245,190,.35); box-shadow:0 26px 80px rgba(110,230,160,.16), inset 0 0 40px rgba(140,255,190,.10); }
+.theme-green .int-ico{ border-color:rgba(190,255,215,.85); background:radial-gradient(circle at 35% 25%, #8bffc1, #13694e 70%); }
+.theme-green .int-ico svg{ stroke:#082a1f; filter: drop-shadow(0 0 12px #7effb7) drop-shadow(0 0 28px #7effb7); }
+
+.theme-orange { border-color:rgba(255,205,150,.35); box-shadow:0 26px 80px rgba(255,190,120,.17), inset 0 0 40px rgba(255,200,150,.10); }
+.theme-orange .int-ico{ border-color:rgba(255,220,175,.85); background:radial-gradient(circle at 35% 25%, #ffd18f, #7b4b1f 72%); }
+.theme-orange .int-ico svg{ stroke:#2f1e0c; filter: drop-shadow(0 0 12px #ffc677) drop-shadow(0 0 28px #ffc677); }
+
+.theme-pink   { border-color:rgba(255,185,235,.35); box-shadow:0 26px 80px rgba(255,140,220,.16), inset 0 0 40px rgba(255,160,235,.10); }
+.theme-pink .int-ico{ border-color:rgba(255,210,245,.85); background:radial-gradient(circle at 35% 25%, #ffb2f3, #6a1760 72%); }
+.theme-pink .int-ico svg{ stroke:#2a0826; filter: drop-shadow(0 0 12px #ff9dea) drop-shadow(0 0 28px #ff9dea); }
+
+@media (max-width: 980px){ .int-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width: 620px){ .int-grid{ grid-template-columns:1fr; } .int-title{ font-size:32px; } }
 </style>
-
-<!-- GA4 + Consent defaults -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('consent','default',{
-    ad_storage:'denied',
-    analytics_storage:'denied',
-    functionality_storage:'granted',
-    security_storage:'granted'
-  });
-  gtag('js', new Date());
-  gtag('config','G-3VQHGCGTPN',{ anonymize_ip:true });
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3VQHGCGTPN"></script>
 </head>
 
 <body>
-  <!-- Decorative BG -->
-  <div class="bg"></div><div class="grid"></div><div class="grain"></div>
-  <div class="spheres" aria-hidden="true">
-    <span class="sphere s1"></span><span class="sphere s2"></span>
-    <span class="sphere s3"></span><span class="sphere s4"></span>
-    <span class="sphere s5"></span><span class="sphere s6"></span>
-  </div>
 
-  <!-- Header / Nav -->
-  <header>
-    <div class="container nav" id="nav">
-      <a href="/" class="brand" aria-label="Lunvi Labs home">
-        <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
-      </a>
-      <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
-      <ul id="menu" aria-label="Main menu">
-        <li><a href="#product">Product</a></li>
-        <li><a href="#solutions">Solutions</a></li>
-        <li><a href="#integrations">Integrations</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
-        <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
-      </ul>
+<!-- ===================================================== -->
+<!-- INTEGRATIONS START (paste this block into your file)  -->
+<section id="integrations" class="section container" aria-labelledby="integrations-title">
+  <div class="integrations-wrap">
+    <div class="int-chip" id="integrations-title">Integrations</div>
+
+    <h2 class="int-title">Works seamlessly with your<br/>existing stack</h2>
+    <p class="int-sub">Monitored delivery, retry &amp; dedup built in. Add more<br/>destinations when your team needs it.</p>
+
+    <div class="int-pills" aria-label="Categories">
+      <span class="int-pill">Meta CAPI</span>
+      <span class="int-pill">GA4 MP v2</span>
+      <span class="int-pill">TikTok Events</span>
+      <span class="int-pill">Klaviyo</span>
+      <span class="int-pill">BigQuery</span>
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero container" id="hero">
-      <div class="hero-grid">
-        <div>
-          <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
-          <p class="lead">
-            Managed sGTM hosting with reliable <strong>Meta Conversions API</strong> &amp; <strong>GA4 Measurement Protocol</strong> delivery — complete with <em>dedup</em>, <em>Consent Mode v2</em>, and a live <em>log &amp; debugger</em>.
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#demo">Start Demo</a>
-            <a class="btn btn-ghost" href="#pricing">See Pricing</a>
-          </div>
-
-          <div style="height:12px"></div>
-          <div class="trust" role="list" aria-label="Trust badges">
-            <span class="badge" role="listitem">EU Hosting</span>
-            <span class="badge" role="listitem">GDPR / KVKK</span>
-            <span class="badge" role="listitem">99.9% Uptime target</span>
-            <span class="badge" role="listitem">1-click Deploy</span>
-          </div>
-
-          <div class="chips" role="list" aria-label="Highlights">
-            <span class="chip" role="listitem">Meta CAPI preset</span>
-            <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
-            <span class="chip" role="listitem">Event Router</span>
-            <span class="chip" role="listitem">Consent Mode v2</span>
-            <span class="chip" role="listitem">Log &amp; Debugger</span>
-          </div>
+    <div class="int-grid" role="list" aria-label="Integrations list">
+      <!-- 1: Meta -->
+      <article class="int-card theme-cyan" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- globe -->
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M4 12h16M12 4a14 14 0 0 1 0 16M12 4a14 14 0 0 0 0 16"></path>
+          </svg>
         </div>
-
-        <div class="panels">
-          <div class="panel">
-            <div class="icon" aria-hidden="true"></div>
-            <h3>Key capabilities</h3>
-            <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
-          </div>
-          <div class="panel">
-            <div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div>
-            <h3>Use cases</h3>
-            <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
-          </div>
-          <div class="panel">
-            <div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div>
-            <h3>Health at a glance</h3>
-            <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
-          </div>
+        <h3 class="int-h3">Meta Conversions</h3>
+        <p class="int-desc">High-match server events, with browser server dedup + test console visibility.</p>
+        <div class="int-tags">
+          <span class="int-tag">Match 97%</span>
+          <span class="int-tag">Dedup ready</span>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <!-- PRODUCT -->
-    <section class="section container" id="product">
-      <h2>Product</h2>
-      <div class="grid-3">
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Meta Conversions API</h3>
-          <p>Pixel ID &amp; Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p>
+      <!-- 2: GA4 -->
+      <article class="int-card theme-blue" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- bars -->
+          <svg viewBox="0 0 24 24">
+            <line x1="5" y1="20" x2="5" y2="12"></line>
+            <line x1="12" y1="20" x2="12" y2="6"></line>
+            <line x1="19" y1="20" x2="19" y2="10"></line>
+            <line x1="3" y1="20" x2="21" y2="20"></line>
+          </svg>
         </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>GA4 Server Endpoint</h3>
-          <p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p>
+        <h3 class="int-h3">Google Analytics 4</h3>
+        <p class="int-desc">Measurement Protocol v2 with normalization, referral cleanup &amp; EU-mode.</p>
+        <div class="int-tags">
+          <span class="int-tag">MP v2</span>
+          <span class="int-tag">EU-mode</span>
         </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Event Router &amp; Destinations</h3>
-          <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
+      </article>
+
+      <!-- 3: TikTok -->
+      <article class="int-card theme-magenta" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- bolt -->
+          <svg viewBox="0 0 24 24">
+            <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
+          </svg>
         </div>
-      </div>
-    </section>
-
-    <!-- SOLUTIONS (upgraded premium cards) -->
-    <section class="section container" id="solutions" aria-labelledby="solutions-title">
-      <h2 id="solutions-title">Solutions</h2>
-      <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
-        We cover common growth / analytics setups out of the box, so you don't spend weeks wiring tracking, consent, and attribution.
-      </p>
-
-      <div class="sol-grid" role="list" aria-label="Solutions list">
-
-        <!-- E-commerce -->
-        <article class="sol-card" role="listitem">
-          <div class="sol-icon" aria-hidden="true">
-            <!-- shopping bag / cart icon -->
-            <svg viewBox="0 0 24 24">
-              <path d="M6 7h12l-1 13H7L6 7z"></path>
-              <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
-            </svg>
-          </div>
-          <h3>E-commerce</h3>
-          <p>
-            Purchase / AddToCart events piped to Meta CAPI &amp; GA4, deduped browser+server,
-            with consent-aware fallback pings.
-          </p>
-          <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>Purchase value &amp; currency</span></li>
-            <li><span class="sol-bullet">✓</span><span>UTM / referral cleanup</span></li>
-            <li><span class="sol-bullet">✓</span><span>EU-friendly measurement</span></li>
-          </ul>
-        </article>
-
-        <!-- Lead gen / B2B -->
-        <article class="sol-card" role="listitem">
-          <div class="sol-icon" aria-hidden="true">
-            <!-- handshake / contact icon -->
-            <svg viewBox="0 0 24 24">
-              <path d="M8 11l4-4 4 4"></path>
-              <path d="M3 12v7h7v-7H3z"></path>
-              <path d="M14 12v7h7v-7h-7z"></path>
-              <path d="M8 15h8"></path>
-            </svg>
-          </div>
-          <h3>Lead gen / B2B</h3>
-          <p>
-            Form submits go to CRM + ads platforms with hashed identifiers
-            and audit trail for compliance.
-          </p>
-          <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>generate_lead events</span></li>
-            <li><span class="sol-bullet">✓</span><span>Email domain enrichment</span></li>
-            <li><span class="sol-bullet">✓</span><span>SLA / DPA available</span></li>
-          </ul>
-        </article>
-
-        <!-- Agencies / Partners -->
-        <article class="sol-card" role="listitem">
-          <div class="sol-icon" aria-hidden="true">
-            <!-- briefcase / team icon -->
-            <svg viewBox="0 0 24 24">
-              <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
-              <rect x="3" y="6" width="18" height="14" rx="2" ry="2"></rect>
-              <path d="M3 13h18"></path>
-              <path d="M10 10h4"></path>
-            </svg>
-          </div>
-          <h3>Agencies / Partners</h3>
-          <p>
-            Multi-tenant setup with isolated containers per client, managed SSL,
-            and shared debugging access.
-          </p>
-          <ul class="sol-list">
-            <li><span class="sol-bullet">✓</span><span>Custom domains per client</span></li>
-            <li><span class="sol-bullet">✓</span><span>Team / role control</span></li>
-            <li><span class="sol-bullet">✓</span><span>White-label friendly</span></li>
-          </ul>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- INTEGRATIONS -->
-    <section class="section container" id="integrations" aria-labelledby="integrations-title">
-      <div class="integrations-shell">
-        <div class="int-top-chip" id="integrations-title">Integrations</div>
-        <h2 class="int-headline">Works seamlessly with your existing stack</h2>
-        <p class="int-subline">Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
-
-        <div class="int-filters" aria-label="Integration types">
-          <button class="int-filter-btn active" type="button"><span class="int-filter-dot"></span>All</button>
-          <button class="int-filter-btn" type="button">Meta CAPI</button>
-          <button class="int-filter-btn" type="button">GA4 MP v2</button>
-          <button class="int-filter-btn" type="button">TikTok Events</button>
-          <button class="int-filter-btn" type="button">Klaviyo</button>
-          <button class="int-filter-btn" type="button">BigQuery</button>
+        <h3 class="int-h3">TikTok Events API</h3>
+        <p class="int-desc">Server-to-server events for paid social attribution with retry &amp; delivery monitor.</p>
+        <div class="int-tags">
+          <span class="int-tag">Auto-retry</span>
+          <span class="int-tag">Delivery log</span>
         </div>
+      </article>
 
-        <div class="int-grid" role="list" aria-label="Integrations list">
-          <!-- 1 -->
-          <article class="int-card meta" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="6" cy="12" r="3"></circle>
-                <circle cx="18" cy="6" r="3"></circle>
-                <circle cx="18" cy="18" r="3"></circle>
-                <line x1="8.5" y1="10.5" x2="15.5" y2="7.5"></line>
-                <line x1="8.5" y1="13.5" x2="15.5" y2="16.5"></line>
-              </svg>
-            </div>
-            <h3 class="int-card-title">Meta Conversions</h3>
-            <p class="int-card-body">High-match server events, with browser &amp; server dedup + test console visibility.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Match 97%</span>
-              <span class="int-pill">Dedup ready</span>
-            </div>
-          </article>
-
-          <!-- 2 -->
-          <article class="int-card ga4" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <line x1="5" y1="20" x2="5" y2="12"></line>
-                <line x1="12" y1="20" x2="12" y2="6"></line>
-                <line x1="19" y1="20" x2="19" y2="10"></line>
-                <line x1="3" y1="20" x2="21" y2="20"></line>
-              </svg>
-            </div>
-            <h3 class="int-card-title">Google Analytics 4</h3>
-            <p class="int-card-body">MP v2 with normalization, referral cleanup &amp; EU-mode.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">MP v2</span>
-              <span class="int-pill">EU-mode</span>
-            </div>
-          </article>
-
-          <!-- 3 -->
-          <article class="int-card tiktok" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
-              </svg>
-            </div>
-            <h3 class="int-card-title">TikTok Events API</h3>
-            <p class="int-card-body">Server-to-server events for paid social attribution with retry &amp; delivery monitor.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Auto-retry</span>
-              <span class="int-pill">Delivery log</span>
-            </div>
-          </article>
-
-          <!-- 4 -->
-          <article class="int-card klaviyo" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-                <polyline points="3 7 12 13 21 7"></polyline>
-              </svg>
-            </div>
-            <h3 class="int-card-title">Klaviyo</h3>
-            <p class="int-card-body">Profile + event sync for lifecycle messaging &amp; retention automations.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Profiles</span>
-              <span class="int-pill">Events</span>
-            </div>
-          </article>
-
-          <!-- 5 -->
-          <article class="int-card bigquery" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
-                <path d="M5 5v8c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
-                <path d="M5 13v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
-              </svg>
-            </div>
-            <h3 class="int-card-title">BigQuery Export</h3>
-            <p class="int-card-body">Raw event export for deeper attribution, BI dashboards &amp; custom modeling.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Hourly push</span>
-              <span class="int-pill">Secure</span>
-            </div>
-          </article>
-
-          <!-- 6 -->
-          <article class="int-card webhook" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M10 13a5 5 0 0 1 0-10h2"></path>
-                <path d="M14 11a5 5 0 0 1 0 10h-2"></path>
-                <line x1="9" y1="12" x2="15" y2="12"></line>
-              </svg>
-            </div>
-            <h3 class="int-card-title">Webhook Destinations</h3>
-            <p class="int-card-body">Send mapped payloads to your own endpoints or internal systems.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Conditional maps</span>
-              <span class="int-pill">3GTM</span>
-            </div>
-          </article>
-
-          <!-- 7 -->
-          <article class="int-card crm" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <circle cx="9" cy="8" r="3"></circle>
-                <circle cx="17" cy="13" r="3"></circle>
-                <path d="M2 20c0-3.3 2.7-6 6-6h2"></path>
-                <path d="M12 20c0-2.6 2.1-4.7 4.7-4.7H19"></path>
-              </svg>
-            </div>
-            <h3 class="int-card-title">CRM / HubSpot</h3>
-            <p class="int-card-body">Push qualified leads, map lifecycle stage &amp; keep sales teams in sync.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Lead sync</span>
-              <span class="int-pill">Audit</span>
-            </div>
-          </article>
-
-          <!-- 8 -->
-          <article class="int-card cdp" role="listitem">
-            <div class="int-icon-ring" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <polygon points="12 2 3 7 12 12 21 7 12 2"></polygon>
-                <polyline points="3 12 12 17 21 12"></polyline>
-                <polyline points="3 17 12 22 21 17"></polyline>
-              </svg>
-            </div>
-            <h3 class="int-card-title">CDP / Segment</h3>
-            <p class="int-card-body">Unify identifiers, build segments, activate downstream tools.</p>
-            <div class="int-pill-row">
-              <span class="int-pill">Segments</span>
-              <span class="int-pill">Activation</span>
-            </div>
-          </article>
+      <!-- 4: Klaviyo -->
+      <article class="int-card theme-green" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- envelope -->
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+            <polyline points="3 7 12 13 21 7"></polyline>
+          </svg>
         </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
-      <h2 id="pricing-title">Pricing</h2>
-      <p class="lead pricing-lead">
-        High-match, consent-aware server-side tracking. No free tier — you own the data.
-      </p>
-
-      <div class="pricing-bg">
-
-        <!-- billing toggle -->
-        <div class="billing-toggle-wrap">
-          <span class="billing-label">Billing</span>
-          <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
-            <button class="bill-btn" data-mode="monthly" type="button">Monthly</button>
-            <button class="bill-btn active" data-mode="annual" type="button">
-              Annual <span class="save-pill">Save 20%</span>
-            </button>
-          </div>
+        <h3 class="int-h3">Klaviyo</h3>
+        <p class="int-desc">Profile + event sync for lifecycle messaging &amp; retention automations.</p>
+        <div class="int-tags">
+          <span class="int-tag">Profiles</span>
+          <span class="int-tag">Events</span>
         </div>
+      </article>
 
-        <div class="price-layout">
-
-          <!-- Starter -->
-          <article class="plan-card starter" data-plan="Starter">
-            <div class="plan-head">
-              <div class="plan-name">Starter</div>
-              <p class="plan-desc">
-                For a single brand that needs clean server-to-server tracking fast.
-              </p>
-
-              <p class="plan-price">
-                <span class="currency">$</span>
-                <span class="plan-price-number"
-                      data-month="99"
-                      data-annual="79">79</span>
-                <span class="per">/mo</span>
-                <span class="plan-price-note">billed annually</span>
-              </p>
-            </div>
-
-            <ul class="plan-features">
-              <li><span class="check-icon">✓</span><span>1 container / brand</span></li>
-              <li><span class="check-icon">✓</span><span>100k events / month</span></li>
-              <li><span class="check-icon">✓</span><span>Managed SSL &amp; custom subdomain</span></li>
-              <li><span class="check-icon">✓</span><span>Meta Conversions API + GA4 MP v2</span></li>
-              <li><span class="check-icon">✓</span><span>Consent Mode v2 &amp; basic dedup</span></li>
-              <li><span class="check-icon">✓</span><span>Email support</span></li>
-            </ul>
-
-            <div class="plan-cta">
-              <a class="btn btn-primary js-request"
-                 href="#"
-                 data-plan="Starter"
-                 role="button"
-                 aria-label="Request upgrade — Starter">
-                Request upgrade
-              </a>
-
-              <a class="btn btn-ghost"
-                 href="#plan-starter-details"
-                 role="button"
-                 onclick="event.preventDefault();const sec=document.getElementById('plan-starter-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
-                Details
-              </a>
-            </div>
-          </article>
-
-          <!-- Growth -->
-          <article class="plan-card growth" data-plan="Growth" aria-current="true">
-            <div class="plan-head">
-              <div class="plan-name">
-                Growth
-                <span class="plan-pill">Most popular</span>
-              </div>
-              <p class="plan-desc">
-                Multi-brand setups, EU-region hosting and advanced debugging.
-              </p>
-
-              <p class="plan-price">
-                <span class="currency">$</span>
-                <span class="plan-price-number"
-                      data-month="189"
-                      data-annual="149">149</span>
-                <span class="per">/mo</span>
-                <span class="plan-price-note">billed annually</span>
-              </p>
-            </div>
-
-            <ul class="plan-features">
-              <li><span class="check-icon">✓</span><span>3 containers / brands</span></li>
-              <li><span class="check-icon">✓</span><span>500k events / month</span></li>
-              <li><span class="check-icon">✓</span><span>Custom domain (CNAME) &amp; EU data residency</span></li>
-              <li><span class="check-icon">✓</span><span>Meta CAPI + GA4 + Event Router</span></li>
-              <li><span class="check-icon">✓</span><span>Advanced dedup &amp; live log / debugger</span></li>
-              <li><span class="check-icon">✓</span><span>Priority support / SLA preview</span></li>
-            </ul>
-
-            <div class="plan-cta">
-              <a class="btn btn-primary js-request"
-                 href="#"
-                 data-plan="Growth"
-                 role="button"
-                 aria-label="Request upgrade — Growth">
-                Request upgrade
-              </a>
-
-              <a class="btn btn-ghost"
-                 href="#plan-growth-details"
-                 role="button"
-                 onclick="event.preventDefault();const sec=document.getElementById('plan-growth-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
-                Details
-              </a>
-            </div>
-          </article>
-
-          <!-- Enterprise -->
-          <article class="plan-card enterprise" data-plan="Enterprise">
-            <div class="plan-head">
-              <div class="plan-name">Enterprise</div>
-              <p class="plan-desc">
-                Dedicated regions, audit trail, white-label / agency mode.
-              </p>
-
-              <p class="plan-price">
-                <span class="currency">$</span>
-                <span class="plan-price-number"
-                      data-month="349"
-                      data-annual="299">299</span>
-                <span class="per">/mo</span>
-                <span class="plan-price-note">billed annually</span>
-              </p>
-            </div>
-
-            <ul class="plan-features">
-              <li><span class="check-icon">✓</span><span>10 containers (isolation per client)</span></li>
-              <li><span class="check-icon">✓</span><span>2M+ events / month burst capacity</span></li>
-              <li><span class="check-icon">✓</span><span>Dedicated region &amp; residency options</span></li>
-              <li><span class="check-icon">✓</span><span>Team / role control &amp; audit log</span></li>
-              <li><span class="check-icon">✓</span><span>Custom webhooks / BigQuery export</span></li>
-              <li><span class="check-icon">✓</span><span>Signed DPA, SLA, white-label mode</span></li>
-            </ul>
-
-            <div class="plan-cta">
-              <a class="btn btn-primary js-request"
-                 href="#"
-                 data-plan="Enterprise"
-                 role="button"
-                 aria-label="Request upgrade — Enterprise">
-                Request upgrade
-              </a>
-
-              <a class="btn btn-ghost"
-                 href="#plan-enterprise-details"
-                 role="button"
-                 onclick="event.preventDefault();const sec=document.getElementById('plan-enterprise-details');if(sec){sec.open=true;sec.scrollIntoView({behavior:'smooth',block:'start'});}">
-                Details
-              </a>
-            </div>
-          </article>
-
+      <!-- 5: BigQuery -->
+      <article class="int-card theme-orange" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- database -->
+          <svg viewBox="0 0 24 24">
+            <ellipse cx="12" cy="6" rx="7" ry="3"></ellipse>
+            <path d="M5 6v5c0 1.7 3.1 3 7 3s7-1.3 7-3V6"></path>
+            <path d="M5 11v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"></path>
+          </svg>
         </div>
-      </div>
-
-      <!-- CONTACT SALES BAND -->
-      <div class="cta-band" id="contact-sales">
-        <div class="cta-inner">
-          <div class="cta-copy">
-            <h3>Looking for a custom approach?</h3>
-            <p>We tailor regions, SLAs and integrations to your stack. Talk to our team.</p>
-          </div>
-          <div class="cta-actions">
-            <a class="cta-primary" href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20%E2%80%94%20Custom%20Plan%20Inquiry">Contact sales</a>
-            <a class="cta-ghost" href="#demo">Try for free</a>
-          </div>
+        <h3 class="int-h3">BigQuery Export</h3>
+        <p class="int-desc">Raw event export for deeper attribution, BI dashboards &amp; custom modeling.</p>
+        <div class="int-tags">
+          <span class="int-tag">Hourly push</span>
+          <span class="int-tag">Secure</span>
         </div>
-      </div>
+      </article>
 
-      <!-- INLINE DETAILS + REQUEST FORM -->
-      <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-        <h3 style="margin:0 0 10px">Plan details &amp; upgrade request</h3>
-        <p style="color:var(--muted);font-size:14px;line-height:1.4;margin:0 0 16px;">
-          Compare what’s included in each plan, then send us a request. We’ll activate
-          your chosen plan and handle onboarding.
-        </p>
-
-        <!-- Collapsible details blocks -->
-        <div class="plan-details-wrap">
-
-          <!-- Starter details -->
-          <details class="plan-details" id="plan-starter-details">
-            <summary>
-              <span class="summ-left">
-                <span class="plan-label">Starter plan details</span>
-                <span class="mini-desc">Single brand, fast clean server-side tracking.</span>
-              </span>
-              <span class="caret">▾</span>
-            </summary>
-            <div class="plan-details-body">
-              <p><strong>Who it’s for</strong><br>
-                One brand / one storefront that just needs accurate server-to-server tracking, quickly.
-              </p>
-              <p><strong>Included</strong></p>
-              <ul class="sec-list">
-                <li>1 container (isolated runtime) for 1 brand</li>
-                <li>100k server-side events / month</li>
-                <li>Managed SSL and *.lunvi.run subdomain</li>
-                <li>Optional custom subdomain via CNAME (SSL handled by us)</li>
-                <li>Meta Conversions API &amp; GA4 MP v2 templates</li>
-                <li>Basic browser+server dedup &amp; Consent Mode v2 support</li>
-                <li>IP anonymization &amp; basic PII scrubbing</li>
-                <li>Simple event log view (recent sends + status codes)</li>
-                <li>Email support during business hours</li>
-              </ul>
-              <p><strong>Limits</strong></p>
-              <ul class="sec-list">
-                <li>No guaranteed EU-only region (shared infra)</li>
-                <li>No advanced audit trail or multi-user access</li>
-                <li>Above 100k events/mo billed as overage blocks</li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Growth details -->
-          <details class="plan-details" id="plan-growth-details" open>
-            <summary>
-              <span class="summ-left">
-                <span class="plan-label">Growth plan details</span>
-                <span class="mini-desc">Multi-brand, EU hosting, live debugger &amp; priority support.</span>
-              </span>
-              <span class="caret">▾</span>
-            </summary>
-            <div class="plan-details-body">
-              <p><strong>Who it’s for</strong><br>
-                Teams or agencies running multiple brands / shops, who care about data quality, consent,
-                and being able to prove attribution.
-              </p>
-              <p><strong>Included</strong></p>
-              <ul class="sec-list">
-                <li>3 containers / brands (isolated per brand)</li>
-                <li>500k+ events / month total capacity</li>
-                <li>Custom domain (CNAME) + EU-region data residency option</li>
-                <li>Meta CAPI + GA4 + Event Router (branch one event to multiple destinations)</li>
-                <li>Advanced dedup logic &amp; Consent Mode v2 fallback (anonymous ping → full payload)</li>
-                <li>Live Log &amp; Debugger UI (why an event was accepted/rejected, match quality, etc.)</li>
-                <li>UTM / referral cleanup &amp; IP normalization</li>
-                <li>Lightweight audit trail (config changes, deploy history)</li>
-                <li>Simple shared view you can give to clients (read-only debugging)</li>
-                <li>Priority support / SLA preview response times</li>
-              </ul>
-              <p><strong>Notes</strong></p>
-              <ul class="sec-list">
-                <li>Extra containers beyond 3 are add-on</li>
-                <li>Signed DPA / SLA can be prepared here, but it’s guaranteed under Enterprise</li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Enterprise details -->
-          <details class="plan-details" id="plan-enterprise-details">
-            <summary>
-              <span class="summ-left">
-                <span class="plan-label">Enterprise plan details</span>
-                <span class="mini-desc">Dedicated region, audit log, white-label / agency mode.</span>
-              </span>
-              <span class="caret">▾</span>
-            </summary>
-            <div class="plan-details-body">
-              <p><strong>Who it’s for</strong><br>
-                High-compliance orgs and agencies that need regional isolation, formal DPA / SLA,
-                and per-client segregation.
-              </p>
-              <p><strong>Included</strong></p>
-              <ul class="sec-list">
-                <li>10 containers out of the box (each client isolated)</li>
-                <li>2M+ events / month burst capacity for campaigns</li>
-                <li>Dedicated region &amp; residency options (EU-only / per-client cluster, etc.)</li>
-                <li>Team / role-based access, per-client audit trail</li>
-                <li>Custom webhooks + BigQuery export (full raw event stream)</li>
-                <li>Signed DPA, SLA, white-label mode for agencies</li>
-                <li>Defined data retention / deletion policy and incident response terms</li>
-              </ul>
-              <p><strong>Why Enterprise</strong></p>
-              <ul class="sec-list">
-                <li>You can show auditors where data lives</li>
-                <li>You can prove who touched what &amp; when</li>
-                <li>You can present Lunvi as “your own infra” to end clients</li>
-              </ul>
-            </div>
-          </details>
-
+      <!-- 6: Webhook -->
+      <article class="int-card theme-pink" role="listitem">
+        <div class="int-ico" aria-hidden="true">
+          <!-- link -->
+          <svg viewBox="0 0 24 24">
+            <path d="M10 13a5 5 0 0 1 0-10h2"></path>
+            <path d="M14 11a5 5 0 0 1 0 10h-2"></path>
+            <line x1="9" y1="12" x2="15" y2="12"></line>
+          </svg>
         </div>
-
-        <!-- Upgrade Request Form -->
-        <h4 style="margin:0 0 10px;color:#fff;font-size:16px;font-weight:700;">
-          Request upgrade
-        </h4>
-        <form action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-
-          <div class="inline-grid">
-            <label>Company
-              <input name="company" required placeholder="e.g., Example Inc." />
-            </label>
-            <label>Email
-              <input type="email" name="email" required placeholder="you@company.com" />
-            </label>
-            <label>Phone
-              <input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" />
-            </label>
-            <label>Billing details / Tax ID
-              <input name="billing" placeholder="Tax office, number, address" />
-            </label>
-          </div>
-
-          <label style="display:block; margin-top:10px;">Notes (optional)
-            <textarea name="notes" placeholder="Short notes"></textarea>
-          </label>
-
-          <input type="hidden" name="subject" value="Lunvi Labs — Plan Upgrade Request" />
-          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-
-          <div style="margin-top:12px;">
-            <button class="btn btn-primary" type="submit">Submit request</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- SELF-HOST VS LUNVI -->
-    <section class="container" style="padding:24px 0 8px;">
-      <div class="compare-wrap">
-        <div style="width:min(1020px,96vw)">
-          <h2 style="text-align:center;margin:0 0 10px;font-size:34px">Self-host vs Lunvi</h2>
+        <h3 class="int-h3">Webhook Destinations</h3>
+        <p class="int-desc">Send mapped payloads to your own endpoints or internal systems.</p>
+        <div class="int-tags">
+          <span class="int-tag">Conditional maps</span>
+          <span class="int-tag">3GTM</span>
         </div>
-      </div>
-      <div class="compare-wrap">
-        <div class="compare" role="table" aria-label="Self-host vs Lunvi comparison">
-          <table class="table">
-            <thead>
-              <tr><th></th><th>Self-host (GCP/AWS)</th><th>Lunvi</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Setup time</td><td>Days / weeks</td><td><span class="pill">Minutes</span></td></tr>
-              <tr><td>CNAME &amp; SSL</td><td class="bad">Manual management</td><td class="good">Managed, auto-renew</td></tr>
-              <tr><td>Maintenance / patch cost</td><td>DevOps + monitoring</td><td class="good">Included</td></tr>
-              <tr><td>Log &amp; Debugger</td><td>Extra setup</td><td class="good">Built-in</td></tr>
-              <tr><td>Dedup (browser+server)</td><td class="bad">Custom</td><td class="good">Ready templates</td></tr>
-              <tr>
-                <td>Destinations</td>
-                <td>One-by-one integration</td>
-                <td class="good"><a href="#product" style="color:#41e2c0">Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook</a></td>
-              </tr>
-              <tr><td>SLA / Uptime target</td><td>Depends on you</td><td class="good">99.9% target</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECURITY -->
-    <section class="section container" id="security" aria-labelledby="security-title">
-      <h2 id="security-title">Security &amp; Compliance</h2>
-      <div class="sec-wrap">
-        <article class="panel">
-          <h3 style="margin:0 0 6px">Built for privacy-first teams</h3>
-          <ul class="sec-list">
-            <li>EU-region hosting &amp; data residency options</li>
-            <li>Encryption in transit &amp; at rest (TLS, AES-256)</li>
-            <li>Scoped API keys, roles &amp; SSO (on request)</li>
-            <li>Isolated projects &amp; per-destination secrets</li>
-            <li>Access logs and audit trails</li>
-            <li>DPA &amp; Subprocessors list provided</li>
-          </ul>
-          <div class="sec-cta">
-            <a class="btn btn-ghost" href="#compliance">Compliance docs</a>
-            <a class="btn btn-ghost" href="#dpa">DPA</a>
-            <a class="btn btn-ghost" href="#subprocessors">Subprocessors</a>
-          </div>
-        </article>
-        <aside class="panel">
-          <h3 style="margin:0 0 6px">Operational health</h3>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 16px">
-            <span class="badge"><span class="dot" aria-hidden="true"></span>&nbsp;All systems operational</span>
-            <span class="badge">P95 180ms</span>
-            <span class="badge">99.9% uptime target</span>
-          </div>
-          <div class="seals" aria-label="assurance badges">
-            <div class="seal">EU Hosting</div>
-            <div class="seal">GDPR / KVKK</div>
-            <div class="seal">DPA Available</div>
-          </div>
-          <p class="int-sub" style="margin-top:10px">Need more? Ask about dedicated regions, private clusters and SLAs.</p>
-          <a class="btn btn-primary" href="mailto:info@lunvilabs.com?subject=Security%20&%20Compliance">Talk to security</a>
-        </aside>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="faq-wrap">
-      <div class="faq" id="faq">
-        <h3>FAQ</h3>
-
-        <div class="faq-item">
-          <div class="faq-q"><strong>How does dedup work?</strong><span class="caret">▾</span></div>
-          <div class="faq-a">
-            We match browser identifiers (event_id / fbp / fbc) with server-side events to avoid double counting. Our templates are compatible with sGTM and GA4 MP v2.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q"><strong>What’s covered in your Consent Mode v2 support?</strong><span class="caret">▾</span></div>
-          <div class="faq-a">
-            We automatically respect consent signals and use anonymous pings when denied, upgrading to full measurement once consent is granted.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q"><strong>How do you manage custom domains (CNAME) and SSL?</strong><span class="caret">▾</span></div>
-          <div class="faq-a">
-            Bring your domain, we provision &amp; auto-renew certificates and handle regional routing.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
-          <div class="faq-a">
-            We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- COMPLIANCE / LEGAL DOCS SECTION -->
-    <section class="section container" id="compliance" aria-labelledby="compliance-title" style="scroll-margin-top:90px;">
-      <h2 id="compliance-title">Compliance &amp; Legal Docs</h2>
-      <p class="int-sub" style="margin-bottom:20px;max-width:640px;">
-        We provide enterprise-style legal paperwork on request. Below is an overview of what you’ll receive during onboarding and before going live in production.
-      </p>
-
-      <div class="sec-wrap" style="flex-wrap:wrap;gap:16px;">
-        <!-- Compliance Overview -->
-        <article class="panel" style="flex:1 1 280px;min-width:260px;">
-          <h3 style="margin:0 0 6px;">Compliance overview</h3>
-          <p class="int-sub" style="margin:0 0 12px;">
-            High-level security posture, data residency options, incident response policy, retention &amp; deletion timeline.
-          </p>
-          <ul class="sec-list">
-            <li>Regional data control (EU available)</li>
-            <li>KVKK / GDPR alignment</li>
-            <li>Encryption in transit &amp; at rest</li>
-            <li>Access controls &amp; audit logs</li>
-          </ul>
-          <a class="btn btn-primary" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=Compliance%20Docs%20Request">
-            Request compliance pack
-          </a>
-        </article>
-
-        <!-- DPA -->
-        <article class="panel" id="dpa" style="flex:1 1 280px;min-width:260px;scroll-margin-top:90px;">
-          <h3 style="margin:0 0 6px;">Data Processing Agreement (DPA)</h3>
-          <p class="int-sub" style="margin:0 0 12px;">
-            Standard controller/processor terms, breach notification, subprocessor obligations, and data subject rights workflow.
-          </p>
-          <ul class="sec-list">
-            <li>GDPR / KVKK style obligations</li>
-            <li>Breach notification clauses</li>
-            <li>Data subject request handling</li>
-            <li>Retention &amp; deletion commitments</li>
-          </ul>
-          <a class="btn btn-ghost" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=DPA%20Request">
-            Request signed DPA
-          </a>
-          <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;">
-            Available for Growth / Enterprise and custom plans.
-          </div>
-        </article>
-
-        <!-- Subprocessors -->
-        <article class="panel" id="subprocessors" style="flex:1 1 280px;min-width:260px;scroll-margin-top:90px;">
-          <h3 style="margin:0 0 6px;">Subprocessors list</h3>
-          <p class="int-sub" style="margin:0 0 12px;">
-            We maintain a list of infrastructure and service partners who help us deliver logging, alerting, email, and hosting.
-          </p>
-          <ul class="sec-list">
-            <li>Cloud hosting / regions</li>
-            <li>Logging &amp; alerting providers</li>
-            <li>Support / email delivery</li>
-            <li>Analytics (consent-mode aware)</li>
-          </ul>
-          <a class="btn btn-ghost" style="margin-top:12px;display:inline-block;" href="mailto:info@lunvilabs.com?subject=Subprocessors%20List%20Request">
-            Request current list
-          </a>
-          <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;">
-            We’ll send the latest list and notify you of material changes.
-          </div>
-        </article>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site">
-    <div class="container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo">
-            <span class="logo" aria-hidden="true"></span> Lunvi
-            <span style="opacity:.75;font-weight:700">Labs</span>
-          </div>
-          <p style="margin:0;opacity:.9">
-            Privacy-first infrastructure for server-side conversions &amp; analytics.
-          </p>
-          <span class="footer-badge">EU Hosting • GDPR / KVKK</span>
-        </div>
-
-        <div class="footer-col">
-          <h4>Product</h4>
-          <ul class="footer-links">
-            <li><a href="#product">Features</a></li>
-            <li><a href="#integrations">Integrations</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#demo">Start Demo</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul class="footer-links">
-            <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
-            <li><a href="#docs">Docs</a></li>
-            <li><a href="#">Status</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul class="footer-links">
-            <li><a href="/privacy.html">Privacy</a></li>
-            <li><a href="/terms.html">Terms</a></li>
-            <li><a href="#dpa">DPA</a></li>
-            <li><a href="#subprocessors">Subprocessors</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>© <span id="y"></span> Lunvi Labs. All rights reserved.</div>
-        <div class="footer-mini">
-          <a href="#security">Security</a>
-          <a href="#compliance">Compliance</a>
-          <a href="#">Changelog</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Success toast -->
-  <div id="submit-toast" class="toast" role="status" aria-live="polite">
-    Thanks! We received your request — we’ll get back to you shortly.
-  </div>
-
-  <!-- Modal -->
-  <div class="modal-backdrop" id="requestBackdrop" aria-hidden="true"></div>
-  <div class="modal" id="requestModal" role="dialog" aria-modal="true" aria-labelledby="requestTitle" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-head">
-        <h4 class="modal-title" id="requestTitle">Request upgrade</h4>
-        <button class="modal-close" type="button" id="requestClose" aria-label="Close">✕</button>
-      </div>
-      <div class="modal-body">
-        <form id="requestForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="522a2b10-c287-4a94-9ecd-5c0dcd5bfe9c" />
-          <input type="hidden" name="subject" id="subjectInput" value="Lunvi Labs — Plan Upgrade Request" />
-          <input type="hidden" name="from_name" value="Lunvi Labs Website" />
-          <input type="hidden" name="redirect" value="https://lunvilabs.com/?submitted=true#pricing" />
-          <input type="hidden" name="plan" id="planInput" value="Growth" />
-
-          <div class="modal-grid" style="display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));">
-            <label>Company<input name="company" required placeholder="e.g., Example Inc." /></label>
-            <label>Email<input type="email" name="email" required placeholder="you@company.com" /></label>
-            <label>Phone<input type="tel" name="phone" placeholder="+90 5xx xxx xx xx" /></label>
-            <label>Billing details / Tax ID<input name="billing" placeholder="Tax office, number, address" /></label>
-          </div>
-
-          <label style="display:block; margin-top:10px;">Notes (optional)
-            <textarea name="notes" placeholder="Short notes"></textarea>
-          </label>
-
-          <div class="modal-actions" style="margin-top:12px;">
-            <button class="btn btn-primary" type="submit">Submit request</button>
-          </div>
-        </form>
-      </div>
+      </article>
     </div>
   </div>
+</section>
+<!-- INTEGRATIONS END -->
+<!-- ===================================================== -->
 
-  <!-- GA4 + App logic -->
-  <script src="/assets/app.js"></script>
-
-  <!-- Billing toggle logic -->
-  <script>
-  (function(){
-    const toggleWrap = document.getElementById('billingToggle');
-    if(!toggleWrap) return;
-
-    const buttons = Array.from(toggleWrap.querySelectorAll('.bill-btn'));
-    const plans   = Array.from(document.querySelectorAll('.plan-card'));
-
-    // default: Annual
-    let mode = 'annual';
-
-    function applyPrices(){
-      plans.forEach(card=>{
-        const priceEl = card.querySelector('.plan-price-number');
-        const noteEl  = card.querySelector('.plan-price-note');
-        if(!priceEl || !noteEl) return;
-
-        const monthlyVal = priceEl.getAttribute('data-month');
-        const annualVal  = priceEl.getAttribute('data-annual');
-
-        if(mode === 'annual'){
-          priceEl.textContent = annualVal;
-          noteEl.textContent  = 'billed annually';
-        } else {
-          priceEl.textContent = monthlyVal;
-          noteEl.textContent  = 'billed monthly';
-        }
-      });
-    }
-
-    buttons.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
-
-        // highlight active button
-        buttons.forEach(b=>b.classList.toggle('active', b===btn));
-
-        applyPrices();
-      });
-    });
-
-    // sync default
-    applyPrices();
-  })();
-  </script>
-
-  <!-- Footer year -->
-  <script>
-  document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+<!-- diğer bölümler senin mevcut dosyanda nasılsa öyle kalsın -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted'});
+  gtag('js', new Date());
+  gtag('config','G-XXXXXXXXXX',{ anonymize_ip:true });
+</script>
 </body>
 </html>
