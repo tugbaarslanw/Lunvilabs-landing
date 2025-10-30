@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum=1, user-scalable=no, viewport-fit=cover" />
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
 
@@ -37,19 +37,23 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- INLINE OVERRIDES -->
+<!-- Pricing visual overrides, billing toggle styles, details section, integrations/solutions cards -->
 <style>
 /* ===== PRICING SECTION OVERRIDES ===== */
+
 .pricing {
   padding:32px 0 26px;
   position:relative;
   z-index:2;
 }
+
 .pricing-lead {
   margin-top:6px;
   color:var(--muted);
   max-width:720px;
 }
+
+/* dark container behind plans  */
 .pricing-bg{
   margin-top:24px;
   border-radius:26px;
@@ -76,6 +80,8 @@
   pointer-events:none;
   opacity:.6;
 }
+
+/* Billing toggle wrapper INSIDE pricing-bg */
 .billing-toggle-wrap{
   margin:0 0 24px;
   display:flex;
@@ -92,6 +98,8 @@
   font-weight:500;
   color:var(--muted);
 }
+
+/* Toggle group */
 .billing-toggle{
   display:inline-flex;
   background:rgba(255,255,255,.06);
@@ -118,6 +126,8 @@
   text-shadow:0 0 8px rgba(0,0,0,.6);
   transition:.14s ease;
 }
+
+/* Active state (purple chip) */
 .bill-btn.active{
   color:#fff;
   background:linear-gradient(145deg,#7f58ff 0%,#4e2bd9 60%);
@@ -126,6 +136,8 @@
     0 0 30px rgba(136,83,255,.4);
   text-shadow:none;
 }
+
+/* Save 20% pill, only visible on Annual when active */
 .bill-btn .save-pill{
   display:none;
   background:linear-gradient(145deg,#ffec5a 0%,#ff7b00 70%);
@@ -143,6 +155,8 @@
 .bill-btn[data-mode="annual"].active .save-pill{
   display:inline-flex;
 }
+
+/* grid of plans */
 .price-layout{
   position:relative;
   display:grid;
@@ -150,6 +164,8 @@
   gap:20px;
   z-index:1;
 }
+
+/* base plan card */
 .plan-card{
   position:relative;
   display:flex;
@@ -163,6 +179,8 @@
     0 30px 80px rgba(0,0,0,.8),
     0 0 60px rgba(105,67,255,.3) inset;
 }
+
+/* Starter: violet / blue */
 .plan-card.starter{
   background:
     radial-gradient(circle at 15% 15%, rgba(136,83,255,.22) 0%, rgba(0,0,0,0) 60%),
@@ -174,6 +192,8 @@
     0 0 120px rgba(136,83,255,.4),
     0 0 60px rgba(64,148,255,.25) inset;
 }
+
+/* Growth: teal / green */
 .plan-card.growth{
   background:
     radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
@@ -186,6 +206,8 @@
     0 0 60px rgba(65,226,192,.2) inset;
   transform:translateY(-2px);
 }
+
+/* Enterprise: magenta / rose */
 .plan-card.enterprise{
   background:
     radial-gradient(circle at 15% 15%, rgba(255,79,154,.22) 0%, rgba(0,0,0,0) 60%),
@@ -197,6 +219,8 @@
     0 0 120px rgba(255,79,154,.4),
     0 0 60px rgba(255,79,154,.2) inset;
 }
+
+/* header block */
 .plan-head{
   display:flex;
   flex-direction:column;
@@ -213,6 +237,8 @@
   flex-wrap:wrap;
   gap:8px;
 }
+
+/* "Most popular" pill */
 .plan-pill{
   font-size:11px;
   font-weight:600;
@@ -232,6 +258,8 @@
   line-height:1.4;
   margin:0;
 }
+
+/* price row */
 .plan-price{
   margin:0;
   display:flex;
@@ -268,6 +296,8 @@
   font-weight:400;
   color:var(--muted);
 }
+
+/* features list with green ticks */
 .plan-features{
   list-style:none;
   margin:18px 0 24px;
@@ -299,6 +329,8 @@
   font-weight:800;
   color:#062b26;
 }
+
+/* CTA buttons */
 .plan-cta{
   margin-top:auto;
   display:flex;
@@ -326,11 +358,15 @@
   transform:translateY(-1px);
   box-shadow:0 22px 40px #0008;
 }
+
+/* --- Details section styles (inside inline-form) --- */
+
 .plan-details-wrap{
   display:grid;
   gap:12px;
   margin-bottom:20px;
 }
+
 .plan-details{
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.16);
@@ -339,6 +375,7 @@
   color:var(--text);
   overflow:hidden;
 }
+
 .plan-details summary{
   cursor:pointer;
   padding:14px 16px;
@@ -354,6 +391,7 @@
 .plan-details summary::-webkit-details-marker{
   display:none;
 }
+
 .plan-details summary .summ-head{
   display:flex;
   gap:8px;
@@ -375,6 +413,7 @@
   color:var(--muted);
   font-weight:400;
 }
+
 .plan-details summary .caret{
   font-size:14px;
   color:var(--muted);
@@ -384,6 +423,7 @@
   transform:rotate(180deg);
   color:#fff;
 }
+
 .plan-details-body{
   padding:0 16px 16px;
   font-size:14px;
@@ -406,6 +446,8 @@
   margin:6px 0;
   color:#efeafe;
 }
+
+/* responsive tweaks */
 @media(max-width:1000px){
   .price-layout{
     grid-template-columns:1fr;
@@ -418,287 +460,323 @@
     transform:none;
   }
 }
+
 @media(max-width:600px){
   .inline-grid{
     grid-template-columns:1fr;
   }
 }
+
 @media(max-width:700px){
   .modal-grid{
     grid-template-columns:1fr !important;
   }
 }
+
+/* helper for inline form grid */
 .inline-grid{
   display:grid;
   gap:10px;
   grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
-/* ===== NEW PREMIUM INTEGRATIONS (8 CARDS, 4x2) ===== */
+/* ====== NEW: INTEGRATIONS (neon layout like reference) ====== */
 #integrations {
   position:relative;
   z-index:2;
   scroll-margin-top:90px;
 }
+
 .integrations-shell {
-  margin-top:20px;
   background:
-    radial-gradient(circle at 8% 12%, rgba(130,168,255,.19) 0%, rgba(9,7,16,0) 40%),
-    radial-gradient(circle at 115% 50%, rgba(84,215,255,.11) 0%, rgba(0,0,0,0) 65%),
-    linear-gradient(177deg, rgba(5,6,17,.75) 0%, rgba(3,4,7,.35) 100%);
-  border:1px solid rgba(255,255,255,.03);
-  border-radius:52px;
-  padding:46px 48px 38px;
+    radial-gradient(1100px 600px at 20% 0%, rgba(124, 145, 255, .08) 0%, rgba(5,4,12,0) 60%),
+    radial-gradient(800px 520px at 120% 40%, rgba(232, 68, 255, .08) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(160deg, rgba(7,6,12,.9) 0%, rgba(6,5,10,.65) 100%);
+  border:1px solid rgba(132, 161, 255, .16);
+  border-radius:32px;
+  padding:44px 40px 38px;
   box-shadow:
-    0 50px 180px rgba(0,0,0,.7),
-    inset 0 0 116px rgba(19,25,33,.35);
+    0 50px 140px rgba(0,0,0,.55),
+    0 0 80px rgba(124,145,255,.18);
   overflow:hidden;
-  isolation:isolate;
 }
-.integrations-shell::after{
-  content:"";
-  position:absolute;
-  width:480px;
-  height:480px;
-  border-radius:999px;
-  background:radial-gradient(circle, rgba(68,115,255,.4), rgba(38,30,78,0) 70%);
-  top:-160px;
-  right:-140px;
-  pointer-events:none;
-  mix-blend-mode:screen;
-  opacity:.5;
-}
-.integrations-chip {
+
+.int-top-chip {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  background:transparent;
-  border:1.2px solid rgba(116,174,255,.7);
+  padding:6px 28px 7px;
   border-radius:999px;
-  padding:8px 20px 9px;
+  border:1.5px solid rgba(112, 180, 255, .65);
+  color:rgba(189,222,255,.95);
   font-weight:600;
+  letter-spacing:.02em;
   font-size:15px;
-  color:#e3ebff;
-  text-shadow:0 2px 16px rgba(15,29,44,.6);
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-  margin-bottom:20px;
-  backdrop-filter:blur(0);
+  background:rgba(10,18,32,0);
+  margin:0 auto 18px;
 }
-.integrations-title {
+
+.int-headline {
+  text-align:center;
   font-size:34px;
+  line-height:1.05;
   font-weight:700;
-  line-height:1.1;
   color:#fff;
-  margin:0 0 6px;
-  letter-spacing:-.01em;
+  margin-bottom:10px;
 }
-.integrations-sub {
-  color:rgba(232,236,244,.8);
+
+.int-subline {
+  text-align:center;
+  color:rgba(227,236,255,.65);
   font-size:15px;
-  max-width:640px;
+  margin-bottom:22px;
 }
-.integrations-tabs {
+
+.int-filters {
   display:flex;
-  flex-wrap:wrap;
   gap:12px;
-  margin-top:26px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:26px;
 }
-.integrations-tab {
-  background:rgba(6,8,12,0);
-  border:1px solid rgba(163,187,247,.28);
+
+.int-filter-btn {
+  appearance:none;
+  border:1px solid rgba(161,186,255,.18);
+  background:rgba(7,8,18,0);
+  color:rgba(231,238,255,.55);
   border-radius:999px;
-  color:rgba(214,227,255,.68);
-  padding:7px 16px 7px;
+  padding:7px 18px 8px;
   font-size:14px;
   font-weight:500;
-  line-height:1;
-  cursor:pointer;
-  transition:.16s ease;
   display:inline-flex;
   align-items:center;
   gap:6px;
-  box-shadow:0 6px 22px rgba(0,0,0,.1);
-  backdrop-filter:blur(0);
+  transition:.12s ease;
+  cursor:default;
 }
-.integrations-tab.is-active{
-  background:rgba(82,149,255,.15);
-  border:1px solid rgba(108,168,255,.9);
-  color:#fff;
-  box-shadow:
-    0 14px 42px rgba(89,146,255,.35),
-    inset 0 0 14px rgba(89,146,255,.3);
-  text-shadow:0 0 10px rgba(139,183,255,.4);
+.int-filter-btn.active {
+  background:linear-gradient(140deg, rgba(109,186,255,1) 0%, rgba(65,120,252,1) 80%);
+  color:#0a1221;
+  border-color:rgba(151,201,255,.6);
+  box-shadow:0 12px 30px rgba(74,131,255,.45);
 }
-.integrations-grid {
+.int-filter-dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:currentColor;
+  opacity:.5;
+}
+.int-filter-btn.active .int-filter-dot{ opacity:1; }
+
+.int-grid {
   display:grid;
   grid-template-columns:repeat(4, minmax(0,1fr));
-  gap:18px;
-  margin-top:28px;
+  gap:22px;
 }
-.integration-card {
-  background:
-    radial-gradient(circle at 10% 10%, rgba(255,255,255,.08) 0%, rgba(0,0,0,0) 55%),
-    radial-gradient(circle at 100% 60%, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 40%),
-    rgba(4,9,18,.32);
-  border:1px solid rgba(255,255,255,.03);
-  border-radius:28px;
-  padding:26px 18px 18px;
-  box-shadow:
-    0 26px 68px rgba(0,0,0,.4);
+
+.int-card {
+  border-radius:26px;
+  border:1px solid rgba(199, 214, 255, .06);
+  background:radial-gradient(280px 220px at 10% 18%, rgba(153,255,255,.46) 0%, rgba(21,36,42,.12) 60%), rgba(2,5,12,.5);
+  min-height:180px;
+  padding:20px 20px 16px;
+  position:relative;
+  overflow:hidden;
   display:flex;
   flex-direction:column;
-  gap:10px;
-  min-height:198px;
-  backdrop-filter:blur(18px);
-  align-items:center;
-  text-align:center;
+  gap:12px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.01),
+    0 28px 60px rgba(0,0,0,.35);
 }
-.integration-card[data-accent="teal"]{
-  background:
-    radial-gradient(circle at 30% 10%, rgba(33,224,218,.5) 0%, rgba(0,0,0,0) 55%),
-    linear-gradient(196deg, rgba(2,25,28,.35) 0%, rgba(1,5,6,0) 100%);
-  border:1px solid rgba(33,224,218,.35);
-  box-shadow:0 26px 85px rgba(5,146,138,.55);
+
+.int-card:before {
+  content:"";
+  position:absolute;
+  inset:-16px -12px auto;
+  height:120px;
+  background:radial-gradient(230px 90px at 10% 10%, rgba(171,207,255,.35), rgba(6,8,12,0));
+  pointer-events:none;
+  mix-blend-mode:screen;
 }
-.integration-card[data-accent="blue"]{
-  background:
-    radial-gradient(circle at 8% 8%, rgba(72,141,255,.51) 0%, rgba(0,0,0,0) 58%),
-    linear-gradient(188deg, rgba(3,13,26,.45) 0%, rgba(1,3,5,0) 100%);
-  border:1px solid rgba(139,186,255,.36);
-  box-shadow:0 26px 85px rgba(37,97,187,.3);
+
+.int-card-title {
+  font-size:15.5px;
+  font-weight:600;
+  color:#fff;
+  letter-spacing:.01em;
 }
-.integration-card[data-accent="magenta"]{
-  background:
-    radial-gradient(circle at 14% 8%, rgba(231,87,225,.6) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(188deg, rgba(30,5,24,.55) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(231,87,225,.36);
-  box-shadow:0 26px 85px rgba(212,54,255,.35);
+
+.int-card-body {
+  font-size:13.2px;
+  line-height:1.35;
+  color:rgba(229,236,255,.75);
+  max-width:90%;
 }
-.integration-card[data-accent="green"]{
-  background:
-    radial-gradient(circle at 12% 8%, rgba(36,222,128,.6) 0%, rgba(0,0,0,0) 65%),
-    linear-gradient(180deg, rgba(5,26,20,.55) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(36,222,128,.35);
-  box-shadow:0 26px 85px rgba(20,165,96,.45);
+
+.int-pill-row {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:auto;
 }
-.integration-card[data-accent="amber"]{
-  background:
-    radial-gradient(circle at 12% 8%, rgba(214,145,56,.64) 0%, rgba(0,0,0,0) 65%),
-    linear-gradient(180deg, rgba(30,14,4,.55) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(214,145,56,.35);
-  box-shadow:0 26px 85px rgba(158,100,31,.4);
+
+.int-pill {
+  background:rgba(3,6,12,0);
+  border:1px solid rgba(219,236,255,.25);
+  border-radius:999px;
+  padding:3px 10px 4px;
+  font-size:11.8px;
+  color:rgba(235,242,255,.82);
+  backdrop-filter:blur(10px);
 }
-.integration-card[data-accent="purple"]{
-  background:
-    radial-gradient(circle at 12% 8%, rgba(215,146,255,.55) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(19,6,30,.55) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(215,146,255,.3);
-  box-shadow:0 26px 85px rgba(130,58,197,.4);
-}
-.integration-icon {
-  width:62px;
-  height:62px;
-  border-radius:20px;
+
+.int-icon-ring {
+  width:48px;
+  height:48px;
+  border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(circle, rgba(9,12,16,0) 0%, rgba(9,12,16,0) 100%);
-  border:1.2px solid rgba(250,250,252,.25);
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-  margin-bottom:10px;
+  box-shadow:0 12px 40px rgba(0,0,0,.45);
+  margin-bottom:2px;
 }
-.integration-card[data-accent="teal"] .integration-icon{
-  background:radial-gradient(circle, rgba(40,228,210,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(155,251,242,.6);
-}
-.integration-card[data-accent="blue"] .integration-icon{
-  background:radial-gradient(circle, rgba(110,168,255,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(190,214,255,.6);
-}
-.integration-card[data-accent="magenta"] .integration-icon{
-  background:radial-gradient(circle, rgba(241,144,255,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(246,207,255,.55);
-}
-.integration-card[data-accent="green"] .integration-icon{
-  background:radial-gradient(circle, rgba(89,245,177,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(182,255,222,.55);
-}
-.integration-card[data-accent="amber"] .integration-icon{
-  background:radial-gradient(circle, rgba(255,205,142,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(255,222,184,.6);
-}
-.integration-card[data-accent="purple"] .integration-icon{
-  background:radial-gradient(circle, rgba(223,169,255,.35) 0%, rgba(4,9,18,0) 73%);
-  border:1px solid rgba(236,215,255,.6);
-}
-.integration-icon svg {
-  width:23px;
-  height:23px;
-  stroke:#fff;
-  stroke-width:1.6;
-  fill:none;
+.int-icon-ring svg {
+  width:22px;
+  height:22px;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-.integration-title {
-  font-weight:600;
-  font-size:15.6px;
-  color:#fff;
+
+.int-card.meta {
+  background:
+    radial-gradient(240px 190px at 8% 18%, rgba(108, 227, 255, .35) 0%, rgba(6,8,12,0) 60%),
+    linear-gradient(180deg, rgba(2,12,18,.35) 0%, rgba(3,7,13,.18) 100%);
+  border:1px solid rgba(123,237,255,.28);
+  box-shadow:0 18px 50px rgba(82,195,233,.12);
 }
-.integration-desc {
-  font-size:13.4px;
-  line-height:1.45;
-  color:rgba(237,239,245,.84);
-  flex:1;
-  max-width:220px;
+.int-card.meta .int-icon-ring {
+  background:radial-gradient(circle at 10% 10%, rgba(124,254,255,1) 0%, rgba(30,98,143,1) 70%);
+  border:1px solid rgba(146,254,255,.7);
 }
-.integration-chips {
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  justify-content:center;
+.int-card.meta svg { stroke:#0f2b38; }
+
+.int-card.ga4 {
+  background:
+    radial-gradient(240px 190px at 30% 18%, rgba(138, 168, 255, .28) 0%, rgba(6,8,12,0) 60%),
+    linear-gradient(180deg, rgba(5,10,22,.4) 0%, rgba(4,9,17,.1) 100%);
+  border:1px solid rgba(161,185,255,.32);
 }
-.integration-chip {
-  background:rgba(3,3,5,.35);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
-  padding:4px 10px 4px;
-  font-size:11.5px;
-  color:#fff;
-  line-height:1;
-  backdrop-filter:blur(4px);
+.int-card.ga4 .int-icon-ring {
+  background:radial-gradient(circle at 20% 10%, rgba(175,205,255,1) 0%, rgba(54,82,133,1) 70%);
+  border:1px solid rgba(209,227,255,.82);
 }
+.int-card.ga4 svg { stroke:#0b1729; }
+
+.int-card.tiktok {
+  background:
+    radial-gradient(240px 190px at 10% 18%, rgba(236,113,208,.4) 0%, rgba(13,5,16,0) 60%),
+    linear-gradient(190deg, rgba(20,3,17,.4) 0%, rgba(6,3,8,.1) 100%);
+  border:1px solid rgba(255,171,230,.32);
+}
+.int-card.tiktok .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(251,151,255,1) 0%, rgba(149,43,141,1) 70%);
+  border:1px solid rgba(255,205,251,.6);
+}
+.int-card.tiktok svg{ stroke:#23071d; }
+
+.int-card.klaviyo {
+  background:
+    radial-gradient(240px 190px at 15% 18%, rgba(131,255,150,.32) 0%, rgba(6,8,12,0) 60%),
+    linear-gradient(170deg, rgba(2,15,10,.6) 0%, rgba(2,9,6,.1) 100%);
+  border:1px solid rgba(134,229,165,.32);
+}
+.int-card.klaviyo .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(139,255,170,1) 0%, rgba(17,98,76,1) 70%);
+  border:1px solid rgba(188,255,211,.7);
+}
+.int-card.klaviyo svg{ stroke:#062a19; }
+
+.int-card.bigquery {
+  background:
+    radial-gradient(280px 200px at 16% 18%, rgba(255,201,131,.45) 0%, rgba(16,11,7,0) 65%),
+    linear-gradient(150deg, rgba(35,21,7,.6) 0%, rgba(6,4,2,.1) 100%);
+  border:1px solid rgba(255,208,145,.3);
+}
+.int-card.bigquery .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(254,190,124,1) 0%, rgba(143,86,35,1) 70%);
+  border:1px solid rgba(255,214,156,.9);
+}
+.int-card.bigquery svg{ stroke:#31210f; }
+
+.int-card.webhook {
+  background:
+    radial-gradient(240px 200px at 10% 18%, rgba(252,144,214,.35) 0%, rgba(6,4,8,0) 60%),
+    linear-gradient(165deg, rgba(34,13,42,.55) 0%, rgba(4,2,6,.1) 100%);
+  border:1px solid rgba(246,180,238,.25);
+}
+.int-card.webhook .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(255,155,247,1) 0%, rgba(106,16,91,1) 70%);
+  border:1px solid rgba(255,214,247,.8);
+}
+.int-card.webhook svg{ stroke:#25071b; }
+
+.int-card.crm {
+  background:
+    radial-gradient(240px 190px at 10% 18%, rgba(173,139,255,.35) 0%, rgba(6,8,12,0) 60%),
+    linear-gradient(165deg, rgba(26,16,56,.55) 0%, rgba(5,3,9,.15) 100%);
+  border:1px solid rgba(173,139,255,.25);
+}
+.int-card.crm .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(173,139,255,1) 0%, rgba(49,27,111,1) 70%);
+  border:1px solid rgba(214,194,255,.8);
+}
+.int-card.crm svg{ stroke:#1a1133; }
+
+.int-card.cdp {
+  background:
+    radial-gradient(240px 200px at 10% 18%, rgba(144,236,255,.35) 0%, rgba(6,8,12,0) 60%),
+    linear-gradient(170deg, rgba(6,29,34,.6) 0%, rgba(3,8,10,.15) 100%);
+  border:1px solid rgba(167,240,255,.28);
+}
+.int-card.cdp .int-icon-ring{
+  background:radial-gradient(circle at 10% 10%, rgba(145,236,255,1) 0%, rgba(20,93,110,1) 70%);
+  border:1px solid rgba(199,243,255,.8);
+}
+.int-card.cdp svg{ stroke:#092430; }
+
 @media(max-width:1100px){
-  .integrations-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-  .integrations-shell{
-    padding:32px 26px 28px;
-    border-radius:32px;
+  .int-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr));
   }
 }
 @media(max-width:650px){
-  .integrations-grid{
-    grid-template-columns:1fr;
+  .integrations-shell{
+    padding:32px 16px 22px;
+    border-radius:22px;
   }
-  .integrations-tabs{
-    gap:7px;
-  }
-  .integrations-title{
+  .int-headline{
     font-size:28px;
   }
-  .integrations-shell{
-    padding:26px 18px 26px;
+  .int-grid{
+    grid-template-columns:1fr;
+  }
+  .int-card{
+    border-radius:22px;
   }
 }
 
-/* ===== SOLUTIONS (bırak aynı kalsın) ===== */
+/* ===== SOLUTIONS CARDS (keep) ===== */
+
 .sol-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(280px,100%),1fr));
   gap: 20px;
   margin-top: 24px;
 }
+
 .sol-card {
   background:
     radial-gradient(circle at 20% 20%, rgba(120,70,240,.4) 0%, rgba(30,10,60,.9) 60%),
@@ -716,6 +794,7 @@
   position:relative;
   isolation:isolate;
 }
+
 .sol-icon {
   width:32px;
   height:32px;
@@ -740,6 +819,7 @@
   stroke-linecap:round;
   stroke-linejoin:round;
 }
+
 .sol-card h3{
   font-size:16px;
   line-height:1.3;
@@ -750,12 +830,14 @@
     0 20px 60px rgba(0,0,0,.8),
     0 0 30px rgba(180,140,255,.35);
 }
+
 .sol-card p{
   font-size:14px;
   line-height:1.4;
   color:rgba(255,255,255,.78);
   margin:0 0 12px;
 }
+
 .sol-list{
   list-style:none;
   margin:0;
@@ -787,6 +869,7 @@
   font-weight:800;
   color:#062b26;
 }
+
 @media(max-width:500px){
   .sol-card{
     min-height:0;
@@ -911,7 +994,7 @@
       </div>
     </section>
 
-    <!-- SOLUTIONS -->
+    <!-- SOLUTIONS (upgraded premium cards) -->
     <section class="section container" id="solutions" aria-labelledby="solutions-title">
       <h2 id="solutions-title">Solutions</h2>
       <p class="int-sub" style="margin-bottom:20px;max-width:720px;">
@@ -923,6 +1006,7 @@
         <!-- E-commerce -->
         <article class="sol-card" role="listitem">
           <div class="sol-icon" aria-hidden="true">
+            <!-- shopping bag / cart icon -->
             <svg viewBox="0 0 24 24">
               <path d="M6 7h12l-1 13H7L6 7z"></path>
               <path d="M9 7V5a3 3 0 0 1 6 0v2"></path>
@@ -943,6 +1027,7 @@
         <!-- Lead gen / B2B -->
         <article class="sol-card" role="listitem">
           <div class="sol-icon" aria-hidden="true">
+            <!-- handshake / contact icon -->
             <svg viewBox="0 0 24 24">
               <path d="M8 11l4-4 4 4"></path>
               <path d="M3 12v7h7v-7H3z"></path>
@@ -965,6 +1050,7 @@
         <!-- Agencies / Partners -->
         <article class="sol-card" role="listitem">
           <div class="sol-icon" aria-hidden="true">
+            <!-- briefcase / team icon -->
             <svg viewBox="0 0 24 24">
               <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path>
               <rect x="3" y="6" width="18" height="14" rx="2" ry="2"></rect>
@@ -987,30 +1073,26 @@
       </div>
     </section>
 
-    <!-- INTEGRATIONS (UPDATED TO MATCH REFERENCE) -->
+    <!-- INTEGRATIONS -->
     <section class="section container" id="integrations" aria-labelledby="integrations-title">
       <div class="integrations-shell">
-        <div class="integrations-chip" id="integrations-title">Integrations</div>
-        <h2 class="integrations-title">Works seamlessly with your existing stack</h2>
-        <p class="integrations-sub">
-          Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.
-        </p>
+        <div class="int-top-chip" id="integrations-title">Integrations</div>
+        <h2 class="int-headline">Works seamlessly with your existing stack</h2>
+        <p class="int-subline">Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
 
-        <!-- tabs -->
-        <div class="integrations-tabs" id="integrationsTabs">
-          <button type="button" class="integrations-tab is-active" data-int-tab="all">All</button>
-          <button type="button" class="integrations-tab" data-int-tab="meta">Meta CAPI</button>
-          <button type="button" class="integrations-tab" data-int-tab="ga4">GA4 MP v2</button>
-          <button type="button" class="integrations-tab" data-int-tab="tiktok">TikTok Events</button>
-          <button type="button" class="integrations-tab" data-int-tab="klaviyo">Klaviyo</button>
-          <button type="button" class="integrations-tab" data-int-tab="bigquery">BigQuery</button>
+        <div class="int-filters" aria-label="Integration types">
+          <button class="int-filter-btn active" type="button"><span class="int-filter-dot"></span>All</button>
+          <button class="int-filter-btn" type="button">Meta CAPI</button>
+          <button class="int-filter-btn" type="button">GA4 MP v2</button>
+          <button class="int-filter-btn" type="button">TikTok Events</button>
+          <button class="int-filter-btn" type="button">Klaviyo</button>
+          <button class="int-filter-btn" type="button">BigQuery</button>
         </div>
 
-        <!-- cards -->
-        <div class="integrations-grid" id="integrationsGrid">
+        <div class="int-grid" role="list" aria-label="Integrations list">
           <!-- 1 -->
-          <article class="integration-card" data-int-cat="meta" data-accent="teal">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card meta" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <circle cx="6" cy="12" r="3"></circle>
                 <circle cx="18" cy="6" r="3"></circle>
@@ -1019,19 +1101,17 @@
                 <line x1="8.5" y1="13.5" x2="15.5" y2="16.5"></line>
               </svg>
             </div>
-            <div class="integration-title">Meta Conversions</div>
-            <p class="integration-desc">
-              High-match server events, with browser dedup + test console visibility.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Match 97%</span>
-              <span class="integration-chip">Dedup ready</span>
+            <h3 class="int-card-title">Meta Conversions</h3>
+            <p class="int-card-body">High-match server events, with browser &amp; server dedup + test console visibility.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Match 97%</span>
+              <span class="int-pill">Dedup ready</span>
             </div>
           </article>
 
           <!-- 2 -->
-          <article class="integration-card" data-int-cat="ga4" data-accent="blue">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card ga4" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <line x1="5" y1="20" x2="5" y2="12"></line>
                 <line x1="12" y1="20" x2="12" y2="6"></line>
@@ -1039,92 +1119,82 @@
                 <line x1="3" y1="20" x2="21" y2="20"></line>
               </svg>
             </div>
-            <div class="integration-title">Google Analytics 4</div>
-            <p class="integration-desc">
-              MP v2 with normalization, referral cleanup &amp; EU-mode.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">MP v2</span>
-              <span class="integration-chip">EU-mode</span>
+            <h3 class="int-card-title">Google Analytics 4</h3>
+            <p class="int-card-body">MP v2 with normalization, referral cleanup &amp; EU-mode.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">MP v2</span>
+              <span class="int-pill">EU-mode</span>
             </div>
           </article>
 
           <!-- 3 -->
-          <article class="integration-card" data-int-cat="tiktok" data-accent="magenta">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card tiktok" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
               </svg>
             </div>
-            <div class="integration-title">TikTok Events API</div>
-            <p class="integration-desc">
-              Server-to-server events for paid social attribution with retry.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Auto-retry</span>
-              <span class="integration-chip">Delivery log</span>
+            <h3 class="int-card-title">TikTok Events API</h3>
+            <p class="int-card-body">Server-to-server events for paid social attribution with retry &amp; delivery monitor.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Auto-retry</span>
+              <span class="int-pill">Delivery log</span>
             </div>
           </article>
 
           <!-- 4 -->
-          <article class="integration-card" data-int-cat="klaviyo" data-accent="green">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card klaviyo" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
-                <rect x="4" y="4" width="16" height="16" rx="3" ry="3"></rect>
-                <path d="M5 9l7 4 7-4"></path>
+                <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+                <polyline points="3 7 12 13 21 7"></polyline>
               </svg>
             </div>
-            <div class="integration-title">Klaviyo</div>
-            <p class="integration-desc">
-              Profile + event sync for lifecycle messaging &amp; retention automations.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Profiles</span>
-              <span class="integration-chip">Events</span>
+            <h3 class="int-card-title">Klaviyo</h3>
+            <p class="int-card-body">Profile + event sync for lifecycle messaging &amp; retention automations.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Profiles</span>
+              <span class="int-pill">Events</span>
             </div>
           </article>
 
           <!-- 5 -->
-          <article class="integration-card" data-int-cat="bigquery" data-accent="amber">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card bigquery" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
                 <path d="M5 5v8c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
                 <path d="M5 13v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
               </svg>
             </div>
-            <div class="integration-title">BigQuery Export</div>
-            <p class="integration-desc">
-              Raw event export for deeper attribution and dashboards.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Hourly push</span>
-              <span class="integration-chip">Secure</span>
+            <h3 class="int-card-title">BigQuery Export</h3>
+            <p class="int-card-body">Raw event export for deeper attribution, BI dashboards &amp; custom modeling.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Hourly push</span>
+              <span class="int-pill">Secure</span>
             </div>
           </article>
 
           <!-- 6 -->
-          <article class="integration-card" data-int-cat="webhook" data-accent="purple">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card webhook" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M10 13a5 5 0 0 1 0-10h2"></path>
                 <path d="M14 11a5 5 0 0 1 0 10h-2"></path>
                 <line x1="9" y1="12" x2="15" y2="12"></line>
               </svg>
             </div>
-            <div class="integration-title">Webhook Destinations</div>
-            <p class="integration-desc">
-              Send mapped payloads to your endpoints / internal systems.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Conditional maps</span>
-              <span class="integration-chip">3GTM</span>
+            <h3 class="int-card-title">Webhook Destinations</h3>
+            <p class="int-card-body">Send mapped payloads to your own endpoints or internal systems.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Conditional maps</span>
+              <span class="int-pill">3GTM</span>
             </div>
           </article>
 
           <!-- 7 -->
-          <article class="integration-card" data-int-cat="crm" data-accent="purple">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card crm" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <circle cx="9" cy="8" r="3"></circle>
                 <circle cx="17" cy="13" r="3"></circle>
@@ -1132,32 +1202,28 @@
                 <path d="M12 20c0-2.6 2.1-4.7 4.7-4.7H19"></path>
               </svg>
             </div>
-            <div class="integration-title">CRM / HubSpot</div>
-            <p class="integration-desc">
-              Push qualified leads, map lifecycle stage &amp; keep teams in sync.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Lead sync</span>
-              <span class="integration-chip">Audit</span>
+            <h3 class="int-card-title">CRM / HubSpot</h3>
+            <p class="int-card-body">Push qualified leads, map lifecycle stage &amp; keep sales teams in sync.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Lead sync</span>
+              <span class="int-pill">Audit</span>
             </div>
           </article>
 
           <!-- 8 -->
-          <article class="integration-card" data-int-cat="cdp" data-accent="blue">
-            <div class="integration-icon" aria-hidden="true">
+          <article class="int-card cdp" role="listitem">
+            <div class="int-icon-ring" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <polygon points="12 2 3 7 12 12 21 7 12 2"></polygon>
                 <polyline points="3 12 12 17 21 12"></polyline>
                 <polyline points="3 17 12 22 21 17"></polyline>
               </svg>
             </div>
-            <div class="integration-title">CDP / Segment</div>
-            <p class="integration-desc">
-              Unify identifiers, build segments, activate downstream tools.
-            </p>
-            <div class="integration-chips">
-              <span class="integration-chip">Segments</span>
-              <span class="integration-chip">Activation</span>
+            <h3 class="int-card-title">CDP / Segment</h3>
+            <p class="int-card-body">Unify identifiers, build segments, activate downstream tools.</p>
+            <div class="int-pill-row">
+              <span class="int-pill">Segments</span>
+              <span class="int-pill">Activation</span>
             </div>
           </article>
         </div>
@@ -1173,6 +1239,7 @@
 
       <div class="pricing-bg">
 
+        <!-- billing toggle -->
         <div class="billing-toggle-wrap">
           <span class="billing-label">Billing</span>
           <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
@@ -1348,6 +1415,7 @@
           your chosen plan and handle onboarding.
         </p>
 
+        <!-- Collapsible details blocks -->
         <div class="plan-details-wrap">
 
           <!-- Starter details -->
@@ -1454,6 +1522,7 @@
 
         </div>
 
+        <!-- Upgrade Request Form -->
         <h4 style="margin:0 0 10px;color:#fff;font-size:16px;font-weight:700;">
           Request upgrade
         </h4>
@@ -1772,6 +1841,7 @@
     const buttons = Array.from(toggleWrap.querySelectorAll('.bill-btn'));
     const plans   = Array.from(document.querySelectorAll('.plan-card'));
 
+    // default: Annual
     let mode = 'annual';
 
     function applyPrices(){
@@ -1796,47 +1866,22 @@
     buttons.forEach(btn=>{
       btn.addEventListener('click',()=>{
         mode = btn.getAttribute('data-mode') === 'annual' ? 'annual' : 'monthly';
+
+        // highlight active button
         buttons.forEach(b=>b.classList.toggle('active', b===btn));
+
         applyPrices();
       });
     });
 
+    // sync default
     applyPrices();
-  })();
-  </script>
-
-  <!-- Integrations filter logic -->
-  <script>
-  (function(){
-    const tabs = document.querySelectorAll('[data-int-tab]');
-    const cards = document.querySelectorAll('.integration-card');
-
-    if(!tabs.length || !cards.length) return;
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const key = tab.getAttribute('data-int-tab');
-
-        tabs.forEach(t => t.classList.remove('is-active'));
-        tab.classList.add('is-active');
-
-        cards.forEach(card => {
-          const cat = card.getAttribute('data-int-cat');
-
-          if (key === 'all') {
-            card.style.display = '';
-          } else {
-            card.style.display = (cat === key) ? '' : 'none';
-          }
-        });
-      });
-    });
   })();
   </script>
 
   <!-- Footer year -->
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+  document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
