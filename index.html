@@ -440,48 +440,49 @@
   z-index:2;
   scroll-margin-top:90px;
 }
-
 .integrations-shell {
   margin-top:20px;
   background:
-    radial-gradient(circle at 10% 10%, rgba(144,106,255,.3) 0%, rgba(9,7,16,0) 55%),
-    radial-gradient(circle at 120% 50%, rgba(15,212,255,.12) 0%, rgba(0,0,0,0) 65%),
-    linear-gradient(180deg, rgba(9,8,18,.65) 0%, rgba(5,5,8,.35) 100%);
-  border:1px solid rgba(255,255,255,.06);
+    radial-gradient(circle at 8% 12%, rgba(130,168,255,.19) 0%, rgba(9,7,16,0) 40%),
+    radial-gradient(circle at 115% 50%, rgba(84,215,255,.11) 0%, rgba(0,0,0,0) 65%),
+    linear-gradient(177deg, rgba(5,6,17,.75) 0%, rgba(3,4,7,.35) 100%);
+  border:1px solid rgba(255,255,255,.03);
   border-radius:52px;
   padding:46px 48px 38px;
   box-shadow:
-    0 50px 160px rgba(0,0,0,.7),
-    0 0 140px rgba(108,77,255,.25);
+    0 50px 180px rgba(0,0,0,.7),
+    inset 0 0 116px rgba(19,25,33,.35);
   overflow:hidden;
   isolation:isolate;
 }
 .integrations-shell::after{
   content:"";
   position:absolute;
-  width:420px;
-  height:420px;
+  width:480px;
+  height:480px;
   border-radius:999px;
-  background:radial-gradient(circle, rgba(122,63,255,.12), transparent 70%);
-  top:-120px;
-  right:-120px;
+  background:radial-gradient(circle, rgba(68,115,255,.4), rgba(38,30,78,0) 70%);
+  top:-160px;
+  right:-140px;
   pointer-events:none;
   mix-blend-mode:screen;
+  opacity:.5;
 }
 .integrations-chip {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  background:rgba(10,18,45,.3);
-  border:1px solid rgba(251,254,255,.28);
+  background:transparent;
+  border:1.2px solid rgba(116,174,255,.7);
   border-radius:999px;
-  padding:9px 20px 9px;
+  padding:8px 20px 9px;
   font-weight:600;
   font-size:15px;
-  color:#fff;
-  backdrop-filter:blur(16px);
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
+  color:#e3ebff;
+  text-shadow:0 2px 16px rgba(15,29,44,.6);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
   margin-bottom:20px;
+  backdrop-filter:blur(0);
 }
 .integrations-title {
   font-size:34px;
@@ -489,6 +490,7 @@
   line-height:1.1;
   color:#fff;
   margin:0 0 6px;
+  letter-spacing:-.01em;
 }
 .integrations-sub {
   color:rgba(232,236,244,.8);
@@ -502,29 +504,30 @@
   margin-top:26px;
 }
 .integrations-tab {
-  background:rgba(10,12,16,.35);
-  border:1px solid rgba(255,255,255,.04);
+  background:rgba(6,8,12,0);
+  border:1px solid rgba(163,187,247,.28);
   border-radius:999px;
-  color:rgba(242,246,255,.85);
-  padding:8px 16px 8px;
+  color:rgba(214,227,255,.68);
+  padding:7px 16px 7px;
   font-size:14px;
   font-weight:500;
   line-height:1;
   cursor:pointer;
-  backdrop-filter:blur(18px);
   transition:.16s ease;
   display:inline-flex;
   align-items:center;
   gap:6px;
-  box-shadow:0 12px 32px rgba(0,0,0,.25);
+  box-shadow:0 6px 22px rgba(0,0,0,.1);
+  backdrop-filter:blur(0);
 }
 .integrations-tab.is-active{
-  background:linear-gradient(140deg,#50a7ff 0%, #0064ff 65%);
-  border:1px solid rgba(80,167,255,.6);
+  background:rgba(82,149,255,.15);
+  border:1px solid rgba(108,168,255,.9);
   color:#fff;
   box-shadow:
-    0 20px 50px rgba(54,121,255,.5),
-    0 0 50px rgba(117,180,255,.4);
+    0 14px 42px rgba(89,146,255,.35),
+    inset 0 0 14px rgba(89,146,255,.3);
+  text-shadow:0 0 10px rgba(139,183,255,.4);
 }
 .integrations-grid {
   display:grid;
@@ -533,72 +536,104 @@
   margin-top:28px;
 }
 .integration-card {
-  background:radial-gradient(circle at 10% 10%, rgba(255,255,255,.07) 0%, rgba(0,0,0,0) 50%),
-             radial-gradient(circle at 100% 20%, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 45%),
-             rgba(4,9,18,.4);
-  border:1px solid rgba(255,255,255,.04);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255,255,255,.08) 0%, rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 100% 60%, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 40%),
+    rgba(4,9,18,.32);
+  border:1px solid rgba(255,255,255,.03);
   border-radius:28px;
-  padding:20px 20px 18px;
+  padding:26px 18px 18px;
   box-shadow:
-    0 22px 60px rgba(0,0,0,.55),
-    inset 0 0 0 0 rgba(255,255,255,0);
+    0 26px 68px rgba(0,0,0,.4);
   display:flex;
   flex-direction:column;
   gap:10px;
-  min-height:178px;
+  min-height:198px;
   backdrop-filter:blur(18px);
+  align-items:center;
+  text-align:center;
 }
 .integration-card[data-accent="teal"]{
   background:
-    radial-gradient(circle at 12% 8%, rgba(38,210,200,.36) 0%, rgba(0,0,0,0) 55%),
-    radial-gradient(circle at 100% 20%, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 50%),
-    rgba(3,25,26,.35);
-  border:1px solid rgba(40,224,200,.5);
+    radial-gradient(circle at 30% 10%, rgba(33,224,218,.5) 0%, rgba(0,0,0,0) 55%),
+    linear-gradient(196deg, rgba(2,25,28,.35) 0%, rgba(1,5,6,0) 100%);
+  border:1px solid rgba(33,224,218,.35);
+  box-shadow:0 26px 85px rgba(5,146,138,.55);
 }
 .integration-card[data-accent="blue"]{
   background:
-    radial-gradient(circle at 8% 8%, rgba(72,141,255,.35) 0%, rgba(0,0,0,0) 60%),
-    linear-gradient(180deg, rgba(3,13,26,.35) 0%, rgba(1,3,5,0) 100%);
-  border:1px solid rgba(139,186,255,.3);
+    radial-gradient(circle at 8% 8%, rgba(72,141,255,.51) 0%, rgba(0,0,0,0) 58%),
+    linear-gradient(188deg, rgba(3,13,26,.45) 0%, rgba(1,3,5,0) 100%);
+  border:1px solid rgba(139,186,255,.36);
+  box-shadow:0 26px 85px rgba(37,97,187,.3);
 }
 .integration-card[data-accent="magenta"]{
   background:
-    radial-gradient(circle at 8% 8%, rgba(231,87,225,.33) 0%, rgba(0,0,0,0) 55%),
-    linear-gradient(180deg, rgba(30,5,24,.4) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(231,87,225,.3);
+    radial-gradient(circle at 14% 8%, rgba(231,87,225,.6) 0%, rgba(0,0,0,0) 70%),
+    linear-gradient(188deg, rgba(30,5,24,.55) 0%, rgba(0,0,0,0) 100%);
+  border:1px solid rgba(231,87,225,.36);
+  box-shadow:0 26px 85px rgba(212,54,255,.35);
 }
 .integration-card[data-accent="green"]{
   background:
-    radial-gradient(circle at 8% 8%, rgba(36,222,128,.3) 0%, rgba(0,0,0,0) 65%),
+    radial-gradient(circle at 12% 8%, rgba(36,222,128,.6) 0%, rgba(0,0,0,0) 65%),
     linear-gradient(180deg, rgba(5,26,20,.55) 0%, rgba(0,0,0,0) 100%);
   border:1px solid rgba(36,222,128,.35);
+  box-shadow:0 26px 85px rgba(20,165,96,.45);
 }
 .integration-card[data-accent="amber"]{
   background:
-    radial-gradient(circle at 8% 8%, rgba(214,145,56,.4) 0%, rgba(0,0,0,0) 55%),
+    radial-gradient(circle at 12% 8%, rgba(214,145,56,.64) 0%, rgba(0,0,0,0) 65%),
     linear-gradient(180deg, rgba(30,14,4,.55) 0%, rgba(0,0,0,0) 100%);
-  border:1px solid rgba(214,145,56,.3);
+  border:1px solid rgba(214,145,56,.35);
+  box-shadow:0 26px 85px rgba(158,100,31,.4);
 }
 .integration-card[data-accent="purple"]{
   background:
-    radial-gradient(circle at 8% 8%, rgba(215,146,255,.4) 0%, rgba(0,0,0,0) 60%),
+    radial-gradient(circle at 12% 8%, rgba(215,146,255,.55) 0%, rgba(0,0,0,0) 60%),
     linear-gradient(180deg, rgba(19,6,30,.55) 0%, rgba(0,0,0,0) 100%);
   border:1px solid rgba(215,146,255,.3);
+  box-shadow:0 26px 85px rgba(130,58,197,.4);
 }
 .integration-icon {
-  width:42px;
-  height:42px;
-  border-radius:1.1rem;
+  width:62px;
+  height:62px;
+  border-radius:20px;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:rgba(7,13,20,.55);
-  border:1px solid rgba(250,250,252,.09);
+  background:radial-gradient(circle, rgba(9,12,16,0) 0%, rgba(9,12,16,0) 100%);
+  border:1.2px solid rgba(250,250,252,.25);
   box-shadow:0 12px 30px rgba(0,0,0,.25);
+  margin-bottom:10px;
+}
+.integration-card[data-accent="teal"] .integration-icon{
+  background:radial-gradient(circle, rgba(40,228,210,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(155,251,242,.6);
+}
+.integration-card[data-accent="blue"] .integration-icon{
+  background:radial-gradient(circle, rgba(110,168,255,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(190,214,255,.6);
+}
+.integration-card[data-accent="magenta"] .integration-icon{
+  background:radial-gradient(circle, rgba(241,144,255,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(246,207,255,.55);
+}
+.integration-card[data-accent="green"] .integration-icon{
+  background:radial-gradient(circle, rgba(89,245,177,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(182,255,222,.55);
+}
+.integration-card[data-accent="amber"] .integration-icon{
+  background:radial-gradient(circle, rgba(255,205,142,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(255,222,184,.6);
+}
+.integration-card[data-accent="purple"] .integration-icon{
+  background:radial-gradient(circle, rgba(223,169,255,.35) 0%, rgba(4,9,18,0) 73%);
+  border:1px solid rgba(236,215,255,.6);
 }
 .integration-icon svg {
-  width:20px;
-  height:20px;
+  width:23px;
+  height:23px;
   stroke:#fff;
   stroke-width:1.6;
   fill:none;
@@ -612,23 +647,26 @@
 }
 .integration-desc {
   font-size:13.4px;
-  line-height:1.4;
+  line-height:1.45;
   color:rgba(237,239,245,.84);
   flex:1;
+  max-width:220px;
 }
 .integration-chips {
   display:flex;
   flex-wrap:wrap;
   gap:6px;
+  justify-content:center;
 }
 .integration-chip {
   background:rgba(3,3,5,.35);
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
   border-radius:999px;
   padding:4px 10px 4px;
   font-size:11.5px;
   color:#fff;
   line-height:1;
+  backdrop-filter:blur(4px);
 }
 @media(max-width:1100px){
   .integrations-grid{
@@ -949,7 +987,7 @@
       </div>
     </section>
 
-    <!-- INTEGRATIONS (NEW PREMIUM) -->
+    <!-- INTEGRATIONS (UPDATED TO MATCH REFERENCE) -->
     <section class="section container" id="integrations" aria-labelledby="integrations-title">
       <div class="integrations-shell">
         <div class="integrations-chip" id="integrations-title">Integrations</div>
