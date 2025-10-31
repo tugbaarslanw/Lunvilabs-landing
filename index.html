@@ -37,8 +37,160 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="/assets/styles.css" />
 
-  <!-- Extra styles (product, solutions, integrations, pricing, headings, spacing) -->
+  <!-- Extra styles -->
   <style>
+    /* ====== HERO RIGHT-SIDE ULTRA PREMIUM CARDS (ONLY THIS AREA) ====== */
+    .hero .hero-panels {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-self: stretch;
+    }
+    .hero-card {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      border-radius: 24px;
+      padding: 15px 18px 15px 16px;
+      backdrop-filter: blur(18px);
+      background:
+        radial-gradient(180px 160px at 15% 18%, rgba(167,136,255,.35) 0%, rgba(13,8,20,0) 70%),
+        linear-gradient(150deg, rgba(33,19,88,.94) 0%, rgba(16,7,33,.65) 50%, rgba(9,3,18,.4) 100%);
+      border: 1.15px solid rgba(243,241,255,.15);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.5),
+        0 0 36px rgba(146,125,255,.3);
+      min-height: 110px;
+    }
+    .hero-card--use {
+      background:
+        radial-gradient(160px 150px at 15% 20%, rgba(126,246,212,.55) 0%, rgba(10,38,36,0) 68%),
+        linear-gradient(165deg, rgba(25,53,79,.6) 0%, rgba(12,7,27,.7) 42%, rgba(5,4,11,.45) 100%);
+      border: 1.15px solid rgba(154,251,222,.38);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.5),
+        0 0 40px rgba(116,235,205,.35);
+    }
+    .hero-card--health {
+      background:
+        radial-gradient(160px 150px at 15% 12%, rgba(255,210,134,.45) 0%, rgba(46,25,5,0) 70%),
+        linear-gradient(160deg, rgba(96,39,129,.7) 0%, rgba(45,21,55,.6) 50%, rgba(6,1,5,.45) 100%);
+      border: 1.15px solid rgba(255,186,111,.45);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.5),
+        0 0 40px rgba(254,187,113,.35);
+    }
+    .hero-card-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.95) 0%, rgba(255,255,255,0) 65%),
+        linear-gradient(145deg, rgba(104,255,210,1) 0%, rgba(17,129,97,1) 80%);
+      border: 1.3px solid rgba(255,255,255,.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.35),
+        0 0 25px rgba(104,255,210,.6);
+      flex-shrink: 0;
+    }
+    .hero-card-icon.sm-orange {
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.9) 0%, rgba(255,255,255,0) 65%),
+        linear-gradient(145deg, rgba(255,203,133,1) 0%, rgba(240,96,35,1) 80%);
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.35),
+        0 0 25px rgba(255,203,133,.7);
+    }
+    .hero-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1 1 auto;
+    }
+    .hero-card-body h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+    .hero-card-body p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.35;
+      color: rgba(255,255,255,.78);
+    }
+    .hero-meta {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .hero-pill {
+      background: rgba(8,250,192,.12);
+      border: 1px solid rgba(79,244,204,.55);
+      border-radius: 999px;
+      padding: 2px 9px 3px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #e4fffa;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .hero-pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #8effd9;
+      box-shadow: 0 0 12px rgba(142,255,217,.7);
+    }
+    .hero-kpi {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .hero-kpi-badge {
+      background: rgba(11,5,14,.28);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 10px;
+      padding: 3px 8px 4px;
+      font-size: 11px;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-kpi-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #0ecf9f 0%, rgba(14,207,159,0) 65%);
+      box-shadow: 0 0 10px rgba(14,207,159,.8);
+    }
+    @media (max-width: 980px) {
+      .hero .hero-panels {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .hero-card {
+        flex: 1 1 calc(50% - 7px);
+      }
+    }
+    @media (max-width: 700px) {
+      .hero .hero-panels {
+        flex-direction: column;
+      }
+      .hero-card {
+        flex: 1 1 auto;
+      }
+    }
+
     /* ===== PRICING SECTION OVERRIDES ===== */
 
     .pricing {
@@ -679,14 +831,14 @@
       }
     }
 
-    /* ---- PRODUCT AREA ONLY (REVERTED + PURPLE) ---- */
+    /* ---- PRODUCT AREA ONLY (PURPLE CARDS) ---- */
     #product {
       position: relative;
       z-index: 2;
       scroll-margin-top: 90px;
     }
 
-    /* ---- LANDING SECTIONS SPACING (ONLY THIS) ---- */
+    /* --- LANDING SECTION SPACING (between Product / Solutions / Integrations / Pricing) --- */
     #solutions,
     #integrations,
     #pricing {
@@ -855,7 +1007,7 @@
       white-space: nowrap;
     }
 
-    /* headings center (previous step) */
+    /* headings center */
     #solutions > h2,
     #integrations > h2,
     #pricing > h2 {
@@ -967,23 +1119,66 @@
           </div>
         </div>
 
-        <div class="panels">
-          <div class="panel">
-            <div class="icon" aria-hidden="true"></div>
-            <h3>Key capabilities</h3>
-            <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
+        <!-- UPDATED RIGHT-SIDE 3 CARDS -->
+        <div class="hero-panels">
+          <div class="hero-card">
+            <div class="hero-card-icon" aria-hidden="true">
+              <!-- simple icon -->
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="#021013" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="7" cy="12" r="2.4"></circle>
+                <circle cx="17" cy="6" r="2.4"></circle>
+                <circle cx="17" cy="18" r="2.4"></circle>
+                <line x1="9.2" y1="10.9" x2="14.7" y2="7.1"></line>
+                <line x1="9.2" y1="13.1" x2="14.7" y2="16.9"></line>
+              </svg>
+            </div>
+            <div class="hero-card-body">
+              <h3>Key capabilities</h3>
+              <p>Custom domains (CNAME) with managed SSL, regional deploys, and real-time delivery metrics.</p>
+              <div class="hero-meta">
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>Managed SSL</span>
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>EU / Region</span>
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>Monitor live</span>
+              </div>
+            </div>
           </div>
-          <div class="panel">
-            <div class="icon" style="background:linear-gradient(140deg,#99ffe0,#41e2c0)" aria-hidden="true"></div>
-            <h3>Use cases</h3>
-            <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
+
+          <div class="hero-card hero-card--use">
+            <div class="hero-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="#04120f" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16l-1.5 13h-13z"></path>
+                <path d="M9 6V4a3 3 0 0 1 6 0v2"></path>
+              </svg>
+            </div>
+            <div class="hero-card-body">
+              <h3>Use cases</h3>
+              <p>E-commerce (Purchase/ATC), lead-gen enrichment, agency multi-tenant setups with presets.</p>
+              <div class="hero-meta">
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>E-commerce</span>
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>Lead gen</span>
+                <span class="hero-pill"><span class="dot" aria-hidden="true"></span>Agency</span>
+              </div>
+            </div>
           </div>
-          <div class="panel">
-            <div class="icon" style="background:linear-gradient(140deg,#ffd88a,#ffb84d)" aria-hidden="true"></div>
-            <h3>Health at a glance</h3>
-            <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms</p>
+
+          <div class="hero-card hero-card--health">
+            <div class="hero-card-icon sm-orange" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="#1a0a01" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12 9 12 11 6 14 18 16 12 20 12"></polyline>
+              </svg>
+            </div>
+            <div class="hero-card-body">
+              <h3>Health at a glance</h3>
+              <p>Match quality ↑ • Dedup rate 97% • Last-24h error 0.4% • P95 latency 180ms.</p>
+              <div class="hero-kpi">
+                <span class="hero-kpi-badge"><span class="hero-kpi-dot"></span>Match ↑</span>
+                <span class="hero-kpi-badge"><span class="hero-kpi-dot"></span>Dedup 97%</span>
+                <span class="hero-kpi-badge"><span class="hero-kpi-dot"></span>P95 180ms</span>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- /UPDATED RIGHT-SIDE -->
       </div>
     </section>
 
