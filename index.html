@@ -480,147 +480,6 @@
   grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
-/* ===== PRODUCT CARDS (new premium layout) ===== */
-
-#product{
-  position:relative;
-  z-index:2;
-  scroll-margin-top:90px;
-}
-
-.product-head{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:14px;
-  margin-bottom:18px;
-}
-.product-head h2{
-  margin:0;
-}
-.product-head p{
-  margin:0;
-  color:var(--muted);
-  max-width:540px;
-  font-size:14px;
-}
-
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:18px;
-}
-
-.product-card{
-  background:
-    radial-gradient(circle at 20% 20%, rgba(136,83,255,.4) 0%, rgba(12,6,30,.1) 60%),
-    linear-gradient(165deg, rgba(26,18,46,.95) 0%, rgba(11,8,22,.6) 100%);
-  border:1px solid rgba(208,196,255,.12);
-  border-radius:18px;
-  padding:16px 16px 14px;
-  box-shadow:0 26px 50px rgba(0,0,0,.35);
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  min-height:150px;
-  position:relative;
-  isolation:isolate;
-  overflow:hidden;
-}
-.product-card.leon{
-  background:
-    radial-gradient(260px 200px at 16% 20%, rgba(65,226,192,.7) 0%, rgba(12,6,30,0) 60%),
-    radial-gradient(250px 200px at 70% 140%, rgba(136,83,255,.75) 0%, rgba(0,0,0,0) 75%),
-    linear-gradient(170deg, rgba(12,10,26,.9) 0%, rgba(12,10,26,.65) 100%);
-  border:1px solid rgba(65,226,192,.5);
-}
-.product-card.muted{
-  background:linear-gradient(165deg, rgba(12,10,22,.4) 0%, rgba(10,7,16,.3) 100%);
-  border:1px solid rgba(255,255,255,.058);
-}
-
-.product-icon{
-  width:34px;
-  height:34px;
-  border-radius:14px;
-  background:rgba(65,226,192,.16);
-  border:1px solid rgba(65,226,192,.7);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.4),
-    0 0 20px rgba(65,226,192,.5) inset;
-}
-.product-icon svg{
-  width:18px;
-  height:18px;
-  stroke:#41e2c0;
-  stroke-width:1.8;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-
-.product-card h3{
-  margin:4px 0 0;
-  font-size:14.5px;
-  line-height:1.2;
-  color:#fff;
-  text-shadow:0 8px 27px rgba(0,0,0,.6);
-}
-.product-card p{
-  margin:4px 0 0;
-  font-size:13px;
-  line-height:1.35;
-  color:rgba(248,247,255,.7);
-}
-
-.product-list{
-  margin:8px 0 0;
-  padding:0;
-  list-style:none;
-  display:grid;
-  gap:6px;
-}
-.product-list li{
-  display:flex;
-  gap:6px;
-  align-items:flex-start;
-  font-size:12.8px;
-  color:rgba(255,255,255,.78);
-}
-.product-check{
-  flex-shrink:0;
-  width:15px;
-  height:15px;
-  border-radius:6px;
-  background:#0ecf9f;
-  box-shadow:0 5px 18px rgba(0,0,0,.6);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-  font-weight:700;
-  color:#062b26;
-}
-
-/* 4 üst 4 alt yapıyı küçük ekranlarda bozma */
-@media(max-width:1080px){
-  .product-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-}
-@media(max-width:520px){
-  .product-grid{
-    grid-template-columns:1fr;
-  }
-  .product-card{
-    min-height:0;
-  }
-}
-
 /* ===== INTEGRATIONS CARDS ===== */
 
 #integrations {
@@ -908,7 +767,7 @@
       </div>
     </section>
 
-    <!-- PRODUCT (updated UI only) -->
+    <!-- PRODUCT (UPDATED) -->
     <section class="section container" id="product" aria-labelledby="product-title">
       <div class="product-head">
         <h2 id="product-title">Product</h2>
@@ -916,7 +775,7 @@
       </div>
 
       <div class="product-grid" role="list" aria-label="Product capabilities">
-        <!-- 1 -->
+        <!-- 1: leonlu -->
         <article class="product-card leon" role="listitem">
           <div class="product-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -935,9 +794,9 @@
           </ul>
         </article>
 
-        <!-- 2 -->
-        <article class="product-card" role="listitem">
-          <div class="product-icon" aria-hidden="true">
+        <!-- 2: düz / leonsuz -->
+        <article class="product-card flat" role="listitem">
+          <div class="product-icon flat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <line x1="4" y1="20" x2="4" y2="11"></line>
               <line x1="11" y1="20" x2="11" y2="5"></line>
@@ -953,9 +812,9 @@
           </ul>
         </article>
 
-        <!-- 3 -->
-        <article class="product-card leon" role="listitem">
-          <div class="product-icon" aria-hidden="true">
+        <!-- 3: düz / leonsuz -->
+        <article class="product-card flat" role="listitem">
+          <div class="product-icon flat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
             </svg>
@@ -968,9 +827,9 @@
           </ul>
         </article>
 
-        <!-- 4 -->
-        <article class="product-card muted" role="listitem">
-          <div class="product-icon" aria-hidden="true">
+        <!-- 4: düz / leonsuz -->
+        <article class="product-card flat" role="listitem">
+          <div class="product-icon flat-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M4 5h6v6H4z"></path>
               <path d="M14 5h6v6h-6z"></path>
@@ -987,8 +846,8 @@
           </ul>
         </article>
 
-        <!-- 5 -->
-        <article class="product-card" role="listitem">
+        <!-- alt sıra -->
+        <article class="product-card leon" role="listitem">
           <div class="product-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <rect x="4" y="4" width="16" height="6" rx="3"></rect>
@@ -1006,7 +865,6 @@
           </ul>
         </article>
 
-        <!-- 6 -->
         <article class="product-card leon" role="listitem">
           <div class="product-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
@@ -1023,8 +881,7 @@
           </ul>
         </article>
 
-        <!-- 7 -->
-        <article class="product-card muted" role="listitem">
+        <article class="product-card leon" role="listitem">
           <div class="product-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <circle cx="8" cy="7" r="3"></circle>
@@ -1041,8 +898,7 @@
           </ul>
         </article>
 
-        <!-- 8 -->
-        <article class="product-card" role="listitem">
+        <article class="product-card leon" role="listitem">
           <div class="product-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <ellipse cx="12" cy="5" rx="6" ry="2.5"></ellipse>
@@ -1059,6 +915,161 @@
         </article>
       </div>
     </section>
+
+    <style>
+    /* ---- sadece PRODUCT alanı stilleri ---- */
+    #product {
+      position: relative;
+      z-index: 2;
+      scroll-margin-top: 90px;
+    }
+
+    .product-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .product-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 540px;
+      font-size: 14px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      background:
+        radial-gradient(circle at 18% 15%, rgba(136, 83, 255, .38) 0%, rgba(12, 6, 30, .05) 70%),
+        linear-gradient(165deg, rgba(26, 18, 46, .85) 0%, rgba(11, 8, 22, .5) 100%);
+      border: 1px solid rgba(208, 196, 255, .12);
+      border-radius: 20px;
+      padding: 18px 16px 16px;
+      box-shadow: 0 26px 50px rgba(0, 0, 0, .35);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* leonlu olanlar (alt sıra ve 1. kutu) */
+    .product-card.leon {
+      background:
+        radial-gradient(260px 200px at 16% 20%, rgba(65, 226, 192, .7) 0%, rgba(12, 6, 30, 0) 60%),
+        radial-gradient(260px 200px at 80% 140%, rgba(136, 83, 255, .65) 0%, rgba(0, 0, 0, 0) 75%),
+        linear-gradient(170deg, rgba(12, 10, 26, .9) 0%, rgba(12, 10, 26, .65) 100%);
+      border: 1px solid rgba(65, 226, 192, .4);
+    }
+
+    /* sağ üstteki 3 kutu için düz (sade, leonsuz) */
+    .product-card.flat {
+      background: rgba(7, 10, 22, .4);
+      border: 1px solid rgba(255, 255, 255, .03);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+    }
+
+    .product-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      background: rgba(65, 226, 192, .16);
+      border: 1px solid rgba(65, 226, 192, .7);
+      margin: 0 auto 12px;           /* tam ortala */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow:
+        0 12px 40px rgba(0,0,0,.4),
+        0 0 20px rgba(65, 226, 192, .5) inset;
+    }
+    .product-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: #41e2c0;
+      stroke-width: 1.8;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* düz kutulardaki ikonlar biraz daha sakin */
+    .product-card.flat .product-icon {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: none;
+    }
+    .product-card.flat .product-icon svg {
+      stroke: rgba(255,255,255,.8);
+    }
+
+    .product-card h3 {
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.2;
+      color: #fff;
+      text-align: center;
+    }
+    .product-card p {
+      margin: 3px 0 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(248, 247, 255, .7);
+      text-align: center;
+    }
+
+    .product-list {
+      margin: 9px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+    .product-list li {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      font-size: 12.8px;
+      color: rgba(255, 255, 255, .78);
+    }
+    .product-check {
+      flex-shrink: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 6px;
+      background: #0ecf9f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #062b26;
+      box-shadow: 0 5px 18px rgba(0, 0, 0, .6);
+    }
+
+    /* 4 üst + 4 alt aynı kalsın, mobilde 2'ye veya 1'e düşsün */
+    @media (max-width: 1080px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 520px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .product-card {
+        min-height: 0;
+      }
+    }
+    </style>
 
     <!-- SOLUTIONS (upgraded premium cards) -->
     <section class="section container" id="solutions" aria-labelledby="solutions-title">
