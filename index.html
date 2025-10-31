@@ -266,7 +266,7 @@
       flex-wrap: wrap;
       align-items: flex-end;
       gap: 6px;
-      line-height: 1.1;
+      line-length: 1.1;
       color: #fff;
       font-weight: 800;
       font-size: 42px;
@@ -679,7 +679,7 @@
       }
     }
 
-    /* ---- PRODUCT AREA ONLY (REVERTED) ---- */
+    /* ---- PRODUCT AREA ONLY (REVERTED + PURPLE) ---- */
     #product {
       position: relative;
       z-index: 2;
@@ -716,7 +716,9 @@
     }
 
     .product-card {
-      background: rgba(5, 6, 16, .95);
+      background:
+        radial-gradient(circle at 20% 15%, rgba(157, 110, 255, .55) 0%, rgba(37, 18, 66, 0) 55%),
+        linear-gradient(180deg, rgba(47, 23, 92, .98) 0%, rgba(31, 14, 62, .96) 46%, rgba(20, 5, 45, .9) 100%);
       border: 1px solid rgba(255, 165, 80, .35);
       border-radius: 20px;
       padding: 22px 16px 50px;
