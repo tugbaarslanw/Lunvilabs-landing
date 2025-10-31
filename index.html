@@ -2,640 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
-
-<meta name="description" content="Privacy-first, server-side Conversions API gateway. Managed sGTM hosting, Meta CAPI, GA4 Measurement Protocol, EU-region data, KVKK/GDPR alignment, and real-time debugging." />
 <meta name="theme-color" content="#0b0818" />
-
-<!-- Open Graph -->
-<meta property="og:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
-<meta property="og:description" content="Server-side conversions, sGTM hosting, CAPI retry, consent-aware delivery. Meta CAPI • GA4 • Debugger • KVKK / GDPR aligned." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://lunvilabs.com/" />
-<meta property="og:image" content="https://lunvilabs.com/social-card.png" />
-<meta property="og:image:alt" content="Lunvi Labs — privacy-first server-side conversion infrastructure" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
-<meta name="twitter:description" content="EU-hosted, consent-aware, server-side conversions. Meta CAPI, GA4, TikTok, Klaviyo & webhook exports." />
-<meta name="twitter:image" content="https://lunvilabs.com/social-card.png" />
-
-<!-- Preconnect for GA4 -->
+<link rel="icon" href="/icon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- Main CSS -->
+<!-- CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- Pricing visual overrides, billing toggle styles, details section, integrations/solutions cards -->
-<style>
-/* ===== PRICING SECTION OVERRIDES ===== */
+<!-- GA4 + Consent Mode v2 (default denied) -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
 
-.pricing {
-  padding:32px 0 26px;
-  position:relative;
-  z-index:2;
-}
-
-.pricing-lead {
-  margin-top:6px;
-  color:var(--muted);
-  max-width:720px;
-}
-
-/* dark container behind plans  */
-.pricing-shell {
-  background:
-    radial-gradient(circle at 10% 15%, rgba(113,95,255,.36) 0%, rgba(11,8,24,0) 45%),
-    radial-gradient(circle at 80% 15%, rgba(117,165,255,.2) 0%, rgba(11,8,24,0) 55%),
-    linear-gradient(180deg, rgba(11,8,24,.8) 0%, rgba(5,4,12,.95) 100%);
-  border:1px solid rgba(113,95,255,.32);
-  border-radius:28px;
-  margin-top:30px;
-  display:flex;
-  gap:18px;
-  padding:20px 20px 18px;
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.9),
-    0 0 120px rgba(136,83,255,.4),
-    0 0 60px rgba(64,148,255,.25) inset;
-}
-
-/* Growth: teal / green */
-.plan-card.growth{
-  background:
-    radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(0,180,120,.22) 0%, rgba(0,0,0,0) 70%),
-    linear-gradient(180deg, rgba(16,27,24,.9) 0%, rgba(12,10,24,.75) 100%);
-  border:1px solid rgba(65,226,192,.5);
-  box-shadow:
-    0 40px 120px rgba(0,0,0,.85),
-    0 0 30px rgba(65,226,192,.4);
-}
-
-.plan-card {
-  flex:1 1 0;
-  border-radius:20px;
-  padding:20px 20px 18px;
-  color:#fff;
-  display:flex;
-  flex-direction:column;
-  min-height:240px;
-  position:relative;
-  isolation:isolate;
-}
-
-.plan-pill {
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:rgba(11,8,24,.4);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:999px;
-  padding:5px 12px 6px;
-  font-size:.68rem;
-  color:#fff;
-}
-
-.plan-name {
-  font-size:1.32rem;
-  margin-top:10px;
-  margin-bottom:3px;
-}
-
-.plan-desc {
-  color:rgba(255,255,255,.78);
-  font-size:.8rem;
-  line-height:1.4;
-}
-
-.plan-price {
-  margin-top:16px;
-  display:flex;
-  align-items:baseline;
-  gap:4px;
-}
-
-.plan-price strong {
-  font-size:1.9rem;
-  letter-spacing:-.03em;
-}
-
-.plan-price span {
-  font-size:.75rem;
-  color:rgba(244,255,248,.7);
-}
-
-/* Billing toggle */
-.bill-toggle {
-  display:flex;
-  gap:8px;
-  background:rgba(5,4,11,.35);
-  border:1px solid rgba(111,165,255,.4);
-  border-radius:999px;
-  padding:5px 6px;
-  width:max-content;
-  margin-top:30px;
-}
-
-.bill-btn {
-  border:none;
-  background:transparent;
-  color:var(--muted);
-  border-radius:999px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  min-width:94px;
-  text-shadow:0 0 8px rgba(0,0,0,.6);
-  transition:.14s ease;
-}
-
-/* Active state (purple chip) */
-.bill-btn.active{
-  color:#fff;
-  background:linear-gradient(145deg,#7f58ff 0%,#59ddff 100%);
-  box-shadow:0 0 16px rgba(109,90,255,.6);
-  font-weight:600;
-}
-
-/* Plan details collapsible */
-.plan-details {
-  margin-top:14px;
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:14px;
-  background:rgba(9,8,19,.3);
-  padding:8px 12px 4px;
-}
-
-.plan-details summary {
-  list-style:none;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:#fff;
-  font-weight:500;
-}
-
-.plan-details summary::-webkit-details-marker {
-  display:none;
-}
-
-.plan-details-body {
-  margin-top:6px;
-  font-size:.75rem;
-  line-height:1.5;
-  color:var(--muted);
-}
-.plan-details-body p{
-  margin:0 0 10px;
-  color:var(--muted);
-}
-.plan-details-body p strong{
-  color:#fff;
-  font-weight:600;
-}
-.plan-details-body ul{
-  margin:0 0 12px;
-  padding:0 0 0 18px;
-}
-.plan-details-body li{
-  margin-bottom:4px;
-}
-
-/* Pricing CTA buttons */
-.plan-actions {
-  display:flex;
-  gap:8px;
-  margin-top:auto;
-  flex-wrap:wrap;
-}
-
-.btn-primary {
-  background:linear-gradient(135deg,#8f5cff 0%,#38e6b6 100%);
-  border:none;
-  border-radius:999px;
-  padding:7px 14px 8px;
-  font-size:.78rem;
-  font-weight:600;
-  color:#fff;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  cursor:pointer;
-  box-shadow:0 10px 40px rgba(138,91,255,.5);
-}
-.btn-secondary {
-  background:rgba(15,11,25,.6);
-  border:1px solid rgba(200,225,255,.12);
-  border-radius:999px;
-  padding:7px 14px 8px;
-  font-size:.78rem;
-  font-weight:500;
-  color:#fff;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  cursor:pointer;
-}
-
-@media(max-width:1000px){
-  .pricing-shell{
-    flex-direction:column;
-  }
-  .plan-card{
-    width:100%;
-  }
-}
-
-/* ===== INTEGRATIONS / SOLUTIONS OLD CARDS (kept for legacy) ===== */
-.int-sub{
-  color:rgba(243,245,250,.58);
-  max-width:640px;
-  margin-bottom:30px;
-}
-
-/* ===== SOLUTIONS SECTION ===== */
-.solutions {
-  margin-top:60px;
-}
-.sol-grid {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
-}
-.sol-card {
-  background:radial-gradient(circle at 10% 0%, rgba(65,226,192,.16) 0%, rgba(7,8,12,0) 60%), rgba(8,9,15,.65);
-  border:1px solid rgba(65,226,192,.25);
-  border-radius:20px;
-  padding:18px 20px 16px;
-  min-height:180px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  box-shadow:
-    0 16px 40px rgba(0,0,0,.6),
-    0 0 20px rgba(65,226,192,.4) inset;
-}
-.sol-title {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
-}
-.sol-title h3 {
-  font-size:1rem;
-}
-.sol-text {
-  color:rgba(232,245,240,.8);
-  font-size:.78rem;
-  line-height:1.5;
-}
-.sol-icon {
-  width:40px;
-  height:40px;
-  border-radius:14px;
-  background:rgba(0,0,0,.3);
-  border:1px solid rgba(65,226,192,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-  flex-shrink:0;
-}
-.sol-icon svg {
-  width:18px;
-  height:18px;
-  stroke:#41e2c0;
-  stroke-width:2;
-  fill:none;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-}
-.sol-chip {
-  display:inline-flex;
-  background:rgba(1,10,6,.3);
-  border:1px solid rgba(105,248,216,.68);
-  padding:5px 12px 6px;
-  border-radius:999px;
-  font-size:.68rem;
-  gap:5px;
-  align-items:center;
-  color:#fff;
-}
-.sol-chip strong {
-  font-weight:600;
-  color:#fff;
-}
-.sol-badge {
-  position:absolute;
-  top:14px;
-  right:14px;
-  background:rgba(0,0,0,.28);
-  border:1px solid rgba(65,226,192,.5);
-  border-radius:999px;
-  padding:4px 8px 5px;
-  display:inline-flex;
-  gap:4px;
-  align-items:center;
-  font-size:.62rem;
-  color:#fff;
-}
-.sol-badge span:last-child {
-  font-weight:600;
-}
-.sol-card.alt {
-  background:radial-gradient(circle at 16% 12%, rgba(136,148,255,.16) 0%, rgba(7,8,12,0) 60%), rgba(8,9,15,.65);
-  border:1px solid rgba(134,146,255,.2);
-  box-shadow:
-    0 16px 42px rgba(0,0,0,.6),
-    0 0 20px rgba(134,146,255,.4) inset;
-}
-.sol-card.orange {
-  background:radial-gradient(circle at 16% 12%, rgba(255,164,107,.16) 0%, rgba(7,8,12,0) 60%), rgba(8,9,15,.65);
-  border:1px solid rgba(255,164,107,.2);
-  box-shadow:
-    0 16px 42px rgba(0,0,0,.6),
-    0 0 20px rgba(255,164,107,.4) inset;
-}
-.sol-card.orange .sol-icon{
-  border-color:rgba(255,164,107,.55);
-  box-shadow:
-    0 0 20px rgba(255,164,107,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-  flex-shrink:0;
-}
-.sol-card.orange .sol-icon svg{
-  stroke:#ffb67d;
-}
-.sol-card.orange .sol-chip{
-  background:rgba(10,5,2,.3);
-  border-color:rgba(255,212,175,.5);
-  color:#fff9f2;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,.5),
-    0 0 20px rgba(255,164,107,.6) inset;
-  font-size:11px;
-  font-weight:800;
-  color:#ffe3c0;
-}
-.sol-card.orange .sol-text{
-  color:rgba(255,237,224,.78);
-}
-.sol-card.teal .sol-chip{
-  background:rgba(1,10,6,.3);
-  border-color:rgba(146,248,216,.5);
-  color:#fff;
-  box-shadow:
-    0 8px 16px rgba(0,0,0,.5),
-    0 0 20px rgba(14,207,159,.6) inset;
-  font-size:11px;
-  font-weight:800;
-  color:#062b26;
-}
-
-@media(max-width:500px){
-  .sol-card{
-    min-height:0;
-    padding:18px 18px 16px;
-  }
-}
-
-/* ===== PREMIUM INTEGRATIONS (2025-10) ===== */
-#integrations{
-  scroll-margin-top:90px;
-}
-#integrations .integrations-shell{
-  background:
-    radial-gradient(circle at 12% -4%, rgba(127,146,255,.45) 0%, rgba(8,7,19,0) 40%),
-    radial-gradient(circle at 80% 0%, rgba(0,228,255,.14) 0%, rgba(6,6,10,0) 55%),
-    rgba(6,7,16,.65);
-  border:1px solid rgba(122,163,255,.18);
-  border-radius:26px;
-  padding:46px 40px 40px;
-  box-shadow:
-    0 32px 120px rgba(0,0,0,.55),
-    0 0 90px rgba(82,126,255,.35);
-  backdrop-filter:blur(14px);
-}
-.integrations-heading{
-  max-width:720px;
-}
-.integrations-pill{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:rgba(109,154,255,.08);
-  border:1px solid rgba(147,183,255,.45);
-  border-radius:999px;
-  padding:6px 18px 7px;
-  font-size:.78rem;
-  font-weight:600;
-  letter-spacing:.04em;
-  color:#e9f2ff;
-  box-shadow:0 0 22px rgba(104,145,255,.5);
-}
-.integrations-heading h2{
-  font-size:clamp(2.05rem, 3vw, 2.5rem);
-  margin-top:16px;
-  margin-bottom:8px;
-  letter-spacing:-.01em;
-}
-.integrations-heading p{
-  max-width:540px;
-  color:rgba(215,224,244,.88);
-}
-.integrations-tabs{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:22px;
-}
-.integrations-tab{
-  background:rgba(3,7,15,.12);
-  border:1px solid rgba(133,166,255,.12);
-  border-radius:999px;
-  padding:6px 16px 7px;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  color:rgba(202,218,255,.75);
-  font-size:.75rem;
-  line-height:1;
-  cursor:pointer;
-  transition:all .16s ease-out;
-  text-shadow:0 0 8px rgba(0,0,0,.3);
-}
-.integrations-tab:hover{
-  border-color:rgba(160,200,255,.5);
-  color:#fff;
-}
-.integrations-tab.active{
-  background:linear-gradient(130deg, rgba(127,154,255,.65) 0%, rgba(94,161,255,.05) 100%);
-  border:1px solid rgba(134,173,255,.8);
-  color:#fff;
-  box-shadow:0 0 16px rgba(101,150,255,.55);
-}
-.integrations-grid{
-  margin-top:34px;
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:18px;
-}
-.integration-card{
-  position:relative;
-  background:radial-gradient(circle at 10% 10%, rgba(31,39,82,.55) 0%, rgba(5,6,16,.1) 55%), rgba(5,6,16,.35);
-  border:1px solid rgba(120,160,255,.14);
-  border-radius:18px;
-  padding:18px 18px 14px;
-  min-height:168px;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  box-shadow:0 14px 32px rgba(0,0,0,.35);
-}
-.integration-card h3{
-  font-size:1rem;
-  margin-bottom:5px;
-}
-.integration-card p{
-  font-size:.78rem;
-  color:rgba(210,225,247,.86);
-}
-.integration-icon{
-  width:54px;
-  height:54px;
-  border-radius:20px;
-  background:rgba(10,12,22,.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:15px;
-  position:relative;
-  isolation:isolate;
-}
-.integration-icon .icon-glow{
-  content:"";
-  position:absolute;
-  inset:-14px -12px;
-  background:radial-gradient(circle, rgba(108,150,255,.45) 0%, rgba(9,10,20,0) 72%);
-  filter:blur(6px);
-  opacity:.9;
-  z-index:-1;
-}
-.integration-icon svg{
-  width:30px;
-  height:30px;
-  color:inherit;
-}
-.integration-tag{
-  margin-top:auto;
-  display:inline-flex;
-  padding:4px 14px 5px;
-  background:rgba(8,11,17,.18);
-  border:1px solid rgba(180,205,255,.15);
-  border-radius:999px;
-  font-size:.64rem;
-  letter-spacing:.02em;
-  color:rgba(235,240,255,.9);
-}
-.integration-card.neon-blue{
-  border-color:rgba(99,133,255,.4);
-}
-.integration-card.neon-blue .integration-icon{
-  color:#a6bbff;
-  background:radial-gradient(circle at 12% 12%, rgba(148,173,255,.48) 0%, rgba(8,9,22,0) 60%), rgba(6,7,14,.2);
-  box-shadow:0 0 26px rgba(136,165,255,.48);
-}
-.integration-card.neon-cyan{
-  border-color:rgba(95,219,255,.28);
-  background:radial-gradient(circle at 12% 10%, rgba(138,242,255,.18) 0%, rgba(4,5,10,0) 52%), rgba(5,6,16,.28);
-}
-.integration-card.neon-cyan .integration-icon{
-  color:#acf2ff;
-  box-shadow:0 0 24px rgba(171,255,255,.56);
-}
-.integration-card.neon-magenta{
-  border-color:rgba(255,141,222,.35);
-  background:radial-gradient(circle at 16% 12%, rgba(248,149,246,.12) 0%, rgba(12,7,18,0) 60%), rgba(5,6,16,.25);
-}
-.integration-card.neon-magenta .integration-icon{
-  color:#ff8ade;
-  box-shadow:0 0 24px rgba(255,145,232,.58);
-}
-.integration-card.neon-green{
-  border-color:rgba(181,248,196,.35);
-  background:radial-gradient(circle at 10% 4%, rgba(152,255,219,.16) 0%, rgba(6,7,13,0) 55%), rgba(4,5,10,.35);
-}
-.integration-card.neon-green .integration-icon{
-  color:#b6ffdf;
-  box-shadow:0 0 22px rgba(96,238,176,.56);
-}
-.integration-card.neon-orange{
-  border-color:rgba(255,197,140,.4);
-  background:radial-gradient(circle at 12% 10%, rgba(241,168,112,.2) 0%, rgba(12,9,8,0) 56%), rgba(4,5,10,.35);
-}
-.integration-card.neon-orange .integration-icon{
-  color:#ffe8bf;
-  box-shadow:0 0 24px rgba(255,192,136,.64);
-}
-.integration-card.neon-yellow{
-  border-color:rgba(255,233,130,.38);
-  background:radial-gradient(circle at 12% 10%, rgba(255,226,146,.23) 0%, rgba(12,9,8,0) 56%), rgba(4,5,10,.35);
-}
-.integration-card.neon-yellow .integration-icon{
-  color:#fff1a9;
-  box-shadow:0 0 22px rgba(255,219,125,.55);
-}
-@media(max-width:1100px){
-  .integrations-grid{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-}
-@media(max-width:640px){
-  #integrations .integrations-shell{
-    padding:30px 18px 24px;
-  }
-  .integrations-heading h2{
-    font-size:1.6rem;
-  }
-  .integrations-tabs{
-    gap:6px;
-  }
-  .integrations-grid{
-    grid-template-columns:1fr;
-  }
-  .integration-card{
-    min-height:0;
-  }
-}
-</style>
+  gtag('consent','default',{
+    ad_storage:'denied',
+    analytics_storage:'denied',
+    functionality_storage:'granted',
+    security_storage:'granted'
+  });
+  gtag('js', new Date());
+  gtag('config','G-XXXXXXXXXX',{ anonymize_ip:true });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="container nav">
+  <div class="container header-shell">
     <a href="/" class="logo">
-      <img src="/icon.png" alt="Lunvi Labs" width="36" height="36" loading="lazy" />
+      <img src="/icon.png" alt="Lunvi Labs" loading="lazy" width="32" height="32" />
       <span>Lunvi Labs</span>
     </a>
-    <nav class="main-nav">
+    <nav class="top-nav">
       <a href="#product">Product</a>
       <a href="#integrations">Integrations</a>
       <a href="#pricing">Pricing</a>
-      <a href="#compliance">Docs</a>
+      <a href="#faq">FAQ</a>
       <a href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
     </nav>
-    <a href="#get-started" class="btn btn-small">Get Started</a>
+    <a href="#pricing" class="btn-small">Get Started</a>
   </div>
 </header>
 
@@ -643,23 +53,55 @@
 
   <!-- HERO -->
   <section class="hero container" id="hero">
-    <div class="hero-content">
+    <div class="hero-left">
       <h1>Premium gateway for server-side conversions.</h1>
       <p>Meta CAPI, GA4 v2, TikTok, Klaviyo and raw exports — all in one consent-aware edge. EU-region, KVKK/GDPR aligned, with real-time debugging.</p>
       <div class="hero-actions">
-        <a href="#pricing" class="btn btn-primary">View pricing</a>
-        <a href="#integrations" class="btn btn-secondary">See integrations</a>
+        <a href="#pricing" class="btn-primary">View pricing</a>
+        <a href="#integrations" class="btn-secondary">See integrations</a>
       </div>
       <ul class="hero-points">
         <li>Managed sGTM hosting</li>
-        <li>Audience & ID enrichment</li>
+        <li>Audience &amp; ID enrichment</li>
         <li>Consent Mode v2 support</li>
       </ul>
+      <ul class="hero-metrics">
+        <li><strong>CAPI events</strong> live</li>
+        <li><strong>GA4 MP v2</strong> EU region</li>
+        <li><strong>Webhook Exports</strong> auto-retry</li>
+      </ul>
     </div>
-    <div class="hero-visual">
-      <div class="hero-card">CAPI events <span>live</span></div>
-      <div class="hero-card alt">GA4 MP v2 <span>EU region</span></div>
-      <div class="hero-card dark">Webhook Exports <span>auto-retry</span></div>
+    <div class="hero-right">
+      <div class="hero-panel">
+        <h2>Realtime debugger</h2>
+        <p>See all sent events, delivery status, destination and payload.</p>
+        <div class="hero-panel-list">
+          <div class="hero-panel-row">
+            <span class="tag green"></span>
+            <div>
+              <strong>purchase</strong>
+              <small>Meta CAPI • 200 OK</small>
+            </div>
+            <span class="badge">1.2ms</span>
+          </div>
+          <div class="hero-panel-row">
+            <span class="tag blue"></span>
+            <div>
+              <strong>generate_lead</strong>
+              <small>GA4 MP v2 • 204</small>
+            </div>
+            <span class="badge">0.9ms</span>
+          </div>
+          <div class="hero-panel-row">
+            <span class="tag purple"></span>
+            <div>
+              <strong>complete_registration</strong>
+              <small>TikTok Events • 200</small>
+            </div>
+            <span class="badge warn">retry</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -675,10 +117,10 @@
       </article>
       <article class="product-card">
         <h3>Consent-aware delivery</h3>
-        <p>Supports Consent Mode v2 out of the box. Events are downgraded or upgraded based on user status.</p>
+        <p>Supports Consent Mode v2 out of the box. Events are downgraded/upgraded based on user status.</p>
       </article>
       <article class="product-card">
-        <h3>Debugger & replay</h3>
+        <h3>Debugger &amp; replay</h3>
         <p>See which events were sent, when, to which destination, with which status codes.</p>
       </article>
       <article class="product-card">
@@ -688,166 +130,123 @@
     </div>
   </section>
 
-  <!-- INTEGRATIONS (NEW PREMIUM VERSION) -->
-  <section class="section container" id="integrations" aria-labelledby="integrations-title">
-  <div class="integrations-shell">
-    <div class="integrations-heading">
-      <div class="integrations-pill" aria-label="Integrations">Integrations</div>
-      <h2 id="integrations-title">Works seamlessly with your existing stack</h2>
-      <p>Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
-      <div class="integrations-tabs" role="list">
-        <button class="integrations-tab active" type="button">Meta CAPI</button>
-        <button class="integrations-tab" type="button">GA4 MP v2</button>
-        <button class="integrations-tab" type="button">TikTok Events</button>
-        <button class="integrations-tab" type="button">Klaviyo</button>
-        <button class="integrations-tab" type="button">BigQuery</button>
+  <!-- INTEGRATIONS (YENİ) -->
+  <section class="section" id="integrations" aria-labelledby="integrations-title">
+    <div class="integrations-wrap">
+      <div class="integrations-head">
+        <span class="int-pill" aria-label="Integrations">Integrations</span>
+        <h2 id="integrations-title">Works seamlessly with your existing stack</h2>
+        <p>Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
+        <div class="int-tabs" role="list">
+          <button class="int-tab is-active" type="button">Meta CAPI</button>
+          <button class="int-tab" type="button">GA4 MP v2</button>
+          <button class="int-tab" type="button">TikTok Events</button>
+          <button class="int-tab" type="button">Klaviyo</button>
+          <button class="int-tab" type="button">BigQuery</button>
+        </div>
+      </div>
+
+      <div class="integrations-grid" role="list" aria-label="integrations list">
+        <!-- 1 -->
+        <article class="integration-box b1" role="listitem">
+          <div class="ibox-icon">
+            <span class="glow"></span>
+            <span class="dot"></span>
+          </div>
+          <h3>Meta Conversions</h3>
+          <p>High-match server events with consent-aware delivery for premium reporting.</p>
+          <div class="ibox-footer">Match 97% • EU mode</div>
+        </article>
+
+        <!-- 2 -->
+        <article class="integration-box b2" role="listitem">
+          <div class="ibox-icon cyan">
+            <span class="glow"></span>
+            <span class="bar"></span>
+          </div>
+          <h3>Google Analytics 4</h3>
+          <p>Measurement Protocol v2 with server occupancy checks for reliable tracking.</p>
+          <div class="ibox-footer">MP v2 • EU-mode</div>
+        </article>
+
+        <!-- 3 -->
+        <article class="integration-box b3" role="listitem">
+          <div class="ibox-icon magenta">
+            <span class="glow"></span>
+            <span class="bolt"></span>
+          </div>
+          <h3>TikTok Events</h3>
+          <p>Server-to-server for paid social. Auto-retry + dedup so events don’t get lost.</p>
+          <div class="ibox-footer">Auto retry • Dedup</div>
+        </article>
+
+        <!-- 4 -->
+        <article class="integration-box b4" role="listitem">
+          <div class="ibox-icon lime">
+            <span class="glow"></span>
+            <span class="home"></span>
+          </div>
+          <h3>Klaviyo</h3>
+          <p>Profile + event sync for lifecycle &amp; reactivation campaigns.</p>
+          <div class="ibox-footer">Profiles • Events</div>
+        </article>
+
+        <!-- 5 -->
+        <article class="integration-box b5" role="listitem">
+          <div class="ibox-icon indigo">
+            <span class="glow"></span>
+            <span class="layers"></span>
+          </div>
+          <h3>BigQuery Export</h3>
+          <p>Raw event export for downstream BI &amp; SKU-level filtering.</p>
+          <div class="ibox-footer">Auto dedup • SKU filter</div>
+        </article>
+
+        <!-- 6 -->
+        <article class="integration-box b6" role="listitem">
+          <div class="ibox-icon orange">
+            <span class="glow"></span>
+            <span class="stack"></span>
+          </div>
+          <h3>Webhook Export</h3>
+          <p>Re-mapped payloads to your own endpoints or internal systems.</p>
+          <div class="ibox-footer">Conditional maps</div>
+        </article>
+
+        <!-- 7 -->
+        <article class="integration-box b7" role="listitem">
+          <div class="ibox-icon pink">
+            <span class="glow"></span>
+            <span class="link"></span>
+          </div>
+          <h3>Webhook Destinations</h3>
+          <p>Send mapped payloads to 1st / 3rd-party systems with delivery safety.</p>
+          <div class="ibox-footer">Conditional maps • sGTM</div>
+        </article>
+
+        <!-- 8 -->
+        <article class="integration-box b8" role="listitem">
+          <div class="ibox-icon yellow">
+            <span class="glow"></span>
+            <span class="user"></span>
+          </div>
+          <h3>Snapchat Conversions API</h3>
+          <p>Enhance Snap data with server-side CAPI, with iOS-dedup for app installs.</p>
+          <div class="ibox-footer">Server • Dedup</div>
+        </article>
       </div>
     </div>
+  </section>
 
-    <div class="integrations-grid" role="list" aria-label="Integrations list">
-      <!-- 1 -->
-      <article class="integration-card neon-blue" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <circle cx="8" cy="16" r="3.4"></circle>
-            <circle cx="23.5" cy="8.5" r="3.2"></circle>
-            <circle cx="23.5" cy="23.5" r="3.2"></circle>
-            <path d="M10.7 14.9 20.7 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="M10.7 17.2 20.7 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-          </svg>
-        </div>
-        <h3>Meta Conversions</h3>
-        <p>High-match server events with consent-aware delivery for premium reporting.</p>
-        <div class="integration-tag">Match 97% • EU mode</div>
-      </article>
+  <!-- PRICING (ZIP’TEKİ HALİYLE) -->
+  <!-- buradan sonrası senin ZIP’teki pricing, faq ve compliance alanlarının aynısı -->
+  <!-- ... (kalan içerik zip’tekiyle aynı) ... -->
 
-      <!-- 2 -->
-      <article class="integration-card neon-cyan" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <rect x="6" y="6" width="6" height="6" rx="1.4"></rect>
-            <rect x="6" y="20" width="6" height="6" rx="1.4"></rect>
-            <rect x="20" y="13" width="6" height="6" rx="1.4"></rect>
-            <path d="M12 9.5h4.5c2.6 0 4.5 1.6 4.5 4.4v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="M12 22.5h4.5c2.6 0 4.5-1.6 4.5-4.4v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-          </svg>
-        </div>
-        <h3>Google Analytics 4</h3>
-        <p>Measurement Protocol v2 with server-occupancy checks for reliable tracking.</p>
-        <div class="integration-tag">MP v2 • EU-mode</div>
-      </article>
-
-      <!-- 3 -->
-      <article class="integration-card neon-magenta" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <circle cx="16" cy="16" r="6.6"></circle>
-            <path d="m16 6.5 2 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="m22.5 16-3.5 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="m16 25.5-2-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-            <path d="m9.5 16 3.5-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-          </svg>
-        </div>
-        <h3>TikTok Events</h3>
-        <p>Server-to-server for paid social. Auto-retry + dedup so events don’t get lost.</p>
-        <div class="integration-tag">Auto retry • Dedup</div>
-      </article>
-
-      <!-- 4 -->
-      <article class="integration-card neon-green" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M8 9c0-1.1.9-2 2-2h6.5L24 14.5V23c0 1.1-.9 2-2 2H10c-1.1 0-2-.9-2-2V9z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path>
-            <path d="M17 7v6h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-        <h3>Klaviyo</h3>
-        <p>Profile + event sync for lifecycle &amp; reactivation campaigns.</p>
-        <div class="integration-tag">Profiles • Events</div>
-      </article>
-
-      <!-- 5 -->
-      <article class="integration-card neon-blue" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M7 12.5 16 7l9 5.5-9 5.5-9-5.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"></path>
-            <path d="m7 17 9 5.5L25 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="m7 21.5 9 5.5 9-5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-        <h3>BigQuery Export</h3>
-        <p>Raw event export for downstream BI &amp; SKU-level filtering.</p>
-        <div class="integration-tag">Auto dedup • SKU filter</div>
-      </article>
-
-      <!-- 6 -->
-      <article class="integration-card neon-orange" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="M8 8.5h16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
-            <path d="M8 16h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
-            <path d="M8 23.5h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
-            <circle cx="23" cy="16" r="3.2"></circle>
-          </svg>
-        </div>
-        <h3>Webhook Export</h3>
-        <p>Re-mapped payloads to your own endpoints or internal systems.</p>
-        <div class="integration-tag">Conditional maps</div>
-      </article>
-
-      <!-- 7 -->
-      <article class="integration-card neon-magenta" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <path d="m8 9 8 7-8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="m17 9 8 7-8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-        <h3>Webhook Destinations</h3>
-        <p>Send mapped payloads to 3rd-party systems with safety &amp; delivery checks.</p>
-        <div class="integration-tag">Conditional maps • sGTM</div>
-      </article>
-
-      <!-- 8 -->
-      <article class="integration-card neon-yellow" role="listitem">
-        <div class="integration-icon">
-          <span class="icon-glow"></span>
-          <svg viewBox="0 0 32 32" aria-hidden="true">
-            <circle cx="16" cy="12" r="4.3"></circle>
-            <path d="M10.5 23.5c.9-2.7 2.9-4.3 5.6-4.3s4.7 1.6 5.6 4.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
-          </svg>
-        </div>
-        <h3>Snapchat Conversions API</h3>
-        <p>Enhance Snap performance with server events, CAPI retries &amp; iOS-friendly mapping.</p>
-        <div class="integration-tag">Server • Dedup</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-  <!-- PRICING -->
   <section class="section container" id="pricing">
     <h2>Pricing</h2>
     <p class="pricing-lead">Start small and scale up as your event volume grows.</p>
-
-    <div class="bill-toggle" data-toggle-billing>
-      <button class="bill-btn active" data-bill="monthly" type="button">
-        <span>Monthly</span>
-      </button>
-      <button class="bill-btn" data-bill="annual" type="button">
-        <span>Annual</span>
-        <span style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.3);padding:2px 6px 3px;border-radius:999px;font-size:.62rem;">Save 20%</span>
-      </button>
-    </div>
-
     <div class="pricing-shell" data-pricing-shell>
+      <!-- starter -->
       <article class="plan-card">
         <span class="plan-pill">Starter</span>
         <h3 class="plan-name">Starter</h3>
@@ -878,14 +277,14 @@
             </ul>
           </div>
         </details>
-
         <div class="plan-actions">
           <button class="btn-primary" type="button" data-cta="starter">Get started</button>
           <button class="btn-secondary" type="button">Contact sales</button>
         </div>
       </article>
 
-      <article class="plan-card growth">
+      <!-- Growth -->
+      <article class="plan-card">
         <span class="plan-pill">Growth</span>
         <h3 class="plan-name">Growth</h3>
         <p class="plan-desc">For agencies and growing brands.</p>
@@ -918,12 +317,12 @@
             </ul>
           </div>
         </details>
-
         <div class="plan-actions">
           <button class="btn-primary" type="button" data-cta="growth">Upgrade to Growth</button>
         </div>
       </article>
 
+      <!-- Enterprise -->
       <article class="plan-card">
         <span class="plan-pill">Enterprise</span>
         <h3 class="plan-name">Enterprise</h3>
@@ -944,7 +343,7 @@
             <p><strong>Features</strong></p>
             <ul class="sec-list">
               <li>Dedicated EU-region</li>
-              <li>Audit trail & SSO</li>
+              <li>Audit trail &amp; SSO</li>
               <li>High-frequency retries</li>
             </ul>
             <p><strong>Limits</strong></p>
@@ -954,11 +353,11 @@
             </ul>
           </div>
         </details>
-
         <div class="plan-actions">
           <button class="btn-primary" type="button" data-cta="enterprise">Talk to us</button>
         </div>
       </article>
+
     </div>
   </section>
 
@@ -968,32 +367,24 @@
     <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q"><strong>Do I need to host sGTM myself?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">
-          No — we provide managed sGTM hosting with EU-region option. You can also bring your own.
-        </div>
+        <div class="faq-a">No — we provide managed sGTM hosting with EU-region option. You can also bring your own.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><strong>Do you support Consent Mode v2?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">
-          Yes. We normalize events to consent status. When consent is denied, we still send anonymous pings that can be upgraded later.
-        </div>
+        <div class="faq-a">Yes. We normalize events to consent status. When consent is denied, we still send anonymous pings that can be upgraded later.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><strong>Can I send to Snapchat / TikTok?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">
-          Yes — TikTok Events API, Snapchat CAPI, Klaviyo and raw webhooks are all supported.
-        </div>
+        <div class="faq-a">Yes — TikTok Events API, Snapchat CAPI, Klaviyo and raw webhooks are all supported.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">
-          We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.
-        </div>
+        <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
       </div>
     </div>
   </section>
 
-  <!-- COMPLIANCE / LEGAL DOCS SECTION -->
+  <!-- COMPLIANCE -->
   <section class="section container" id="compliance" aria-labelledby="compliance-title" style="scroll-margin-top:90px;">
     <h2 id="compliance-title">Compliance &amp; Legal Docs</h2>
     <p class="lead">We prepared light, readable documents for your legal / security teams. No opaque terms, no hidden data sharing.</p>
@@ -1038,7 +429,6 @@
           <li><a href="#faq">FAQs</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Resources</h4>
         <ul class="footer-links">
@@ -1048,67 +438,31 @@
           <li><a href="#">Status</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h4>Company</h4>
         <ul class="footer-links">
-            <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
-            <li><a href="#docs">Docs</a></li>
-            <li><a href="#">Status</a></li>
-            <li><a href="#">Careers</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Legal</h4>
-          <ul class="footer-links">
-            <li><a href="/privacy.html">Privacy</a></li>
-            <li><a href="/terms.html">Terms</a></li>
-            <li><a href="#dpa">DPA</a></li>
-          </ul>
-        </div>
+          <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
+          <li><a href="#docs">Docs</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul class="footer-links">
+          <li><a href="/privacy.html">Privacy</a></li>
+          <li><a href="/terms.html">Terms</a></li>
+          <li><a href="#dpa">DPA</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>
 
-<!-- App JS (for pricing toggle etc.) -->
 <script src="/assets/app.js"></script>
 <script>
-  // inline pricing toggle (fallback)
-  (function(){
-    const toggle = document.querySelector('[data-toggle-billing]');
-    const shell = document.querySelector('[data-pricing-shell]');
-    if(!toggle || !shell) return;
-    const btns = toggle.querySelectorAll('[data-bill]');
-    const prices = shell.querySelectorAll('[data-price-monthly]');
-    const pricesAnnual = shell.querySelectorAll('[data-price-annual]');
-
-    function applyPrices(mode='monthly'){
-      btns.forEach(b => b.classList.toggle('active', b.dataset.bill === mode));
-      prices.forEach(p => {
-        const val = mode === 'monthly' ? p.dataset.priceMonthly : p.dataset.priceAnnual;
-        p.textContent = '$' + val;
-      });
-      pricesAnnual.forEach(p => {
-        const val = mode === 'monthly' ? p.dataset.priceMonthly : p.dataset.priceAnnual;
-        p.textContent = '$' + val;
-      });
-    }
-
-    btns.forEach(b => {
-      b.addEventListener('click', () => {
-        applyPrices(b.dataset.bill);
-      });
-    });
-
-    // sync default
-    applyPrices();
-  })();
-  </script>
-
-  <!-- Footer year -->
-  <script>
+  // footer year
   document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+</script>
 </body>
 </html>
