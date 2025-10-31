@@ -37,7 +37,7 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="/assets/styles.css" />
 
-  <!-- Extra section styles (pricing, product, spacing, solutions, integrations) -->
+  <!-- Extra styles (product, solutions, integrations, pricing, headings, spacing) -->
   <style>
     /* ===== PRICING SECTION OVERRIDES ===== */
 
@@ -679,17 +679,18 @@
       }
     }
 
-    /* ---- PRODUCT AREA ONLY + SECTION SPACING ---- */
+    /* ---- PRODUCT AREA ONLY (REVERTED) ---- */
     #product {
       position: relative;
       z-index: 2;
       scroll-margin-top: 90px;
-      margin-bottom: 56px;
     }
+
+    /* ---- LANDING SECTIONS SPACING (ONLY THIS) ---- */
     #solutions,
     #integrations,
     #pricing {
-      margin-bottom: 56px;
+      margin-top: 56px;
     }
 
     .product-head {
@@ -852,6 +853,7 @@
       white-space: nowrap;
     }
 
+    /* headings center (previous step) */
     #solutions > h2,
     #integrations > h2,
     #pricing > h2 {
@@ -867,9 +869,6 @@
     @media (max-width: 1080px) {
       .product-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .product-card {
-        min-height: 200px;
       }
     }
 
@@ -1367,7 +1366,7 @@
 
     <!-- PRICING -->
     <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
-      <h2 id="pricing-title" style="text-align:center;">Pricing</h2>
+      <h2 id="pricing-title">Pricing</h2>
       <p class="lead pricing-lead">
         High-match, consent-aware server-side tracking. No free tier — you own the data.
       </p>
@@ -1504,7 +1503,7 @@
 
       <!-- Inline details + request form -->
       <div id="inline-form" class="panel" style="margin-top:22px; scroll-margin-top:90px;">
-        <h3 style="margin:0 0 10px">Plan details &amp; upgrade request</h3>
+        <h3 style="margin:0 0 10px;color:#fff;">Plan details &amp; upgrade request</h3>
         <p style="color:var(--muted);font-size:14px;line-height:1.4;margin:0 0 16px;">
           Compare what’s included in each plan, then send us a request. We’ll activate
           your chosen plan and handle onboarding.
