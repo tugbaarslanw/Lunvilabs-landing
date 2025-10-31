@@ -480,6 +480,147 @@
   grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
+/* ===== PRODUCT CARDS (new premium layout) ===== */
+
+#product{
+  position:relative;
+  z-index:2;
+  scroll-margin-top:90px;
+}
+
+.product-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin-bottom:18px;
+}
+.product-head h2{
+  margin:0;
+}
+.product-head p{
+  margin:0;
+  color:var(--muted);
+  max-width:540px;
+  font-size:14px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+}
+
+.product-card{
+  background:
+    radial-gradient(circle at 20% 20%, rgba(136,83,255,.4) 0%, rgba(12,6,30,.1) 60%),
+    linear-gradient(165deg, rgba(26,18,46,.95) 0%, rgba(11,8,22,.6) 100%);
+  border:1px solid rgba(208,196,255,.12);
+  border-radius:18px;
+  padding:16px 16px 14px;
+  box-shadow:0 26px 50px rgba(0,0,0,.35);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:150px;
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+}
+.product-card.leon{
+  background:
+    radial-gradient(260px 200px at 16% 20%, rgba(65,226,192,.7) 0%, rgba(12,6,30,0) 60%),
+    radial-gradient(250px 200px at 70% 140%, rgba(136,83,255,.75) 0%, rgba(0,0,0,0) 75%),
+    linear-gradient(170deg, rgba(12,10,26,.9) 0%, rgba(12,10,26,.65) 100%);
+  border:1px solid rgba(65,226,192,.5);
+}
+.product-card.muted{
+  background:linear-gradient(165deg, rgba(12,10,22,.4) 0%, rgba(10,7,16,.3) 100%);
+  border:1px solid rgba(255,255,255,.058);
+}
+
+.product-icon{
+  width:34px;
+  height:34px;
+  border-radius:14px;
+  background:rgba(65,226,192,.16);
+  border:1px solid rgba(65,226,192,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.4),
+    0 0 20px rgba(65,226,192,.5) inset;
+}
+.product-icon svg{
+  width:18px;
+  height:18px;
+  stroke:#41e2c0;
+  stroke-width:1.8;
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.product-card h3{
+  margin:4px 0 0;
+  font-size:14.5px;
+  line-height:1.2;
+  color:#fff;
+  text-shadow:0 8px 27px rgba(0,0,0,.6);
+}
+.product-card p{
+  margin:4px 0 0;
+  font-size:13px;
+  line-height:1.35;
+  color:rgba(248,247,255,.7);
+}
+
+.product-list{
+  margin:8px 0 0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  gap:6px;
+}
+.product-list li{
+  display:flex;
+  gap:6px;
+  align-items:flex-start;
+  font-size:12.8px;
+  color:rgba(255,255,255,.78);
+}
+.product-check{
+  flex-shrink:0;
+  width:15px;
+  height:15px;
+  border-radius:6px;
+  background:#0ecf9f;
+  box-shadow:0 5px 18px rgba(0,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:700;
+  color:#062b26;
+}
+
+/* 4 üst 4 alt yapıyı küçük ekranlarda bozma */
+@media(max-width:1080px){
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:520px){
+  .product-grid{
+    grid-template-columns:1fr;
+  }
+  .product-card{
+    min-height:0;
+  }
+}
+
 /* ===== INTEGRATIONS CARDS ===== */
 
 #integrations {
@@ -767,25 +908,155 @@
       </div>
     </section>
 
-    <!-- PRODUCT -->
-    <section class="section container" id="product">
-      <h2>Product</h2>
-      <div class="grid-3">
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Meta Conversions API</h3>
-          <p>Pixel ID &amp; Access Token; browser+server <strong>dedup keys</strong>; test console and match-quality metrics.</p>
-        </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>GA4 Server Endpoint</h3>
-          <p>Measurement Protocol v2 with normalization; referral/UTM cleanup and IP anonymization.</p>
-        </div>
-        <div class="panel">
-          <div class="icon" aria-hidden="true"></div>
-          <h3>Event Router &amp; Destinations</h3>
-          <p>Branch events to Meta / GA4 / TikTok / Klaviyo / BigQuery / Webhook with conditional mappings.</p>
-        </div>
+    <!-- PRODUCT (updated UI only) -->
+    <section class="section container" id="product" aria-labelledby="product-title">
+      <div class="product-head">
+        <h2 id="product-title">Product</h2>
+        <p>Lunvi Labs içindeki tüm server-side blokları tek ekranda — Meta, GA4, TikTok, router, consent ve log.</p>
+      </div>
+
+      <div class="product-grid" role="list" aria-label="Product capabilities">
+        <!-- 1 -->
+        <article class="product-card leon" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="6" cy="12" r="2.3"></circle>
+              <circle cx="18" cy="6" r="2.3"></circle>
+              <circle cx="18" cy="18" r="2.3"></circle>
+              <line x1="8.4" y1="11" x2="15.3" y2="7.4"></line>
+              <line x1="8.4" y1="13" x2="15.3" y2="16.6"></line>
+            </svg>
+          </div>
+          <h3>Meta CAPI Gateway</h3>
+          <p>Pixel ID, token ve browser+server dedup anahtarları hazır.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Test console görünür</span></li>
+            <li><span class="product-check">✓</span><span>Match-quality ölçümü</span></li>
+          </ul>
+        </article>
+
+        <!-- 2 -->
+        <article class="product-card" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <line x1="4" y1="20" x2="4" y2="11"></line>
+              <line x1="11" y1="20" x2="11" y2="5"></line>
+              <line x1="18" y1="20" x2="18" y2="9"></line>
+              <line x1="2" y1="20" x2="20" y2="20"></line>
+            </svg>
+          </div>
+          <h3>GA4 MP v2 Endpoint</h3>
+          <p>Normalization, UTM/referral temizliği ve IP anonimize.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Consent-aware ping</span></li>
+            <li><span class="product-check">✓</span><span>EU bölgesi seçeneği</span></li>
+          </ul>
+        </article>
+
+        <!-- 3 -->
+        <article class="product-card leon" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="13 2 4 14 12 14 11 22 20 10 12 10 13 2"></polyline>
+            </svg>
+          </div>
+          <h3>TikTok / Paid Social</h3>
+          <p>Sunucuya düşen event’leri direkt sosyal API’lere aktar.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Retry + delivery takibi</span></li>
+            <li><span class="product-check">✓</span><span>Purchase / Lead şablonları</span></li>
+          </ul>
+        </article>
+
+        <!-- 4 -->
+        <article class="product-card muted" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 5h6v6H4z"></path>
+              <path d="M14 5h6v6h-6z"></path>
+              <path d="M9 14h6v6H9z"></path>
+              <line x1="10" y1="8" x2="14" y2="8"></line>
+              <line x1="12" y1="11" x2="12" y2="14"></line>
+            </svg>
+          </div>
+          <h3>Event Router</h3>
+          <p>Tek event’i Meta / GA4 / TikTok / Webhook’a aynı anda branch et.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Koşullu mapping</span></li>
+            <li><span class="product-check">✓</span><span>Destinasyon başına izolasyon</span></li>
+          </ul>
+        </article>
+
+        <!-- 5 -->
+        <article class="product-card" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="6" rx="3"></rect>
+              <circle cx="9" cy="7" r="1.1"></circle>
+              <path d="M5 14h6v6H5z"></path>
+              <path d="M14 14h5"></path>
+              <path d="M14 18h5"></path>
+            </svg>
+          </div>
+          <h3>Consent Mode v2 Engine</h3>
+          <p>Red durumunda anonim ping, izin geldiğinde tam payload.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>KVKK / GDPR hizalı</span></li>
+            <li><span class="product-check">✓</span><span>Tag’lerle uyumlu</span></li>
+          </ul>
+        </article>
+
+        <!-- 6 -->
+        <article class="product-card leon" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16v8H4z"></path>
+              <path d="M8 16h8"></path>
+              <path d="M10 20h4"></path>
+            </svg>
+          </div>
+          <h3>Live Log &amp; Debugger</h3>
+          <p>Hangi event neden reddedildi veya kabul edildi canlı görün.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>24h hata görünümü</span></li>
+            <li><span class="product-check">✓</span><span>İstemciye paylaşılabilir</span></li>
+          </ul>
+        </article>
+
+        <!-- 7 -->
+        <article class="product-card muted" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <circle cx="8" cy="7" r="3"></circle>
+              <path d="M2 21c0-3.1 2.1-5 5.9-5"></path>
+              <circle cx="17" cy="12" r="3"></circle>
+              <path d="M13 21c.3-2 1.7-3.4 4-3.4 2.2 0 3.6 1.6 4 3.4"></path>
+            </svg>
+          </div>
+          <h3>Multi-tenant / Agency</h3>
+          <p>Her müşteri için izole container ve domain.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Rol &amp; yetki kontrolü</span></li>
+            <li><span class="product-check">✓</span><span>White-label dostu</span></li>
+          </ul>
+        </article>
+
+        <!-- 8 -->
+        <article class="product-card" role="listitem">
+          <div class="product-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <ellipse cx="12" cy="5" rx="6" ry="2.5"></ellipse>
+              <path d="M6 5v5c0 1.5 2.7 2.5 6 2.5s6-1 6-2.5V5"></path>
+              <path d="M6 14v5c0 1.5 2.7 2.5 6 2.5s6-1 6-2.5v-5"></path>
+            </svg>
+          </div>
+          <h3>Data Export / Webhook</h3>
+          <p>BigQuery, CRM veya kendi endpoint’inize tam event.</p>
+          <ul class="product-list">
+            <li><span class="product-check">✓</span><span>Full payload</span></li>
+            <li><span class="product-check">✓</span><span>İzlenebilir teslimat</span></li>
+          </ul>
+        </article>
       </div>
     </section>
 
