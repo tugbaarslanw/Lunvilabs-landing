@@ -2,467 +2,461 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
+
+<meta name="description" content="Privacy-first, server-side Conversions API gateway. Managed sGTM hosting, Meta CAPI, GA4 MP v2, TikTok, Klaviyo and raw exports — all in one consent-aware edge. EU-region data, KVKK/GDPR alignment, and real-time debugging." />
 <meta name="theme-color" content="#0b0818" />
+
+<!-- Favicon / Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icon-16.png">
 <link rel="icon" href="/icon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- Open Graph / Social Preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
+<meta property="og:description" content="Server-side Conversions API gateway for Meta CAPI, GA4 MP v2, TikTok, Klaviyo, webhooks and BigQuery. EU-region, Consent Mode v2, KVKK/GDPR aligned." />
+<meta property="og:url" content="https://lunvilabs.com/" />
+<meta property="og:image" content="https://lunvilabs.com/social-card.png" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Lunvi Labs — Premium Gateway for Conversions APIs" />
+<meta name="twitter:description" content="EU-hosted, consent-aware delivery. Meta CAPI • GA4 • TikTok • Klaviyo • Webhooks. With realtime debugger." />
+<meta name="twitter:image" content="https://lunvilabs.com/social-card.png" />
+
+<!-- Preconnect for GA4 -->
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- CSS -->
+<!-- Main CSS -->
 <link rel="stylesheet" href="/assets/styles.css" />
 
-<!-- GA4 + Consent Mode v2 (default denied) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-
-  gtag('consent','default',{
-    ad_storage:'denied',
-    analytics_storage:'denied',
-    functionality_storage:'granted',
-    security_storage:'granted'
-  });
-  gtag('js', new Date());
-  gtag('config','G-XXXXXXXXXX',{ anonymize_ip:true });
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Pricing
+     We keep inline script at bottom for billing toggle.
+-->
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-shell">
-    <a href="/" class="logo">
-      <img src="/icon.png" alt="Lunvi Labs" loading="lazy" width="32" height="32" />
-      <span>Lunvi Labs</span>
-    </a>
-    <nav class="top-nav">
-      <a href="#product">Product</a>
-      <a href="#integrations">Integrations</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-    </nav>
-    <a href="#pricing" class="btn-small">Get Started</a>
-  </div>
-</header>
-
-<main>
-
-  <!-- HERO -->
-  <section class="hero container" id="hero">
-    <div class="hero-left">
-      <h1>Premium gateway for server-side conversions.</h1>
-      <p>Meta CAPI, GA4 v2, TikTok, Klaviyo and raw exports — all in one consent-aware edge. EU-region, KVKK/GDPR aligned, with real-time debugging.</p>
-      <div class="hero-actions">
-        <a href="#pricing" class="btn-primary">View pricing</a>
-        <a href="#integrations" class="btn-secondary">See integrations</a>
-      </div>
-      <ul class="hero-points">
-        <li>Managed sGTM hosting</li>
-        <li>Audience &amp; ID enrichment</li>
-        <li>Consent Mode v2 support</li>
-      </ul>
-      <ul class="hero-metrics">
-        <li><strong>CAPI events</strong> live</li>
-        <li><strong>GA4 MP v2</strong> EU region</li>
-        <li><strong>Webhook Exports</strong> auto-retry</li>
-      </ul>
-    </div>
-    <div class="hero-right">
-      <div class="hero-panel">
-        <h2>Realtime debugger</h2>
-        <p>See all sent events, delivery status, destination and payload.</p>
-        <div class="hero-panel-list">
-          <div class="hero-panel-row">
-            <span class="tag green"></span>
-            <div>
-              <strong>purchase</strong>
-              <small>Meta CAPI • 200 OK</small>
-            </div>
-            <span class="badge">1.2ms</span>
-          </div>
-          <div class="hero-panel-row">
-            <span class="tag blue"></span>
-            <div>
-              <strong>generate_lead</strong>
-              <small>GA4 MP v2 • 204</small>
-            </div>
-            <span class="badge">0.9ms</span>
-          </div>
-          <div class="hero-panel-row">
-            <span class="tag purple"></span>
-            <div>
-              <strong>complete_registration</strong>
-              <small>TikTok Events • 200</small>
-            </div>
-            <span class="badge warn">retry</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCT -->
-  <section class="section container" id="product">
-    <h2>Built for performance teams, privacy teams and agencies.</h2>
-    <p class="lead">One gateway to collect, normalize and send events out to the platforms your growth team needs. Without compromising on EU data residency or consent.</p>
-
-    <div class="product-grid">
-      <article class="product-card">
-        <h3>EU-region ingestion</h3>
-        <p>Data stays in the EU, aligned with KVKK/GDPR requirements. No accidental US routing.</p>
-      </article>
-      <article class="product-card">
-        <h3>Consent-aware delivery</h3>
-        <p>Supports Consent Mode v2 out of the box. Events are downgraded/upgraded based on user status.</p>
-      </article>
-      <article class="product-card">
-        <h3>Debugger &amp; replay</h3>
-        <p>See which events were sent, when, to which destination, with which status codes.</p>
-      </article>
-      <article class="product-card">
-        <h3>Agency safe</h3>
-        <p>Multi-workspace, multi-tenant layout. Keep client data separate and compliant.</p>
-      </article>
-    </div>
-  </section>
-
-  <!-- INTEGRATIONS (YENİ) -->
-  <section class="section" id="integrations" aria-labelledby="integrations-title">
-    <div class="integrations-wrap">
-      <div class="integrations-head">
-        <span class="int-pill" aria-label="Integrations">Integrations</span>
-        <h2 id="integrations-title">Works seamlessly with your existing stack</h2>
-        <p>Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
-        <div class="int-tabs" role="list">
-          <button class="int-tab is-active" type="button">Meta CAPI</button>
-          <button class="int-tab" type="button">GA4 MP v2</button>
-          <button class="int-tab" type="button">TikTok Events</button>
-          <button class="int-tab" type="button">Klaviyo</button>
-          <button class="int-tab" type="button">BigQuery</button>
-        </div>
-      </div>
-
-      <div class="integrations-grid" role="list" aria-label="integrations list">
-        <!-- 1 -->
-        <article class="integration-box b1" role="listitem">
-          <div class="ibox-icon">
-            <span class="glow"></span>
-            <span class="dot"></span>
-          </div>
-          <h3>Meta Conversions</h3>
-          <p>High-match server events with consent-aware delivery for premium reporting.</p>
-          <div class="ibox-footer">Match 97% • EU mode</div>
-        </article>
-
-        <!-- 2 -->
-        <article class="integration-box b2" role="listitem">
-          <div class="ibox-icon cyan">
-            <span class="glow"></span>
-            <span class="bar"></span>
-          </div>
-          <h3>Google Analytics 4</h3>
-          <p>Measurement Protocol v2 with server occupancy checks for reliable tracking.</p>
-          <div class="ibox-footer">MP v2 • EU-mode</div>
-        </article>
-
-        <!-- 3 -->
-        <article class="integration-box b3" role="listitem">
-          <div class="ibox-icon magenta">
-            <span class="glow"></span>
-            <span class="bolt"></span>
-          </div>
-          <h3>TikTok Events</h3>
-          <p>Server-to-server for paid social. Auto-retry + dedup so events don’t get lost.</p>
-          <div class="ibox-footer">Auto retry • Dedup</div>
-        </article>
-
-        <!-- 4 -->
-        <article class="integration-box b4" role="listitem">
-          <div class="ibox-icon lime">
-            <span class="glow"></span>
-            <span class="home"></span>
-          </div>
-          <h3>Klaviyo</h3>
-          <p>Profile + event sync for lifecycle &amp; reactivation campaigns.</p>
-          <div class="ibox-footer">Profiles • Events</div>
-        </article>
-
-        <!-- 5 -->
-        <article class="integration-box b5" role="listitem">
-          <div class="ibox-icon indigo">
-            <span class="glow"></span>
-            <span class="layers"></span>
-          </div>
-          <h3>BigQuery Export</h3>
-          <p>Raw event export for downstream BI &amp; SKU-level filtering.</p>
-          <div class="ibox-footer">Auto dedup • SKU filter</div>
-        </article>
-
-        <!-- 6 -->
-        <article class="integration-box b6" role="listitem">
-          <div class="ibox-icon orange">
-            <span class="glow"></span>
-            <span class="stack"></span>
-          </div>
-          <h3>Webhook Export</h3>
-          <p>Re-mapped payloads to your own endpoints or internal systems.</p>
-          <div class="ibox-footer">Conditional maps</div>
-        </article>
-
-        <!-- 7 -->
-        <article class="integration-box b7" role="listitem">
-          <div class="ibox-icon pink">
-            <span class="glow"></span>
-            <span class="link"></span>
-          </div>
-          <h3>Webhook Destinations</h3>
-          <p>Send mapped payloads to 1st / 3rd-party systems with delivery safety.</p>
-          <div class="ibox-footer">Conditional maps • sGTM</div>
-        </article>
-
-        <!-- 8 -->
-        <article class="integration-box b8" role="listitem">
-          <div class="ibox-icon yellow">
-            <span class="glow"></span>
-            <span class="user"></span>
-          </div>
-          <h3>Snapchat Conversions API</h3>
-          <p>Enhance Snap data with server-side CAPI, with iOS-dedup for app installs.</p>
-          <div class="ibox-footer">Server • Dedup</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRICING (ZIP’TEKİ HALİYLE) -->
-  <!-- buradan sonrası senin ZIP’teki pricing, faq ve compliance alanlarının aynısı -->
-  <!-- ... (kalan içerik zip’tekiyle aynı) ... -->
-
-  <section class="section container" id="pricing">
-    <h2>Pricing</h2>
-    <p class="pricing-lead">Start small and scale up as your event volume grows.</p>
-    <div class="pricing-shell" data-pricing-shell>
-      <!-- starter -->
-      <article class="plan-card">
-        <span class="plan-pill">Starter</span>
-        <h3 class="plan-name">Starter</h3>
-        <p class="plan-desc">For small teams and pilots.</p>
-        <div class="plan-price">
-          <strong data-price-monthly="49" data-price-annual="39">$49</strong>
-          <span>/mo</span>
-        </div>
-        <details class="plan-details">
-          <summary>What’s included</summary>
-          <div class="plan-details-body">
-            <p><strong>Destinations</strong></p>
-            <ul class="sec-list">
-              <li>Meta CAPI (Web + App)</li>
-              <li>GA4 MP v2</li>
-              <li>TikTok Events</li>
-            </ul>
-            <p><strong>Features</strong></p>
-            <ul class="sec-list">
-              <li>Consent Mode v2</li>
-              <li>Basic sGTM hosting</li>
-              <li>Realtime debugger (24h)</li>
-            </ul>
-            <p><strong>Limits</strong></p>
-            <ul class="sec-list">
-              <li>Up to 50k events/mo</li>
-              <li>No guaranteed EU-only region</li>
-            </ul>
-          </div>
-        </details>
-        <div class="plan-actions">
-          <button class="btn-primary" type="button" data-cta="starter">Get started</button>
-          <button class="btn-secondary" type="button">Contact sales</button>
-        </div>
-      </article>
-
-      <!-- Growth -->
-      <article class="plan-card">
-        <span class="plan-pill">Growth</span>
-        <h3 class="plan-name">Growth</h3>
-        <p class="plan-desc">For agencies and growing brands.</p>
-        <div class="plan-price">
-          <strong data-price-monthly="129" data-price-annual="99">$129</strong>
-          <span>/mo</span>
-        </div>
-        <details class="plan-details" id="plan-growth-details" open>
-          <summary>What’s included</summary>
-          <div class="plan-details-body">
-            <p><strong>Destinations</strong></p>
-            <ul class="sec-list">
-              <li>Everything in Starter</li>
-              <li>Klaviyo</li>
-              <li>Webhook exports</li>
-              <li>BigQuery export</li>
-            </ul>
-            <p><strong>Features</strong></p>
-            <ul class="sec-list">
-              <li>Realtime debugger (7d)</li>
-              <li>Consent Mode v2 — advanced</li>
-              <li>Audience / ID enrichment</li>
-              <li>Geo/IP controls</li>
-            </ul>
-            <p><strong>Limits</strong></p>
-            <ul class="sec-list">
-              <li>Up to 250k events/mo</li>
-              <li>Shared EU-region</li>
-              <li>Above 250k billed per block</li>
-            </ul>
-          </div>
-        </details>
-        <div class="plan-actions">
-          <button class="btn-primary" type="button" data-cta="growth">Upgrade to Growth</button>
-        </div>
-      </article>
-
-      <!-- Enterprise -->
-      <article class="plan-card">
-        <span class="plan-pill">Enterprise</span>
-        <h3 class="plan-name">Enterprise</h3>
-        <p class="plan-desc">For high-volume and regulated environments.</p>
-        <div class="plan-price">
-          <strong data-price-monthly="349" data-price-annual="299">$349</strong>
-          <span>/mo</span>
-        </div>
-        <details class="plan-details">
-          <summary>What’s included</summary>
-          <div class="plan-details-body">
-            <p><strong>Destinations</strong></p>
-            <ul class="sec-list">
-              <li>Everything in Growth</li>
-              <li>Custom webhooks</li>
-              <li>Partner APIs</li>
-            </ul>
-            <p><strong>Features</strong></p>
-            <ul class="sec-list">
-              <li>Dedicated EU-region</li>
-              <li>Audit trail &amp; SSO</li>
-              <li>High-frequency retries</li>
-            </ul>
-            <p><strong>Limits</strong></p>
-            <ul class="sec-list">
-              <li>No hard limits</li>
-              <li>Volume-based overage</li>
-            </ul>
-          </div>
-        </details>
-        <div class="plan-actions">
-          <button class="btn-primary" type="button" data-cta="enterprise">Talk to us</button>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section container" id="faq" style="scroll-margin-top:90px;">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q"><strong>Do I need to host sGTM myself?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">No — we provide managed sGTM hosting with EU-region option. You can also bring your own.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>Do you support Consent Mode v2?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">Yes. We normalize events to consent status. When consent is denied, we still send anonymous pings that can be upgraded later.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>Can I send to Snapchat / TikTok?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">Yes — TikTok Events API, Snapchat CAPI, Klaviyo and raw webhooks are all supported.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q"><strong>What if I exceed my plan?</strong><span class="caret">▾</span></div>
-        <div class="faq-a">We’ll notify you and keep events flowing. You can upgrade or add event blocks anytime.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPLIANCE -->
-  <section class="section container" id="compliance" aria-labelledby="compliance-title" style="scroll-margin-top:90px;">
-    <h2 id="compliance-title">Compliance &amp; Legal Docs</h2>
-    <p class="lead">We prepared light, readable documents for your legal / security teams. No opaque terms, no hidden data sharing.</p>
-    <div class="docs-grid">
-      <article class="doc-card">
-        <h3>Privacy Policy</h3>
-        <p>General data processing, retention, and legal basis details.</p>
-        <a href="/privacy.html" class="doc-link">View privacy →</a>
-      </article>
-      <article class="doc-card">
-        <h3>Terms of Service</h3>
-        <p>What’s covered, what’s not, and acceptable use.</p>
-        <a href="/terms.html" class="doc-link">View terms →</a>
-      </article>
-      <article class="doc-card">
-        <h3>DPA (sample)</h3>
-        <p>Data Processing Addendum draft for enterprise customers.</p>
-        <a href="#dpa" class="doc-link">Request DPA →</a>
-      </article>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="container footer-shell">
-    <div class="footer-left">
-      <a href="/" class="logo">
-        <img src="/icon.png" alt="Lunvi Labs" width="30" height="30" loading="lazy" />
-        <span>Lunvi Labs</span>
+  <!-- HEADER (zip’teki orijinal) -->
+  <header>
+    <div class="container nav" id="nav">
+      <a href="/" class="brand" aria-label="Lunvi Labs home">
+        <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
       </a>
-      <p class="footer-copy">© <span id="y"></span> Lunvi Labs. All rights reserved.</p>
-      <p class="footer-copy">EU-region, consent-aware conversion infrastructure.</p>
+      <button class="hamburger" aria-controls="menu" aria-expanded="false" id="navToggle">☰</button>
+      <ul id="menu" aria-label="Main menu">
+        <li><a href="#product">Product</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#integrations">Integrations</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a class="btn btn-ghost" href="#docs">Docs</a></li>
+        <li><a class="btn btn-primary" href="#demo">Start Demo</a></li>
+      </ul>
     </div>
-    <div class="footer-right">
-      <div class="footer-col">
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="hero">
+      <div class="hero-grid">
+        <div>
+          <h1 class="h1">The premium gateway for <span style="color:#cfc0ff">server-side Conversions APIs</span>.</h1>
+          <p class="lead">
+            Managed sGTM hosting with reliable <strong>Meta Conversions API</strong>, <strong>Google Analytics 4 MP v2</strong>, <strong>TikTok Events API</strong>, <strong>Klaviyo</strong>, <strong>webhooks</strong> and <em>raw exports</em>. Consent aware via <em>Consent Mode v2</em>, and a live <em>log &amp; debugger</em>.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#pricing">View pricing</a>
+            <a class="btn btn-secondary" href="#integrations">See integrations</a>
+          </div>
+          <ul class="hero-points">
+            <li>Managed sGTM hosting in EU</li>
+            <li>Audience &amp; ID enrichment</li>
+            <li>Consent Mode v2 support</li>
+          </ul>
+          <div class="hero-metrics">
+            <div>
+              <p class="metric-label">CAPI events</p>
+              <p class="metric-value">live</p>
+            </div>
+            <div>
+              <p class="metric-label">GA4 MP v2</p>
+              <p class="metric-value">EU-only</p>
+            </div>
+            <div>
+              <p class="metric-label">Webhook exports</p>
+              <p class="metric-value">auto-retry</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <h2 class="panel-title">Realtime debugger</h2>
+          <p class="panel-sub">See all sent events, delivery status, destination and payload.</p>
+          <div class="panel-list">
+            <div class="panel-row">
+              <span class="dot dot-green"></span>
+              <div>
+                <p class="panel-event">purchase</p>
+                <p class="panel-meta">Meta CAPI • 200 OK</p>
+              </div>
+              <span class="panel-latency">1.3ms</span>
+            </div>
+            <div class="panel-row">
+              <span class="dot dot-blue"></span>
+              <div>
+                <p class="panel-event">generate_lead</p>
+                <p class="panel-meta">GA4 MP v2 • 204</p>
+              </div>
+              <span class="panel-latency">0.9ms</span>
+            </div>
+            <div class="panel-row">
+              <span class="dot dot-pink"></span>
+              <div>
+                <p class="panel-event">complete_registration</p>
+                <p class="panel-meta">TikTok Events • retrying</p>
+              </div>
+              <span class="panel-latency">retry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT -->
+    <section class="section container" id="product">
+      <h2>Built for performance teams, privacy teams and agencies.</h2>
+      <p class="lead">
+        One gateway to collect, normalize and send events out to the platforms your growth team needs. Without compromising on EU data residency or consent.
+      </p>
+      <div class="product-grid">
+        <article class="product-card">
+          <h3>EU-region ingestion</h3>
+          <p>Data stays in the EU, aligned with KVKK/GDPR requirements. No accidental US routing.</p>
+        </article>
+        <article class="product-card">
+          <h3>Consent-aware delivery</h3>
+          <p>Supports Consent Mode v2 out of the box. Events are downgraded/upgraded based on user status.</p>
+        </article>
+        <article class="product-card">
+          <h3>Debugger &amp; replay</h3>
+          <p>See which events were sent, when, to which destination, with which status codes.</p>
+        </article>
+        <article class="product-card">
+          <h3>Agency safe</h3>
+          <p>Multi-workspace, multi-tenant layout. Keep client data separate and compliant.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SOLUTIONS (ZIP’TEKİ GİBİ) -->
+    <section class="section container" id="solutions">
+      <h2>For agencies, e-commerce, and B2B growth teams.</h2>
+      <p class="lead">Normalize, enrich and route conversion events without building a pipeline from scratch.</p>
+      <div class="solutions-grid">
+        <article class="sol-card">
+          <h3>E-commerce</h3>
+          <p>High match-rate server events for Meta, GA4 and TikTok. SKU-level filters and dedup.</p>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>Meta CAPI (web/app)</span></li>
+            <li><span class="sol-bullet">✓</span><span>GA4 MP v2</span></li>
+            <li><span class="sol-bullet">✓</span><span>Raw exports (BiqQuery / webhook)</span></li>
+          </ul>
+        </article>
+        <article class="sol-card">
+          <h3>Marketing ops</h3>
+          <p>Consent-aware sending, audience enrichment, opt-out handling, and a neat debugger.</p>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>Consent Mode v2</span></li>
+            <li><span class="sol-bullet">✓</span><span>PII scrubbing</span></li>
+            <li><span class="sol-bullet">✓</span><span>Webhook mapping</span></li>
+          </ul>
+        </article>
+        <article class="sol-card">
+          <h3>Agencies / Partners</h3>
+          <p>Multi-tenant setup with isolated containers per client, managed SSL, and shared debugging access.</p>
+          <ul class="sol-list">
+            <li><span class="sol-bullet">✓</span><span>Custom domains per client</span></li>
+            <li><span class="sol-bullet">✓</span><span>Team / role control</span></li>
+            <li><span class="sol-bullet">✓</span><span>White-label friendly</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- INTEGRATIONS (SENİN GÖRSEL GİBİ OLAN YENİ HALİ) -->
+    <section class="section" id="integrations" aria-labelledby="integrations-title">
+      <div class="integrations-wrap">
+        <div class="integrations-head">
+          <span class="int-pill" aria-label="Integrations">Integrations</span>
+          <h2 id="integrations-title">Works seamlessly with your existing stack</h2>
+          <p>Monitored delivery, retry &amp; dedup built in. Add more destinations when your team needs it.</p>
+          <div class="int-tabs" role="list">
+            <button class="int-tab is-active" type="button">Meta CAPI</button>
+            <button class="int-tab" type="button">GA4 MP v2</button>
+            <button class="int-tab" type="button">TikTok Events</button>
+            <button class="int-tab" type="button">Klaviyo</button>
+            <button class="int-tab" type="button">BigQuery</button>
+          </div>
+        </div>
+
+        <div class="integrations-grid" role="list" aria-label="integrations list">
+          <!-- 1 -->
+          <article class="integration-box b1" role="listitem">
+            <div class="ibox-icon">
+              <span class="glow"></span>
+              <span class="dot"></span>
+            </div>
+            <h3>Meta Conversions</h3>
+            <p>High-match server events with consent-aware delivery for premium reporting.</p>
+            <div class="ibox-footer">Match 97% · EU mode</div>
+          </article>
+
+          <!-- 2 -->
+          <article class="integration-box b2" role="listitem">
+            <div class="ibox-icon cyan">
+              <span class="glow"></span>
+              <span class="bar"></span>
+            </div>
+            <h3>Google Analytics 4</h3>
+            <p>Measurement Protocol v2 with server occupancy checks for reliable tracking.</p>
+            <div class="ibox-footer">MP v2 · EU-mode</div>
+          </article>
+
+          <!-- 3 -->
+          <article class="integration-box b3" role="listitem">
+            <div class="ibox-icon magenta">
+              <span class="glow"></span>
+              <span class="bolt"></span>
+            </div>
+            <h3>TikTok Events</h3>
+            <p>Server-to-server for paid social. Auto-retry + dedup so events don’t get lost.</p>
+            <div class="ibox-footer">Auto retry · Dedup</div>
+          </article>
+
+          <!-- 4 -->
+          <article class="integration-box b4" role="listitem">
+            <div class="ibox-icon lime">
+              <span class="glow"></span>
+              <span class="home"></span>
+            </div>
+            <h3>Klaviyo</h3>
+            <p>Profile + event sync for lifecycle &amp; reactivation campaigns.</p>
+            <div class="ibox-footer">Profiles · Events</div>
+          </article>
+
+          <!-- 5 -->
+          <article class="integration-box b5" role="listitem">
+            <div class="ibox-icon indigo">
+              <span class="glow"></span>
+              <span class="layers"></span>
+            </div>
+            <h3>BigQuery Export</h3>
+            <p>Raw event export for deeper attribution and SKU-level reporting.</p>
+            <div class="ibox-footer">Auto dedup · SKU filter</div>
+          </article>
+
+          <!-- 6 -->
+          <article class="integration-box b6" role="listitem">
+            <div class="ibox-icon orange">
+              <span class="glow"></span>
+              <span class="stack"></span>
+            </div>
+            <h3>Webhook Export</h3>
+            <p>Re-mapped payloads to your own endpoints or internal systems.</p>
+            <div class="ibox-footer">Conditional maps</div>
+          </article>
+
+          <!-- 7 -->
+          <article class="integration-box b7" role="listitem">
+            <div class="ibox-icon pink">
+              <span class="glow"></span>
+              <span class="link"></span>
+            </div>
+            <h3>Webhook Destinations</h3>
+            <p>Send mapped payloads to internal/partner systems with delivery safety.</p>
+            <div class="ibox-footer">Conditional maps · sGTM</div>
+          </article>
+
+          <!-- 8 -->
+          <article class="integration-box b8" role="listitem">
+            <div class="ibox-icon yellow">
+              <span class="glow"></span>
+              <span class="user"></span>
+            </div>
+            <h3>Snapchat Conversions API</h3>
+            <p>Enhance Snap data with server-side CAPI and iOS-dedup for app installs.</p>
+            <div class="ibox-footer">Server · Dedup</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING (ZIP’TEKİ HALİ) -->
+    <section class="pricing container" id="pricing" aria-labelledby="pricing-title">
+      <h2 id="pricing-title">Pricing</h2>
+      <p class="lead pricing-lead">
+        High-match, consent-aware server-side tracking. No free tiers — just transparent pricing.
+      </p>
+
+      <div class="pricing-bar">
+        <div class="billing-toggle-wrap">
+          <span class="billing-label">Billing</span>
+          <div class="billing-toggle" id="billingToggle" role="group" aria-label="Billing period">
+            <button class="bill-btn" data-mode="monthly" type="button">Monthly</button>
+            <button class="bill-btn active" data-mode="annual" type="button">
+              Annual <span class="save-pill">Save 20%</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="price-layout">
+        <!-- Starter -->
+        <article class="plan-card starter" data-plan="Starter">
+          <p class="plan-title">Starter</p>
+          <p class="plan-sub">For small teams and pilots.</p>
+          <p class="plan-price">
+            <span class="plan-price-number" data-month="49" data-annual="39">$39</span>
+            <span class="plan-price-note">per month, billed annually</span>
+          </p>
+          <ul class="plan-features">
+            <li>Meta CAPI (web + app)</li>
+            <li>GA4 Measurement Protocol v2</li>
+            <li>TikTok Events API</li>
+            <li>Consent Mode v2 support</li>
+            <li>EU-hosted sGTM (shared)</li>
+            <li>Email support</li>
+          </ul>
+          <button class="btn btn-primary w-100" type="button" data-cta="starter">Get started</button>
+        </article>
+
+        <!-- Growth -->
+        <article class="plan-card growth" data-plan="Growth">
+          <p class="plan-title">Growth</p>
+          <p class="plan-sub">For agencies and growing brands.</p>
+          <p class="plan-price">
+            <span class="plan-price-number" data-month="129" data-annual="99">$99</span>
+            <span class="plan-price-note">per month, billed annually</span>
+          </p>
+          <ul class="plan-features">
+            <li>Everything in Starter</li>
+            <li>Klaviyo integration</li>
+            <li>Webhook exports</li>
+            <li>BigQuery export</li>
+            <li>Debug log (7 days)</li>
+            <li>Higher event volume</li>
+          </ul>
+          <button class="btn btn-primary w-100" type="button" data-cta="growth">Upgrade to Growth</button>
+        </article>
+
+        <!-- Enterprise -->
+        <article class="plan-card enterprise" data-plan="Enterprise">
+          <p class="plan-title">Enterprise</p>
+          <p class="plan-sub">For regulated &amp; high-volume setups.</p>
+          <p class="plan-price">
+            <span class="plan-price-number" data-month="349" data-annual="299">$299</span>
+            <span class="plan-price-note">per month, billed annually</span>
+          </p>
+          <ul class="plan-features">
+            <li>Dedicated EU-region</li>
+            <li>Advanced audit trail</li>
+            <li>SSO / SAML</li>
+            <li>Custom webhook mapping</li>
+            <li>Priority support</li>
+            <li>Unlimited workspaces</li>
+          </ul>
+          <button class="btn btn-primary w-100" type="button" data-cta="enterprise">Talk to us</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section container" id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-grid">
+        <article class="faq-card">
+          <h3>Do I need to host sGTM?</h3>
+          <p>No. We provide managed sGTM hosting, including EU-region options.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Do you support Consent Mode v2?</h3>
+          <p>Yes, events are normalized to consent status and upgraded when full consent is present.</p>
+        </article>
+        <article class="faq-card">
+          <h3>Can I mix destinations?</h3>
+          <p>Yes. You can send the same normalized event to Meta, GA4, TikTok and Klaviyo.</p>
+        </article>
+        <article class="faq-card">
+          <h3>What about overages?</h3>
+          <p>We keep events flowing and just bill extra event blocks.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Compliance / Docs -->
+    <section class="section container" id="docs">
+      <h2>Compliance &amp; Legal</h2>
+      <p class="lead">We prepared light, readable documents for your legal / security teams.</p>
+      <div class="docs-grid">
+        <article class="doc-card">
+          <h3>Privacy Policy</h3>
+          <p>Data processing, retention and legal basis.</p>
+          <a href="/privacy.html" class="doc-link">View privacy →</a>
+        </article>
+        <article class="doc-card">
+          <h3>Terms of Service</h3>
+          <p>What’s covered, what’s not, and acceptable use.</p>
+          <a href="/terms.html" class="doc-link">View terms →</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="/" class="brand">
+          <span class="logo" aria-hidden="true"></span> Lunvi <span style="opacity:.75;font-weight:700">Labs</span>
+        </a>
+        <p class="foot-muted">© <span id="y"></span> Lunvi Labs. All rights reserved.</p>
+        <p class="foot-muted">EU-region, consent-aware conversion infrastructure.</p>
+      </div>
+      <div>
         <h4>Product</h4>
-        <ul class="footer-links">
+        <ul>
           <li><a href="#hero">Overview</a></li>
           <li><a href="#integrations">Integrations</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="#compliance">Compliance</a></li>
-          <li><a href="#">Changelog</a></li>
-          <li><a href="#">API Reference</a></li>
-          <li><a href="#">Status</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
+      <div>
         <h4>Company</h4>
-        <ul class="footer-links">
-          <li><a href="mailto:info@lunvilabs.com?subject=Lunvi%20Labs%20—%20Inquiry">Contact</a></li>
+        <ul>
+          <li><a href="mailto:info@lunvilabs.com">Contact</a></li>
           <li><a href="#docs">Docs</a></li>
-          <li><a href="#">Status</a></li>
-          <li><a href="#">Careers</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div>
         <h4>Legal</h4>
-        <ul class="footer-links">
+        <ul>
           <li><a href="/privacy.html">Privacy</a></li>
           <li><a href="/terms.html">Terms</a></li>
-          <li><a href="#dpa">DPA</a></li>
         </ul>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="/assets/app.js"></script>
-<script>
+  <script src="/assets/app.js"></script>
+  <script>
   // footer year
   document.getElementById('y').textContent = new Date().getFullYear();
-</script>
+  </script>
 </body>
 </html>
