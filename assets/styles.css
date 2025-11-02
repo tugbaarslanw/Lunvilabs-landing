@@ -160,6 +160,8 @@ header{
 /* Sections */
 .section{padding:34px 0 10px}
 .section h2{font-size:30px;margin:0 0 14px}
+/* sticky header offset for anchor links */
+section[id]{scroll-margin-top:90px}
 
 /* Features */
 .grid-3{
@@ -250,7 +252,7 @@ header{
     0 20px 60px rgba(65,226,192,.18);
 }
 
-/* Dev stays neutral (plan-card--dev just uses base .plan-card) */
+/* Dev stays neutral */
 .plan-card--dev{}
 
 /* price text */
@@ -508,7 +510,7 @@ footer.site{
   to{opacity:1;transform:translate(-50%,0)}
 }
 
-/* Integrations */
+/* Integrations (legacy layout — overridden by inline styles in index if present) */
 .int-sub{color:var(--muted);margin:0 0 18px}
 .int-grid{
   display:grid;grid-template-columns:repeat(6,1fr);gap:14px
