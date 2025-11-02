@@ -7,7 +7,7 @@
 
 <title>Lunvi Labs — Premium Gateway for Conversions APIs</title>
 
-<meta name="description" content="Privacy-first, server-side Conversions API gateway. Managed sGTM hosting, Meta CAPI, GA4 Measurement Protocol, EU-region data, KVKK/GDPR alignment, and real-time debugging." />
+<meta name="description" content="Privacy-first, server-side Conversions API gateway. Managed sGTM hosting, Meta CAPI, GA4 Measurement Protocol delivery, data, KVKK/GDPR alignment, and real-time debugging." />
 <meta name="theme-color" content="#0b0818" />
 
 <!-- Favicon / Icons -->
@@ -199,7 +199,7 @@
     radial-gradient(circle at 15% 15%, rgba(65,226,192,.18) 0%, rgba(0,0,0,0) 60%),
     radial-gradient(circle at 80% 20%, rgba(0,180,120,.22) 0%, rgba(0,0,0,0) 70%),
     linear-gradient(180deg, rgba(16,27,24,.9) 0%, rgba(12,10,24,.75) 100%);
-  border:1px solid rgba(65,226,192,.5);
+  border:1px solid rgba(65,e2,192,.5);
   box-shadow:
     0 40px 120px rgba(0,0,0,.9),
     0 0 120px rgba(65,226,192,.45),
@@ -671,6 +671,45 @@
     padding:18px 18px 16px;
   }
 }
+
+/* ===== HERO LOGO STRIP (added) ===== */
+.hero-meta{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:14px;
+}
+.hero-badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.hero-logos{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.hero-logos-title{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  opacity:.65;
+}
+.hero-logos-row{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+.hero-logos-row img{
+  height:28px;
+  object-fit:contain;
+  filter:drop-shadow(0 10px 25px rgba(0,0,0,.35));
+}
+@media(max-width:640px){
+  .hero-logos-row{
+    flex-wrap:wrap;
+  }
+}
 </style>
 
 <!-- GA4 + Consent defaults -->
@@ -731,19 +770,23 @@
           </div>
 
           <div style="height:12px"></div>
-          <div class="trust" role="list" aria-label="Trust badges">
-            <span class="badge" role="listitem">EU Hosting</span>
-            <span class="badge" role="listitem">GDPR / KVKK</span>
-            <span class="badge" role="listitem">99.9% Uptime target</span>
-            <span class="badge" role="listitem">1-click Deploy</span>
-          </div>
-
-          <div class="chips" role="list" aria-label="Highlights">
-            <span class="chip" role="listitem">Meta CAPI preset</span>
-            <span class="chip" role="listitem">GA4 MP v2 endpoint</span>
-            <span class="chip" role="listitem">Event Router</span>
-            <span class="chip" role="listitem">Consent Mode v2</span>
-            <span class="chip" role="listitem">Log &amp; Debugger</span>
+          <!-- new simplified + logos block -->
+          <div class="hero-meta">
+            <div class="hero-badges">
+              <span class="badge" role="listitem">EU Hosting</span>
+              <span class="badge" role="listitem">GDPR / KVKK</span>
+              <span class="badge" role="listitem">99.9% uptime</span>
+              <span class="badge" role="listitem">Consent Mode v2</span>
+            </div>
+            <div class="hero-logos">
+              <p class="hero-logos-title">Optimized for</p>
+              <div class="hero-logos-row">
+                <img src="/assets/logos/meta.png" alt="Meta" />
+                <img src="/assets/logos/google-analytics.png" alt="Google Analytics 4" />
+                <img src="/assets/logos/tiktok.png" alt="TikTok Events" />
+                <img src="/assets/logos/shopify.png" alt="Shopify" />
+              </div>
+            </div>
           </div>
         </div>
 
